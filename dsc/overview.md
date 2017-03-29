@@ -11,7 +11,7 @@ ms.prod:  powershell
 
 # Windows PowerShell Desired State Configuration Overview 
 
-> Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
+> Applies To: this is a bad PR Windows PowerShell 4.0, Windows PowerShell 5.0
 
 DSC is a management platform in PowerShell that enables you to manage your IT and development infrastructure with configuration as code.
 
