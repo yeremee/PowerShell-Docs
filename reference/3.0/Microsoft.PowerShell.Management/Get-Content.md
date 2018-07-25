@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -14,19 +14,23 @@ Gets the content of the item at the specified location.
 ## SYNTAX
 
 ### Path (Default)
-```
-Get-Content [-ReadCount <Int64>] [-TotalCount <Int64>] [-Tail <Int32>] [-Path] <String[]> [-Filter <String>]
- [-Include <String[]>] [-Exclude <String[]>] [-Force] [-Credential <PSCredential>] [-UseTransaction]
- [-Delimiter <String>] [-Wait] [-Raw] [-Encoding <FileSystemCmdletProviderEncoding>] [-Stream <String>]
+```powershell
+Get-Content [-Path] <String[]> [-ReadCount <Int64>] [-TotalCount <Int64>]
+ [-Tail <Int32>] [-Filter <String>] [-Include <String[]>] [-Exclude <String[]>]
+ [-Force] [-Credential <PSCredential>] [-UseTransaction]
+ [-Delimiter <String>] [-Wait] [-Raw]
+ [-Encoding <FileSystemCmdletProviderEncoding>] [-Stream <String>]
  [<CommonParameters>]
 ```
 
 ### LiteralPath
-```
-Get-Content [-ReadCount <Int64>] [-TotalCount <Int64>] [-Tail <Int32>] -LiteralPath <String[]>
- [-Filter <String>] [-Include <String[]>] [-Exclude <String[]>] [-Force] [-Credential <PSCredential>]
- [-UseTransaction] [-Delimiter <String>] [-Wait] [-Raw] [-Encoding <FileSystemCmdletProviderEncoding>]
- [-Stream <String>] [<CommonParameters>]
+```powershell
+Get-Content -LiteralPath <String[]> [-ReadCount <Int64>] [-TotalCount <Int64>]
+ [-Tail <Int32>] [-Filter <String>] [-Include <String[]>] [-Exclude <String[]>]
+ [-Force] [-Credential <PSCredential>] [-UseTransaction]
+ [-Delimiter <String>] [-Wait] [-Raw]
+ [-Encoding <FileSystemCmdletProviderEncoding>] [-Stream <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -85,10 +89,12 @@ Valid values are:
 
 Encoding is a dynamic parameter that the FileSystem provider adds to the Get-Content cmdlet. This parameter works only in file system drives.
 
-When reading from and writing to binary files, use a value of Byte for the Encoding dynamic parameter and a value of 0 for the ReadCount parameter.  A ReadCount value of 0 reads the entire file in a single read operation and converts it into a single object (PSObject).  The default ReadCount value, 1, reads one byte in each read operation and converts each byte into a separate object, which causes errors when you use the Set-Content cmdlet to write the bytes to a file. For more information, see the examples.```yaml
+When reading from and writing to binary files, use a value of Byte for the Encoding dynamic parameter and a value of 0 for the ReadCount parameter.  A ReadCount value of 0 reads the entire file in a single read operation and converts it into a single object (PSObject).  The default ReadCount value, 1, reads one byte in each read operation and converts each byte into a separate object, which causes errors when you use the Set-Content cmdlet to write the bytes to a file. For more information, see the examples.
+
+```yaml
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem
 
 Required: False
@@ -99,11 +105,11 @@ Accept wildcard characters: False
 ```
 
 ### -Delimiter
-Specifies the delimiter that Get-Content uses to divide the file into objects while it reads. 
+Specifies the delimiter that Get-Content uses to divide the file into objects while it reads.
 
-The default is "\n", the end-of-line character. 
+The default is "\n", the end-of-line character.
 
-Therefore, by default, when reading a text file, Get-Content returns a collection of string objects, each of which ends with an end-of-line character. 
+Therefore, by default, when reading a text file, Get-Content returns a collection of string objects, each of which ends with an end-of-line character.
 
 When you enter a delimiter that does not exist in the file, Get-Content returns the entire file as a single, undelimited object.
 
@@ -111,10 +117,12 @@ You can use this parameter to split a large file into smaller files by specifyin
 
 Delimiter is a dynamic parameter that the FileSystem provider adds to the Get-Content cmdlet. This parameter works only in file system drives.
 
-Troubleshooting Note: Currently, when the value of the Delimiter parameter is an empty string, Get-Content does not return anything. This is a known issue. To force Get-Content to return the entire file as a single, undelimited string, enter a value that does not exist in the file.```yaml
+Troubleshooting Note: Currently, when the value of the Delimiter parameter is an empty string, Get-Content does not return anything. This is a known issue. To force Get-Content to return the entire file as a single, undelimited string, enter a value that does not exist in the file.
+
+```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -130,7 +138,7 @@ For example, **Force** will override the read-only attribute or create directori
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -144,10 +152,12 @@ Ignores newline characters and returns the entire contents of a file in one stri
 
 Raw is a dynamic parameter that the FileSystem provider adds to the Get-Content cmdlet. This parameter works only in file system drives.
 
-This parameter is introduced in Windows PowerShell 3.0.```yaml
+This parameter is introduced in Windows PowerShell 3.0.
+
+```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -159,10 +169,12 @@ Accept wildcard characters: False
 ### -Wait
 Waits for the cmdlet to get the content before returning the command prompt. While waiting, Get-Content checks the file once each second until you interrupt it, such as by pressing CTRL+C.
 
-Wait is a dynamic parameter that the FileSystem provider adds to the Get-Content cmdlet. This parameter works only in file system drives.```yaml
+Wait is a dynamic parameter that the FileSystem provider adds to the Get-Content cmdlet. This parameter works only in file system drives.
+
+```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -172,14 +184,16 @@ Accept wildcard characters: False
 ```
 
 ### -Stream
-Gets the contents of the specified alternate NTFS file stream from the file. Enter the stream name. Wildcards are not supported. 
+Gets the contents of the specified alternate NTFS file stream from the file. Enter the stream name. Wildcards are not supported.
 
 Stream is a dynamic parameter that the FileSystem provider adds to the Get-Content cmdlet. This parameter works only in file system drives.
 
-This parameter is introduced in Windows PowerShell 3.0.```yaml
+This parameter is introduced in Windows PowerShell 3.0.
+
+```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -217,7 +231,7 @@ This parameter is not supported by any providers that are installed with Windows
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -235,7 +249,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -253,7 +267,7 @@ Filters are more efficient than other parameters, because the provider applies t
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -271,7 +285,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -308,10 +322,10 @@ The parameter name ("Path" or "FilePath") is optional.
 ```yaml
 Type: String[]
 Parameter Sets: Path
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: True
@@ -329,7 +343,7 @@ This can make a perceptible difference in very large items.
 ```yaml
 Type: Int64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -387,7 +401,7 @@ You cannot pipe input to **Get-Content**.
 **Get-Content** returns strings or bytes.
 The output type depends upon the content that it gets.
 ## NOTES
-* The **Get-Content** cmdlet is designed to work with the data exposed by any provider. To get the providers in your session, use the **Get-PsProvider** cmdlet. For more information, see about_Providers (http://go.microsoft.com/fwlink/?LinkID=113250).
+* The **Get-Content** cmdlet is designed to work with the data exposed by any provider. To get the providers in your session, use the **Get-PsProvider** cmdlet. For more information, see [about_Providers](../Microsoft.PowerShell.Core/About/about_Providers.md).
 
 *
 ## RELATED LINKS
@@ -399,5 +413,3 @@ The output type depends upon the content that it gets.
 [Set-Content](Set-Content.md)
 
 [about_Providers](../Microsoft.PowerShell.Core/About/about_Providers.md)
-
-

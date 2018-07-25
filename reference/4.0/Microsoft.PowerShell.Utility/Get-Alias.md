@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,13 +16,15 @@ Gets the aliases for the current session.
 ## SYNTAX
 
 ### Default (Default)
-```
-Get-Alias [[-Name] <String[]>] [-Exclude <String[]>] [-Scope <String>] [<CommonParameters>]
+```powershell
+Get-Alias [[-Name] <String[]>] [-Exclude <String[]>] [-Scope <String>]
+ [<CommonParameters>]
 ```
 
 ### Definition
-```
-Get-Alias [-Exclude <String[]>] [-Scope <String>] [-Definition <String[]>] [<CommonParameters>]
+```powershell
+Get-Alias [-Exclude <String[]>] [-Scope <String>] [-Definition <String[]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -66,15 +68,15 @@ Alias           clhy -> Clear-History …
 
 This command gets all aliases in the current session.
 
-The output shows the "\<alias\> -\> \<definition\>" format that was introduced in Windows PowerShell 3.0. 
+The output shows the "\<alias\> -\> \<definition\>" format that was introduced in Windows PowerShell 3.0.
 This format is used only for aliases that do not include hyphens, because aliases with hyphens are typically preferred names for cmdlets and functions, rather than nicknames.
 
 ### Example 2
-```
-PS C:\> Get-Alias -Name g*, s* -Exclude Get-*
+```powershell
+Get-Alias -Name gp*, sp* -Exclude *ps
 ```
 
-This command gets all aliases that begin with "g" or "s", except for aliases that begin with "get-".
+This command gets all aliases that begin with gp or sp, except for aliases that end with ps.
 
 ### Example 3
 ```
@@ -118,7 +120,7 @@ This parameter is called Definition, because it searches for the item name in th
 ```yaml
 Type: String[]
 Parameter Sets: Definition
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -136,7 +138,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -146,19 +148,19 @@ Accept wildcard characters: True
 ```
 
 ### -Name
-Specifies the aliases to retrieve.
+Specifies the aliases that this cmdlet gets.
 Wildcards are permitted.
-By default, Get-Alias retrieves all aliases defined for the current session.
-The parameter name ("Name") is optional.
-You can also pipe alias names to Get-Alias.
+By default, `Get-Alias` retrieves all aliases defined for the current session.
+The parameter name **Name** is optional.
+You can also pipe alias names to `Get-Alias`.
 
 ```yaml
 Type: String[]
 Parameter Sets: Default
-Aliases: 
+Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: All aliases
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: True
@@ -173,7 +175,7 @@ For more information, see about_Scopes.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -213,4 +215,3 @@ Get-Alias returns the same object for every alias, but Windows PowerShell uses a
 [Alias Provider](../Microsoft.PowerShell.Core/Providers/Alias-Provider.md)
 
 [about_Aliases](../Microsoft.PowerShell.Core/About/about_Aliases.md)
-

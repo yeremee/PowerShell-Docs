@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -157,7 +157,7 @@ The command saves the **PSSession** objects in the $s variable.
 
 The second command uses the *AsJob* parameter of the Invoke-Command cmdlet to start a background job that runs a `Get-Process PowerShell` command in each of the **PSSession** objects in $s.
 
-For more information about background jobs, see about_Jobs (http://go.microsoft.com/fwlink/?LinkID=113251) and about_Remote_Jobs (http://go.microsoft.com/fwlink/?LinkID=135184).
+For more information about Windows PowerShell background jobs, see [about_Jobs](About/about_Jobs.md) and [about_Remote_Jobs](About/about_Remote_Jobs.md).
 
 ### Example 10: Create a session for a computer by using its URI
 ```
@@ -196,7 +196,7 @@ The default value is 5.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -212,7 +212,7 @@ Use this parameter to specify the application name when you are not using the *C
 The default value is the value of the $PSSessionApplicationName preference variable on the local computer.
 If this preference variable is not defined, the default value is WSMAN.
 This value is appropriate for most uses.
-For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 The WinRM service uses the application name to select a listener to service the connection request.
 The value of this parameter should match the value of the **URLPrefix** property of a listener on the remote computer.
@@ -220,7 +220,7 @@ The value of this parameter should match the value of the **URLPrefix** property
 ```yaml
 Type: String
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -233,17 +233,17 @@ Accept wildcard characters: False
 Specifies the mechanism that is used to authenticate the user's credentials.
 The acceptable values for this parameter are:
 
-- Default 
-- Basic 
-- Credssp 
-- Digest  
-- Kerberos  
-- Negotiate 
-- NegotiateWithImplicitCredential 
+- Default
+- Basic
+- Credssp
+- Digest
+- Kerberos
+- Negotiate
+- NegotiateWithImplicitCredential
 
 The default value is Default.
 
-For more information about the values of this parameter, see the description of the AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=144382 (http://go.microsoft.com/fwlink/?LinkID=144382) in the Microsoft Developer Network (MSDN) library.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Support Provider (CredSSP) authentication, in which the user credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -252,7 +252,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -274,7 +274,7 @@ To get a certificate, use the Get-Item or Get-ChildItem command in the Windows P
 ```yaml
 Type: String
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -323,12 +323,12 @@ If the specified session configuration does not exist on the remote computer, th
 
 The default value is the value of the $PSSessionConfigurationName preference variable on the local computer.
 If this preference variable is not set, the default is Microsoft.PowerShell.
-For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 ```yaml
 Type: String
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -379,7 +379,7 @@ When you type a user name, this cmdlet prompts you for a password.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -412,7 +412,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -430,7 +430,7 @@ The name is not required to be unique to the computer or the current session.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -460,7 +460,7 @@ An alternate port setting might prevent the command from running on all computer
 ```yaml
 Type: Int32
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -480,7 +480,7 @@ The resulting **PSSession** objects have the same computer name, application nam
 ```yaml
 Type: PSSession[]
 Parameter Sets: Session
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -500,13 +500,13 @@ The session option values take precedence over default values for sessions set i
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
 
 For a description of the session options that includes the default values, see New-PSSessionOption.
-For information about the $PSSessionOption preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For information about the $PSSessionOption preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -524,7 +524,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -545,7 +545,7 @@ If you use this parameter, but SSL is not available on the port that is used for
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -567,7 +567,7 @@ You can pipe a string, URI, or session object to this cmdlet.
 ### System.Management.Automation.Runspaces.PSSession
 
 ## NOTES
-* This cmdlet uses the Windows PowerShell remoting infrastructure. To use this cmdlet, the local computer and any remote computers must be configured for Windows PowerShell remoting. For more information, see about_Remote_Requirements (http://go.microsoft.com/fwlink/?LinkID=135187).
+* This cmdlet uses the Windows PowerShell remoting infrastructure. To use this cmdlet, the local computer and any remote computers must be configured for Windows PowerShell remoting. For more information, see [about_Remote_Requirements](About/about_Remote_Requirements.md).
 * To create a **PSSession** on the local computer, start Windows PowerShell with the Run as administrator option.
 * When you are finished with the **PSSession**, use the Remove-PSSession cmdlet to delete the **PSSession** and release its resources.
 
@@ -594,4 +594,3 @@ You can pipe a string, URI, or session object to this cmdlet.
 [about_PSSessions](About/about_PSSessions.md)
 
 [about_Remote](About/about_Remote.md)
-

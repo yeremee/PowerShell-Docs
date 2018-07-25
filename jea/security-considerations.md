@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  rpsqrd
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  jea,powershell,security
 title:  JEA Security Considerations
 ---
@@ -65,7 +63,7 @@ The effective permissions of the gMSA are defined by the security groups (local 
 When a JEA endpoint is configured to use a gMSA account, the actions of all JEA users will appear to come from the same group managed service account.
 The only way you can trace actions back to a specific user is to identify the set of commands run in a PowerShell session transcript.
 
-**Pass-thru credentials** are used when you do not speicfy a run as account and want PowerShell to use the connecting user's credential to run commands on the remote server.
+**Pass-thru credentials** are used when you do not specify a run as account and want PowerShell to use the connecting user's credential to run commands on the remote server.
 This configuration is *not* recommended for JEA as it would require you to grant the connecting user direct access to privileged management groups.
 If the connecting user already has admin privileges, they can avoid JEA altogether and manage the system via other, unconstrained means.
 See the section below on how [JEA does not protect against admins](#jea-does-not-protect-against-admins) for more information.
@@ -92,7 +90,7 @@ New-PSSessionConfigurationFile -Path '.\jea.pssc' -SessionType RestrictedRemoteS
 Register-PSSessionConfiguration -Path '.\jea.pssc' -Name 'MyJEAEndpoint'
 ```
 
-You can audit user permissions with the [Get-PSSessionConfiguration](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.core/get-pssessionconfiguration) cmdlet.
+You can audit user permissions with the [Get-PSSessionConfiguration](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/get-pssessionconfiguration) cmdlet.
 
 ```powershell
 PS C:\> Get-PSSessionConfiguration -Name 'MyJEAEndpoint' | Select-Object Permission
@@ -150,4 +148,3 @@ It is therefore important to evaluate your JEA users' extended permissions to se
 
 A common practice is to use JEA for regular day-to-day maintenance and have a "just in time" privileged access management solution allow users to temporarily become local admins in emergency situations.
 This helps ensure users are not permanent admins on the system, but can get those rights if, and only when, they complete a workflow that documents their use of those permissions.
-

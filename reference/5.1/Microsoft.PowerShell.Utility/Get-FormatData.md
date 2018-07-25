@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -39,41 +39,64 @@ PS C:\> Get-FormatData
 This command gets all the formatting data in the session.
 
 ### Example 2: Get formatting data by type name
-```
-PS C:\> Get-FormatData -TypeName "Microsoft.Wsman*"
+```powershell
+PS C:\> Get-FormatData -TypeName 'System.Management.Automation.Cmd*'
 ```
 
-This command gets the formatting data items whose names begin with Microsoft.Wsman.
+This command gets the formatting data items whose names begin with System.Management.Automation.Cmd*.
 
 ### Example 3: Examine a formatting data object
-```
-PS C:\> $F = Get-FormatData -TypeName helpinfoshort
+```powershell
+PS C:\> $F = Get-FormatData -TypeName 'System.Management.Automation.Cmd*'
 PS C:\> $F
+```
+```Output
 TypeName        FormatViewDefinition
 --------        --------------------
-HelpInfoShort   {help , TableControl} PS C:\> $F.FormatViewDefinition[0].control
-Headers                                                                    Rows
--------                                                                    ----
-{System.Management.Automation.TableControlColumnHeader, System.Manageme... {System.Management.Automation.TableControlRow} PS C:\> $F.FormatViewDefinition[0].control.headers
-Label         Alignment      Width
------         ---------      -----
-Name          Left           33
-Category      Left           9
-Undefined      0
+HelpInfoShort   {help , TableControl}
+```
+```powershell
+PS C:\> $F.FormatViewDefinition[0].control
+```
+```Output
+Headers          : {System.Management.Automation.TableControlColumnHeader, System.Management.Automation.TableControlColumnHeader, System.Management.Automation.TableControlColumnHeader,
+                   System.Management.Automation.TableControlColumnHeader}
+Rows             : {System.Management.Automation.TableControlRow}
+AutoSize         : False
+HideTableHeaders : False
+GroupBy          :
+OutOfBand        : False
+```
+```powershell
+PS C:\> $F.FormatViewDefinition[0].control.Headers
+```
+```Output
+Label       Alignment Width
+-----       --------- -----
+CommandType Undefined    15
+Name        Undefined    50
+Version     Undefined    10
+Source      Undefined     0
 ```
 
 This example shows how to get a formatting data object and examine its properties.
 
 ### Example 4: Get formatting data and export it
-```
+```powershell
 PS C:\> $A = Get-FormatData
 PS C:\> Import-Module bitstransfer
 PS C:\> $B = Get-FormatData
 PS C:\> Compare-Object $A $B
+```
+```Output
 InputObject                                                SideIndicator
 -----------                                                -------------
 Microsoft.BackgroundIntelligentTransfer.Management.BitsJob => PS C:\> Get-FormatData *bits* | Export-FormatData -FilePath c:\test\bits.format.ps1xml
+```
+```powershell
 PS C:\> Get-Content c:\test\bits.format.ps1xml
+```
+```Output
 <?xml version="1.0" encoding="utf-8"?><Configuration><ViewDefinitions>
 <View><Name>Microsoft.BackgroundIntelligentTransfer.Management.BitsJob</Name>
 ...
@@ -88,15 +111,64 @@ It uses a pipeline operator (|) to send the format type object to the Export-For
 
 The final command shows an excerpt of the format.ps1xml file content.
 
+### Example 5: Get formatting data based on the specified version of PowerShell
+```powershell
+PS C:\> Get-FormatData -TypeName 'Microsoft.Powershell.Utility.FileHash' -PowerShellVersion 1.0
+
+TypeNames                               FormatViewDefinition
+---------                               --------------------
+{Microsoft.Powershell.Utility.FileHash} {Microsoft.Powershell.Utility.FileHash}
+
+PS C:\> Get-FormatData -TypeName 'Microsoft.Powershell.Utility.FileHash' -PowerShellVersion 2.0
+
+TypeNames                               FormatViewDefinition
+---------                               --------------------
+{Microsoft.Powershell.Utility.FileHash} {Microsoft.Powershell.Utility.FileHash}
+
+PS C:\> Get-FormatData -TypeName 'Microsoft.Powershell.Utility.FileHash' -PowerShellVersion 3.0
+
+TypeNames                               FormatViewDefinition
+---------                               --------------------
+{Microsoft.Powershell.Utility.FileHash} {Microsoft.Powershell.Utility.FileHash}
+
+PS C:\> Get-FormatData -TypeName 'Microsoft.Powershell.Utility.FileHash' -PowerShellVersion 4.0
+
+TypeNames                               FormatViewDefinition
+---------                               --------------------
+{Microsoft.Powershell.Utility.FileHash} {Microsoft.Powershell.Utility.FileHash}
+
+PS C:\> Get-FormatData -TypeName 'Microsoft.Powershell.Utility.FileHash' -PowerShellVersion 5.0
+
+TypeNames                               FormatViewDefinition
+---------                               --------------------
+{Microsoft.Powershell.Utility.FileHash} {Microsoft.Powershell.Utility.FileHash}
+
+PS C:\> Get-FormatData -TypeName 'Microsoft.Powershell.Utility.FileHash' -PowerShellVersion 5.1
+
+TypeNames                               FormatViewDefinition
+---------                               --------------------
+{Microsoft.Powershell.Utility.FileHash} {Microsoft.Powershell.Utility.FileHash}
+
+PS C:\> Get-FormatData -TypeName 'Microsoft.Powershell.Utility.FileHash' -PowerShellVersion 6.0
+
+TypeNames                               FormatViewDefinition
+---------                               --------------------
+{Microsoft.Powershell.Utility.FileHash} {Microsoft.Powershell.Utility.FileHash}
+```
+
+This example shows how to use **Get-FormatData** to get format data for a specified TypeName and a
+specified PowerShell version.
+
 ## PARAMETERS
 
 ### -PowerShellVersion
-@{Text=}
+Specify the version of PowerShell this cmdlet gets for the formatting data.
+Enter a two digit number seperated by a period.
 
 ```yaml
 Type: Version
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -113,7 +185,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -141,4 +213,3 @@ You cannot pipe input to this cmdlet.
 [Export-FormatData](Export-FormatData.md)
 
 [Update-FormatData](Update-FormatData.md)
-

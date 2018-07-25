@@ -1,7 +1,7 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
@@ -73,4 +73,3 @@ Syntax of script sharing Cmdlets:
 
 **Publish-Script** -LiteralPath &lt;string&gt; \[-NuGetApiKey &lt;string&gt;\] \[-Repository &lt;string&gt;\] \[-WhatIf\] \[-Confirm\] \[&lt;CommonParameters&gt;\]
 ```
-

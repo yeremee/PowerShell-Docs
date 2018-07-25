@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -118,14 +118,14 @@ To manage the job, use the Job cmdlets.
 To get the job results, use the Receive-Job cmdlet.
 
 To use this parameter, the local and remote computers must be configured for remoting, and on Windows Vista and later versions of the Windows operating system, you must open Windows PowerShell with the Run as administrator option.
-For more information, see about_Remote_Requirementshttp://go.microsoft.com/fwlink/?LinkId=623526 (http://go.microsoft.com/fwlink/?LinkId=623526).
+For more information, see [about_Remote_Requirements](../Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
 
-For more information about Windows PowerShell background jobs, see about_Jobshttp://go.microsoft.com/fwlink/?LinkID=113251 (http://go.microsoft.com/fwlink/?LinkID=113251) and about_Remote_Jobshttp://go.microsoft.com/fwlink/?LinkID=135184 (http://go.microsoft.com/fwlink/?LinkID=135184).
+For more information about Windows PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and [about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -136,13 +136,13 @@ Accept wildcard characters: False
 
 ### -CimSession
 Runs the cmdlet in a remote session or on a remote computer.
-Enter a computer name or a session object, such as the output of a New-CimSessionhttp://go.microsoft.com/fwlink/p/?LinkId=227967 or Get-CimSessionhttp://go.microsoft.com/fwlink/p/?LinkId=227966 cmdlet.
+Enter a computer name or a session object, such as the output of a [New-CimSession](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/new-cimsession) or [Get-CimSession](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-cimsession) cmdlet.
 The default is the current session on the local computer.
 
 ```yaml
 Type: CimSession[]
 Parameter Sets: CimSessionSet, CimSessionAndReferenceConfigurationSet, CimSessionAndPathSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -175,7 +175,7 @@ For more information, type `Get-Help Get-Credential`.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerNameSet, ComputerNameAndPathSet, ComputerNameAndReferenceConfigurationSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -191,7 +191,7 @@ The result includes information such as overall state, resources that are in the
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerNameSet, CimSessionSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -207,7 +207,7 @@ The cmdlet tests the configuration against the desired state of computers specif
 ```yaml
 Type: String
 Parameter Sets: ComputerNameAndPathSet, CimSessionAndPathSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -223,7 +223,7 @@ This cmdlet tests the configuration against the actual state of computers specif
 ```yaml
 Type: String
 Parameter Sets: ComputerNameAndReferenceConfigurationSet, CimSessionAndReferenceConfigurationSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -240,7 +240,7 @@ The throttle limit applies only to the current cmdlet, not to the session or to 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -269,4 +269,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Restore-DscConfiguration](Restore-DscConfiguration.md)
 
 [Start-DscConfiguration](Start-DscConfiguration.md)
-

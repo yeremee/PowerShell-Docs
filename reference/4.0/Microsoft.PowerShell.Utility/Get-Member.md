@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -15,9 +15,10 @@ Gets the properties and methods of objects.
 
 ## SYNTAX
 
-```
-Get-Member [-InputObject <PSObject>] [[-Name] <String[]>] [-MemberType <PSMemberTypes>]
- [-View <PSMemberViewTypes>] [-Static] [-Force] [<CommonParameters>]
+```powershell
+Get-Member [[-Name] <String[]>] [-InputObject <PSObject>]
+ [-MemberType <PSMemberTypes>] [-View <PSMemberViewTypes>] [-Static] [-Force]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -108,9 +109,11 @@ The Get-Member command uses the View parameter to get only the extended members 
 In this case, the extended member is the Name property, which is an alias property of the ServiceName property.
 
 ### Example 4
-```
-PS C:\> get-eventlog -log system | gm -membertype scriptproperty
-TypeName: System.Diagnostics.EventLogEntry
+```powershell
+PS C:\> Get-EventLog -Log System | Get-Member -MemberType ScriptProperty
+
+
+   TypeName: System.Diagnostics.EventLogEntry
 
 Name    MemberType     Definition
 ----    ----------     ----------
@@ -118,25 +121,10 @@ EventID ScriptProperty System.Object EventID {get=$this.get_EventID() -band 0xFF
 ```
 
 This command gets the script properties of event log objects in the System log in Event Viewer.
-In this case, the only script property is the EventID.
+The command uses the **MemberType** parameter to get only objects with a value of ScriptProperty for their MemberType property.
+The command returns the EventID property of the **EventLog** object.
 
 ### Example 5
-```
-PS C:\> get-eventlog -log system | get-member -membertype scriptproperty
-TypeName: System.Diagnostics.EventLogEntry
-
-Name    MemberType     Definition
-----    ----------     ----------
-EventID ScriptProperty System.Object EventID {get=$this.get_EventID() -band 0xFFFF;}
-```
-
-This command gets the script properties of event log objects in the System log in Event Viewer.
-
-The command uses the MemberType parameter to get only objects with a value of AliasProperty for their MemberType property.
-
-The command returns the EventID property of the EventLog object.
-
-### Example 6
 ```
 PS C:\> $a = "get-process", "get-service", "get-culture", "get-psdrive", "get-executionpolicy"
 PS C:\> foreach ($cmdlet in $a) {invoke-command $cmdlet | get-member -name machinename}
@@ -161,7 +149,7 @@ The second command uses a ForEach statement to invoke each command, send the res
 
 The results show that only process objects (System.Diagnostics.Process) and service objects (System.ServiceProcess.ServiceController) have a MachineName property.
 
-### Example 7
+### Example 6
 ```
 PS C:\> $a = get-member -inputobject @(1)
 PS C:\> $a.count
@@ -189,7 +177,7 @@ The third command uses the Get-Member cmdlet to get the properties and methods o
 
 The fourth command uses the Count property of the array to find the number of objects in the $a variable.
 
-### Example 8
+### Example 7
 ```
 PS C:\> $file = get-item c:\test\textFile.txt
 PS C:\> $file.psobject.properties | where-object {$_.issettable} | format-table -property name
@@ -223,7 +211,7 @@ The second command gets all of the changeable properties of the file object in t
 
 The third command gets the changeable properties of all objects in your Windows PowerShell session.
 
-### Example 9
+### Example 8
 ```
 PS C:\> $s = get-service
 PS C:\> $s | get-member
@@ -285,7 +273,7 @@ The following list describes the properties that are added when you use the Forc
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -306,7 +294,7 @@ The differences are as follows:
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -321,7 +309,7 @@ The default is **All**.
 
 The valid values for this parameter are: **AliasProperty**, **All**, **CodeMethod**, **CodeProperty**, **Event**, **MemberSet**, **Method**, **Methods**, **Noteproperty**, **ParameterizedProperty**, **Properties**, **Property**, **PropertySet**, **ScriptMethod**, and **ScriptProperty**.
 
-For information about these values, see "PSMemberTypes Enumeration" in MSDN at http://msdn.microsoft.com/library/windows/desktop/system.management.automation.psmembertypes(v=vs.85).aspx.
+For information about these values, see [PSMemberTypes Enumeration](https://msdn.microsoft.com/library/system.management.automation.psmembertypes) in the MSDN library.
 
 Not all objects have every type of member.
 If you specify a member type that the object does not have, Windows PowerShell returns a null value.
@@ -352,10 +340,10 @@ To get a static member by name, use the Static parameter with the Name parameter
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -372,7 +360,7 @@ If you use the Static parameter with the MemberType parameter, Get-Member gets o
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -402,7 +390,7 @@ If you use the Static and View parameters in the same command, the View paramete
 ```yaml
 Type: PSMemberViewTypes
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -447,7 +435,6 @@ For more information about the $this variable, see about_Automatic_Variables.
 
 [about_Properties](../Microsoft.PowerShell.Core/About/about_Properties.md)
 
-[about_Methods]()
+[about_Methods](../Microsoft.PowerShell.Core/About/about_Methods.md)
 
-[about_Objects]()
-
+[about_Objects](../Microsoft.PowerShell.Core/About/about_Objects.md)

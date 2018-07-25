@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,26 +16,31 @@ Adds custom properties and methods to an instance of a Windows PowerShell object
 ## SYNTAX
 
 ### TypeNameSet (Default)
-```
-Add-Member -InputObject <PSObject> -TypeName <String> [-PassThru] [<CommonParameters>]
+```powershell
+Add-Member -InputObject <PSObject> -TypeName <String> [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### MemberSet
-```
-Add-Member -InputObject <PSObject> [-MemberType] <PSMemberTypes> [-Name] <String> [[-Value] <Object>]
- [[-SecondValue] <Object>] [-TypeName <String>] [-Force] [-PassThru] [<CommonParameters>]
+```powershell
+Add-Member [-MemberType] <PSMemberTypes> [-Name] <String>
+ [[-Value] <Object>] [[-SecondValue] <Object>]
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### NotePropertySingleMemberSet
-```
-Add-Member -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru] [-NotePropertyName] <String>
- [-NotePropertyValue] <Object> [<CommonParameters>]
+```powershell
+Add-Member [-NotePropertyName] <String> [-NotePropertyValue] <Object>
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### NotePropertyMultiMemberSet
-```
-Add-Member -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
- [-NotePropertyMembers] <IDictionary> [<CommonParameters>]
+```powershell
+Add-Member [-NotePropertyMembers] <IDictionary>
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -247,7 +252,7 @@ You cannot use the *Force* parameter to replace a standard member of a type.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: MemberSet, NotePropertySingleMemberSet, NotePropertyMultiMemberSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -263,7 +268,7 @@ Enter a variable that contains the objects, or type a command or expression that
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -284,7 +289,7 @@ The acceptable values for this parameter are:
 - ScriptMethod
 - CopyMethod
 
-For information about these values, see PSMemberTypes Enumerationhttp://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.psmembertypes(v=vs.85).aspx (http://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.psmembertypes(v=vs.85).aspx).
+For information about these values, see [PSMemberTypes Enumeration](https://msdn.microsoft.com/library/system.management.automation.psmembertypes) in the MSDN library.
 
 Not all objects have every type of member.
 If you specify a member type that the object does not have, Windows PowerShell returns an error.
@@ -308,7 +313,7 @@ Specifies the name of the member that this cmdlet adds.
 ```yaml
 Type: String
 Parameter Sets: MemberSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -328,7 +333,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: IDictionary
 Parameter Sets: NotePropertyMultiMemberSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -348,7 +353,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: NotePropertySingleMemberSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -368,7 +373,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Object
 Parameter Sets: NotePropertySingleMemberSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -391,7 +396,7 @@ Use the *PassThru* parameter to create an output object for any object that has 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -413,7 +418,7 @@ The second ScriptBlock, specified in the *SecondValue* parameter, is used to set
 ```yaml
 Type: Object
 Parameter Sets: MemberSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
@@ -426,7 +431,7 @@ Accept wildcard characters: False
 Specifies a name for the type.
 
 When the type is a class in the System namespace or a type that has a type accelerator, you can enter the short name of the type.
-Otherwise, the full type name is required. 
+Otherwise, the full type name is required.
 This parameter is effective only when the input object is a **PSObject**.
 
 This parameter was introduced in Windows PowerShell 3.0.
@@ -434,7 +439,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: TypeNameSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -446,7 +451,7 @@ Accept wildcard characters: False
 ```yaml
 Type: String
 Parameter Sets: MemberSet, NotePropertySingleMemberSet, NotePropertyMultiMemberSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -462,7 +467,7 @@ If you add an **AliasProperty**, **CodeProperty**, **ScriptProperty** or **CodeM
 ```yaml
 Type: Object
 Parameter Sets: MemberSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -507,4 +512,3 @@ For more information about the $this variable, see about_Automatic_Variables.
 [Import-Clixml](Import-Clixml.md)
 
 [New-Object](New-Object.md)
-

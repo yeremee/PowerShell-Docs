@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,23 +16,27 @@ Finds text in an XML string or document.
 ## SYNTAX
 
 ### Xml (Default)
-```
-Select-Xml [-Xml] <XmlNode[]> [-XPath] <String> [-Namespace <Hashtable>] [<CommonParameters>]
+```powershell
+Select-Xml [-XPath] <String> [-Xml] <XmlNode[]> [-Namespace <Hashtable>]
+ [<CommonParameters>]
 ```
 
 ### Path
-```
-Select-Xml [-Path] <String[]> [-XPath] <String> [-Namespace <Hashtable>] [<CommonParameters>]
+```powershell
+Select-Xml [-XPath] <String> [-Path] <String[]> [-Namespace <Hashtable>]
+ [<CommonParameters>]
 ```
 
 ### LiteralPath
-```
-Select-Xml -LiteralPath <String[]> [-XPath] <String> [-Namespace <Hashtable>] [<CommonParameters>]
+```powershell
+Select-Xml [-XPath] <String> -LiteralPath <String[]> [-Namespace <Hashtable>]
+ [<CommonParameters>]
 ```
 
 ### Content
-```
-Select-Xml -Content <String[]> [-XPath] <String> [-Namespace <Hashtable>] [<CommonParameters>]
+```powershell
+Select-Xml [-XPath] <String> -Content <String[]> [-Namespace <Hashtable>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -190,7 +194,7 @@ You can also pipe strings to **Select-Xml**.
 ```yaml
 Type: String[]
 Parameter Sets: Content
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -229,7 +233,7 @@ In the XPath statement, prefix each node name with the namespace name and a colo
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -245,7 +249,7 @@ Wildcard characters are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: Path
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -262,7 +266,7 @@ This parameter is required.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -302,11 +306,8 @@ You can pipe a path or XML node to this cmdlet.
 ### Microsoft.PowerShell.Commands.SelectXmlInfo
 
 ## NOTES
-* XPath is a standard language that is designed to identify parts of an XML document. For more information about the XPath language, see the Selection Filters section of the Event Selectionhttp://go.microsoft.com/fwlink/?LinkId=143608 topic in the MSDN (Microsoft Developer Network) library at http://go.microsoft.com/fwlink/?LinkId=143608. And, see the XPath Referencehttp://go.microsoft.com/fwlink/?LinkId=143609 in the MSDN library at http://go.microsoft.com/fwlink/?LinkId=143609.
-
-*
+* XPath is a standard language that is designed to identify parts of an XML document. For more information about the XPath language, see [XPath Reference](https://msdn.microsoft.com/library/ms256115) and the Selection Filters section of the [Event Selection](https://msdn.microsoft.com/library/aa385231) in the MSDN library.
 
 ## RELATED LINKS
 
 [ConvertTo-Xml](ConvertTo-Xml.md)
-

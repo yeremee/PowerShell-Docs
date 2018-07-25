@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -146,10 +146,10 @@ Pet items found: 4
 
 Name          phone           age
 ----          -----           ---
-Phoebe Cat    425-123-6789    6  
+Phoebe Cat    425-123-6789    6
 Lucky Shot    (206) 987-4321  12
 Elephant Wise 425-888-7766    87
-Wild Shrimp   (111)  222-3333 1  
+Wild Shrimp   (111)  222-3333 1
 
 C:\ >
 ```
@@ -220,37 +220,37 @@ Notice the difference in alignment for the age column between both examples.
 ### Example 5A: Get to know the generated object
 
  ```
- $template = @'
- {[string]Name*:Phoebe Cat}, {[string]phone:425-123-6789}, {[int]age:6}
- {[string]Name*:Lucky Shot}, {[string]phone:(206) 987-4321}, {[int]age:12}
- '@
+$template = @'
+{[string]Name*:Phoebe Cat}, {[string]phone:425-123-6789}, {[int]age:6}
+{[string]Name*:Lucky Shot}, {[string]phone:(206) 987-4321}, {[int]age:12}
+'@
 
- $testText = @'
- Phoebe Cat, 425-123-6789, 6
- Lucky Shot, (206) 987-4321, 12
- Elephant Wise, 425-888-7766, 87
- Wild Shrimp, (111)  222-3333, 1
- '@
+$testText = @'
+Phoebe Cat, 425-123-6789, 6
+Lucky Shot, (206) 987-4321, 12
+Elephant Wise, 425-888-7766, 87
+Wild Shrimp, (111)  222-3333, 1
+'@
 
- $testText  |
-     ConvertFrom-String -TemplateContent $template -OutVariable PersonalData |
-     Out-Null
+$testText  |
+    ConvertFrom-String -TemplateContent $template -OutVariable PersonalData |
+    Out-Null
 
- $PersonalData | Get-Member
+$PersonalData | Get-Member
 
 
 
    TypeName: System.Management.Automation.PSCustomObject
 
-Name        MemberType   Definition                    
-----        ----------   ----------                    
+Name        MemberType   Definition
+----        ----------   ----------
 Equals      Method       bool Equals(System.Object obj)
-GetHashCode Method       int GetHashCode()             
-GetType     Method       type GetType()                
-ToString    Method       string ToString()             
-age         NoteProperty int age=6                     
-Name        NoteProperty string Name=Phoebe Cat        
-phone       NoteProperty string phone=425-123-6789     
+GetHashCode Method       int GetHashCode()
+GetType     Method       type GetType()
+ToString    Method       string ToString()
+age         NoteProperty int age=6
+Name        NoteProperty string Name=Phoebe Cat
+phone       NoteProperty string phone=425-123-6789
 
 C:\ >
 ```
@@ -417,4 +417,3 @@ For more information, see [about_CommonParameters](../Microsoft.PowerShell.Core/
 [ConvertFrom-Csv](ConvertFrom-Csv.md)
 
 [ConvertTo-Xml](ConvertTo-Xml.md)
-

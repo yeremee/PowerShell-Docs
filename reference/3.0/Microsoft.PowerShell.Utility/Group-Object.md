@@ -1,5 +1,5 @@
----
-ms.date:  2017-06-09
+﻿---
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,49 +7,61 @@ online version:  http://go.microsoft.com/fwlink/?LinkID=113338
 external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
 title:  Group-Object
 ---
-
 # Group-Object
+
 ## SYNOPSIS
+
 Groups objects that contain the same value for specified properties.
+
 ## SYNTAX
 
 ```
-Group-Object [-NoElement] [-AsHashTable] [-AsString] [-InputObject <PSObject>] [[-Property] <Object[]>]
- [-Culture <String>] [-CaseSensitive] [<CommonParameters>]
+Group-Object [[-Property] <Object[]>] [-NoElement] [-AsHashTable] [-AsString]
+ [-InputObject <PSObject>] [-Culture <String>] [-CaseSensitive]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The Group-Object cmdlet displays objects in groups based on the value of a specified property.
 Group-Object returns a table with one row for each property value and a column that displays the number of items with that value.
 
 If you specify more than one property, Group-Object first groups them by the values of the first property, and then, within each property group, it groups by the value of the next property.
+
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\> get-childitem *.doc | group-object -property length
+
+```powershell
+Get-ChildItem *.doc | Group-Object -Property length
 ```
 
 This command gets the files in the current location that have a .doc extension and groups them by size.
+
 ### Example 2
-```
-PS C:\> get-childitem | sort-object -property extension | group-object -property extension
+
+```powershell
+Get-ChildItem | Sort-Object -Property extension | Group-Object -Property extension
 ```
 
 This command gets the files in the current location, sorts them by file name extension, and then groups them by file name extension.
 Note that the files are sorted before they are grouped.
+
 ### Example 3
-```
-PS C:\> 1..35 | group-object -property {$_ % 2},{$_ % 3}
+
+```powershell
+1..35 | Group-Object -Property {$_ % 2},{$_ % 3}
 ```
 
 This example shows how to use script blocks as the value of the Property parameter.
 
 This command displays the integers from 1 to 35, grouped by the remainder left when they are divided by 2 or 3.
+
 ### Example 4
+
 ```
-PS C:\> $events = get-eventlog -logname system -newest 1000
-PS C:\> $events | group-object -property eventID
+PS> $events = get-eventlog -logname system -newest 1000
+PS> $events | group-object -property eventID
 
 Count Name                      Group
 ----- ----                      -----
@@ -66,25 +78,29 @@ The second command uses a pipeline operator (|) to send the events in the $event
 The command uses the Property parameter to specify that the events should be grouped according to the value of their EventID property.
 
 In the output, the Count column represents the number of entries in each group, the Name column represents the EventID values that define a group, and the Group column represents the objects in each group.
+
 ### Example 5
+
+```powershell
+PS C:\> Get-Process | Group-Object -Property PriorityClass
+
+Count Name         Group
+----- ----         -----
+   55 Normal       {System.Diagnostics.Process (AdtAgent), System.Diagnosti...
+    1              {System.Diagnostics.Process (Idle)}
+    3 High         {System.Diagnostics.Process (Newproc), System.Diagnostic...
+    2 BelowNormal  {System.Diagnostics.Process (winperf),
 ```
-PS C:\> get-process | group-object -property priorityclass
 
-Count Name                Group
------ ----                -----
-55 Normal              {System.Diagnostics.Process (AdtAgent), System.Diagnostics.Process (alg), System.Dia...
-1                     {System.Diagnostics.Process (Idle)}
-3 High                {System.Diagnostics.Process (Newproc), System.Diagnostics.Process (winlogon), System.D...
-2 BelowNormal         {System.Diagnostics.Process (winperf),
-
-PS C:\> get-process | group-object -property company -noelement
+```powershell
+PS C:\> Get-Process | Group-Object -Property PriorityClass -NoElement
 
 Count Name
 ----- ----
-55 Normal
-1
-3 High
-2 BelowNormal
+   55 Normal
+    1
+    3 High
+    2 BelowNormal
 ```
 
 This example demonstrates the effect of the NoElement parameter.
@@ -97,9 +113,11 @@ The second command is identical to the first, except that it uses the NoElement 
 The result is a table with only the count and property value name.
 
 The results are shown in the following sample output.
+
 ### Example 6
-```
-PS C:\> get-eventlog -logname system -newest 1000 | group-object -property {$_.TimeWritten - $_.TimeGenerated}
+
+```powershell
+Get-EventLog -LogName system -Newest 1000 | Group-Object -Property {$_.TimeWritten - $_.TimeGenerated}
 ```
 
 This command demonstrates how to provide the value of the Property parameter as a script block.
@@ -111,9 +129,11 @@ It uses a pipeline operator (|) to send the entries to the Group-Object cmdlet.
 The value of the Property parameter is specified as a script block (an expression in braces).
 The result of evaluating the script block is the time between when the log entry was generated and when it was written to the log.
 That value is used to group the 1,000 most recent events.
+
 ### Example 7
+
 ```
-PS C:\> get-childitem | group-object extension -noelement
+PS> get-childitem | group-object extension -noelement
 
 Count Name
 ----- ----
@@ -135,21 +155,23 @@ This command groups the items in the current directory by file name extension.
 It uses the NoElement parameter to omit the members of the group.
 
 The results are shown in the following sample output.
+
 ### Example 8
+
 ```
-PS C:\> "a", "b", "c", "c", "d" | get-unique
+PS> "a", "b", "c", "c", "d" | get-unique
 a
 b
 c
 d
 
-PS C:\> "a", "b", "c", "c", "d" | group-object -noelement | where {$_.Count -gt 1}
+PS> "a", "b", "c", "c", "d" | group-object -noelement | Where-Object {$_.Count -gt 1}
 
 Count Name
 ----- ----
 2 c
 
-PS C:\> get-process | group-object -property Name -noelement | where {$_.count -gt 1}
+PS> get-process | group-object -property Name -noelement | Where-Object {$_.count -gt 1}
 
 Count Name
 ----- ----
@@ -171,17 +193,19 @@ The third command shows a practical use for this technique.
 It uses the same method to find processes on the computer that have the same process name.
 
 The results are shown in the following sample output.
+
 ### Example 9
+
 ```
-PS C:\> $a = get-command get-*, set-* -type cmdlet | group-object -property verb -ashashtable -asstring
-PS C:\> $a
+PS> $a = get-command get-*, set-* -type cmdlet | group-object -property verb -ashashtable -asstring
+PS> $a
 
 Name    Value
 ----    -----
 Get     {Get-PSCallStack, Get-PSBreakpoint, Get-PSDrive, Get-PSSession...}
 Set     {Set-Service, Set-StrictMode, Set-PSDebug, Set-PSSessionConfiguration...}
 
-PS C:\> $a.get
+PS> $a.get
 
 CommandType     Name                 Definition
 -----------     ----                 ----------
@@ -204,10 +228,12 @@ There are two key-value pairs, one for the Get cmdlets and one for the Set cmdle
 The third command uses dot notation to display the values of the Get key in $a.
 The values are CmdletInfo object.
 The AsString parameter does not convert the objects in the groups to strings.
+
 ## PARAMETERS
 
 ### -AsHashTable
-Returns the group as a hash table. 
+
+Returns the group as a hash table.
 The keys of the hash table are the property values by which the objects are grouped.
 The values of the hash table are the objects that have that property value.
 
@@ -227,6 +253,7 @@ Accept wildcard characters: False
 ```
 
 ### -AsString
+
 Converts the hash table keys to strings.
 By default, the hash table keys are instances of the grouped object.
 This parameter is valid only when used with the AsHashTable parameter.
@@ -234,7 +261,7 @@ This parameter is valid only when used with the AsHashTable parameter.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -244,13 +271,14 @@ Accept wildcard characters: False
 ```
 
 ### -CaseSensitive
+
 Makes the grouping case-sensitive.
 Without this parameter, the property values of objects in a group might have different cases.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -260,12 +288,13 @@ Accept wildcard characters: False
 ```
 
 ### -Culture
+
 Specifies the culture to use when comparing strings.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -275,6 +304,7 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
+
 Specifies the objects to group.
 Enter a variable that contains the objects, or type a command or expression that gets the objects.
 
@@ -286,7 +316,7 @@ To group the objects in a collection, pipe the objects to Group-Object.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -296,12 +326,13 @@ Accept wildcard characters: False
 ```
 
 ### -NoElement
+
 Omits the members of a group from the results.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -311,6 +342,7 @@ Accept wildcard characters: False
 ```
 
 ### -Property
+
 Specifies the properties for grouping.
 The objects are arranged into groups based on the value of the specified property.
 
@@ -320,28 +352,35 @@ To create a calculated, property, create a hash table with an Expression key tha
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Management.Automation.PSObject
+
 You can pipe any object to Group-Object
+
 ## OUTPUTS
 
 ### Microsoft.PowerShell.Commands.GroupInfo or System.Collections.Hashtable
+
 When you use the AsHashTable parameter, Group-Object returns a hash table.
 Otherwise, it returns a GroupInfo object.
+
 ## NOTES
-* You can also use the GroupBy parameter of the formatting cmdlets (such as Format-Table \[m2\] and Format-List \[m2\]) to group objects. Unlike Group-Object, which creates a single table with a row for each property value, the GroupBy parameters create a table for each property value with a row for each item that has the property value.
+
+- You can also use the GroupBy parameter of the formatting cmdlets (such as Format-Table \[m2\] and Format-List \[m2\]) to group objects. Unlike Group-Object, which creates a single table with a row for each property value, the GroupBy parameters create a table for each property value with a row for each item that has the property value.
 
   Group-Object does not require that the objects being grouped be of the same Microsoft .NET Framework type.
 When grouping objects of different .NET Framework types, Group-Object uses the following rules:
@@ -354,7 +393,4 @@ If the type conversion fails, the object is not included in the group.
 
   - Missing Properties: Objects that do not have a specified property are considered ungroupable.
 Ungroupable objects appear in the final GroupInfo object output in a group named AutomationNull.Value.
-
-*
 ## RELATED LINKS
-

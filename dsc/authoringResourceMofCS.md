@@ -1,16 +1,14 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
-title:  Authoring a DSC resource in C`
+title:  Authoring a DSC resource in C#
 ---
 
-# Authoring a DSC resource in C`#`
+# Authoring a DSC resource in C#
 
 > Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
 
-Typically, a Windows PowerShell Desired State Configuration (DSC) custom resource is implemented in a PowerShell script. However, you can also implement the functionality of a DSC custom resource by writing cmdlets in C#. For an introduction on writing cmdlets in C#, see [Writing a Windows PowerShell Cmdlet](https://technet.microsoft.com/en-us/library/dd878294.aspx).
+Typically, a Windows PowerShell Desired State Configuration (DSC) custom resource is implemented in a PowerShell script. However, you can also implement the functionality of a DSC custom resource by writing cmdlets in C#. For an introduction on writing cmdlets in C#, see [Writing a Windows PowerShell Cmdlet](https://technet.microsoft.com/library/dd878294.aspx).
 
 Aside from implementing the resource in C# as cmdlets, the process of creating the MOF schema, creating the folder structure, importing and using your custom DSC resource are the same as described in [Writing a custom DSC resource with MOF](authoringResourceMOF.md).
 
@@ -27,7 +25,7 @@ class MSFT_XDemoFile : OMI_BaseResource
 {
                 [Key, Description("path")] String Path;
                 [Write, Description("Should the file be present"), ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
-                [Write, Description("Contentof file.")] String Content;                   
+                [Write, Description("Contentof file.")] String Content;
 };
 ```
 
@@ -65,7 +63,7 @@ namespace cSharpDSCResourceExample
         public string Path { get; set; }
 
         /// <summary>
-        /// Implement the logic to return the current state of the resource as a hashtable with keys being the resource properties 
+        /// Implement the logic to return the current state of the resource as a hashtable with keys being the resource properties
         /// and the values are the corresponding current value on the machine.
         /// </summary>
         protected override void ProcessRecord()
@@ -75,7 +73,7 @@ namespace cSharpDSCResourceExample
             {
                 currentResourceState.Add("Ensure", "Present");
 
-                // read current content 
+                // read current content
                 string CurrentContent = "";
                 using (var reader = new StreamReader(Path))
                 {
@@ -92,7 +90,7 @@ namespace cSharpDSCResourceExample
             WriteObject(currentResourceState);
         }
     }
-    
+
     # endregion
 
     #region Set-TargetResource
@@ -104,7 +102,7 @@ namespace cSharpDSCResourceExample
         public string Path { get; set; }
 
         [Parameter(Mandatory = false)]
-        
+
         [ValidateSet("Present", "Absent", IgnoreCase = true)]
         public string Ensure {
             get
@@ -149,7 +147,7 @@ namespace cSharpDSCResourceExample
                         {
                             existingContent = reader.ReadToEnd();
                         }
-                        // check if the content of the file mathes the content passed 
+                        // check if the content of the file mathes the content passed
                         if (!existingContent.Equals(Content, StringComparison.InvariantCultureIgnoreCase))
                         {
                             WriteVerbose("Existing content did not match with desired content updating the content of the file");
@@ -176,11 +174,11 @@ namespace cSharpDSCResourceExample
                 }
 
             }
-            
+
             /* if you need to reboot the VM. please add the following two line of code.
             PSVariable DscMachineStatus = new PSVariable("DSCMachineStatus", 1, ScopedItemOptions.AllScope);
             this.SessionState.PSVariable.Set(DscMachineStatus);
-             */     
+             */
 
         }
 
@@ -193,7 +191,7 @@ namespace cSharpDSCResourceExample
     [Cmdlet("Test", "TargetResource")]
     [OutputType(typeof(Boolean))]
     public class TestTargetResource : PSCmdlet
-    {   
+    {
         [Parameter(Mandatory = true)]
         public string Path { get; set; }
 
@@ -228,7 +226,7 @@ namespace cSharpDSCResourceExample
         /// </summary>
         protected override void ProcessRecord()
         {
-            if (File.Exists(Path)) 
+            if (File.Exists(Path))
             {
                 if( Ensure.Equals("absent", StringComparison.InvariantCultureIgnoreCase))
                 {
@@ -251,7 +249,7 @@ namespace cSharpDSCResourceExample
             {
                 WriteObject(Ensure.Equals("Absent", StringComparison.InvariantCultureIgnoreCase));
             }
-        }        
+        }
     }
 
     # endregion
@@ -266,7 +264,7 @@ The compiled dll file should be saved in a file structure similar to a script-ba
 ```
 $env: psmodulepath (folder)
     |- MyDscResources (folder)
-        |- MyDscResources.psd1 (file, required)	    
+        |- MyDscResources.psd1 (file, required)
         |- DSCResources (folder)
             |- MSFT_XDemoFile (folder)
                 |- MSFT_XDemoFile.psd1 (file, optional)
@@ -278,5 +276,4 @@ $env: psmodulepath (folder)
 #### Concepts
 [Writing a custom DSC resource with MOF](authoringResourceMOF.md)
 #### Other Resources
-[Writing a Windows PowerShell Cmdlet](https://msdn.microsoft.com/en-us/library/dd878294.aspx)
-
+[Writing a Windows PowerShell Cmdlet](https://msdn.microsoft.com/library/dd878294.aspx)

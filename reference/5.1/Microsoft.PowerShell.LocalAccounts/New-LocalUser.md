@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -62,15 +62,6 @@ The command stores the password as a secure string in the $Password variable.
 The second command creates a local user account by using the password stored in $Password.
 The command specifies a user name, full name, and description for the user account.
 
-### Example 3: Create a user account that is connected to a Microsoft account
-```
-PS C:\> New-LocalUser -Name "MicrosoftAccount\usr name@Outlook.com" -Description "Description of this account."
-```
-
-This command creates a local user account that is connected to a Microsoft account.
-This example uses a placeholder value for the user name of an account at Outlook.com.
-Because the account is connected to a Microsoft account, do not specify a password.
-
 ## PARAMETERS
 
 ### -AccountExpires
@@ -81,7 +72,7 @@ If you do not specify this parameter, the account does not expire.
 ```yaml
 Type: DateTime
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -96,7 +87,7 @@ Indicates that the account does not expire.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -127,7 +118,7 @@ The maximum length is 48 characters.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -142,7 +133,7 @@ Indicates that this cmdlet creates the user account as disabled.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -158,7 +149,7 @@ The full name differs from the user name of the user account.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -170,10 +161,8 @@ Accept wildcard characters: False
 ### -Name
 Specifies the user name for the user account.
 
-If you create a local user account that is connected to a Microsoft account, specify the user name in the following format: `MicrosoftAccount\\`\<user name\>@`Outlook.com` for a user of a Microsoft account on Outlook.com.
-
 If you create a local user account for the local system, the user name can contain up to 20 uppercase characters or lowercase characters.
-A user name cannot contain the following characters: 
+A user name cannot contain the following characters:
 
 " / \ \[ \] : ; | = , + * ?
 \< \> @
@@ -183,7 +172,7 @@ A user name cannot consist only of periods (.) or spaces.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -198,7 +187,7 @@ Indicates that the user account does not have a password.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: NoPassword
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -216,7 +205,7 @@ If you omit the *Password* and *NoPassword* parameters, **New-LocalUser** prompt
 ```yaml
 Type: SecureString
 Parameter Sets: Password
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -231,7 +220,7 @@ Indicates whether the password expires.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Password
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -246,7 +235,7 @@ Indicates that the user cannot change the password on the user account.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -286,16 +275,16 @@ This cmdlet returns a **LocalUser** object.
 This object provides information about the user account.
 
 ## NOTES
-* A user name cannot be identical to any other user name or group name on the computer. A user name cannot consist only of periods (.) or spaces. A user name can contain up to 20 uppercase characters or lowercase characters. A user name cannot contain the following characters: 
+* A user name cannot be identical to any other user name or group name on the computer. A user name cannot consist only of periods (.) or spaces. A user name can contain up to 20 uppercase characters or lowercase characters. A user name cannot contain the following characters:
 
 " / \ \[ \] : ; | = , + * ? \< \> @
 * A password can contain up to 127 characters.
-* The **PrincipalSource** property is a property on **LocalUser**, **LocalGroup**, and **LocalPrincipal** objects that describes the source of the object. The possible sources are as follows: 
+* The **PrincipalSource** property is a property on **LocalUser**, **LocalGroup**, and **LocalPrincipal** objects that describes the source of the object. The possible sources are as follows:
 
-- Local 
-- Active Directory 
-- Azure Active Directory group 
-- Microsoft Account 
+- Local
+- Active Directory
+- Azure Active Directory group
+- Microsoft Account
 
 **PrincipalSource** is supported only by Windows 10, Windows Server 2016, and later versions of the Windows operating system. For earlier versions, the property is blank.
 
@@ -312,4 +301,3 @@ This object provides information about the user account.
 [Rename-LocalUser](Rename-LocalUser.md)
 
 [Set-LocalUser](Set-LocalUser.md)
-

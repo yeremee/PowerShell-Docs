@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -113,10 +113,20 @@ The fourth command starts a PowerShell process with the RunAs verb.
 The RunAs verb starts the process with permissions of a member of the Administrators group on the computer.
 This is the same as starting Windows PowerShell by using the Run as administrator option.
 
+### Example 7: Specifying arguments to the process
+```
+PS C:\> Start-Process -FilePath "$env:comspec" -ArgumentList "/c dir `"%systemdrive%\program files`""
+PS C:\> Start-Process -FilePath "$env:comspec" -ArgumentList "/c","dir","`"%systemdrive%\program files`""
+```
+Both commands start the Windows command interpreter, issueing a dir command on the 'Program Files' folder.
+Because this foldername contains a space, the value needs surrounded with escaped quotes.
+Note that the first command specifies a string as ArgumentList. The second command a string array.
+
 ## PARAMETERS
 
 ### -ArgumentList
 Specifies parameters or parameter values to use when this cmdlet starts the process.
+If parameters or parameter values contain a space, they need surrounded with escaped double quotes.
 
 ```yaml
 Type: String[]
@@ -209,7 +219,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -279,7 +289,7 @@ By default, the started process runs with the environment variables specified fo
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Default
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -308,7 +318,7 @@ For details, see the examples.
 ```yaml
 Type: String
 Parameter Sets: UseShellExecute
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -324,7 +334,7 @@ This parameter suppresses the command prompt or retains the window until the pro
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -343,7 +353,7 @@ You cannot use the *WindowStyle* and *NoNewWindow* parameters in the same comman
 ```yaml
 Type: ProcessWindowStyle
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Normal, Hidden, Minimized, Maximized
 
 Required: False
@@ -355,12 +365,12 @@ Accept wildcard characters: False
 
 ### -WorkingDirectory
 Specifies the location of the executable file or document that runs in the process.
-The default is the current folder.
+The default is the folder for the new process.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -384,9 +394,7 @@ This cmdlet generates a **System.Diagnostics.Process** object, if you specify th
 Otherwise, this cmdlet does not return any output.
 
 ## NOTES
-* This cmdlet is implemented by using the **Start** method of the **System.Diagnostics.Process** class. For more information about this method, see Process.Start Methodhttp://go.microsoft.com/fwlink/?LinkId=143602 (http://go.microsoft.com/fwlink/?LinkId=143602) in the Microsoft Developer Network (MSDN) library.
-
-*
+* This cmdlet is implemented by using the **Start** method of the **System.Diagnostics.Process** class. For more information about this method, see [Process.Start Method](https://msdn.microsoft.com/library/system.diagnostics.process.start) in the MSDN library.
 
 ## RELATED LINKS
 
@@ -399,4 +407,3 @@ Otherwise, this cmdlet does not return any output.
 [Stop-Process](Stop-Process.md)
 
 [Wait-Process](Wait-Process.md)
-

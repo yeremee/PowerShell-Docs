@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -15,19 +15,19 @@ Creates an XML-based representation of an object.
 
 ## SYNTAX
 
-```
-ConvertTo-Xml [-Depth <Int32>] [-InputObject] <PSObject> [-NoTypeInformation] [-As <String>]
- [<CommonParameters>]
+```powershell
+ConvertTo-Xml [-InputObject] <PSObject> [-Depth <Int32>] [-NoTypeInformation]
+ [-As <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The ConvertTo-Xml cmdlet creates an XML-based representation of one or more Microsoft .NET Framework objects.
-To use this cmdlet, pipe one or more objects to the cmdlet, or use the InputObject parameter to specify the object.
+The `ConvertTo-Xml` cmdlet creates an XML-based representation of one or more Microsoft .NET Framework objects.
+To use this cmdlet, pipe one or more objects to the cmdlet, or use the **InputObject** parameter to specify the object.
 
-When you pipe multiple objects to ConvertTo-XML or use the InputObject parameter to submit multiple objects, ConvertTo-XML returns a single XML document that includes representations of all of the objects.
+When you pipe multiple objects to `ConvertTo-Xml` or use the **InputObject** parameter to submit multiple objects, `ConvertTo-Xml` returns a single XML document that includes representations of all of the objects.
 
-This cmdlet is similar to Export-Clixml except that Export-Clixml stores the resulting XML in a file.
-ConvertTo-XML returns the XML, so you can continue to process it in Windows PowerShell.
+This cmdlet is similar to `Export-Clixml` except that `Export-Clixml` stores the resulting XML in a file.
+`ConvertTo-Xml` returns the XML, so you can continue to process it in PowerShell.
 
 ## EXAMPLES
 
@@ -61,7 +61,7 @@ The default is Document.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -82,7 +82,7 @@ For more information, see about_Types.ps1xml.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -99,10 +99,10 @@ You can also pipe objects to ConvertTo-XML.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: True
@@ -114,7 +114,7 @@ Omits the Type attribute from the object nodes.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -147,4 +147,3 @@ The value of the As parameter determines the type of object that ConvertTo-XML r
 [Export-Clixml](Export-Clixml.md)
 
 [Import-Clixml](Import-Clixml.md)
-

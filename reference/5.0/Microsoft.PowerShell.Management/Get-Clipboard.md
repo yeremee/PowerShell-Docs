@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -35,7 +35,7 @@ This command displays the contents of the clipboard to the command-line.
 ### Example 2: Get the content of the clipboard and display it to the command-line
 ```
 PS C:\> Get-Clipboard
-http://upload.wikimedia.org/wikipedia/en/7/7f/Windows_PowerShell_icon.png
+https://en.wikipedia.org/wiki/PowerShell
 ```
 
 This command displays the link, as a URL, of the image that is stored in the clipboard.
@@ -54,7 +54,7 @@ The acceptable values for this parameter are:
 ```yaml
 Type: ClipboardFormat
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Text, FileDropList, Image, Audio
 
 Required: False
@@ -70,7 +70,7 @@ Indicates that this cmdlet ignores newline characters and gets the entire conten
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -92,7 +92,7 @@ The acceptable values for this parameter are:
 ```yaml
 Type: TextDataFormat
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Text, UnicodeText, Rtf, Html, CommaSeparatedValue
 
 Required: False
@@ -116,4 +116,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Set-Clipboard](Set-Clipboard.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -15,27 +15,32 @@ Adds custom properties and methods to an instance of a Windows PowerShell object
 
 ## SYNTAX
 
-### UNNAMED_PARAMETER_SET_1
-```
-Add-Member [-PassThru] -InputObject <PSObject> -TypeName <String>
-```
-
-### UNNAMED_PARAMETER_SET_2
-```
-Add-Member [-NotePropertyName] <String> [-NotePropertyValue] <Object> [-Force] [-PassThru] [-TypeName <String>]
- -InputObject <PSObject>
+### TypeNameSet (Default)
+```powershell
+Add-Member -InputObject <PSObject> -TypeName <String> [-PassThru]
+ [<CommonParameters>]
 ```
 
-### UNNAMED_PARAMETER_SET_3
-```
-Add-Member [-NotePropertyMembers] <IDictionary> [-Force] [-PassThru] [-TypeName <String>]
- -InputObject <PSObject>
+### MemberSet
+```powershell
+Add-Member [-MemberType] <PSMemberTypes> [-Name] <String>
+ [[-Value] <Object>] [[-SecondValue] <Object>]
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
+ [<CommonParameters>]
 ```
 
-### UNNAMED_PARAMETER_SET_4
+### NotePropertySingleMemberSet
+```powershell
+Add-Member [-NotePropertyName] <String> [-NotePropertyValue] <Object>
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
+ [<CommonParameters>]
 ```
-Add-Member [-MemberType] <PSMemberTypes> [-Name] <String> [[-Value] <Object>] [[-SecondValue] <Object>]
- [-Force] [-PassThru] [-TypeName <String>] -InputObject <PSObject>
+
+### NotePropertyMultiMemberSet
+```powershell
+Add-Member [-NotePropertyMembers] <IDictionary>
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -146,10 +151,10 @@ TypeName: System.DateTime
 
 Name                 MemberType     Definition
 ----                 ----------     ----------
-Add                  Method         System.DateTime Add(System.TimeSpan value) 
-AddDays              Method         System.DateTime AddDays(double value) 
-AddHours             Method         System.DateTime AddHours(double value) 
-AddMilliseconds      Method         System.DateTime AddMilliseconds(double value) 
+Add                  Method         System.DateTime Add(System.TimeSpan value)
+AddDays              Method         System.DateTime AddDays(double value)
+AddHours             Method         System.DateTime AddHours(double value)
+AddMilliseconds      Method         System.DateTime AddMilliseconds(double value)
 AddMinutes           Method         System.DateTime AddMinutes(double value)...
 
 
@@ -159,7 +164,7 @@ TypeName: System.String
 Name             MemberType            Definition
 ----             ----------            ----------
 Clone            Method                System.Object Clone()
-CompareTo        Method                int CompareTo(System.Object value), int CompareTo(string strB) 
+CompareTo        Method                int CompareTo(System.Object value), int CompareTo(string strB)
 Contains         Method                bool Contains(string value)
 ```
 
@@ -214,7 +219,7 @@ PS C:\> $Asset | Get-Member
 
 Name        MemberType   Definition
 ----        ----------   ----------
-Equals      Method       bool Equals(System.Object obj) 
+Equals      Method       bool Equals(System.Object obj)
 GetHashCode Method       int GetHashCode()
 GetType     Method       type GetType()
 ToString    Method       string ToString()
@@ -245,8 +250,8 @@ You cannot use **the** Force parameter to replace a standard member of a type.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: UNNAMED_PARAMETER_SET_2, UNNAMED_PARAMETER_SET_3, UNNAMED_PARAMETER_SET_4
-Aliases: 
+Parameter Sets: MemberSet, NotePropertySingleMemberSet, NotePropertyMultiMemberSet
+Aliases:
 
 Required: False
 Position: Named
@@ -262,7 +267,7 @@ Enter a variable that contains the objects, or type a command or expression that
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -272,23 +277,23 @@ Accept wildcard characters: False
 ```
 
 ### -MemberType
-Specifies the type of the member to add. 
+Specifies the type of the member to add.
 This parameter is mandatory.
 
 The valid values for this parameter are: "NoteProperty,AliasProperty,ScriptProperty,CodeProperty,ScriptMethod,CodeMethod" **AliasProperty**, **CodeMethod**, **CodeProperty**, **Noteproperty**, **ScriptMethod**, and **ScriptProperty**.
 
-For information about these values, see "PSMemberTypes Enumeration" in MSDN at http://msdn.microsoft.com/library/windows/desktop/system.management.automation.psmembertypes(v=vs.85).aspxhttp://msdn.microsoft.com/library/windows/desktop/system.management.automation.psmembertypes(v=vs.85).aspx.
+For information about these values, see [PSMemberTypes Enumeration](https://msdn.microsoft.com/library/system.management.automation.psmembertypes) in the MSDN library.
 
 Not all objects have every type of member.
 If you specify a member type that the object does not have, Windows PowerShell returns an error.
 
 ```yaml
 Type: PSMemberTypes
-Parameter Sets: UNNAMED_PARAMETER_SET_4
+Parameter Sets: MemberSet
 Aliases: Type
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -299,11 +304,11 @@ Specifies the name of the member to be added.
 
 ```yaml
 Type: String
-Parameter Sets: UNNAMED_PARAMETER_SET_4
-Aliases: 
+Parameter Sets: MemberSet
+Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -323,7 +328,7 @@ Use the **PassThru** parameter to create an output object for any object that ha
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -344,11 +349,11 @@ The second ScriptBlock, specified in the SecondValue parameter, is used to set t
 
 ```yaml
 Type: Object
-Parameter Sets: UNNAMED_PARAMETER_SET_4
-Aliases: 
+Parameter Sets: MemberSet
+Aliases:
 
 Required: False
-Position: 4
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -360,11 +365,11 @@ If you add an **AliasProperty**, **CodeProperty**, **ScriptProperty** or **CodeM
 
 ```yaml
 Type: Object
-Parameter Sets: UNNAMED_PARAMETER_SET_4
-Aliases: 
+Parameter Sets: MemberSet
+Aliases:
 
 Required: False
-Position: 3
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -380,11 +385,11 @@ This parameter is introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: IDictionary
-Parameter Sets: UNNAMED_PARAMETER_SET_3
-Aliases: 
+Parameter Sets: NotePropertyMultiMemberSet
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -400,11 +405,11 @@ This parameter is introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: String
-Parameter Sets: UNNAMED_PARAMETER_SET_2
-Aliases: 
+Parameter Sets: NotePropertySingleMemberSet
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -420,11 +425,11 @@ This parameter is introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: Object
-Parameter Sets: UNNAMED_PARAMETER_SET_2
-Aliases: 
+Parameter Sets: NotePropertySingleMemberSet
+Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -434,15 +439,15 @@ Accept wildcard characters: False
 Specifies a name for the type.
 
 When the type is a class in the System namespace or a type that has a type accelerator, you can enter the short name of the type.
-Otherwise, the full type name is required. 
+Otherwise, the full type name is required.
 This parameter is effective only when the input object is a PSObject.
 
 This parameter is introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: String
-Parameter Sets: UNNAMED_PARAMETER_SET_1
-Aliases: 
+Parameter Sets: TypeNameSet
+Aliases:
 
 Required: True
 Position: Named
@@ -453,8 +458,8 @@ Accept wildcard characters: False
 
 ```yaml
 Type: String
-Parameter Sets: UNNAMED_PARAMETER_SET_2, UNNAMED_PARAMETER_SET_3, UNNAMED_PARAMETER_SET_4
-Aliases: 
+Parameter Sets: MemberSet, NotePropertySingleMemberSet, NotePropertyMultiMemberSet
+Aliases:
 
 Required: False
 Position: Named
@@ -498,4 +503,3 @@ For more information about the $this variable, see about_Automatic_Variables (ht
 [New-Object](New-Object.md)
 
 [about_Automatic_Variables](../Microsoft.PowerShell.Core/About/about_Automatic_Variables.md)
-

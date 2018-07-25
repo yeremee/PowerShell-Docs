@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -81,7 +81,7 @@ can type an adjustment in standard date and time format for your locale or use t
 ```yaml
 Type: TimeSpan
 Parameter Sets: Adjust
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -116,7 +116,7 @@ If you specify only a time, it does not change the date.
 ```yaml
 Type: DateTime
 Parameter Sets: Date
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -141,7 +141,7 @@ It does not affect the **DateTime** object that **Get-Date** retrieves.
 ```yaml
 Type: DisplayHintType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Date, Time, DateTime
 
 Required: False
@@ -182,11 +182,10 @@ You can pipe a date to **Set-Date**.
 
 ## NOTES
 * Use this cmdlet cautiously when changing the date and time on the computer. The change might prevent the computer from receiving system-wide events and updates that are triggered by a date or time. Use the *WhatIf* and *Confirm* parameters to avoid errors.
-* You can use standard .NET methods with the **DateTime** and **TimeSpan** objects used with **Set-Date**, such as **AddDays**, **AddMonths**, and **FromFileTime**. For more information, see DateTime Methodshttps://msdn.microsoft.com/en-us/library/system.datetime_methods(v=vs.110).aspx and TimeSpan Methodshttps://msdn.microsoft.com/en-us/library/system.timespan_methods(v=vs.110).aspx.
+* You can use standard .NET methods with the **DateTime** and **TimeSpan** objects used with **Set-Date**, such as **AddDays**, **AddMonths**, and **FromFileTime**. For more information, see [DateTime Methods](https://msdn.microsoft.com/library/system.datetime_methods) and [TimeSpan Methods](https://msdn.microsoft.com/library/system.timespan_methods) in the MSDN library.
 
 ## RELATED LINKS
 
 [Get-Date](Get-Date.md)
 
 [New-TimeSpan](New-TimeSpan.md)
-

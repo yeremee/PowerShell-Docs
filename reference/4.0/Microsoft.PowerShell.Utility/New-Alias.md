@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -55,7 +55,7 @@ If the description includes spaces, enclose it in quotation marks.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -70,7 +70,7 @@ If set, act like set-alias if the alias named already exists.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -86,7 +86,7 @@ You can use any alphanumeric characters in an alias, but the first character can
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -96,26 +96,27 @@ Accept wildcard characters: False
 ```
 
 ### -Option
-Sets the value of the Options property of the alias.
-
+Specifies the value of the **Options** property of the alias.
 Valid values are:
 
-- None: Sets no options. ("None" is the default.)
-- ReadOnly: Can be deleted. Cannot be not changed, except by using the Force parameter.
-- Constant: Cannot be deleted or changed.
-- Private: The alias is available only in the current scope.
-- AllScope: The alias is copied to any new scopes that are created.
+- None: The alias has no constraints (default value)
+- ReadOnly: The alias can be deleted but cannot be changed except by using the **Force** parameter
+- Constant: The alias cannot be deleted or changed
+- Private: The alias is available only in the current scope
+- AllScope: The alias is copied to any new scopes that are created
+- Unspecified: The option is not specified
 
-To see the Options property of all aliases in the session, type "get-alias | format-table -property name, options -autosize".
+To see the **Options** property of all aliases in the session, type `Get-Alias | Format-Table -Property Name, Options -AutoSize`.
 
 ```yaml
 Type: ScopedItemOptions
 Parameter Sets: (All)
-Aliases: 
+Aliases:
+Accepted values: None, ReadOnly, Constant, Private, AllScope, Unspecified
 
 Required: False
 Position: Named
-Default value: "None"
+Default value: [System.Management.Automation.ScopedItemOptions]::None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -127,7 +128,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -145,7 +146,7 @@ For more information, see about_Scopes.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -160,7 +161,7 @@ Specifies the name of the cmdlet or command element that is being aliased.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -228,4 +229,3 @@ Otherwise, this cmdlet does not generate any output.
 [Import-Alias](Import-Alias.md)
 
 [Set-Alias](Set-Alias.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,8 +16,7 @@ Gets information about the specified Windows PowerShell provider.
 ## SYNTAX
 
 ```
-Get-PSProvider [[-PSProvider] <String[]>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-PSProvider [[-PSProvider] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -93,46 +92,19 @@ The Home property value is optional, but for the FileSystem provider, it is defi
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -PSProvider
 Specifies the name or names of the Windows PowerShell providers about which this cmdlet gets information.
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### CommonParameters
@@ -140,8 +112,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-You cannot pipe objects to this cmdlet.
+### String[]
+
+You can pipe one or more provider name strings to this cmdlet.
 
 ## OUTPUTS
 
@@ -151,4 +124,3 @@ This cmdlet returns objects that represent the Windows PowerShell providers in t
 ## NOTES
 
 ## RELATED LINKS
-

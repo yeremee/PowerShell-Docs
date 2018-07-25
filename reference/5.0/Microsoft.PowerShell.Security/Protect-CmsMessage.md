@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -35,15 +35,15 @@ Protect-CmsMessage [-To] <CmsMessageRecipient[]> [-LiteralPath] <String> [[-OutF
 ## DESCRIPTION
 The **Protect-CmsMessage** cmdlet encrypts content by using the Cryptographic Message Syntax (CMS) format.
 
-The CMS cmdlets support encryption and decryption of content using the IETF format as documented by RFC5652http://tools.ietf.org/html/rfc5652.
+The CMS cmdlets support encryption and decryption of content using the IETF format as documented by [RFC5652](https://tools.ietf.org/html/rfc5652).
 
 The CMS encryption standard uses public key cryptography, where the keys used to encrypt content (the public key) and the keys used to decrypt content (the private key) are separate.
 Your public key can be shared widely, and is not sensitive data.
 If any content is encrypted with this public key, only your private key can decrypt it.
-For more information about Public Key Cryptography, see http://en.wikipedia.org/wiki/Public-key_cryptographyhttp://en.wikipedia.org/wiki/Public-key_cryptography.
+For more information, see [Public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography).
 
 Before you can run the **Protect-CmsMessage** cmdlet, you must have an encryption certificate set up.
-To be recognized in Windows PowerShell, encryption certificates require a unique extended key usage (EKU)http://msdn.microsoft.com/library/windows/desktop/aa381990(v=vs.85).aspx ID to identify them as data encryption certificates (such as the IDs for Code Signing and Encrypted Mail).
+To be recognized in Windows PowerShell, encryption certificates require a unique extended key usage ([EKU](https://msdn.microsoft.com/library/windows/desktop/aa381990)) ID to identify them as data encryption certificates (such as the IDs for Code Signing and Encrypted Mail).
 For an example of a certificate that would work for document encryption, see Example 1 in this topic.
 
 ## EXAMPLES
@@ -105,7 +105,7 @@ You can also use the Get-Content cmdlet to get the contents of a file, such as a
 ```yaml
 Type: PSObject
 Parameter Sets: ByContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -124,7 +124,7 @@ Single quotation marks tell Windows PowerShell not to interpret any characters a
 ```yaml
 Type: String
 Parameter Sets: ByLiteralPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -139,7 +139,7 @@ Specifies the path and file name of a file to which you want to send the encrypt
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -154,7 +154,7 @@ Specifies the path to content that you want to encrypt.
 ```yaml
 Type: String
 Parameter Sets: ByPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -164,9 +164,9 @@ Accept wildcard characters: False
 ```
 
 ### -To
-Specifies one or more CMS message recipients, identified in any of the following formats. 
+Specifies one or more CMS message recipients, identified in any of the following formats.
 
-- An actual certificate (as retrieved from the certificate provider). 
+- An actual certificate (as retrieved from the certificate provider).
 - Path to the file containing the certificate.
 - Path to a directory containing the certificate.
 - Thumbprint of the certificate (used to look in the certificate store).
@@ -175,7 +175,7 @@ Specifies one or more CMS message recipients, identified in any of the following
 ```yaml
 Type: CmsMessageRecipient[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -200,4 +200,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-CmsMessage](Get-CmsMessage.md)
 
 [Unprotect-CmsMessage](Unprotect-CmsMessage.md)
-

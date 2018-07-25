@@ -1,5 +1,5 @@
----
-ms.date:  2017-06-09
+﻿---
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,10 +7,12 @@ online version:  http://go.microsoft.com/fwlink/?LinkID=217035
 external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
 title:  Invoke-WebRequest
 ---
-
 # Invoke-WebRequest
+
 ## SYNOPSIS
+
 Gets content from a web page on the Internet.
+
 ## SYNTAX
 
 ```
@@ -23,16 +25,19 @@ Invoke-WebRequest [-UseBasicParsing] [-Uri] <Uri> [-WebSession <WebRequestSessio
 ```
 
 ## DESCRIPTION
+
 The **Invoke-WebRequest** cmdlet sends HTTP, HTTPS, FTP, and FILE requests to a web page or web service.
 It parses the response and returns collections of forms, links, images, and other significant HTML elements.
 
 This cmdlet was introduced in Windows PowerShell 3.0.
+
 ## EXAMPLES
 
 ### Example 1
+
 ```
-PS C:\> $r = Invoke-WebRequest -URI http://www.bing.com?q=how+many+feet+in+a+mile
-PS C:\> $r.AllElements | where {$_.innerhtml -like "*=*"} | Sort { $_.InnerHtml.Length } | Select InnerText -First 5
+PS> $r = Invoke-WebRequest -URI http://www.bing.com?q=how+many+feet+in+a+mile
+PS> $r.AllElements | Where-Object {$_.innerhtml -like "*=*"} | Sort-Object { $_.InnerHtml.Length } | Select-Object InnerText -First 5
 innerText---------1 =5280 feet1 mile
 ```
 
@@ -42,44 +47,46 @@ The first command issues the request and saves the response in the $r variable.
 
 The second command gets the InnerHtml property when it includes an equal sign, sorts the inner HTML by length and selects the 5 shortest values.
 Sorting by the shortest HTML value often helps you find the most specific element that matches that text.
+
 ### Example 2
+
 ```
 The first command uses the **Invoke-WebRequest** cmdlet to send a sign-in request. The command specifies a value of "fb" for the value of the **SessionVariable** parameter, and saves the result in the $r variable.When the command completes, the $r variable contains an **HtmlWebResponseObject** and the $fb variable contains a **WebRequestSession** object.
-PS C:\> $r=Invoke-WebRequest http://www.facebook.com/login.php -SessionVariable fb
+PS> $r=Invoke-WebRequest http://www.facebook.com/login.php -SessionVariable fb
 
 The second command shows the **WebRequestSession** object in the $fb variable.
-PS C:\> $fb
+PS> $fb
 
 The third command gets the first form in the Forms property of the HTTP response object in the $r variable, and saves it in the $form variable.
-PS C:\> $form = $r.Forms[0]
+PS> $form = $r.Forms[0]
 
 The fourth command pipes the properties of the form in the $form variable into a list by using the Format-List cmdlet.
-PS C:\> $form | Format-List
+PS> $form | Format-List
 
 The fifth command displays the keys and values in the hash table (dictionary) object in the Fields property of the form.
-PS C:\> $form.fields
+PS> $form.fields
 
 The sixth and seventh commands populate the values of the "email" and "pass" keys of the hash table in the Fields property of the form. You can replace the email and password with values that you want to use.
-PS C:\> $form.Fields["email"]="User01@Fabrikam.com"
+PS> $form.Fields["email"]="User01@Fabrikam.com"
 $form.Fields["pass"]="P@ssw0rd"
 
 The eighth command uses the **Invoke-WebRequest** cmdlet to sign into the Facebook web service.The value of the **Uri** parameter is the value of the **Action** property of the form. The **WebRequestSession** object in the $fb variable (the session variable specified in the first command) is now the value of the **WebSession** parameter. The value of the **Body** parameter is the hash table in the Fields property of the form and the value of the Method parameter is POST. The command saves the output in the $r variable.
-PS C:\> $r=Invoke-WebRequest -Uri ("https://www.facebook.com" + $form.Action) -WebSession $fb -Method POST -Body $form.Fields
+PS> $r=Invoke-WebRequest -Uri ("https://www.facebook.com" + $form.Action) -WebSession $fb -Method POST -Body $form.Fields
 
 The full script, then, is as follows.
-PS C:\> # Sends a sign-in request by running the Invoke-WebRequest cmdlet. The command specifies a value of "fb" for the SessionVariable parameter, and saves the results in the $r variable.
+PS> # Sends a sign-in request by running the Invoke-WebRequest cmdlet. The command specifies a value of "fb" for the SessionVariable parameter, and saves the results in the $r variable.
 
 $r=Invoke-WebRequest http://www.facebook.com/login.php -SessionVariable fb
 
-# Use the session variable that you created in Example 1. Output displays values for Headers, Cookies, Credentials, etc. 
+# Use the session variable that you created in Example 1. Output displays values for Headers, Cookies, Credentials, etc.
 
 $fb
 
-# Gets the first form in the Forms property of the HTTP response object in the $r variable, and saves it in the $form variable. 
+# Gets the first form in the Forms property of the HTTP response object in the $r variable, and saves it in the $form variable.
 
 $form = $r.Forms[0]
 
-# Pipes the form properties that are stored in the $forms variable into the Format-List cmdlet, to display those properties in a list. 
+# Pipes the form properties that are stored in the $forms variable into the Format-List cmdlet, to display those properties in a list.
 
 $form | Format-List
 
@@ -87,31 +94,35 @@ $form | Format-List
 
 $form.fields
 
-# The next two commands populate the values of the "email" and "pass" keys of the hash table in the Fields property of the form. Of course, you can replace the email and password with values that you want to use. 
+# The next two commands populate the values of the "email" and "pass" keys of the hash table in the Fields property of the form. Of course, you can replace the email and password with values that you want to use.
 
 $form.Fields["email"] = "User01@Fabrikam.com"
 $form.Fields["pass"] = "P@ssw0rd"
 
-# The final command uses the Invoke-WebRequest cmdlet to sign in to the Facebook web service. 
+# The final command uses the Invoke-WebRequest cmdlet to sign in to the Facebook web service.
 
 $r=Invoke-WebRequest -Uri ("https://www.facebook.com" + $form.Action) -WebSession $fb -Method POST -Body $form.Fields
 
 When the command finishes, the **StatusDescription** property of the web response object in the $r variable indicates that the user is signed in successfully.
-PS C:\> $r.StatusDescription
+PS> $r.StatusDescription
 ```
 
 This example shows how to use the **Invoke-WebRequest** cmdlet with a stateful web service, such as Facebook.
+
 ### Example 3
-```
-PS C:\> (Invoke-WebRequest -Uri "http://msdn.microsoft.com/library/aa973757(v=vs.85).aspx").Links.Href
+
+```powershell
+(Invoke-WebRequest -Uri "http://msdn.microsoft.com/library/aa973757(v=vs.85).aspx").Links.Href
 ```
 
 This command gets the links in a web page.
 It uses the **Invoke-WebRequest** cmdlet to get the web page content.
 Then it users the Links property of the HtmlWebResponseObject that **Invoke-WebRequest** returns, and the Href property of each link.
+
 ## PARAMETERS
 
 ### -Body
+
 Specifies the body of the request.
 The body is the content of the request that follows the headers.
 You can also pipe a body value to **Invoke-WebRequest**.
@@ -137,7 +148,7 @@ For example:
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -147,6 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -Certificate
+
 Specifies the client certificate that is used for a secure web request.
 Enter a variable that contains a certificate or a command or expression that gets the certificate.
 
@@ -156,7 +168,7 @@ If the certificate is not valid or does not have sufficient authority, the comma
 ```yaml
 Type: X509Certificate
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -166,6 +178,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificateThumbprint
+
 Specifies the digital public key certificate (X509) of a user account that has permission to send the request.
 Enter the certificate thumbprint of the certificate.
 
@@ -177,7 +190,7 @@ To get a certificate thumbprint, use the Get-Item or Get-ChildItem command in th
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -187,6 +200,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
+
 Specifies the content type of the web request.
 
 If this parameter is omitted and the request method is POST, **Invoke-WebRequest** sets the content type to "application/x-www-form-urlencoded".
@@ -195,7 +209,7 @@ Otherwise, the content type is not specified in the call.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -205,6 +219,7 @@ Accept wildcard characters: False
 ```
 
 ### -Credential
+
 Specifies a user account that has permission to send the request.
 The default is the current user.
 
@@ -213,7 +228,7 @@ Type a user name, such as "User01" or "Domain01\User01", or enter a **PSCredenti
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -223,6 +238,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableKeepAlive
+
 Sets the KeepAlive value in the HTTP header to False.
 By default, KeepAlive is True.
 KeepAlive establishes a persistent connection to the server to facilitate subsequent requests.
@@ -230,7 +246,7 @@ KeepAlive establishes a persistent connection to the server to facilitate subseq
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -240,6 +256,7 @@ Accept wildcard characters: False
 ```
 
 ### -Headers
+
 Specifies the headers of the web request.
 Enter a hash table or dictionary.
 
@@ -249,7 +266,7 @@ You cannot use this parameter to specify UserAgent or cookie headers.
 ```yaml
 Type: IDictionary
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -259,6 +276,7 @@ Accept wildcard characters: False
 ```
 
 ### -InFile
+
 Gets the content of the web request from a file.
 
 Enter a path and file name.
@@ -267,7 +285,7 @@ If you omit the path, the default is the current location.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -277,6 +295,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaximumRedirection
+
 Determines how many times Windows PowerShell redirects a connection to an alternate Uniform Resource Identifier (URI) before the connection fails.
 The default value is 5.
 A value of 0 (zero) prevents all redirection.
@@ -284,7 +303,7 @@ A value of 0 (zero) prevents all redirection.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -294,13 +313,14 @@ Accept wildcard characters: False
 ```
 
 ### -Method
+
 Specifies the method used for the web request.
 Valid values are Default, Delete, Get, Head, Merge, Options, Patch, Post, Put, and Trace.
 
 ```yaml
 Type: WebRequestMethod
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -310,6 +330,7 @@ Accept wildcard characters: False
 ```
 
 ### -OutFile
+
 Saves the response body in the specified output file.
 Enter a path and file name.
 If you omit the path, the default is the current location.
@@ -320,7 +341,7 @@ To send the results to a file and to the pipeline, use the **Passthru** paramete
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -330,13 +351,14 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 Returns the results, in addition to writing them to a file.
 This parameter is valid only when the **OutFile** parameter is also used in the command.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -346,13 +368,14 @@ Accept wildcard characters: False
 ```
 
 ### -Proxy
+
 Uses a proxy server for the request, rather than connecting directly to the Internet resource.
 Enter the URI of a network proxy server.
 
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -362,6 +385,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyCredential
+
 Specifies a user account that has permission to use the proxy server that is specified by the **Proxy** parameter.
 The default is the current user.
 
@@ -373,7 +397,7 @@ You cannot use the **ProxyCredential** and **ProxyUseDefaultCredentials** parame
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -383,6 +407,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyUseDefaultCredentials
+
 Uses the credentials of the current user to access the proxy server that is specified by the **Proxy** parameter.
 
 This parameter is valid only when the **Proxy** parameter is also used in the command.
@@ -391,7 +416,7 @@ You cannot use the **ProxyCredential** and **ProxyUseDefaultCredentials** parame
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -401,6 +426,7 @@ Accept wildcard characters: False
 ```
 
 ### -SessionVariable
+
 Creates a web request session and saves it in the value of the specified variable.
 Enter a variable name without the dollar sign ($) symbol.
 
@@ -431,6 +457,7 @@ Accept wildcard characters: False
 ```
 
 ### -TimeoutSec
+
 Specifies how long the request can be pending before it times out.
 Enter a value in seconds.
 The default value, 0, specifies an indefinite time-out.
@@ -441,7 +468,7 @@ If your request contains a host name that requires resolution, and you set Timeo
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -451,13 +478,14 @@ Accept wildcard characters: False
 ```
 
 ### -TransferEncoding
+
 Specifies a value for the transfer-encoding HTTP response header.
 Valid values are Chunked, Compress, Deflate, GZip and Identity.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -467,6 +495,7 @@ Accept wildcard characters: False
 ```
 
 ### -Uri
+
 Specifies the Uniform Resource Identifier (URI) of the Internet resource to which the web request is sent.
 Enter a URI.
 This parameter supports HTTP, HTTPS, FTP, and FILE values.
@@ -477,7 +506,7 @@ The parameter name (-Uri) is optional.
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -487,6 +516,7 @@ Accept wildcard characters: False
 ```
 
 ### -UseBasicParsing
+
 Uses the response object for HTML content without Document Object Model (DOM) parsing.
 
 This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
@@ -494,7 +524,7 @@ This parameter is required when Internet Explorer is not installed on the comput
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -504,12 +534,13 @@ Accept wildcard characters: False
 ```
 
 ### -UseDefaultCredentials
+
 Uses the credentials of the current user to send the web request.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -519,6 +550,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserAgent
+
 Specifies a user agent string for the web request.
 
 The default user agent is similar to "Mozilla/5.0 (Windows NT; Windows NT 6.1; en-US) WindowsPowerShell/3.0" with slight variations for each operating system and platform.
@@ -532,7 +564,7 @@ For example, the following command uses the user agent string for Internet
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -542,6 +574,7 @@ Accept wildcard characters: False
 ```
 
 ### -WebSession
+
 Specifies a web request session.
 Enter the variable name, including the dollar sign ($).
 
@@ -561,7 +594,7 @@ You cannot use the **SessionVariable** and **WebSession** parameters in the same
 ```yaml
 Type: WebRequestSession
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -571,17 +604,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Object
+
 You can pipe the body of a web request to Invoke-WebRequest
+
 ## OUTPUTS
 
 ### Microsoft.PowerShell.Commands.HtmlWebResponseObject
 
 ## NOTES
-* In Windows PowerShell 3.0, running the **Invoke-WebRequest** cmdlet in Windows PowerShell ISE can use too much system memory. This is a bug that has been fixed in Windows PowerShell 4.0. We recommend that you do not run **Invoke-WebRequest** in Windows PowerShell ISE 3.0; run the cmdlet in the Windows PowerShell 3.0 console instead.
+
+- In Windows PowerShell 3.0, running the **Invoke-WebRequest** cmdlet in Windows PowerShell ISE can use too much system memory. This is a bug that has been fixed in Windows PowerShell 4.0. We recommend that you do not run **Invoke-WebRequest** in Windows PowerShell ISE 3.0; run the cmdlet in the Windows PowerShell 3.0 console instead.
+
 ## RELATED LINKS
 
 [Invoke-RestMethod](Invoke-RestMethod.md)
@@ -589,4 +628,3 @@ You can pipe the body of a web request to Invoke-WebRequest
 [ConvertFrom-Json](ConvertFrom-Json.md)
 
 [ConvertTo-Json](ConvertTo-Json.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,12 +17,14 @@ Gets a list of CIM classes in a specific namespace.
 ```
 Get-CimClass [[-ClassName] <String>] [[-Namespace] <String>] [-OperationTimeoutSec <UInt32>]
  [-ComputerName <String[]>] [-MethodName <String>] [-PropertyName <String>] [-QualifierName <String>]
+ [<CommonParameters>]
 ```
 
 ### SessionSet
 ```
 Get-CimClass [[-ClassName] <String>] [[-Namespace] <String>] [-OperationTimeoutSec <UInt32>]
  -CimSession <CimSession[]> [-MethodName <String>] [-PropertyName <String>] [-QualifierName <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -97,12 +99,14 @@ This set of commands creates a session with multiple computers and stores it int
 ## PARAMETERS
 
 ### -CimSession
-ps_cimcommon_cimsession
+Runs the cmdlet in a remote session or on a remote computer.
+Enter a computer name or a session object, such as the output of a New-CimSession or Get-CimSession cmdlet.
+The default is the current session on the local computer.
 
 ```yaml
 Type: CimSession[]
 Parameter Sets: SessionSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -113,12 +117,12 @@ Accept wildcard characters: False
 
 ### -ClassName
 Specifies the name of the CIM class for which to perform the operation. 
-NOTE: You can use tab completion to browse the list of classes, because wps_2 gets a list of classes from the local WMI server to provide a list of class names.
+NOTE: You can use tab completion to browse the list of classes, because PowerShell gets a list of classes from the local WMI server to provide a list of class names.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -157,7 +161,7 @@ You can use wildcard characters with this parameter.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -170,12 +174,12 @@ Accept wildcard characters: False
 Specifies the namespace for CIM operation.
 
 The default namespace is root/cimv2. 
-NOTE: You can use tab completion to browse the list of namespaces, because wps_2 gets a list of namespaces from the local WMI server to provide the list of namespaces.
+NOTE: You can use tab completion to browse the list of namespaces, because PowerShell gets a list of namespaces from the local WMI server to provide the list of namespaces.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -211,7 +215,7 @@ You can use wildcard characters with this parameter.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -227,7 +231,7 @@ You can use wildcard characters with this parameter.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -235,6 +239,10 @@ Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -250,5 +258,4 @@ This cmdlet returns a CIM class object.
 
 ## RELATED LINKS
 
-[New-CimSession]()
-
+[New-CimSession](New-CimSession.md)

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,20 +17,20 @@ Saves command output in a file or variable and also sends it down the pipeline.
 
 ### File (Default)
 ```
-Tee-Object [-InputObject <PSObject>] [-FilePath] <String> [-Append] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Tee-Object [-FilePath] <String> [-InputObject <PSObject>] [-Append]
+ [<CommonParameters>]
 ```
 
 ### LiteralFile
 ```
-Tee-Object [-InputObject <PSObject>] -LiteralPath <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Tee-Object -LiteralPath <String> [-InputObject <PSObject>]
+ [<CommonParameters>]
 ```
 
 ### Variable
 ```
-Tee-Object [-InputObject <PSObject>] -Variable <String> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Tee-Object -Variable <String> [-InputObject <PSObject>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -91,7 +91,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: File
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -106,37 +106,10 @@ Specifies a file that this cmdlet saves the object to Wildcard characters are pe
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-This parameter is introduced in Windows PowerShell 3.0.```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-This parameter is introduced in Windows PowerShell 3.0.```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -153,7 +126,7 @@ Because *InputObject* cannot return individual properties from an array or colle
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -169,7 +142,7 @@ Enter a variable name without the preceding dollar sign ($).
 ```yaml
 Type: String
 Parameter Sets: Variable
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -227,4 +200,3 @@ You can pipe objects to **Tee-Object**.
 [Select-Object](Select-Object.md)
 
 [Sort-Object](Sort-Object.md)
-

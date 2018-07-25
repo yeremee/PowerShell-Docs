@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -107,7 +107,8 @@ Accept wildcard characters: False
 ```
 
 ### -ListenerOption
-Specifies optional data to add to the prefix of each trace message in the output.The acceptable values for this parameter are:
+Specifies optional data to the prefix of each trace message in the output.
+The acceptable values for this parameter are:
 
 - None
 - LogicalOperationStack
@@ -310,4 +311,3 @@ You can elect to send the trace data to a user-mode or kernel-mode debugger, to 
 [Get-TraceSource](Get-TraceSource.md)
 
 [Trace-Command](Trace-Command.md)
-

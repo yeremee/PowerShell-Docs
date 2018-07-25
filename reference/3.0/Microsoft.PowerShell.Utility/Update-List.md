@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -47,7 +47,7 @@ PS C:\> get-mailbox | update-list -Property aliases -Add "A","B" -Remove "X","Y"
 
 This command adds A and B and removes X and Y from the Aliases property of a mailbox.
 
-The command uses the Get-MailBox cmdlet from Microsoft Exchange Server to get the mailbox.
+The command uses the [Get-Mailbox](https://go.microsoft.com/fwlink/?LinkId=111536) cmdlet from Microsoft Exchange Server to get the mailbox.
 A pipeline operator sends the mailbox object to the Update-List cmdlet.
 
 The Update-List command uses the Property parameter to indicate that the Aliases property of the mailbox is being updated, and it uses the Add and Remove parameters to specify the items that are being added and removed from the collection.
@@ -55,7 +55,6 @@ The Aliases property fulfills the conditions of Update-List, because it stores a
 
 The Update-List cmdlet returns the updated mailbox, which is piped to the Set-MailBox cmdlet, which changes the mailbox.
 
-For more information about Get-Mailbox, see http://go.microsoft.com/fwlink/?LinkId=111536.
 ### Example 2
 ```
 PS C:\> $m = get-mailbox
@@ -106,7 +105,7 @@ Enter the values in the order that they should appear in the collection.
 ```yaml
 Type: Object[]
 Parameter Sets: AddRemoveSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -122,7 +121,7 @@ You can also pipe the object to be updated to Update-List.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -138,7 +137,7 @@ If you omit this parameter, Update-List returns an object that represents the ch
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -153,7 +152,7 @@ Specifies the property values to be removed from the collection.
 ```yaml
 Type: Object[]
 Parameter Sets: AddRemoveSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -169,7 +168,7 @@ This parameter replaces all items in the original collection with the items spec
 ```yaml
 Type: Object[]
 Parameter Sets: ReplaceSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -193,4 +192,3 @@ Update-List returns the updated object, or it returns an object that represents 
 ## RELATED LINKS
 
 [Select-Object](Select-Object.md)
-

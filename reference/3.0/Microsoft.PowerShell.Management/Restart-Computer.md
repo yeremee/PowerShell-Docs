@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -110,7 +110,7 @@ These settings are designed for enterprises in which DCOM-based restarts fail be
 Runs the command as a background job.
 
 Note: To use this parameter, the local and remote computers must be configured for remoting and, on Windows Vista and later versions of Windows, you must open Windows PowerShell with the "Run as administrator" option.
-For more information, see about_Remote_Requirements (http://go.microsoft.com/fwlink/?LinkID=135187).
+For more information, see [about_Remote_Requirements](../Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
 
 When you use the **AsJob** parameter, the command immediately returns an object that represents the background job.
 You can continue to work in the session while the job completes.
@@ -118,12 +118,12 @@ The job is created on the local computer and the results from remote computers a
 To manage the job, use the Job cmdlets.
 To get the job results, use the Receive-Job cmdlet.
 
-For more information about Windows PowerShell background jobs, see about_Jobs (http://go.microsoft.com/fwlink/?LinkID=113251) and about_Remote_Jobs (http://go.microsoft.com/fwlink/?LinkID=135184).
+For more information about Windows PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and [about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: AsJobSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -163,7 +163,7 @@ Type a user name, such as "User01" or "Domain01\User01", or enter a **PSCredenti
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -184,7 +184,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Int16
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -210,7 +210,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: WaitForServiceTypes
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -248,7 +248,7 @@ Valid values are:
 ```yaml
 Type: ImpersonationLevel
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -266,7 +266,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: AsJobSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -310,7 +310,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -334,7 +334,7 @@ Valid values are:
 - **PacketPrivacy**:   Packet Privacy-level COM authentication.
 - **Unchanged**:       The authentication level is the same as the previous command.
 
-For more information about the values of this parameter, see "AuthenticationLevel Enumeration" in MSDN at http://go.microsoft.com/fwlink/?LinkID=235229.
+For more information about the values of this parameter, see [AuthenticationLevel Enumeration](https://msdn.microsoft.com/library/system.management.authenticationlevel) in the MSDN library.
 
 This parameter is introduced in Windows PowerShell 3.0.
 
@@ -360,7 +360,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -374,7 +374,7 @@ Specifies the mechanism that is used to authenticate the user's credentials when
 
 Valid values are **Basic**, **CredSSP**, **Default**, **Digest**, **Kerberos**, and **Negotiate**.
 The default value is **Default**.
-For more information about the values of this parameter, see "AuthenticationMechanism Enumeration" in MSDN at http://go.microsoft.com/fwlink/?LinkID=235230.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Service Provider (CredSSP) authentication, in which the user's credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -385,7 +385,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -457,4 +457,3 @@ Otherwise, it does not generate any output.
 [Stop-Computer](Stop-Computer.md)
 
 [Test-Connection](Test-Connection.md)
-

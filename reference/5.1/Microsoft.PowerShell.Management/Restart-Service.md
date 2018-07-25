@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,19 +17,22 @@ Stops and then starts one or more services.
 
 ### InputObject (Default)
 ```
-Restart-Service [-Force] [-InputObject] <ServiceController[]> [-PassThru] [-Include <String[]>]
- [-Exclude <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Restart-Service [-InputObject] <ServiceController[]>
+ [-Force] [-PassThru] [-Include <String[]>] [-Exclude <String[]>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default
 ```
-Restart-Service [-Force] [-Name] <String[]> [-PassThru] [-Include <String[]>] [-Exclude <String[]>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Restart-Service [-Name] <String[]>
+ [-Force] [-PassThru] [-Include <String[]>] [-Exclude <String[]>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### DisplayName
 ```
-Restart-Service [-Force] [-PassThru] -DisplayName <String[]> [-Include <String[]>] [-Exclude <String[]>]
+Restart-Service -DisplayName <String[]>
+ [-Force] [-PassThru] [-Include <String[]>] [-Exclude <String[]>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -91,7 +94,7 @@ Wildcard carachters are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: DisplayName
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -109,7 +112,7 @@ Wildcard characters are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -124,7 +127,7 @@ Restarts a service that has dependent services.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -142,7 +145,7 @@ Wildcard characters are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -158,7 +161,7 @@ Enter a variable that contains the objects, or type a command or expression that
 ```yaml
 Type: ServiceController[]
 Parameter Sets: InputObject
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -189,7 +192,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -247,4 +250,3 @@ Otherwise, this cmdlet does not generate any output.
 [Stop-Service](Stop-Service.md)
 
 [Suspend-Service](Suspend-Service.md)
-

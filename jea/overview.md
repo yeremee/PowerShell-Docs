@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  rpsqrd
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  jea,powershell,security
 title:  Overview of Just Enough Administration
 ---
@@ -49,4 +47,3 @@ To learn more about the requirements to use JEA and to learn how to create, use,
 ## Samples and DSC resource
 
 Sample JEA configurations and the JEA DSC resource can be found in the [JEA GitHub repository](https://github.com/PowerShell/JEA).
-

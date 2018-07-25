@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,14 +17,12 @@ Cancels an event subscription.
 
 ### BySource (Default)
 ```
-Unregister-Event [-SourceIdentifier] <String> [-Force] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Unregister-Event [-SourceIdentifier] <String> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ById
 ```
-Unregister-Event [-SubscriptionId] <Int32> [-Force] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Unregister-Event [-SubscriptionId] <Int32> [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -77,34 +75,7 @@ Cancels all event subscriptions, including subscriptions that were hidden by usi
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -121,7 +92,7 @@ A *SourceIdentifier* or *SubscriptionId* parameter must be included in every com
 ```yaml
 Type: String
 Parameter Sets: BySource
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -138,7 +109,7 @@ A *SourceIdentifier* or *SubscriptionId* parameter must be included in every com
 ```yaml
 Type: Int32
 Parameter Sets: ById
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -216,4 +187,3 @@ To delete a custom event from the session, you must remove it programmatically o
 [Unregister-Event](Unregister-Event.md)
 
 [Wait-Event](Wait-Event.md)
-

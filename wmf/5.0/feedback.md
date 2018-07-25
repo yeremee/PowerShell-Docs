@@ -1,10 +1,9 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
 # Feedback
 For reporting issues or providing feedback, use the [PowerShell UserVoice site](http://windowsserver.uservoice.com/forums/301869-powershell).
-

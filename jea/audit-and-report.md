@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  rpsqrd
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  jea,powershell,security
 title:  Auditing and Reporting on JEA
 ---
@@ -17,7 +15,7 @@ This topic describes the various ways you can audit a JEA endpoint.
 
 ## Find registered JEA sessions on a machine
 
-To check which JEA sessions are registered on a machine, use the [Get-PSSessionConfiguration](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.core/get-pssessionconfiguration) cmdlet.
+To check which JEA sessions are registered on a machine, use the [Get-PSSessionConfiguration](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/get-pssessionconfiguration) cmdlet.
 
 ```powershell
 # Filter for sessions that are configured as 'RestrictedRemoteServer' to find JEA-like session configurations
@@ -140,7 +138,7 @@ For each command a user runs, a "CommandInvocation" line will be written, descri
 ParameterBindings follow each CommandInvocation to tell you about each parameter and value that was supplied with the command.
 In the above example, you can see that the parameter "Name" was supplied the value "Dns" for the "Get-Service" cmdlet.
 
-The output of each command will also trigger a CommandInvocation, usually to Out-Default. 
+The output of each command will also trigger a CommandInvocation, usually to Out-Default.
 The InputObject of Out-Default is the PowerShell object returned from the command.
 The details of that object are printed a few lines below, closely mimicking what the user would have seen.
 
@@ -148,4 +146,3 @@ The details of that object are printed a few lines below, closely mimicking what
 
 - [Audit user actions in a JEA session](audit-and-report.md)
 - [*PowerShell ♥ the Blue Team* blog post on security](https://blogs.msdn.microsoft.com/powershell/2015/06/09/powershell-the-blue-team/)
-

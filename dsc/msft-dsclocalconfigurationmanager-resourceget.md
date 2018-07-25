@@ -1,17 +1,13 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
 title:  ResourceGet method of the MSFT_DSCLocalConfigurationManager class
 ---
-
 # ResourceGet method of the MSFT_DSCLocalConfigurationManager class
 
 Directly calls the **Get** method of a DSC resource.
 
-Syntax
-------
+## Syntax
 
 ```mof
 uint32 ResourceGet(
@@ -22,24 +18,22 @@ uint32 ResourceGet(
 );
 ```
 
-Parameters
-----------
+## Parameters
 
-*ResourceType* \[in\]  
+*ResourceType* \[in\]
 The name of the resource to call.
 
-*ModuleName* \[in\]  
+*ModuleName* \[in\]
 The name of the module that contains the resource to call.
 
-*resourceProperty* \[in\]  
+*resourceProperty* \[in\]
 Specifies the resource property name and its value in a hash table as key and value, respectively. Use the
-[Get-DscResource](https://technet.microsoft.com/en-us/library/dn521625.aspx) cmdlet to discover resource properties and their types.
+[Get-DscResource](/powershell/module/PSDesiredStateConfiguration/Get-DscResource) cmdlet to discover resource properties and their types.
 
-*configurations* \[out\]  
+*configurations* \[out\]
 On return, contains an embedded instance of the configurations.
 
 ## Return value
-------------
 
 Returns zero on success; otherwise returns an error code.
 
@@ -48,21 +42,11 @@ Returns zero on success; otherwise returns an error code.
 This is a static method.
 
 ## Requirements
-------------
->**MOF:** DscCore.mof
 
->**Namespace**: Root\Microsoft\Windows\DesiredStateConfiguration
+**MOF:** DscCore.mof
 
+**Namespace**: Root\Microsoft\Windows\DesiredStateConfiguration
 
 ## See also
 
-
 [**MSFT_DSCLocalConfigurationManager**](msft-dsclocalconfigurationmanager.md)
-
-
- 
-
- 
-
-
-

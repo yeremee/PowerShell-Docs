@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,15 +16,15 @@ Converts object properties in comma-separated value (CSV) format into CSV versio
 ## SYNTAX
 
 ### Delimiter (Default)
-```
-ConvertFrom-Csv [[-Delimiter] <Char>] [-InputObject] <PSObject[]> [-Header <String[]>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+ConvertFrom-Csv [-InputObject] <PSObject[]> [[-Delimiter] <Char>]
+ [-Header <String[]>] [<CommonParameters>]
 ```
 
 ### UseCulture
-```
-ConvertFrom-Csv [-UseCulture] [-InputObject] <PSObject[]> [-Header <String[]>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+ConvertFrom-Csv [-InputObject] <PSObject[]> -UseCulture
+ [-Header <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -80,7 +80,7 @@ PS C:\> $Header = "MoreData","StatusMessage","Location","Command","State","Finis
 PS C:\> $J = $J[0], $J[2..($J.count - 1)]
 PS C:\> $J | ConvertFrom-Csv -Header $Header
 MoreData      : True
-StatusMessage : 
+StatusMessage :
 Location      : localhost
 Command       : get-process
 State         : Running
@@ -88,13 +88,13 @@ Finished      : System.Threading.ManualResetEvent
 InstanceId    : 6fcb6578-7f42-4d93-9f23-9937f6aac1a2
 SessionId     : 1
 Name          : Job1
-ChildJobs     : System.Collections.Generic.List`1[System.Management.Automation.Job] 
-Output        : System.Management.Automation.PSDataCollection`1[System.Management.Automation.PSObject] 
-Error         : System.Management.Automation.PSDataCollection`1[System.Management.Automation.ErrorRecord] 
-Progress      : System.Management.Automation.PSDataCollection`1[System.Management.Automation.ProgressRecord] 
-Verbose       : System.Management.Automation.PSDataCollection`1[System.String] 
-Debug         : System.Management.Automation.PSDataCollection`1[System.String] 
-Warning       : System.Management.Automation.PSDataCollection`1[System.String] 
+ChildJobs     : System.Collections.Generic.List`1[System.Management.Automation.Job]
+Output        : System.Management.Automation.PSDataCollection`1[System.Management.Automation.PSObject]
+Error         : System.Management.Automation.PSDataCollection`1[System.Management.Automation.ErrorRecord]
+Progress      : System.Management.Automation.PSDataCollection`1[System.Management.Automation.ProgressRecord]
+Verbose       : System.Management.Automation.PSDataCollection`1[System.String]
+Debug         : System.Management.Automation.PSDataCollection`1[System.String]
+Warning       : System.Management.Automation.PSDataCollection`1[System.String]
 StateChanged  :
 ```
 
@@ -141,10 +141,10 @@ Instead, it returns the strings.
 ```yaml
 Type: Char
 Parameter Sets: Delimiter
-Aliases: 
+Aliases:
 
 Required: False
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -166,34 +166,7 @@ Otherwise, this cmdlet  creates an extra object from the items in the header row
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-If you specify a character other than the delimiter used in the CSV strings, ConvertFrom-CSV cannot create objects from the CSV strings. Instead, it returns the strings.```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-If you specify a character other than the delimiter used in the CSV strings, ConvertFrom-CSV cannot create objects from the CSV strings. Instead, it returns the strings.```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -210,10 +183,10 @@ You can also pipe the CSV strings to **ConvertFrom-CSV**.
 ```yaml
 Type: PSObject[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -230,7 +203,7 @@ Instead, it returns the strings.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: UseCulture
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -268,4 +241,3 @@ This cmdlet  does not export the methods of the object.
 [Export-Csv](Export-Csv.md)
 
 [Import-Csv](Import-Csv.md)
-

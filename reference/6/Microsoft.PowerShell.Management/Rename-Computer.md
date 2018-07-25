@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -18,8 +18,7 @@ Renames a computer.
 ```
 Rename-Computer [-ComputerName <String>] [-PassThru] [-DomainCredential <PSCredential>]
  [-LocalCredential <PSCredential>] [-NewName] <String> [-Force] [-Restart] [-WsmanAuthentication <String>]
- [-Protocol <String>] [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+ [-Protocol <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -80,7 +79,7 @@ You can use the *ComputerName* parameter of **Rename-Computer** even if your com
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -101,7 +100,7 @@ To specify a user account that has permission to connect to the computer that is
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -116,38 +115,7 @@ Forces the command to run without asking for user confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-Type the NetBIOS name, an Internet Protocol (IP) address, or a fully qualified domain name of a remote computer. To specify the local computer, type the computer name, a dot (.), or "localhost".
-
-This parameter does not rely on Windows PowerShell remoting. You can use the ComputerName parameter of Rename-Computer even if your computer is not configured to run remote commands.```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Type the NetBIOS name, an Internet Protocol (IP) address, or a fully qualified domain name of a remote computer. To specify the local computer, type the computer name, a dot (.), or "localhost".
-
-This parameter does not rely on Windows PowerShell remoting. You can use the ComputerName parameter of Rename-Computer even if your computer is not configured to run remote commands.```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -168,7 +136,7 @@ To specify a user account that has permission to connect to the domain, use the 
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -185,7 +153,7 @@ The name cannot include control characters, leading or trailing spaces, or any o
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -201,7 +169,7 @@ Otherwise, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -217,7 +185,7 @@ A restart is often required to make the change effective.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -267,7 +235,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -280,16 +248,16 @@ Accept wildcard characters: False
 Specifies the mechanism that is used to authenticate the user credentials when this cmdlet uses the WSMan protocol.
 The acceptable values for this parameter are:
 
-- Basic 
-- CredSSP 
-- Default 
-- Digest 
-- Kerberos 
-- Negotiate 
+- Basic
+- CredSSP
+- Default
+- Digest
+- Kerberos
+- Negotiate
 
 The default value is Default.
 
-For more information about the values of this parameter, see AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=235230 (http://go.microsoft.com/fwlink/?LinkID=235230) in the Microsoft Developer Network (MSDN) library.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Service Provider (CredSSP) authentication, in which the user credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -300,7 +268,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -337,4 +305,3 @@ Otherwise, it does not return any output.
 [Restart-Computer](Restart-Computer.md)
 
 [Stop-Computer](Stop-Computer.md)
-

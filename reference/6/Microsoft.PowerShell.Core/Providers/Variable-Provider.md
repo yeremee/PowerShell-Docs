@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,243 +7,278 @@ title:  Variable Provider
 online version:  http://go.microsoft.com/fwlink/?LinkId=834963
 ---
 
-# Variable Provider
-## PROVIDER NAME  
- Variable  
 
-## DRIVES  
- Variable:  
+# *Variable* provider
 
-## SHORT DESCRIPTION  
- Provides access to the Windows PowerShell variables and to their values.  
 
-## DETAILED DESCRIPTION  
- The Windows PowerShell Variable provider lets you get, add, change, clear, and delete Windows PowerShell variables in the current console.  
+## Provider name
 
- The Windows PowerShell Variable provider supports the variables that Windows PowerShell creates, including the automatic variables, the preference variables, and the variables that you create.  
+ Variable
 
- The Variable provider is a flat namespace that contains only the variable objects. The variables have no child items.  
 
- Most of the variables are instances of the System.Management.Automation.PSVariable class. However, there are some variations. For example, the "?" variable is a member of the QuestionMarkVariable class, and the "MaximumVariableCount" variable is a member of the SessionStateCapacityVariable class.  
+## Drives
 
- The Variable provider exposes its data store in the Variable: drive. To work with variables, you can change your location to the Variable: drive ("set-location variable:"), or you can work from any other Windows PowerShell drive. To reference a variable from another location, use the drive name (Variable:) in the path.  
+ `Variable:`
 
- Windows PowerShell includes a set of cmdlets designed especially to view and to change variables:  
 
- -- Get-Variable  
+## Short description
 
- -- New-Variable  
+ Provides access to the Windows PowerShell variables and to their values.
 
- -- Set-Variable  
 
- -- Remove-Variable  
+## Detailed description
 
- -- Clear-Variable  
+ The Windows PowerShell **Variable** provider lets you get, add, change, clear, and delete Windows PowerShell variables in the current console.
 
- When you use these cmdlets, you do not need to specify the Variable: drive in the name.  
+ The Windows PowerShell **Variable** provider supports the variables that Windows PowerShell creates, including the automatic variables, the preference variables, and the variables that you create.
 
- The Variable provider supports all of the cmdlets whose names contain the Item noun (the Item cmdlets), except for [Invoke-Item](../../Microsoft.PowerShell.Management/Invoke-Item.md). The Variable provider supports the [Get-Content](../../Microsoft.PowerShell.Management/Get-Content.md) and [Set-Content](../../Microsoft.PowerShell.Management/Set-Content.md) cmdlets. However, it does not support the cmdlets whose names contain the ItemProperty noun (the ItemProperty cmdlets), and it does not support the Filter parameter in any cmdlet.  
+ The **Variable** provider is a flat namespace that contains only the variable objects. The variables have no child items.
 
- You can also use the Windows PowerShell expression parser to create, view, and change the values of variables without using the cmdlets. When working with variables directly, use a dollar sign ($) to identify the name as a variable and the assignment operator (=) to establish and change its value. For example, "$p = [Get-Process](../../Microsoft.PowerShell.Management/Get-Process.md)" creates the "p" variable and stores the results of a "[Get-Process](../../Microsoft.PowerShell.Management/Get-Process.md)" command in it.  
+ Most of the variables are instances of the [System.Management.Automation.PSVariable](https://msdn.microsoft.com/library/system.management.automation.psvariable) class. However, there are some variations. For example, the `?` variable is a member of the `QuestionMarkVariable` internal class, and the `MaximumVariableCount` variable is a member of the `SessionStateCapacityVariable` internal class.
 
- All changes to the variables affect the current session only. To save the changes, add the changes to the Windows PowerShell profile, or use [Export-Console](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Core/Export-Console) to save the current console.  
+ The **Variable** provider exposes its data store in the `Variable:` drive. To work with variables, you can change your location to the `Variable:` drive (`set-location Variable:`), or you can work from any other Windows PowerShell drive. To reference a variable from another location, use the drive name (`Variable:`) in the path.
 
-## CAPABILITIES  
- ShouldProcess  
+ Windows PowerShell includes a set of cmdlets designed especially to view and to change variables:
 
-## EXAMPLES  
+ - [Get-Variable](../../Microsoft.PowerShell.Utility/Get-Variable.md)
+ - [New-Variable](../../Microsoft.PowerShell.Utility/New-Variable.md)
+ - [Set-Variable](../../Microsoft.PowerShell.Utility/Set-Variable.md)
+ - [Remove-Variable](../../Microsoft.PowerShell.Utility/Remove-Variable.md)
+ - [Clear-Variable](../../Microsoft.PowerShell.Utility/Clear-Variable.md)
 
-### Getting to the Variable: Drive  
+ When you use these cmdlets, you do not need to specify the `Variable:` drive in the name.
 
-#### Example 1  
- This command changes the current location to the Variable: drive. You can use this command from any drive in Windows PowerShell. To return to a file system drive, type the drive name. For example, type "set-location c:".  
+ The **Variable** provider supports all of the cmdlets whose names contain the *Item* noun (the `*-Item` cmdlets), except for [Invoke-Item](../../Microsoft.PowerShell.Management/Invoke-Item.md). The **Variable** provider supports the [Get-Content](../../Microsoft.PowerShell.Management/Get-Content.md) and [Set-Content](../../Microsoft.PowerShell.Management/Set-Content.md) cmdlets. However, it does not support the cmdlets whose names contain the *ItemProperty* noun (the `*-ItemProperty` cmdlets), and it does not support the `-Filter` parameter in any cmdlet.
 
-```  
-set-location variable:  
+ You can also use the Windows PowerShell expression parser to create, view, and change the values of variables without using the cmdlets. When working with variables directly, use a dollar sign (`$`) to identify the name as a variable and the assignment operator (`=`) to establish and change its value. For example, `$p = Get-Process` creates the `p` variable and stores the results of a `Get-Process` command in it.
 
-```  
 
-### Displaying the Value of Variables  
+## Capabilities
 
-#### Example 1  
- This command gets the list of all the variables and their values in the current session. You can use this command from any Windows PowerShell drive.  
+ ShouldProcess
 
-```  
-get-childitem -path variable:  
 
-```  
+## Examples
 
-#### Example 2  
- This command gets the variables with names that begin with "max". You can use this command from any Windows PowerShell drive.  
 
-```  
-get-childitem -path variable:max*  
+### Getting to the `Variable:` drive
 
-```  
 
- If you are in the Variable: drive, you can omit the drive name from the path.  
+#### Example 1
 
-#### Example 3  
- This command gets the value of the WhatIfPreference variable by typing it at the command line.  
+ This command changes the current location to the `Variable:` drive. You can use this command from any drive in Windows PowerShell. To return to a file system drive, type the drive name. For example, type `set-location c:`.
 
- The name of the variable is preceded by a dollar sign ($) to indicate that it is a variable. The Variable: drive name is not specified.  
+```powershell
+Set-Location Variable:
+```
 
-```  
-$WhatIfPreference  
 
-```  
+### Displaying the value of variables
 
-#### Example 4  
- This command uses the LiteralPath parameter of Get-ChildItem to get the value of the "?" variable from within the Variable: drive. Get-ChildItem does not attempt to resolve any wildcards in the values of the LiteralPath parameter.  
 
-```  
-get-childitem -literalpath ?  
+#### Example 1
 
-```  
+ This command gets the list of all the variables and their values in the current session. You can use this command from any Windows PowerShell drive.
 
- To display the value of a variable with a special character name without a cmdlet, type a dollar sign ($) and the variable name. For example, to display the value of the "?" variable, type "$?".  
+```powershell
+Get-ChildItem -Path Variable:
+```
 
-#### Example 5  
- This command gets the variables that have the values of "ReadOnly" or "Constant" for their Options property.  
 
-```  
-get-childitem -path variable: | where-object {$_.options -match "Constant" -or $_.options -match "ReadOnly"} | format-list -property name, value, options  
+#### Example 2
 
-```  
+ This command gets the variables with names that begin with "max". You can use this command from any Windows PowerShell drive.
 
-### Creating a New Variable  
+```powershell
+Get-ChildItem -Path Variable:max*
+```
 
-#### Example 1  
- This command creates the "services" variable and stores the results of a Get-Service command in it. Because the current location is in the Variable: drive, the value of the Path parameter is a dot (.), which represents the current location.  
+ If you are in the `Variable:` drive, you can omit the drive name from the path.
 
- The parentheses around the Get-Service command ensure that the command is executed before the variable is created. Without the parentheses, the value of the new variable is a "Get-Service" string.  
 
-```  
-new-item -path . -name services -value (Get-Service)  
+#### Example 3
 
-```  
+ This command gets the value of the `WhatIfPreference` variable by typing it at the command line.
 
- If you are not in the variable: drive, include the Variable: drive name in the path.  
+ The name of the variable is preceded by a dollar sign (`$`) to indicate that it is a variable. The `Variable:` drive name is not specified.
 
-#### Example 2  
- This command creates a "services" variable and stores the result of a Get-Service command in it.  
+```powershell
+$WhatIfPreference
+```
 
- The command uses a dollar sign ($) to indicate a variable and the assignment operator (=) to assign the result of the Get-Service command to the newly created variable.  
 
-```  
-$services = Get-Service  
+#### Example 4
 
-```  
+ This command uses the `-LiteralPath` parameter of [Get-ChildItem](../../Microsoft.PowerShell.Management/Get-ChildItem.md) to get the value of the `?` variable from within the `Variable:` drive. [Get-ChildItem](../../Microsoft.PowerShell.Management/Get-ChildItem.md) does not attempt to resolve any wildcards in the values of the `-LiteralPath` parameter.
 
- To create a variable without a value, omit the assignment operator.  
+```powershell
+Get-ChildItem -Literalpath ?
+```
 
-### Displaying the Properties and Methods of Variables  
+ To display the value of a variable with a special character name without a cmdlet, type a dollar sign (`$`) and the variable name. For example, to display the value of the `?` variable, type `$?`.
 
-#### Example 1  
- This command uses the Get-Item cmdlet to get all variables. The pipeline operator (&#124;) sends the results to the Get-Member cmdlet, which displays the methods and properties of the object.  
 
-```  
-get-item -path variable:* | get-member  
+#### Example 5
 
-```  
+ This command gets the variables that have the values of `ReadOnly` or `Constant` for their **Options** property.
 
- When you pipe a collection of objects (such as the collection of variables in the Variable: drive) to Get-Member, Get-Member evaluates each object in the collection separately and returns information about each of the object types that it finds.   
-To get information about the collection of objects in the Variable: drive, use the InputObject parameter of Get-Member. For example, "get-member -inputobject (get-item variable:*)". When you use InputObject, Get-Member evaluates the collection, not the objects in the collection.  
+```powershell
+Get-ChildItem -Path Variable: | Where-Object {$_.options -Match "Constant" -or $_.options -Match "ReadOnly"} | Format-List -Property name, value, options
+```
 
-#### Example 2  
- This command lists the values of the properties of the "home" variable. It uses the Get-Item cmdlet to get an object that represents the "home" variable. The pipeline operator (&#124;) sends the results to the Format-List command. The Format-List command uses the Property parameter with a wildcard character (*) to format and to display the values of all of the properties of the "home" variable.  
 
-```  
-get-item variable:home | format-list -property *  
+### Creating a new variable
 
-```  
 
-### Changing the Properties of a Variable  
+#### Example 1
 
-#### Example 1  
- This command uses the Rename-Item cmdlet to change the name of the "a" variable to "processes".  
+ This command creates the `services` variable and stores the results of a [Get-Service](../../Microsoft.PowerShell.Management/Get-Service.md) command in it. Because the current location is in the `Variable:` drive, the value of the `-Path` parameter is a dot (`.`), which represents the current location.
 
-```  
-rename-item -path variable:a -newname processes  
+ The parentheses around the [Get-Service](../../Microsoft.PowerShell.Management/Get-Service.md) command ensure that the command is executed before the variable is created. Without the parentheses, the value of the new variable is a "Get-Service" string.
 
-```  
+```powershell
+New-Item -Path . -Name services -Value (Get-Service)
+```
 
-#### Example 2  
- This command uses the Set-Item cmdlet to change the value of the ErrorActionPreference variable to "Stop".  
+ If you are not in the `Variable:` drive, include the `Variable:` drive name in the path.
 
-```  
-set-item -path variable:ErrorActionPreference -value Stop  
 
-```  
+#### Example 2
 
-#### Example 3  
- This command changes the value of the ErrorActionPreference variable to "Stop".  
+ This command creates a `services` variable and stores the result of a [Get-Service](../../Microsoft.PowerShell.Management/Get-Service.md) command in it.
 
- It uses a dollar sign ($) to indicate a variable and the assignment operator (=) to assign the value.  
+ The command uses a dollar sign (`$`) to indicate a variable and the assignment operator (`=`) to assign the result of the [Get-Service](../../Microsoft.PowerShell.Management/Get-Service.md) command to the newly created variable.
 
-```  
-$ErrorActionPreference = Stop  
+```powershell
+$services = Get-Service
+```
 
-```  
+ To create a variable without a value, omit the assignment operator.
 
-### Copying a Variable  
 
-#### Example 1  
- This command uses the Copy-Item cmdlet to copy the "processes" variable to "old_processes". This creates a new variable named "old_processes" that has the same value as the "processes" variable.  
+### Displaying the properties and methods of variables
 
-```  
-copy-item -path variable:processes -destination variable:old_processes  
 
-```  
+#### Example 1
 
- If the command is issued from within the Variable: drive, you can omit the drive name from the value of the Path parameter.  
+ This command uses the Get-Item cmdlet to get all variables. The pipeline operator (`|`) sends the results to the [Get-Member](../../Microsoft.PowerShell.Utility/Get-Member.md) cmdlet, which displays the methods and properties of the object.
 
-#### Example 2  
- This command copies the "processes" variable to "old_processes" without using a cmdlet. It uses the dollar sign ($) to indicate variables and the assignment operator to assign the value of $processes to old_processes.  
+```powershell
+Get-Item -Path Variable:* | Get-Member
+```
 
-```  
-$old_processes = $processes  
+ When you pipe a collection of objects (such as the collection of variables in the `Variable:` drive) to [Get-Member](../../Microsoft.PowerShell.Utility/Get-Member.md), [Get-Member](../../Microsoft.PowerShell.Utility/Get-Member.md) evaluates each object in the collection separately and returns information about each of the object types that it finds.
+To get information about the collection of objects in the `Variable:` drive, use the `-InputObject` parameter of [Get-Member](../../Microsoft.PowerShell.Utility/Get-Member.md). For example, `Get-Member -InputObject (Get-Item Variable:*)`. When you use `-InputObject`, [Get-Member](../../Microsoft.PowerShell.Utility/Get-Member.md) evaluates the collection, not the objects in the collection.
 
-```  
 
-### Deleting a Variable  
+#### Example 2
 
-#### Example 1  
- This command deletes the "serv" variable from the current session. You can use this command in any Windows PowerShell drive.  
+ This command lists the values of the properties of the `home` variable. It uses the [Get-Item](../../Microsoft.PowerShell.Management/Get-Item.md) cmdlet to get an object that represents the `home` variable. The pipeline operator (`|`) sends the results to the [Format-List](../../Microsoft.PowerShell.Utility/Format-List.md) command. The [Format-List](../../Microsoft.PowerShell.Utility/Format-List.md) command uses the `-Property` parameter with a wildcard character (`*`) to format and to display the values of all of the properties of the `home` variable.
 
-```  
-remove-variable -path variable:serv  
+```powershell
+Get-Item Variable:home | Format-List -Property *
+```
 
-```  
 
-#### Example 2  
- This command deletes all variables from the current session except for the variables whose Options property has a value of Constant. Without the Force parameter, the command does not delete variables whose Options property has a value of ReadOnly.  
+### Changing the properties of a variable
 
-```  
-remove-item variable:* -force  
 
-```  
+#### Example 1
 
-### Setting the Value of a Variable to NULL  
+ This command uses the [Rename-Item](../../Microsoft.PowerShell.Management/Rename-Item.md) cmdlet to change the name of the `a` variable to `processes`.
 
-#### Example 1  
- This command uses the Clear-Item cmdlet to change the value of the "processes" variable to NULL.  
+```powershell
+Rename-Item -Path Variable:a -NewName processes
+```
 
-```  
-clear-item -path variable:processes  
 
-```  
+#### Example 2
 
-#### Example 2  
- This command clears the value of the "processes" variable by assigning a null value to it. It uses the $null automatic variable to represent the NULL value.  
+ This command uses the [Set-Item](../../Microsoft.PowerShell.Management/Set-Item.md) cmdlet to change the value of the `ErrorActionPreference` variable to "Stop".
 
-```  
-$processes = $null  
+```powershell
+Set-Item -Path Variable:ErrorActionPreference -Value Stop
+```
 
-```  
 
-## See Also  
- [about_Variables](../../about/about_variables.md)   
- [about_Automatic_Variables](../../about/about_automatic_variables.md)   
- [about_Providers](../../about/about_providers.md)
+#### Example 3
 
+ This command changes the value of the `ErrorActionPreference` variable to "Stop".
+
+ It uses a dollar sign (`$`) to indicate a variable and the assignment operator (`=`) to assign the value.
+
+```powershell
+$ErrorActionPreference = Stop
+```
+
+
+### Copying a variable
+
+
+#### Example 1
+
+ This command uses the [Copy-Item](../../Microsoft.PowerShell.Management/Copy-Item.md) cmdlet to copy the `processes` variable to `old_processes`. This creates a new variable named `old_processes` that has the same value as the `processes` variable.
+
+```powershell
+Copy-Item -Path Variable:processes -Destination Variable:old_processes
+```
+
+ If the command is issued from within the `Variable:` drive, you can omit the drive name from the value of the `-Path` parameter.
+
+
+#### Example 2
+
+ This command copies the `processes` variable to `old_processes` without using a cmdlet. It uses the dollar sign (`$`) to indicate variables and the assignment operator to assign the value of `$processes` to `old_processes`.
+
+```powershell
+$old_processes = $processes
+```
+
+
+### Deleting a variable
+
+
+#### Example 1
+
+ This command deletes the `serv` variable from the current session. You can use this command in any Windows PowerShell drive.
+
+```powershell
+Remove-Variable -Path Variable:serv
+```
+
+
+#### Example 2
+
+ This command deletes all variables from the current session except for the variables whose **Options** property has a value of `Constant`. Without the `-Force` parameter, the command does not delete variables whose **Options** property has a value of `ReadOnly`.
+
+```powershell
+Remove-Item Variable:* -Force
+```
+
+
+### Setting the value of a variable to NULL
+
+
+#### Example 1
+
+ This command uses the [Clear-Item](../../Microsoft.PowerShell.Management/Clear-Item.md) cmdlet to change the value of the `processes` variable to NULL.
+
+```powershell
+Clear-Item -Path Variable:processes
+```
+
+
+#### Example 2
+
+ This command clears the value of the `processes` variable by assigning a null value to it. It uses the `$null` automatic variable to represent the NULL value.
+
+```powershell
+$processes = $null
+```
+
+
+## See also
+
+ [about_Variables](../About/about_Variables.md)
+ [about_Automatic_Variables](../About/about_Automatic_Variables.md)
+ [about_Providers](../About/about_Providers.md)

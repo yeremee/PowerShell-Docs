@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -35,7 +35,7 @@ Because all of the properties can be edited, you can use the resulting object as
 You can also save a session option object in the **$PSSessionOption** preference variable.
 The values of this variable establish new default values for the session options.
 They effective when no session options are set for the session and they take precedence over options set in the session configuration, but you can override them by specifying session options or a session option object in a cmdlet that creates a session.
-For more information about the **$PSSessionOption** preference variable, see **about_Preference_Variables** (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information about the **$PSSessionOption** preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 When you use a session option object in a cmdlet that creates a session, the session option values take precedence over default values for sessions set in the **$PSSessionOption** preference variable and in the session configuration.
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
@@ -162,7 +162,7 @@ When the **$PSSessionOption** preference variable exists in the session, it esta
 
 To make the **$PSSessionOption** variable available in all sessions, add it to your Windows PowerShell session and to your Windows PowerShell profile.
 
-For more information about the **$PSSessionOption** preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information about the **$PSSessionOption** preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 For more information about profiles, see about_Profiles (http://go.microsoft.com/fwlink/?LinkID=113729).
 
 ### Example 6
@@ -235,7 +235,7 @@ For more information, see about_Hash_Tables (http://go.microsoft.com/fwlink/?Lin
 ```yaml
 Type: PSPrimitiveDictionary
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -272,7 +272,7 @@ The default value is $null, and the culture that is set in the operating system 
 ```yaml
 Type: CultureInfo
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -328,14 +328,14 @@ For example, an IIS application that allows Kerberos authentication can require 
 In such cases, Windows PowerShell remoting cannot use Kerberos to authenticate because it requires an SPN that is registered to the computer account.
 To resolve this problem, administrators can create different SPNs (such as by using Setspn.exe) that are registered to different user accounts and can distinguish between them by including the port number in the SPN.
 
-For more information about SetSPN.exe, see "SetSPN Overview" at http://go.microsoft.com/fwlink/?LinkID=189413.
+For more information about Setspn.exe, see [Setspn Overview](https://go.microsoft.com/fwlink/?LinkID=189413).
 
 This parameter is introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -354,7 +354,7 @@ This option is designed to protect the resources on the client computer.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -374,7 +374,7 @@ Beginning in Windows PowerShell 3.0, if you omit this parameter, the default val
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -393,7 +393,7 @@ This option is used in the session only when the AllowRedirection parameter is u
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -409,7 +409,7 @@ Compression uses more processor cycles, but it makes transmission faster.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -424,7 +424,7 @@ Turns off data encryption.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -440,7 +440,7 @@ As a result, the session might be created faster, but user-specific registry set
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -511,7 +511,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: OutputBufferingMode
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, Drop, Block
 
 Required: False
@@ -526,12 +526,12 @@ Determines which mechanism is used to resolve the host name.
 Valid values are **IEConfig**, **WinHttpConfig**, **AutoDetect**, **NoProxyServer** and **None**.
 The default value is **None**.
 
-For information about the values of this parameter, see the description of the System.Management.Automation.Remoting.ProxyAccessType enumeration in the MSDN (Microsoft Developer Network) Library at http://go.microsoft.com/fwlink/?LinkId=144756.
+For information about the values of this parameter, see [ProxyAccessType Enumeration](https://msdn.microsoft.com/library/system.management.automation.remoting.proxyaccesstype) in the MSDN library.
 
 ```yaml
 Type: ProxyAccessType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, IEConfig, WinHttpConfig, AutoDetect, NoProxyServer
 
 Required: False
@@ -546,12 +546,12 @@ Specifies the authentication method that is used for proxy resolution.
 Valid values are **Basic**, **Digest**, and **Negotiate**.
 The default value is **Negotiate**.
 
-For information about the values of this parameter, see the description of the System.Management.Automation.Runspaces.AuthenticationMechanism enumeration in the MSDN library at http://go.microsoft.com/fwlink/?LinkID=144382.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -569,7 +569,7 @@ If this option is not set, no credentials are specified.
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -586,7 +586,7 @@ Use this option only when the remote computer is trusted by using another mechan
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -604,7 +604,7 @@ Use this option only for trusted computers.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -619,7 +619,7 @@ Does not validate the revocation status of the server certificate.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -638,7 +638,7 @@ The default value is $null, and the UI culture that is set in the operating syst
 ```yaml
 Type: CultureInfo
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -653,7 +653,7 @@ Encode the request in UTF16 format rather than UTF8 format.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -675,7 +675,7 @@ You cannot pipe input to this cmdlet.
 ### System.Management.Automation.Remoting.PSSessionOption
 
 ## NOTES
-* If the **SessionOption** parameter is not used in a command to create a PSSession, the session options are determined by the property values of the **$PSSessionOption** preference variable, if it is set. For more information about the $PSSessionOption variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+* If the **SessionOption** parameter is not used in a command to create a PSSession, the session options are determined by the property values of the **$PSSessionOption** preference variable, if it is set. For more information about the $PSSessionOption variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 * The properties of a session configuration object vary with the options set for the session configuration and the values of those options. Also, session configurations that use a session configuration file have additional properties.
 
 ## RELATED LINKS
@@ -685,4 +685,3 @@ You cannot pipe input to this cmdlet.
 [Invoke-Command](Invoke-Command.md)
 
 [New-PSSession](New-PSSession.md)
-

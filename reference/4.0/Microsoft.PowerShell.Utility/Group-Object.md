@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,8 +16,9 @@ Groups objects that contain the same value for specified properties.
 ## SYNTAX
 
 ```
-Group-Object [-NoElement] [-AsHashTable] [-AsString] [-InputObject <PSObject>] [[-Property] <Object[]>]
- [-Culture <String>] [-CaseSensitive] [<CommonParameters>]
+Group-Object [[-Property] <Object[]>] [-NoElement] [-AsHashTable] [-AsString]
+ [-InputObject <PSObject>] [-Culture <String>] [-CaseSensitive]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,24 +75,26 @@ The command uses the Property parameter to specify that the events should be gro
 In the output, the Count column represents the number of entries in each group, the Name column represents the EventID values that define a group, and the Group column represents the objects in each group.
 
 ### Example 5
+```powershell
+PS C:\> Get-Process | Group-Object -Property PriorityClass
+
+Count Name         Group
+----- ----         -----
+   55 Normal       {System.Diagnostics.Process (AdtAgent), System.Diagnosti...
+    1              {System.Diagnostics.Process (Idle)}
+    3 High         {System.Diagnostics.Process (Newproc), System.Diagnostic...
+    2 BelowNormal  {System.Diagnostics.Process (winperf),
 ```
-PS C:\> get-process | group-object -property priorityclass
 
-Count Name                Group
------ ----                -----
-55 Normal              {System.Diagnostics.Process (AdtAgent), System.Diagnostics.Process (alg), System.Dia...
-1                     {System.Diagnostics.Process (Idle)}
-3 High                {System.Diagnostics.Process (Newproc), System.Diagnostics.Process (winlogon), System.D...
-2 BelowNormal         {System.Diagnostics.Process (winperf),
-
-PS C:\> get-process | group-object -property company -noelement
+```powershell
+PS C:\> Get-Process | Group-Object -Property PriorityClass -NoElement
 
 Count Name
 ----- ----
-55 Normal
-1
-3 High
-2 BelowNormal
+   55 Normal
+    1
+    3 High
+    2 BelowNormal
 ```
 
 This example demonstrates the effect of the NoElement parameter.
@@ -219,7 +222,7 @@ The AsString parameter does not convert the objects in the groups to strings.
 ## PARAMETERS
 
 ### -AsHashTable
-Returns the group as a hash table. 
+Returns the group as a hash table.
 The keys of the hash table are the property values by which the objects are grouped.
 The values of the hash table are the objects that have that property value.
 
@@ -246,7 +249,7 @@ This parameter is valid only when used with the AsHashTable parameter.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -262,7 +265,7 @@ Without this parameter, the property values of objects in a group might have dif
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -277,7 +280,7 @@ Specifies the culture to use when comparing strings.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -298,7 +301,7 @@ To group the objects in a collection, pipe the objects to Group-Object.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -313,7 +316,7 @@ Omits the members of a group from the results.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -332,10 +335,10 @@ To create a calculated, property, create a hash table with an Expression key tha
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -373,4 +376,3 @@ Ungroupable objects appear in the final GroupInfo object output in a group named
 *
 
 ## RELATED LINKS
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -18,15 +18,13 @@ Creates an XML-based representation of an object or objects and stores it in a f
 ### ByPath (Default)
 ```
 Export-Clixml [-Depth <Int32>] [-Path] <String> -InputObject <PSObject> [-Force] [-NoClobber]
- [-Encoding <String>] [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+ [-Encoding <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ByLiteralPath
 ```
 Export-Clixml [-Depth <Int32>] -LiteralPath <String> -InputObject <PSObject> [-Force] [-NoClobber]
- [-Encoding <String>] [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+ [-Encoding <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -42,16 +40,18 @@ For an example of how to do this, see Example 3.
 ## EXAMPLES
 
 ### Example 1: Export a string to an XML file
-```
-PS C:\> "This is a test" | Export-Clixml sample.xml
+
+```powershell
+"This is a test" | Export-Clixml sample.xml
 ```
 
 This command creates an XML file that stores a representation of the string, "This is a test".
 
 ### Example 2: Export an object to an XML file
-```
-PS C:\> Get-Acl C:\test.txt | Export-Clixml -Path "fileacl.xml"
-PS C:\> $Fileacl = Import-Clixml "fileacl.xml"
+
+```powershell
+Get-Acl C:\test.txt | Export-Clixml -Path "fileacl.xml"
+$Fileacl = Import-Clixml "fileacl.xml"
 ```
 
 This example shows how to export an object to an XML file and then create an object by importing the XML from the file.
@@ -63,17 +63,18 @@ The second command uses the Import-Clixml cmdlet to create an object from the XM
 Then, it saves the object in the $FileAcl variable.
 
 ### Example 3: Encrypt an exported credential object
-```
-PS C:\> $CredXmlPath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
-PS C:\> $credential | Export-CliXml $CredPath
-PS C:\> $CredXmlPath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
-PS C:\> $Credential = Import-CliXml $CredXmlPath
+
+```powershell
+$CredXmlPath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
+$credential | Export-CliXml $CredPath
+$CredXmlPath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
+$Credential = Import-CliXml $CredXmlPath
 ```
 
-The **Export-CliXml** cmdlet encrypts credential objects by using the Windows Data Protection APIhttp://msdn.microsoft.com/library/windows/apps/xaml/hh464970.aspx.
-This ensures that only your user account can decrypt the contents of the credential object.
+The **Export-CliXml** cmdlet encrypts credential objects by using the [Windows Data Protection API](http://msdn.microsoft.com/library/windows/apps/xaml/hh464970.aspx).
+This ensures that only your user account on only that computer can decrypt the contents of the credential object. The exported CliXml file can neither be used on a different computer nor by a different user.
 
-In this example, given a credential that you've stored in the $Credential variable by running the Get-Credential cmdlet, you can run the **Export-CliXml** cmdlet to save the credential to disk.In the example, the file in which the credential is stored is represented by TestScript.ps1.credential.
+In this example, given a credential that you've stored in the $Credential variable by running the Get-Credential cmdlet, you can run the **Export-CliXml** cmdlet to save the credential to disk. In the example, the file in which the credential is stored is represented by TestScript.ps1.credential.
 Replace TestScript with the name of the script with which you are loading the credential.
 
 In the second command, pipe the credential object to **Export-CliXml**, and save it to the path, $CredXmlPath, that you specified in the first command.
@@ -94,7 +95,7 @@ For more information, see about_Types.ps1xml.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -121,7 +122,7 @@ The default value is Unicode.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Unicode, UTF7, UTF8, ASCII, UTF32, BigEndianUnicode, Default, OEM
 
 Required: False
@@ -134,40 +135,13 @@ Accept wildcard characters: False
 ### -Force
 Forces the command to run without asking for user confirmation.
 
-Causes the cmdlet to clear the read-only attribute of the output file if necessary. 
+Causes the cmdlet to clear the read-only attribute of the output file if necessary.
 The cmdlet will attempt to reset the read-only attribute when the command completes.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-The default value can be overridden for the object type in the Types.ps1xml files. For more information, see about_Types.ps1xml.```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-The default value can be overridden for the object type in the Types.ps1xml files. For more information, see about_Types.ps1xml.```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -184,7 +158,7 @@ You can also pipe objects to **Export-Clixml**.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -215,7 +189,7 @@ Specifies the path to the file where the XML representation of the object will b
 ```yaml
 Type: String
 Parameter Sets: ByPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -275,7 +249,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](../../Microsoft.PowerShell.Core/About/about_CommonParameters.md).
 
 ## INPUTS
 
@@ -301,5 +275,8 @@ You can pipe any object to **Export-Clixml**.
 
 [Export-Csv](Export-Csv.md)
 
-[Import-Clixml](Import-Clixml.md)
+[ConvertTo-Clixml](ConvertTo-Clixml.md)
 
+[ConvertFrom-Clixml](ConvertFrom-Clixml.md)
+
+[Import-Clixml](Import-Clixml.md)

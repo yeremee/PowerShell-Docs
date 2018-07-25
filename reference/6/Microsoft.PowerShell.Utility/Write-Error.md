@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -19,30 +19,30 @@ Writes an object to the error stream.
 ```
 Write-Error [-Message] <String> [-Category <ErrorCategory>] [-ErrorId <String>] [-TargetObject <Object>]
  [-RecommendedAction <String>] [-CategoryActivity <String>] [-CategoryReason <String>]
- [-CategoryTargetName <String>] [-CategoryTargetType <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+ [-CategoryTargetName <String>] [-CategoryTargetType <String>]
+ [<CommonParameters>]
 ```
 
 ### WithException
 ```
 Write-Error -Exception <Exception> [[-Message] <String>] [-Category <ErrorCategory>] [-ErrorId <String>]
  [-TargetObject <Object>] [-RecommendedAction <String>] [-CategoryActivity <String>] [-CategoryReason <String>]
- [-CategoryTargetName <String>] [-CategoryTargetType <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+ [-CategoryTargetName <String>] [-CategoryTargetType <String>]
+ [<CommonParameters>]
 ```
 
 ### ErrorRecord
 ```
 Write-Error -ErrorRecord <ErrorRecord> [-RecommendedAction <String>] [-CategoryActivity <String>]
  [-CategoryReason <String>] [-CategoryTargetName <String>] [-CategoryTargetType <String>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 The **Write-Error** cmdlet declares a non-terminating error.
 By default, errors are sent in the error stream to the host program to be displayed, along with output.
 
-To write a non-terminating error, enter an error message string, an **ErrorRecord** object, or an **Exception** object. 
+To write a non-terminating error, enter an error message string, an **ErrorRecord** object, or an **Exception** object.
 Use the other parameters of **Write-Error** to populate the error record.
 
 Non-terminating errors write an error to the error stream, but they do not stop command processing.
@@ -130,12 +130,12 @@ The acceptable values for this parameter are:
 - QuotaExceeded
 - NotEnabled
 
-For information about the error categories, see ErrorCategory Enumerationhttp://go.microsoft.com/fwlink/?LinkId=143600 (http://go.microsoft.com/fwlink/?LinkId=143600) in MSDN.
+For information about the error categories, see [ErrorCategory Enumeration](http://go.microsoft.com/fwlink/?LinkId=143600) in the MSDN library.
 
 ```yaml
 Type: ErrorCategory
 Parameter Sets: NoException, WithException
-Aliases: 
+Aliases:
 Accepted values: NotSpecified, OpenError, CloseError, DeviceError, DeadlockDetected, InvalidArgument, InvalidData, InvalidOperation, InvalidResult, InvalidType, MetadataError, NotImplemented, NotInstalled, ObjectNotFound, OperationStopped, OperationTimeout, SyntaxError, ParserError, PermissionDenied, ResourceBusy, ResourceExists, ResourceUnavailable, ReadError, WriteError, FromStdErr, SecurityError, ProtocolError, ConnectionError, AuthenticationError, LimitsExceeded, QuotaExceeded, NotEnabled
 
 Required: False
@@ -212,7 +212,7 @@ The string should be unique to the error.
 ```yaml
 Type: String
 Parameter Sets: NoException, WithException
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -230,7 +230,7 @@ To create an error record object, use the New-Object cmdlet or get an error reco
 ```yaml
 Type: ErrorRecord
 Parameter Sets: ErrorRecord
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -248,36 +248,9 @@ To create an exception object, use a hash table or use the New-Object cmdlet.
 ```yaml
 Type: Exception
 Parameter Sets: WithException
-Aliases: 
+Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-For information about the error categories, see "ErrorCategory Enumeration" in the MSDN (Microsoft Developer Network) library at http://go.microsoft.com/fwlink/?LinkId=143600.```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-For information about the error categories, see "ErrorCategory Enumeration" in the MSDN (Microsoft Developer Network) library at http://go.microsoft.com/fwlink/?LinkId=143600.```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -319,7 +292,7 @@ Specifies the action that the user should take to resolve or prevent the error.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -335,7 +308,7 @@ Enter the object, a variable that contains the object, or a command that gets th
 ```yaml
 Type: Object
 Parameter Sets: NoException, WithException
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -373,4 +346,3 @@ It does not return any objects.
 [Write-Verbose](Write-Verbose.md)
 
 [Write-Warning](Write-Warning.md)
-

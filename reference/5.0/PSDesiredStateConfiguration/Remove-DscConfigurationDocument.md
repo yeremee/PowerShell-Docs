@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -21,11 +21,11 @@ Remove-DscConfigurationDocument -Stage <Stage> [-Force] [-CimSession <CimSession
 ```
 
 ## DESCRIPTION
-The **Remove-DscConfigurationDocument** cmdlet removes a configuration document (.mof file) from the Windows PowerShell Desired State Configuration (DSC) configuration store.
-During configuration, the Start-DscConfiguration cmdlet copies a .mof file to a folder on the target computer.
+The `Remove-DscConfigurationDocument` cmdlet removes a configuration document (.mof file) from the Windows PowerShell Desired State Configuration (DSC) configuration store.
+During configuration, the `Start-DscConfiguration` cmdlet copies a .mof file to a folder on the target computer.
 This cmdlet removes that configuration document and does additional cleanup.
 
-This cmdlet is available only as part of the November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2http://support.microsoft.com/en-us/kb/3000850 (http://support.microsoft.com/en-us/kb/3000850) from the Microsoft Support library.
+This cmdlet is available only as part of the [November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2](https://support.microsoft.com/kb/3000850) from the Microsoft Support library.
 Before you use this cmdlet, review the information in What's New in Windows PowerShellhttp://technet.microsoft.com/library/hh857339.aspx (http://technet.microsoft.com/library/hh857339.aspx) in the TechNet library.
 
 ## EXAMPLES
@@ -54,14 +54,14 @@ To manage the job, use the Job cmdlets.
 To get the job results, use the Receive-Job cmdlet.
 
 To use this parameter, the local and remote computers must be configured for remoting, and on Windows Vista and later versions of the Windows operating system, you must open Windows PowerShell with the Run as administrator option.
-For more information, see about_Remote_Requirementshttp://go.microsoft.com/fwlink/?LinkId=623526 (http://go.microsoft.com/fwlink/?LinkId=623526).
+For more information, see [about_Remote_Requirements](../Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
 
-For more information about Windows PowerShell background jobs, see about_Jobshttp://go.microsoft.com/fwlink/?LinkID=113251 (http://go.microsoft.com/fwlink/?LinkID=113251) and about_Remote_Jobshttp://go.microsoft.com/fwlink/?LinkID=135184 (http://go.microsoft.com/fwlink/?LinkID=135184).
+For more information about Windows PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and [about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 
 ### -CimSession
 Runs the cmdlet in a remote session or on a remote computer.
-Enter a computer name or a session object, such as the output of a New-CimSessionhttp://go.microsoft.com/fwlink/p/?LinkId=227967 or Get-CimSessionhttp://go.microsoft.com/fwlink/p/?LinkId=227966 cmdlet.
+Enter a computer name or a session object, such as the output of a [New-CimSession](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/new-cimsession) or [Get-CimSession](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-cimsession) cmdlet.
 The default is the current session on the local computer.
 
 ```yaml
@@ -108,7 +108,7 @@ Indicates that this cmdlet stops the running configuration job before it removes
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -123,16 +123,16 @@ You can specify multiple documents.
 The acceptable values for this parameter are:
 
 - Current.
-Remove the configuration document that describes the current state of the system. 
+Remove the configuration document that describes the current state of the system.
 - Pending.
-Remove the configuration document that describes the pending state of the system. 
+Remove the configuration document that describes the pending state of the system.
 - Previous.
 Remove the configuration document that describes the previous state of the system.
 
 ```yaml
 Type: Stage
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Current, Pending, Previous
 
 Required: True
@@ -150,7 +150,7 @@ The throttle limit applies only to the current cmdlet, not to the session or to 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -195,4 +195,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Get-DscConfiguration](Get-DscConfiguration.md)
 
 [Get-DscConfigurationStatus](Get-DscConfigurationStatus.md)
-

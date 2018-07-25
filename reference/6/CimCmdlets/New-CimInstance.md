@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,36 +17,38 @@ Creates a CIM instance.
 ```
 New-CimInstance [-ClassName] <String> [-Key <String[]>] [[-Property] <IDictionary>] [-Namespace <String>]
  [-OperationTimeoutSec <UInt32>] [-ComputerName <String[]>] [-ClientOnly] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### ClassNameSessionSet
 ```
 New-CimInstance [-ClassName] <String> [-Key <String[]>] [[-Property] <IDictionary>] [-Namespace <String>]
  [-OperationTimeoutSec <UInt32>] -CimSession <CimSession[]> [-ClientOnly] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### ResourceUriSessionSet
 ```
 New-CimInstance -ResourceUri <Uri> [-Key <String[]>] [[-Property] <IDictionary>] [-Namespace <String>]
- [-OperationTimeoutSec <UInt32>] -CimSession <CimSession[]> [-WhatIf] [-Confirm]
+ [-OperationTimeoutSec <UInt32>] -CimSession <CimSession[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ResourceUriComputerSet
 ```
 New-CimInstance -ResourceUri <Uri> [-Key <String[]>] [[-Property] <IDictionary>] [-Namespace <String>]
- [-OperationTimeoutSec <UInt32>] [-ComputerName <String[]>] [-WhatIf] [-Confirm]
+ [-OperationTimeoutSec <UInt32>] [-ComputerName <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### CimClassSessionSet
 ```
 New-CimInstance [-CimClass] <CimClass> [[-Property] <IDictionary>] [-OperationTimeoutSec <UInt32>]
- -CimSession <CimSession[]> [-ClientOnly] [-WhatIf] [-Confirm]
+ -CimSession <CimSession[]> [-ClientOnly] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### CimClassComputerSet
 ```
 New-CimInstance [-CimClass] <CimClass> [[-Property] <IDictionary>] [-OperationTimeoutSec <UInt32>]
- [-ComputerName <String[]>] [-ClientOnly] [-WhatIf] [-Confirm]
+ [-ComputerName <String[]>] [-ClientOnly] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -126,7 +128,7 @@ Using this parameter results in better client side schema validations.
 ```yaml
 Type: CimClass
 Parameter Sets: CimClassSessionSet, CimClassComputerSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -143,7 +145,7 @@ For more information, see about_CimSessions.
 ```yaml
 Type: CimSession[]
 Parameter Sets: ClassNameSessionSet, ResourceUriSessionSet, CimClassSessionSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -154,12 +156,12 @@ Accept wildcard characters: False
 
 ### -ClassName
 Specifies the name of the CIM class of which the operation creates an instance. 
-NOTE: You can use tab completion to browse the list of classes, because wps_2 gets a list of classes from the local WMI server to provide a list of class names.
+NOTE: You can use tab completion to browse the list of classes, because PowerShell gets a list of classes from the local WMI server to provide a list of class names.
 
 ```yaml
 Type: String
 Parameter Sets: ClassNameComputerSet, ClassNameSessionSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -169,8 +171,8 @@ Accept wildcard characters: False
 ```
 
 ### -ClientOnly
-Indicates that the instance is only created in wps_1 without going to the CIM server.
-You can use this parameter to create an in-memory CIM instance for use in subsequent wps_2 operations.
+Indicates that the instance is only created in PowerShell without going to the CIM server.
+You can use this parameter to create an in-memory CIM instance for use in subsequent Windows PowerShell operations.
 
 ```yaml
 Type: SwitchParameter
@@ -213,7 +215,7 @@ CimSession and ComputerName cannot be used when Key is specified.
 ```yaml
 Type: String[]
 Parameter Sets: ClassNameComputerSet, ClassNameSessionSet, ResourceUriSessionSet, ResourceUriComputerSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -226,12 +228,12 @@ Accept wildcard characters: False
 Specifies the namespace of the class for the new instance.
 
 The default namespace is root/cimv2. 
-NOTE: You can use tab completion to browse the list of namespaces, because wps_2 gets a list of namespaces from the local WMI server to provide the list of namespaces.
+NOTE: You can use tab completion to browse the list of namespaces, because PowerShell gets a list of namespaces from the local WMI server to provide the list of namespaces.
 
 ```yaml
 Type: String
 Parameter Sets: ClassNameComputerSet, ClassNameSessionSet, ResourceUriSessionSet, ResourceUriComputerSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -282,13 +284,13 @@ Specifies the resource uniform resource identifier (URI) of the resource class o
 The URI is used to identify a specific type of resource, such as disks or processes, on a computer.
 
 A URI consists of a prefix and a path to a resource.
-For example: 
+For example:
 
 http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_LogicalDisk
 http://intel.com/wbem/wscim/1/amt-schema/1/AMT_GeneralSettings
 
 
-                        
+
 By default, if you do not specify this parameter, the DMTF standard resource URI http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/ is used and the class name is appended to it.
 
 ResourceURI can only be used with CIM sessions created using the WSMan protocol, or when specifying the ComputerName parameter, which creates a CIM session using WSMan.
@@ -299,7 +301,7 @@ If both the ResourceUri parameter and the Filter parameter are specified, the Fi
 ```yaml
 Type: Uri
 Parameter Sets: ResourceUriSessionSet, ResourceUriComputerSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -309,7 +311,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
-psdx_confirmdesc
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
 Type: SwitchParameter
@@ -324,7 +326,8 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-psdx_whatifdesc
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
@@ -337,6 +340,10 @@ Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -352,11 +359,10 @@ This cmdlet returns an object that contains the CIM instance information.
 
 ## RELATED LINKS
 
-[Get-CimClass]()
+[Get-CimClass](get-cimclass.md)
 
-[Get-CimInstance]()
+[Get-CimInstance](get-ciminstance.md)
 
-[Remove-CimInstance]()
+[Remove-CimInstance](remove-ciminstance.md)
 
-[Set-CimInstance]()
-
+[Set-CimInstance](Set-CimInstance.md)

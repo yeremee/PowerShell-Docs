@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
 title:  Writing a custom DSC resource with PowerShell classes
 ---
@@ -27,8 +25,8 @@ To implement a DSC custom resource with a PowerShell class, create the following
 ```
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
     |- MyDscResource (folder)
-        |- MyDscResource.psm1 
-           MyDscResource.psd1 
+        |- MyDscResource.psm1
+           MyDscResource.psd1
 ```
 
 ## Create the class
@@ -66,13 +64,13 @@ Notice that the properties are modified by attributes. The meaning of the attrib
 - **DscProperty(NotConfigurable)**: The property is read-only. Properties marked with this attribute cannot be set by a configuration, but are populated by the **Get()** method when present.
 - **DscProperty()**: The property is configurable, but it is not required.
 
-The **$Path** and **$SourcePath** properties are both strings. The **$CreationTime** is a [DateTime](https://technet.microsoft.com/en-us/library/system.datetime.aspx) property. The **$Ensure** property is an enumeration type, defined as follows.
+The **$Path** and **$SourcePath** properties are both strings. The **$CreationTime** is a [DateTime](https://technet.microsoft.com/library/system.datetime.aspx) property. The **$Ensure** property is an enumeration type, defined as follows.
 
 ```powershell
-enum Ensure 
-{ 
-    Absent 
-    Present 
+enum Ensure
+{
+    Absent
+    Present
 }
 ```
 
@@ -80,7 +78,7 @@ enum Ensure
 
 The **Get()**, **Set()**, and **Test()** methods are analogous to the **Get-TargetResource**, **Set-TargetResource**, and **Test-TargetResource** functions in a script resource.
 
-This code also includes the CopyFile() function, a helper function that copies the file from **$SourcePath** to **$Path**. 
+This code also includes the CopyFile() function, a helper function that copies the file from **$SourcePath** to **$Path**.
 
 ```powershell
 
@@ -447,7 +445,7 @@ PowerShellVersion = '5.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
-} 
+}
 ```
 
 ## Test the resource
@@ -463,7 +461,7 @@ Configuration Test
         Path = "C:\test\test.txt"
         SourcePath = "c:\test.txt"
         Ensure = "Present"
-    } 
+    }
 }
 Test
 Start-DscConfiguration -Wait -Force Test
@@ -473,7 +471,7 @@ Start-DscConfiguration -Wait -Force Test
 
 >**Note:** **PsDscRunAsCredential** is supported in PowerShell 5.0 and later.
 
-The **PsDscRunAsCredential** property can be used in [DSC configurations](configurations.md) resource block to specify that the 
+The **PsDscRunAsCredential** property can be used in [DSC configurations](configurations.md) resource block to specify that the
 resource should be run under a specified set of credentials.
 For more information, see [Running DSC with user credentials](runAsUser.md).
 
@@ -510,4 +508,3 @@ if (PsDscContext.RunAsUser) {
 ## See Also
 ### Concepts
 [Build Custom Windows PowerShell Desired State Configuration Resources](authoringResource.md)
-

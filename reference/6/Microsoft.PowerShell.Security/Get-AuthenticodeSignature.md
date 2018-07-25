@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -77,7 +77,7 @@ It is not necessary to type `-FilePath` at the command line when you specify a v
 ```yaml
 Type: String[]
 Parameter Sets: ByPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -106,12 +106,12 @@ Accept wildcard characters: False
 ```
 
 ### -Content
-@{Text=}
+
 
 ```yaml
 Type: Byte[]
 Parameter Sets: ByContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -121,12 +121,12 @@ Accept wildcard characters: False
 ```
 
 ### -SourcePathOrExtension
-@{Text=}
+
 
 ```yaml
 Type: String[]
 Parameter Sets: ByContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -160,4 +160,3 @@ You can pipe a string that contains a file path to **Get-AuthenticodeSignature**
 [Set-AuthenticodeSignature](Set-AuthenticodeSignature.md)
 
 [Set-ExecutionPolicy](Set-ExecutionPolicy.md)
-

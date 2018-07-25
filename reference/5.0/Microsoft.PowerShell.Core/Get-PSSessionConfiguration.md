@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -272,7 +272,7 @@ This command is useful when you set the value of the $PSSessionConfigurationName
 
 The $PSSessionConfiguationName variable specifies the default configuration that is used when you create a session.
 This variable is set on the local computer, but it specifies a configuration on the remote computer.
-For more information about the $PSSessionConfiguration variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information about the $PSSessionConfiguration variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 ## PARAMETERS
 
@@ -282,7 +282,7 @@ Suppresses the prompt to restart the WinRM service, if the service is not alread
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -300,7 +300,7 @@ Wildcard characters are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -350,4 +350,3 @@ You cannot pipe input to this cmdlet.
 [about_Session_Configurations](About/about_Session_Configurations.md)
 
 [about_Session_Configuration_Files](About/about_Session_Configuration_Files.md)
-

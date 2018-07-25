@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
 title:  Nesting configurations
 ---
@@ -14,7 +12,7 @@ Both configurations must be defined in the same file.
 Let's look at a simple example:
 
 ```powershell
-Configuration FileConfig 
+Configuration FileConfig
 {
     param (
         [Parameter(Mandatory = $true)]
@@ -32,7 +30,7 @@ Configuration FileConfig
            DestinationPath = $CopyTo
            Ensure = 'Present'
        }
-    
+
 }
 
 Configuration NestedFileConfig
@@ -49,11 +47,10 @@ Configuration NestedFileConfig
 ```
 
 In this example, `FileConfig` takes two mandatory parameters,  **CopyFrom** and **CopyTo**,
-which are used as the values for the **SourcePath** and **DestinationPath** properties in the `File` resource block. 
+which are used as the values for the **SourcePath** and **DestinationPath** properties in the `File` resource block.
 The `NestedConfig` configuration calls `FileConfig` as if it were a resource.
 The properties in the `NestedConfig` resource block (**CopyFrom** and **CopyTo**) are the parameters of the `FileConfig` configuration.
 
 ## See Also
 
 - [Composite resources--Using a DSC configuration as a resource](authoringResourceComposite.md)
-

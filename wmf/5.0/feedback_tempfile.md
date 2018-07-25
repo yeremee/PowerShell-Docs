@@ -1,7 +1,7 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
@@ -13,4 +13,3 @@ PS C:\\&gt; $tempFile = New-TemporaryFile
 PS C:\\&gt; $tempFile.FullName
 
 C:\\Users\\slee\\AppData\\Local\\Temp\\tmp375.tmp
-

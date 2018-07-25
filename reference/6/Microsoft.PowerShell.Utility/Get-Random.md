@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,15 +16,15 @@ Gets a random number, or selects objects randomly from a collection.
 ## SYNTAX
 
 ### RandomNumberParameterSet (Default)
-```
-Get-Random [-SetSeed <Int32>] [[-Maximum] <Object>] [-Minimum <Object>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-Random [[-Maximum] <Object>] [-SetSeed <Int32>] [-Minimum <Object>]
+ [<CommonParameters>]
 ```
 
 ### RandomListItemParameterSet
-```
-Get-Random [-SetSeed <Int32>] [-InputObject] <Object[]> [-Count <Int32>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Get-Random [-InputObject] <Object[]> [-SetSeed <Int32>] [-Count <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -188,13 +188,13 @@ PS C:\> Get-Random 10001
 ```
 
 This command gets a random integer less than 10001.
-Because the *Maximum* parameter has position 1, you can omit the parameter name when the value is the first or only unnamed parameter in the command.
+Because the **Maximum** parameter has position 0, you can omit the parameter name when the value is the first or only unnamed parameter in the command.
 
 ### Example 14: Get random 64-bit numbers
 ```
 PS C:\> Get-Random -Minimum ([Int64]::MinValue)3738173363251507200
 PS C:\> Get-Random -Minimum ([Int32]::MaxValue)
-Minimum (2147483647) cannot be greater than or equal to Maximum (2147483647). 
+Minimum (2147483647) cannot be greater than or equal to Maximum (2147483647).
     + CategoryInfo          : InvalidArgument: (:) [Get-Random], ArgumentException
     + FullyQualifiedErrorId : MinGreaterThanOrEqualMax,Microsoft.PowerShell.Commands.GetRandomCommand
 ```
@@ -215,34 +215,7 @@ If the value of *Count* exceeds the number of objects in the collection, **Get-R
 ```yaml
 Type: Int32
 Parameter Sets: RandomListItemParameterSet
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -260,10 +233,10 @@ You can also pipe a collection of objects to **Get-Random**.
 ```yaml
 Type: Object[]
 Parameter Sets: RandomListItemParameterSet
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
@@ -288,10 +261,10 @@ Otherwise, the default value is Int64.MaxValue.
 ```yaml
 Type: Object
 Parameter Sets: RandomNumberParameterSet
-Aliases: 
+Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -309,7 +282,7 @@ If the value of *Maximum* or *Minimum* is a floating-point number, **Get-Random*
 ```yaml
 Type: Object
 Parameter Sets: RandomNumberParameterSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -330,7 +303,7 @@ Because *SetSeed* results in non-random behavior, it is typically used only when
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -358,4 +331,3 @@ You can pipe one or more objects to **Get-Random**.
 * Beginning in Windows PowerShell 3.0, **Get-Random** supports 64-bit integers. In Windows PowerShell 2.0, all values are cast to System.Int32.
 
 ## RELATED LINKS
-

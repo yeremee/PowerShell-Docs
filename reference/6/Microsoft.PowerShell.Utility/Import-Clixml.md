@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,14 +17,12 @@ Imports a CLIXML file and creates corresponding objects in Windows PowerShell.
 
 ### ByPath (Default)
 ```
-Import-Clixml [-Path] <String[]> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Import-Clixml [-Path] <String[]> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ### ByLiteralPath
 ```
-Import-Clixml -LiteralPath <String[]> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
+Import-Clixml -LiteralPath <String[]> [-IncludeTotalCount] [-Skip <UInt64>] [-First <UInt64>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,20 +34,22 @@ For an example of how to do this, see Example 2.
 ## EXAMPLES
 
 ### Example 1: Import a serialized file and recreate an object
-```
-PS C:\> Get-Process | Export-Clixml pi.xml
-PS C:\> $Processes = Import-Clixml pi.xml
+
+```powershell
+Get-Process | Export-Clixml pi.xml
+$Processes = Import-Clixml pi.xml
 ```
 
 This command uses the Export-Clixml cmdlet to save a serialized copy of the process information returned by Get-Process.
 It then uses **Import-Clixml** to retrieve the contents of the serialized file and re-create an object that is stored in the $Processes variable.
 
 ### Example 2: Import a secure credential object
-```
-PS C:\> $Credxmlpath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
-PS C:\> $Credential | Export-CliXml $Credxmlpath
-PS C:\> $Credxmlpath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
-PS C:\> $Credential = Import-CliXml $Credxmlpath
+
+```powershell
+$Credxmlpath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
+$Credential | Export-CliXml $Credxmlpath
+$Credxmlpath = Join-Path (Split-Path $Profile) TestScript.ps1.credential
+$Credential = Import-CliXml $Credxmlpath
 ```
 
 The **Export-CliXml** cmdlet encrypts credential objects by using the Windows Data Protection APIhttp://msdn.microsoft.com/library/windows/apps/xaml/hh464970.aspx.
@@ -68,40 +68,13 @@ This eliminates the risk of exposing plain-text passwords in your script.
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Path
 Specifies the XML files.
 
 ```yaml
 Type: String[]
 Parameter Sets: ByPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -136,7 +109,7 @@ Enter the number of objects to get.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -152,7 +125,7 @@ Enter the number of objects to skip.
 ```yaml
 Type: UInt64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -169,7 +142,7 @@ The value of Accuracy ranges from 0.0 to 1.0 where 0.0 means that the cmdlet cou
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -179,7 +152,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](../../Microsoft.PowerShell.Core/About/about_CommonParameters.md).
 
 ## INPUTS
 
@@ -202,5 +175,8 @@ You can pipe a string that contains a path to **Import-Clixml**.
 
 [Securely Store Credentials on Disk](http://powershellcookbook.com/recipe/PukO/securely-store-credentials-on-disk)
 
-[Export-Clixml](Export-Clixml.md)
+[ConvertTo-Clixml](ConvertTo-Clixml.md)
 
+[ConvertFrom-Clixml](ConvertFrom-Clixml.md)
+
+[Export-Clixml](Export-Clixml.md)

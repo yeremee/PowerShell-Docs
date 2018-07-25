@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,8 +16,9 @@ Groups objects that contain the same value for specified properties.
 ## SYNTAX
 
 ```
-Group-Object [-NoElement] [-AsHashTable] [-AsString] [-InputObject <PSObject>] [[-Property] <Object[]>]
- [-Culture <String>] [-CaseSensitive] [<CommonParameters>]
+Group-Object [[-Property] <Object[]>] [-NoElement] [-AsHashTable] [-AsString]
+ [-InputObject <PSObject>] [-Culture <String>] [-CaseSensitive]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,8 +59,8 @@ PS C:\> $Events = Get-EventLog -LogName "system" -Newest 1000
 PS C:\> $Events | Group-Object -Property eventID
 Count Name                      Group
 ----- ----                      -----
-44    Information               {System.Diagnostics.EventLogEntry, 
-5     Error                     {System.Diagnostics.EventLogEntry, 
+44    Information               {System.Diagnostics.EventLogEntry,
+5     Error                     {System.Diagnostics.EventLogEntry,
 1     Warning                   {System.Diagnostics.EventLogEntry}
 ```
 
@@ -73,20 +74,26 @@ The command uses the *Property* parameter to specify that the events should be g
 In the output, the Count column represents the number of entries in each group, the Name column represents the EventID values that define a group, and the Group column represents the objects in each group.
 
 ### Example 5: Group processes by priority class
-```
+```powershell
 PS C:\> Get-Process | Group-Object -Property PriorityClass
-Count Name                Group
------ ----                -----
-55 Normal              {System.Diagnostics.Process (AdtAgent), System.Diagnostics.Process (alg), System.Dia... 
-1                     {System.Diagnostics.Process (Idle)} 
-3 High                {System.Diagnostics.Process (Newproc), System.Diagnostics.Process (winlogon), System.D... 
-2 BelowNormal         {System.Diagnostics.Process (winperf), PS C:\> Get-Process | Group-Object -Property company -NoElement
+
+Count Name         Group
+----- ----         -----
+   55 Normal       {System.Diagnostics.Process (AdtAgent), System.Diagnosti...
+    1              {System.Diagnostics.Process (Idle)}
+    3 High         {System.Diagnostics.Process (Newproc), System.Diagnostic...
+    2 BelowNormal  {System.Diagnostics.Process (winperf),
+```
+
+```powershell
+PS C:\> Get-Process | Group-Object -Property PriorityClass -NoElement
+
 Count Name
 ----- ----
-55 Normal
-1
-3 High
-2 BelowNormal
+   55 Normal
+    1
+    3 High
+    2 BelowNormal
 ```
 
 This example demonstrates the effect of the *NoElement* parameter.
@@ -176,13 +183,13 @@ PS C:\> $A = Get-Command get-*, set-* -Type cmdlet | Group-Object -Property verb
 PS C:\> $A
 Name    Value
 ----    -----
-Get     {Get-PSCallStack, Get-PSBreakpoint, Get-PSDrive, Get-PSSession...} 
+Get     {Get-PSCallStack, Get-PSBreakpoint, Get-PSDrive, Get-PSSession...}
 Set     {Set-Service, Set-StrictMode, Set-PSDebug, Set-PSSessionConfiguration...} PS C:\> $A.get
 CommandType     Name                 Definition
 -----------     ----                 ----------
-Cmdlet          Get-PSCallStack      Get-PSCallStack [-Verbose] [-Debug] [-ErrorAction <ActionPrefer... 
-Cmdlet          Get-PSBreakpoint     Get-PSBreakpoint [[-Id] <Int32[]>] [-Verbose] [-Debug] [-ErrorA... 
-Cmdlet          Get-PSDrive          Get-PSDrive [[-Name] <String[]>] [-Scope <String>] [-PSProvider... 
+Cmdlet          Get-PSCallStack      Get-PSCallStack [-Verbose] [-Debug] [-ErrorAction <ActionPrefer...
+Cmdlet          Get-PSBreakpoint     Get-PSBreakpoint [[-Id] <Int32[]>] [-Verbose] [-Debug] [-ErrorA...
+Cmdlet          Get-PSDrive          Get-PSDrive [[-Name] <String[]>] [-Scope <String>] [-PSProvider...
 ...
 ```
 
@@ -230,7 +237,7 @@ This parameter is valid only when used with the *AsHashTable* parameter.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -246,7 +253,7 @@ Without this parameter, the property values of objects in a group might have dif
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -261,7 +268,7 @@ Specifies the culture to use when comparing strings.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -282,7 +289,7 @@ To group the objects in a collection, pipe the objects to **Group-Object**.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -297,7 +304,7 @@ Indicates that this cmdlet omits the members of a group from the results.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -316,7 +323,7 @@ To create a calculated, property, create a hash table with an Expression key tha
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -376,4 +383,3 @@ Ungroupable objects appear in the final **GroupInfo** object output in a group n
 [Sort-Object](Sort-Object.md)
 
 [Tee-Object](Tee-Object.md)
-

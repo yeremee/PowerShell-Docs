@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -15,9 +15,14 @@ Sends objects to the host as a series of strings.
 
 ## SYNTAX
 
+### NoNewLineFormatting (Default)
 ```
-Out-String [-Stream] [-Width <Int32>] [-InputObject <PSObject>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Out-String [-NoNewLine] [-Width <Int32>] [-InputObject <PSObject>] [<CommonParameters>]
+```
+
+### StreamFormatting
+```
+Out-String [-Stream] [-Width <Int32>] [-InputObject <PSObject>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -62,34 +67,23 @@ Another pipeline operator sends the strings to the Select-String cmdlet, which s
 
 If you omit the *Stream* parameter, the command displays all of the aliases, because **Select-String** finds **Get-Command** in the single string that **Out-String** returns, and the formatter displays the string as a table.
 
+### Example 4: Using NoNewLine
+```
+PS C:\> "a", "b" | Out-String -NoNewLine
+ab
+
+PS C:\> @{key='value'} | Out-String
+Name   Value
+----   -----
+key    value
+
+PS C:\> @{key='value'} | Out-String -NoNewLine
+Name Value  -----  key value
+```
+Not using `-NoNewLine` would have resulted in an output like `a<newline>b<newline>`.
+It should be noted that `-NoNewLine` does not strip newlines embedded within a string but strips out embedded newlines from formatter-generated output. Compare the second and third commands in this examples for clarity.
+
 ## PARAMETERS
-
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -InputObject
 Specifies the objects to be written to a string.
@@ -98,7 +92,7 @@ Enter a variable that contains the objects, or type a command or expression that
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -115,8 +109,8 @@ To use the *Stream* parameter, type `-Stream` or its alias, `ost`.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
+Parameter Sets: StreamFormatting
+Aliases:
 
 Required: False
 Position: Named
@@ -134,7 +128,22 @@ The default value for the Windows PowerShell console is 80 (characters).
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoNewline
+Removes all newlines from formatter generated output. Note that newlines present as part of string objects are preserved
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: NoNewLineFormatting
+Aliases:
 
 Required: False
 Position: Named
@@ -169,4 +178,3 @@ You can pipe objects to **Out-String**.
 [Out-GridView](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Utility/Out-GridView)
 
 [Out-Printer](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Utility/Out-Printer)
-

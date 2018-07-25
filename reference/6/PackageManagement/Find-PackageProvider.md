@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -62,7 +62,7 @@ By default, **Find-PackageProvider** only returns the newest available version.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -77,7 +77,7 @@ Specifies a user account that has permission to search for package providers.
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -93,7 +93,7 @@ Currently, this is equivalent to the *ForceBootstrap* parameter.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -108,7 +108,7 @@ Indicates that this cmdlet forces Package Management to automatically install th
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -123,7 +123,7 @@ Indicates that this cmdlet includes dependencies.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -139,7 +139,7 @@ If you do not add this parameter, **Find-PackageProvider** finds the highest ava
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -155,7 +155,7 @@ If you do not add this parameter, **Find-PackageProvider** finds the highest ava
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -171,7 +171,7 @@ Separate multiple package names with commas.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -187,7 +187,7 @@ If you do not add this parameter, **Find-PackageProvider** finds the highest ava
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -203,7 +203,7 @@ You can get a list of available package sources by using the Get-PackageSource c
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -213,12 +213,12 @@ Accept wildcard characters: False
 ```
 
 ### -Proxy
-@{Text=}
+
 
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -228,12 +228,12 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyCredential
-@{Text=}
+
 
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -257,7 +257,7 @@ A **SoftwareIdentity** object can be piped into **Install-PackageProvider** to i
 
 ## RELATED LINKS
 
-[about_PackageManagement](../about/about_packagemanagement.md)
+[about_PackageManagement](../Microsoft.PowerShell.Core/About/about_PackageManagement.md)
 
 [Unregister-PackageSource](Unregister-PackageSource.md)
 
@@ -266,4 +266,3 @@ A **SoftwareIdentity** object can be piped into **Install-PackageProvider** to i
 [Register-PackageSource](Register-PackageSource.md)
 
 [Install-PackageProvider](Install-PackageProvider.md)
-

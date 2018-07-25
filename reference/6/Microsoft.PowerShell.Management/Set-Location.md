@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,20 +17,17 @@ Sets the current working location to a specified location.
 
 ### Path (Default)
 ```
-Set-Location [[-Path] <String>] [-PassThru] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [-UseTransaction] [<CommonParameters>]
+Set-Location [[-Path] <String>] [-PassThru] [-UseTransaction] [<CommonParameters>]
 ```
 
 ### LiteralPath
 ```
-Set-Location -LiteralPath <String> [-PassThru] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [-UseTransaction] [<CommonParameters>]
+Set-Location -LiteralPath <String> [-PassThru] [-UseTransaction] [<CommonParameters>]
 ```
 
 ### Stack
 ```
-Set-Location [-PassThru] [-StackName <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [-UseTransaction] [<CommonParameters>]
+Set-Location [-PassThru] [-StackName <String>] [-UseTransaction] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -82,33 +79,6 @@ For information about location stacks, see the Notes.
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -LiteralPath
 Specifies a path of the location.
 The value of the *LiteralPath* parameter is used exactly as it is typed.
@@ -135,7 +105,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -146,11 +116,12 @@ Accept wildcard characters: False
 
 ### -Path
 Specify the path of a new working location.
+If no path is provided, `Set-Location` will default to the current user's home directory.
 
 ```yaml
 Type: String
 Parameter Sets: Path
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -169,7 +140,7 @@ The **Location** cmdlets act on the current stack unless you use the *StackName*
 ```yaml
 Type: String
 Parameter Sets: Stack
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -222,7 +193,7 @@ You can create multiple named location stacks.
 If you do not specify a stack name, Windows PowerShell uses the current location stack.
 By default, the unnamed default location is the current location stack, but you can use the **Set-Location** cmdlet to change the current location stack.
 
-  To manage location stacks, use the Windows PowerShell Location cmdlets, as follows: 
+  To manage location stacks, use the Windows PowerShell Location cmdlets, as follows:
 
 - To add a location to a location stack, use the Push-Location cmdlet.
 - To get a location from a location stack, use the Pop-Location cmdlet.
@@ -245,4 +216,3 @@ To make the unnamed stack the current stack, use the *StackName* parameter of **
 [Pop-Location](Pop-Location.md)
 
 [Push-Location](Push-Location.md)
-

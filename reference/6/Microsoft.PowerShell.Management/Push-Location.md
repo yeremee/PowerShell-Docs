@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,14 +17,12 @@ Adds the current location to the top of a location stack.
 
 ### Path (Default)
 ```
-Push-Location [[-Path] <String>] [-PassThru] [-StackName <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [-UseTransaction] [<CommonParameters>]
+Push-Location [[-Path] <String>] [-PassThru] [-StackName <String>] [-UseTransaction] [<CommonParameters>]
 ```
 
 ### LiteralPath
 ```
-Push-Location [-LiteralPath <String>] [-PassThru] [-StackName <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [-UseTransaction] [<CommonParameters>]
+Push-Location [-LiteralPath <String>] [-PassThru] [-StackName <String>] [-UseTransaction] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -83,33 +81,6 @@ This commmand shows the current location stack.
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -LiteralPath
 Specifies the path of the new location.
 Unlike the *Path* parameter, the value of the *LiteralPath* parameter is used exactly as it is typed.
@@ -136,7 +107,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -154,7 +125,7 @@ Wildcard characters are permitted.
 ```yaml
 Type: String
 Parameter Sets: Path
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -178,7 +149,7 @@ For more information about location stacks, see the Notes.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -243,4 +214,3 @@ Otherwise, this cmdlet does not generate any output.
 [Pop-Location](Pop-Location.md)
 
 [Set-Location](Set-Location.md)
-

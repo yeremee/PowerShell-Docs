@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -18,8 +18,7 @@ Creates a new Windows service.
 ```
 New-Service [-Name] <String> [-BinaryPathName] <String> [-DisplayName <String>] [-Description <String>]
  [-StartupType <ServiceStartMode>] [-Credential <PSCredential>] [-DependsOn <String[]>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -59,17 +58,6 @@ Status    : OK
 This command uses **Get-WmiObject** to get the **Win32_Service** object for the new service.
 This object includes the start mode and the service description.
 
-### Example 4: Delete a service
-```
-PS C:\> sc.exe delete TestService
-- or -
-PS C:\> (Get-WmiObject win32_service -Filter "name='TestService'").delete()
-```
-
-This example shows two ways to delete the TestService service.
-The first command uses the delete option of Sc.exe.
-The second command uses the **Delete** method of the Win32_Service objects that **Get-WmiObject** returns.
-
 ## PARAMETERS
 
 ### -BinaryPathName
@@ -79,7 +67,7 @@ This parameter is required.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 2
@@ -97,7 +85,7 @@ If you type a user name, this cmdlet prompts you for a password.
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -113,7 +101,7 @@ To enter multiple service names, use a comma to separate the names.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -128,7 +116,7 @@ Specifies a description of the service.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -143,34 +131,7 @@ Specifies a display name for the service.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -200,10 +161,10 @@ Sets the startup type of the service.
 The acceptable values for this parameter are:
 
 - Manual.
-The service is started only manually, by a user, using the Service Control Manager, or by an application. 
+The service is started only manually, by a user, using the Service Control Manager, or by an application.
 - Automatic.
 The service is started or was started by the operating system, at system start-up.
-If an automatically started service depends on a manually started service, the manually started service is also started automatically at system startup. 
+If an automatically started service depends on a manually started service, the manually started service is also started automatically at system startup.
 - Disabled.
 The service is disabled and cannot be started by a user or application.
 
@@ -212,7 +173,7 @@ The service is disabled and cannot be started by a user or application.
 ```yaml
 Type: ServiceStartMode
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Automatic, Manual, Disabled
 
 Required: False
@@ -268,7 +229,6 @@ This cmdlet returns an object that represents the new service.
 
 ## NOTES
 * To run this cmdlet on Windows Vista and later versions of the Windows operating system, start Windows PowerShell by using the Run as administrator option.
-* To delete a service, use Sc.exe, or use the Get-WmiObject cmdlet to get the **Win32_Service** object that represents the service and then use the **Delete** method to delete the service. The object that Get-Service returns does not have a delete method.
 
 ## RELATED LINKS
 
@@ -286,3 +246,4 @@ This cmdlet returns an object that represents the new service.
 
 [Suspend-Service](Suspend-Service.md)
 
+[Remove-Service](Remove-Service.md)

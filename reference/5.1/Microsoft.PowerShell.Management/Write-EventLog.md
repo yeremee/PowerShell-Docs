@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -53,7 +53,7 @@ Enter an integer that is associated with the strings in the category message fil
 ```yaml
 Type: Int16
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -88,7 +88,7 @@ Specifies the entry type of the event.
 The acceptable values for this parameter are: Error, Warning, Information, SuccessAudit, and FailureAudit.
 The default value is Information.
 
-For a description of the values, see System.Diagnostics.EventLogEntryTypehttp://go.microsoft.com/fwlink/?LinkId=143599 (http://go.microsoft.com/fwlink/?LinkId=143599) in the Microsoft Developer Network (MSDN) library.
+For a description of the values, see [EventLogEntryType Enumeration](http://go.microsoft.com/fwlink/?LinkId=143599) in the MSDN library.
 
 ```yaml
 Type: EventLogEntryType
@@ -218,4 +218,3 @@ This cmdlet returns objects that represents the events in the logs.
 [Show-EventLog](Show-EventLog.md)
 
 [Write-EventLog](Write-EventLog.md)
-

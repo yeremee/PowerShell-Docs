@@ -1,5 +1,5 @@
----
-ms.date:  2017-06-09
+﻿---
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,10 +7,12 @@ online version:  http://go.microsoft.com/fwlink/?LinkID=223921
 external help file:  Microsoft.PowerShell.ScheduledJob.dll-Help.xml
 title:  Set-ScheduledJobOption
 ---
-
 # Set-ScheduledJobOption
+
 ## SYNOPSIS
+
 Changes the job options of a scheduled job.
+
 ## SYNTAX
 
 ```
@@ -21,6 +23,7 @@ Set-ScheduledJobOption [-InputObject] <ScheduledJobOptions> [-PassThru] [-RunEle
 ```
 
 ## DESCRIPTION
+
 The **Set-ScheduledJobOptions** cmdlet changes the job options of scheduled jobs.
 
 To change the options of a scheduled job, begin by using the Get-ScheduledJobOption cmdlet to get the job options of a scheduled job.
@@ -42,12 +45,16 @@ For more information about Scheduled Jobs, see the About topics in the PSSchedul
 Import the PSScheduledJob module and then type: `Get-Help about_Scheduled*` or see about_Scheduled_Jobs.
 
 This cmdlet is introduced in Windows PowerShell 3.0.
+
 ## EXAMPLES
 
 ### Example 1: Change job options
+
+```powershell
+Get-ScheduledJobOption -Name DeployPackage
 ```
-The first command uses the Get-ScheduledJobOption cmdlet to get the job options of the DeployPackage scheduled job. The output shows that the WakeToRun and RunElevated properties are set to False.This command is not required; it is included only to show the effect of the option change.
-PS C:\> Get-ScheduledJobOption -Name DeployPackage
+
+```output
 StartIfOnBatteries     : False
 StopIfGoingOnBatteries : True
 WakeToRun              : False
@@ -62,9 +69,13 @@ RunWithoutNetwork      : False
 DoNotAllowDemandStart  : False
 MultipleInstancePolicy : IgnoreNew
 JobDefinition          :
+```
 
-The second command uses the **Set-ScheduledJobOpton** cmdlet to change the job options so the values of the **WakeToRun** and **RunWithoutNetwork** properties are True. The command uses the **Passthru** parameter to return the trigger after the change.
-PS C:\> Get-ScheduledJobOption -Name DeployPackage | Set-ScheduledJobOption -WakeToRun -RequireNetwork:$False -Passthru
+```powershell
+Get-ScheduledJobOption -Name DeployPackage | Set-ScheduledJobOption -WakeToRun -RequireNetwork:$False -Passthru
+```
+
+```output
 StartIfOnBatteries     : False
 StopIfGoingOnBatteries : True
 WakeToRun              : True
@@ -81,9 +92,11 @@ MultipleInstancePolicy : IgnoreNewJobDefinition          :
 ```
 
 This example shows how to change the options of a scheduled job on the local computer.
+
 ### Example 2: Change an option on all remote scheduled jobs
-```
-PS C:\> Invoke-Command -Computer Server01 -ScriptBlock {Get-ScheduledJob | Get-ScheduledJobOption | Set-ScheduledJobOption -IdleTimeout 2:00:00}
+
+```powershell
+Invoke-Command -ComputerName Server01 -ScriptBlock {Get-ScheduledJob | Get-ScheduledJobOption | Set-ScheduledJobOption -IdleTimeout 2:00:00}
 ```
 
 This command changes the value of the IdleTimeout from one hour (the default value) to two hours on all scheduled jobs on the Server01 computer.
@@ -95,9 +108,11 @@ The scheduled jobs are piped to the Get-ScheduledJobOption cmdlet, which gets th
 Each job options object contains a **JobDefinition** property that contains the scheduled job, so the options object remains associated with the scheduled job even when it is changed.
 
 The job triggers are piped to the **Set-ScheduledJobOption** cmdlet, which changes the value of the IdleTimeout option to two hours (2:00:00).
+
 ## PARAMETERS
 
 ### -ContinueIfGoingOnBattery
+
 Do not stop the scheduled job if the computer switches to battery power (disconnects from AC power) while the job is running.
 By default, scheduled jobs stop when the computer disconnects from AC power.
 
@@ -106,7 +121,7 @@ The **ContinueIfGoingOnBattery** parameter sets the value of the **StopIfGoingOn
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -116,6 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -DoNotAllowDemandStart
+
 Start the job only when it is triggered.
 Users cannot start the job manually, such as by using the Run feature in Task Scheduler.
 
@@ -127,7 +143,7 @@ The **DoNotAllowDemandStart** parameter sets the value of the **DoNotAllowDemand
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -137,6 +153,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideInTaskScheduler
+
 Do not display the job in Task Scheduler.
 This value affects only the computer on which the job runs.
 By default, scheduled tasks appear in Task Scheduler.
@@ -148,7 +165,7 @@ The **HideInTaskScheduler** parameter sets the value of the **ShowInTaskSchedule
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -158,6 +175,7 @@ Accept wildcard characters: False
 ```
 
 ### -IdleDuration
+
 Specifies how long the computer must be idle before the job starts.
 The default value is 10 minutes.
 If the computer is not idle for the specified duration before the value of **IdleTimeout** expires, the scheduled job does not run until the next scheduled time, if any.
@@ -170,7 +188,7 @@ By default, the **StartIfNotIdle** property of scheduled jobs is set to True and
 ```yaml
 Type: TimeSpan
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -180,6 +198,7 @@ Accept wildcard characters: False
 ```
 
 ### -IdleTimeout
+
 Specifies how long the computer must be idle before the job starts.
 The default value is 10 minutes.
 If the computer is not idle for the specified duration before the value of **IdleTimeout** expires, the scheduled job does not run until the next scheduled time, if any.
@@ -192,7 +211,7 @@ By default, the **StartIfNotIdle** property of scheduled jobs is set to True and
 ```yaml
 Type: TimeSpan
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -202,6 +221,7 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
+
 Specifies the job options.
 Enter a variable that contains  **ScheduledJobOptions** objects or type a command or expression that gets **ScheduledJobOptions** objects, such as a Get-ScheduledJobOption command.
 You can also pipe a **ScheduledJobOptions** object to **Set-ScheduledJobOption**.
@@ -209,7 +229,7 @@ You can also pipe a **ScheduledJobOptions** object to **Set-ScheduledJobOption**
 ```yaml
 Type: ScheduledJobOptions
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -219,6 +239,7 @@ Accept wildcard characters: False
 ```
 
 ### -MultipleInstancePolicy
+
 Determines how the system responds to a request to start an instance of a scheduled job while another instance of the job is running.
 The default value is **IgnoreNew**.
 
@@ -235,7 +256,7 @@ For example, if the conditions that are set by the **RequireNetwork**, **IdleDur
 ```yaml
 Type: TaskMultipleInstancePolicy
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -245,13 +266,14 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 Returns the job options that changed.
 By default, this cmdlet does not generate any output.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -261,6 +283,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequireNetwork
+
 Runs the scheduled job only when network connections are available.
 
 If you specify this parameter and the network is not available at the scheduled start time, the job does not run until the next scheduled start time, if any.
@@ -270,7 +293,7 @@ The **RequireNetwork** parameter sets the value of the **RunWithoutNetwork** pro
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -280,6 +303,7 @@ Accept wildcard characters: False
 ```
 
 ### -RestartOnIdleResume
+
 Restarts a scheduled job when the computer becomes idle.
 This parameter works with the **StopIfGoingOffIdle** parameter, which suspends a running scheduled job if the computer becomes active (leaves the idle state).
 
@@ -288,7 +312,7 @@ The **RestartOnIdleResume** parameter sets the value of the **RestartOnIdleResum
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -298,6 +322,7 @@ Accept wildcard characters: False
 ```
 
 ### -RunElevated
+
 Runs the scheduled job with the permissions of a member of the Administrators group on the computer on which the job runs.
 
 To enable a scheduled job to run with Administrator permissions, use the **Credential** parameter of Register-ScheduledJob to provide explicit credential for the job.
@@ -307,7 +332,7 @@ The **RunElevated** parameter sets the value of the **RunElevated** property of 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -317,6 +342,7 @@ Accept wildcard characters: False
 ```
 
 ### -StartIfIdle
+
 Starts the scheduled job if the computer has been idle for the time specified by the **IdleDuration** parameter before the time specified by the **IdleTimeout** parameter expires.
 
 By default, the **IdleDuration** and **IdleTimeout** parameters are ignored and the job starts at the scheduled start time even if the computer is busy.
@@ -328,7 +354,7 @@ The **StartIfIdle** parameter sets the value of the **StartIfNotIdle** property 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -338,6 +364,7 @@ Accept wildcard characters: False
 ```
 
 ### -StartIfOnBattery
+
 Starts the scheduled job even if the computer is running on batteries at the scheduled start time.
 The default value is False.
 
@@ -346,7 +373,7 @@ The **StartIfOnBattery** parameter sets the value of the **StartIfOnBatteries** 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -356,6 +383,7 @@ Accept wildcard characters: False
 ```
 
 ### -StopIfGoingOffIdle
+
 Suspends a running scheduled job if the computer becomes active (not idle) while the job is running.
 
 By default, a scheduled job that is suspended when the computer becomes active resumes when the computer becomes idle again.
@@ -366,7 +394,7 @@ The **StopIfGoingOffIdle** parameter sets the value of the **StopIfGoingOffIdle*
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -376,6 +404,7 @@ Accept wildcard characters: False
 ```
 
 ### -WakeToRun
+
 Wakes the computer from a Hibernate or Sleep state at the scheduled start time so it can run the job.
 By default, if the computer is in a Hibernate or Sleep state at the scheduled start time, the job does not run.
 
@@ -384,7 +413,7 @@ The **WakeToRun** parameter sets the value of the **WakeToRun** property of sche
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -394,16 +423,22 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### Microsoft.PowerShell.ScheduledJob.ScheduledJobOptions
+
 You can pipe a scheduled job options object to **Set-ScheduledJobOption**.
+
 ## OUTPUTS
 
 ### None or Microsoft.PowerShell.ScheduledJob.ScheduledJobOptions
+
 When you use the **Passthru** parameter, **Set-ScheduledJobOption** returns the job options that were changed.
 Otherwise, this cmdlet does not generate any output.
+
 ## NOTES
 
 ## RELATED LINKS
@@ -441,4 +476,3 @@ Otherwise, this cmdlet does not generate any output.
 [Set-ScheduledJobOption](Set-ScheduledJobOption.md)
 
 [Unregister-ScheduledJob](Unregister-ScheduledJob.md)
-

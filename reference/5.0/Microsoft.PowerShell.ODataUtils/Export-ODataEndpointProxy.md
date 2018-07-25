@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -57,7 +57,7 @@ Indicates that this cmdlet replaces an existing module.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 10
@@ -73,7 +73,7 @@ The module can manage HTTP sites in addition to HTTPS sites.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 11
@@ -89,7 +89,7 @@ The acceptable values for this parameter are: ODataAdapter and NetworkController
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: ODataAdapter, NetworkControllerAdapter
 
 Required: False
@@ -121,7 +121,7 @@ The acceptable values for this parameter are: PUT, POST, and PATCH.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Put, Post, Patch
 
 Required: False
@@ -139,7 +139,7 @@ If a remote computer runs Windows Vista or a later release of the Windows operat
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
@@ -154,7 +154,7 @@ Specifies a hash table of custom data.
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 9
@@ -169,7 +169,7 @@ Indicates that this cmdlet overwrites an existing generated module of the same n
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 8
@@ -185,7 +185,7 @@ Enter a hash table or dictionary.
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 12
@@ -200,7 +200,7 @@ Specifies the URI of the metadata of the endpoint.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -219,7 +219,7 @@ If you specify a path, the cmdlet creates the module folder in that path.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -233,16 +233,16 @@ Specifies a hashtable that contains mappings that let you customize the generate
 In this hashtable, the resource collection name is the key.
 The desired cmdlet noun is the value.
 
-For example, in the hash table @{Products = 'Merchandise'}, **Products** is the resource collection name that serves as the key.
+For example, in the hash table `@{Products = 'Merchandise'}`, **Products** is the resource collection name that serves as the key.
 **Merchandise** is the resulting cmdlet noun.
-The generated cmdlet names might not align to Windows PowerShellcmdlet naming guidelines.
+The generated cmdlet names might not align to Windows PowerShell cmdlet naming guidelines.
 You can modify the resource CDXML file to change the cmdlet names after this cmdlet creates the module.
-For more information, see Strongly Encouraged Development Guidelineshttp://msdn.microsoft.com/library/dd878270(v=vs.85).aspx (http://msdn.microsoft.com/library/dd878270(v=vs.85).aspx) in the Microsoft Developer Network library.
+For more information, see [Strongly Encouraged Development Guidelines](https://msdn.microsoft.com/library/dd878270) in the MSDN library.
 
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 7
@@ -258,7 +258,7 @@ The acceptable values for this parameter are: PUT, POST, and PATCH.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Put, Post, Patch
 
 Required: False
@@ -274,7 +274,7 @@ Specifies the URI of the endpoint.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -315,4 +315,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [What is the OData Protocol?](http://www.odata.org/)
 
 [Invoke-RestMethod](../Microsoft.PowerShell.Utility/Invoke-RestMethod.md)
-

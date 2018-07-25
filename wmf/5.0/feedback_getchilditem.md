@@ -1,7 +1,7 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
@@ -47,4 +47,3 @@ Mode LastWriteTime Length Name
 ---- ------------- ------ ----
 
 d----- 4/14/2015 5:33 PM Depth1
-

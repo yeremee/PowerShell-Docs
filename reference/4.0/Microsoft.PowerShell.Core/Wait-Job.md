@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -225,7 +225,7 @@ By default, Wait-Job waits until all of the specified jobs are complete before d
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -247,7 +247,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Hashtable
 Parameter Sets: FilterParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -265,7 +265,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -285,7 +285,7 @@ To find the ID of a job, type "Get-Job" without parameters.
 ```yaml
 Type: Int32[]
 Parameter Sets: SessionIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -304,7 +304,7 @@ To find the instance ID of a job, use Get-Job.
 ```yaml
 Type: Guid[]
 Parameter Sets: InstanceIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -322,7 +322,7 @@ By default, Wait-Job waits for all jobs created in the current session.
 ```yaml
 Type: Job[]
 Parameter Sets: JobParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -337,7 +337,7 @@ Waits for jobs with the specified friendly name.
 ```yaml
 Type: String[]
 Parameter Sets: NameParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -350,12 +350,12 @@ Accept wildcard characters: False
 Waits only for jobs in the specified state.
 Valid values are NotStarted, Running, Completed, Failed, Stopped, Blocked, Suspended, Disconnected, Suspending, Stopping.
 
-For more information about job states, see "JobState Enumeration" in MSDN at http://msdn.microsoft.com/library/windows/desktop/system.management.automation.jobstate(v=vs.85).aspxhttp://msdn.microsoft.com/library/windows/desktop/system.management.automation.jobstate(v=vs.85).aspx
+For more information about job states, see [JobState Enumeration](https://msdn.microsoft.com/library/system.management.automation.jobstate) in the MSDN library.
 
 ```yaml
 Type: JobState
 Parameter Sets: StateParameterSet
-Aliases: 
+Aliases:
 Accepted values: NotStarted, Running, Completed, Failed, Stopped, Blocked, Suspended, Disconnected, Suspending, Stopping
 
 Required: True
@@ -420,11 +420,10 @@ If the wait ends because the value of the Timeout parameter is exceeded, Wait-Jo
 
 [Suspend-Job](Suspend-Job.md)
 
-[about_Jobs]()
+[about_Jobs](About/about_Jobs.md)
 
 [about_Job_Details](About/about_Job_Details.md)
 
 [about_Remote_Jobs](About/about_Remote_Jobs.md)
 
 [about_Remote_Variables](About/about_Remote_Variables.md)
-

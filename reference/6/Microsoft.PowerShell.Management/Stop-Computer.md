@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -19,8 +19,7 @@ Stops (shuts down) local and remote computers.
 Stop-Computer [-AsJob] [-DcomAuthentication <AuthenticationLevel>] [-WsmanAuthentication <String>]
  [-Protocol <String>] [[-ComputerName] <String[]>] [[-Credential] <PSCredential>]
  [-Impersonation <ImpersonationLevel>] [-ThrottleLimit <Int32>] [-Force]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -68,7 +67,7 @@ Because *AsJob* creates the job on the local computer and automatically returns 
 
 ### Example 4: Shut down a remote computer
 ```
-PS C:\> Stop-Computer -CompupterName "Server01" -Impersonation anonymous -Authentication PacketIntegrity
+PS C:\> Stop-Computer -ComputerName "Server01" -Impersonation Anonymous -Authentication PacketIntegrity
 ```
 
 This command stops the Server01 remote computer.
@@ -104,12 +103,12 @@ You can continue to work in the session while the job finishes.
 The job is created on the local computer and the results from remote computers are automatically returned to the local computer.
 To get the job results, use the Receive-Job cmdlet.
 
-For more information about Windows PowerShell background jobs, see about_Jobs and about_Remote_Jobs.
+For more information about Windows PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and [about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -149,7 +148,7 @@ Type a user name, such as User01 or Domain01\User01, or enter a **PSCredential**
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -164,7 +163,7 @@ Forces an immediate shut down of the computers.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -179,56 +178,21 @@ Specifies the impersonation level to use when this cmdlet calls WMI.
 The acceptable values for this parameter are:
 
 - Default.
-Default impersonation. 
+Default impersonation.
 - Anonymous.
-Hides the identity of the caller. 
+Hides the identity of the caller.
 - Identify.
-Allows objects to query the credentials of the caller. 
+Allows objects to query the credentials of the caller.
 - Impersonate.
-Allows objects to use the credentials of the caller. 
+Allows objects to use the credentials of the caller.
 
 The default value is Impersonate.
 
 ```yaml
 Type: ImpersonationLevel
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Default, Anonymous, Identify, Impersonate, Delegate
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-Note: To use this parameter, the local and remote computers must be configured for remoting and, on Windows Vista and later versions of Windows, you must open Windows PowerShell with the "Run as administrator" option. For more information, see about_Remote_Requirements".
-
-When you use the AsJob parameter, the command immediately returns an object that represents the background job. You can continue to work in the session while the job completes. The job is created on the local computer and the results from remote computers are automatically returned to the local computer. To manage the job, use the Job cmdlets. To get the job results, use the Receive-Job cmdlet.
-
-For more information about Windows PowerShell background jobs, see about_Jobs and see about_Remote_Jobs.```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Note: To use this parameter, the local and remote computers must be configured for remoting and, on Windows Vista and later versions of Windows, you must open Windows PowerShell with the "Run as administrator" option. For more information, see about_Remote_Requirements".
-
-When you use the AsJob parameter, the command immediately returns an object that represents the background job. You can continue to work in the session while the job completes. The job is created on the local computer and the results from remote computers are automatically returned to the local computer. To manage the job, use the Job cmdlets. To get the job results, use the Receive-Job cmdlet.
-
-For more information about Windows PowerShell background jobs, see about_Jobs and see about_Remote_Jobs.```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
 
 Required: False
 Position: Named
@@ -246,7 +210,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -292,9 +256,9 @@ Specifies the authentication level that this cmdlet uses with WMI.
 The acceptable values for this parameter are:
 
 - Default.
-Windows Authentication 
+Windows Authentication
 - None.
-No COM authentication 
+No COM authentication
 - Connect.
 Connect-level COM authentication
 - Call.
@@ -302,15 +266,15 @@ Call-level COM authentication
 - Packet .
 Packet-level COM authentication
 - PacketIntegrity.
-Packet Integrity-level COM authentication 
+Packet Integrity-level COM authentication
 - PacketPrivacy.
-Packet Privacy-level COM authentication 
+Packet Privacy-level COM authentication
 - Unchanged.
 Same as the previous command
 
 The default value is Packet.
 
-For more information about the values of this parameter, see AuthenticationLevel Enumerationhttp://go.microsoft.com/fwlink/?LinkID=235229 (http://go.microsoft.com/fwlink/?LinkID=235229) in the Microsoft Developer Library (MSDN).
+For more information about the values of this parameter, see [AuthenticationLevel Enumeration](https://msdn.microsoft.com/library/system.management.authenticationlevel) in the MSDN library.
 
 ```yaml
 Type: AuthenticationLevel
@@ -334,7 +298,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -347,16 +311,16 @@ Accept wildcard characters: False
 Specifies the mechanism that is used to authenticate the user credentials when this cmdlet uses the WSMan protocol.
 The acceptable values for this parameter are:
 
-- Basic 
-- CredSSP 
-- Default 
-- Digest 
-- Kerberos 
-- Negotiate. 
+- Basic
+- CredSSP
+- Default
+- Digest
+- Kerberos
+- Negotiate.
 
 The default value is Default.
 
-For more information about the values of this parameter, see AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=235230 (http://go.microsoft.com/fwlink/?LinkID=235230) in the MSDN library.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Service Provider (CredSSP) authentication, in which the user credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -367,7 +331,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -409,4 +373,3 @@ Otherwise, it does not generate any output.
 [Restore-Computer](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Management/Restore-Computer)
 
 [Test-Connection](Test-Connection.md)
-

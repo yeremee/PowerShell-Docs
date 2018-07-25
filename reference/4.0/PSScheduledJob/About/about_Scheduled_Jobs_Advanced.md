@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -20,13 +20,12 @@ that underlies scheduled jobs.
 
 This topic includes the following sections:
 
--- Scheduled job directories and files
--- Rename a scheduled job
--- Start a scheduled job immediately
--- Manage execution history
+- Scheduled job directories and files
+- Rename a scheduled job
+- Start a scheduled job immediately
+- Manage execution history
 
 # SCHEDULED JOB DIRECTORIES AND FILES
-
 
 Windows PowerShell scheduled jobs are both Windows PowerShell
 jobs and Task Scheduler tasks. Each scheduled job is registered
@@ -40,6 +39,8 @@ directory on the local computer. The directory name is the same
 as the job name.
 
 The following is a sample ScheduledJobs directory.
+
+```
 
 PS C:\ps-test> dir $home\AppData\Local\Microsoft\Windows\PowerShell\ScheduledJobs
 
@@ -55,8 +56,12 @@ d----         11/2/2011  10:25 AM            SecureJob
 d----         9/27/2011   1:29 PM            Test-HelpFiles
 d----         9/26/2011   4:22 PM            DeployPackage
 
+```
+
 Each scheduled job has its own directory. The directory contains
 the scheduled job XML file and an Output subdirectory.
+
+```
 
 PS C:> dir $home\AppData\Local\Microsoft\Windows\PowerShell\ScheduledJobs\ProcessJob
 
@@ -68,6 +73,8 @@ Mode                LastWriteTime     Length Name
 d----         11/1/2011   3:00 PM            Output
 -a---         11/1/2011   3:43 PM       7281 ScheduledJobDefinition.xml
 
+```
+
 The Output directory for a scheduled job contains its execution
 history. Each time a job trigger starts a scheduled job, Windows
 PowerShell creates a timestamp-named directory in the Output
@@ -76,6 +83,8 @@ in a Results.xml file and the job status in a Status.xml file.
 
 The following command shows the execution history directories for
 the ProcessJob scheduled job.
+
+```
 
 PS C:> dir $home\AppData\Local\Microsoft\Windows\PowerShell\ScheduledJobs\ProcessJob\Output
 
@@ -100,6 +109,8 @@ Mode                LastWriteTime     Length Name
 -a---         11/2/2011   3:00 AM     581106 Results.xml
 -a---         11/2/2011   3:00 AM       9451 Status.xml
 
+```
+
 You can open and examine the ScheduledJobDefinition.xml, Results.xml
 and Status.xml files or use the Select-XML cmdlet to parse the files.
 
@@ -109,11 +120,10 @@ execution history, including job results.
 
 # START A SCHEDULED JOB IMMEDIATELY
 
-
 You can start a scheduled job immediately in one of two ways:
 
--- Run the Start-Job cmdlet to start any scheduled job
--- Add the RunNow parameter to your Register-ScheduledJob
+- Run the Start-Job cmdlet to start any scheduled job
+- Add the RunNow parameter to your Register-ScheduledJob
 command to start the job as soon as the command is run
 
 Jobs that are started by using the Start-Job cmdlet are standard
@@ -126,11 +136,10 @@ scheduled job directory.
 The following command uses the DefinitionName parameter of the
 Start-Job cmdlet to start the ProcessJob scheduled job.
 
-Start-Job -DefinitionName ProcessJob
+`Start-Job -DefinitionName ProcessJob`
 
 To manage the job and get the job results, use the Job cmdlets.
-For more information about the Job cmdlets, see about_Jobs
-(http://go.microsoft.com/fwlink/?LinkID=113251).
+For more information about the Job cmdlets, see [about_Jobs](../../Microsoft.PowerShell.Core/About/about_Jobs.md).
 
 NOTE: To use the Job cmdlets on instances of scheduled jobs, the
 PSScheduledJob module  must be imported into the session.
@@ -139,7 +148,6 @@ To import the PSScheduledJob module, type
 use any Scheduled Job cmdlet, such as Get-ScheduledJob.
 
 # RENAME A SCHEDULED JOB
-
 
 To rename a scheduled job, use the Name parameter of the
 Set-ScheduledJob cmdlet. When you rename  a scheduled job,
@@ -160,27 +168,23 @@ properties of each job instance in a table. The command uses
 a calculated property to display the elapsed time of each job
 instance.
 
+```
+
 PS C:> Get-job -Name UpdateHelpJob | Format-Table -Property ID, PSBeginTime, PSEndTime,
 @{Label="Elapsed Time";Expression={$.PsEndTime - $.PSBeginTime}}
 
 Id   PSBeginTime             PSEndTime                Elapsed Time
 --   -----------             ---------                ------------
-# 2   11/3/2011 3:00:01 AM    11/3/2011 3:00:39 AM     00:00:38.0053854
-
-# 3   11/4/2011 3:00:02 AM    11/4/2011 3:01:01 AM     00:00:59.1188475
-
-# 4   11/5/2011 3:00:02 AM    11/5/2011 3:00:50 AM     00:00:48.3692034
-
-# 5   11/6/2011 3:00:01 AM    11/6/2011 3:00:54 AM     00:00:52.8013036
-
-# 6   11/7/2011 3:00:01 AM    11/7/2011 3:00:38 AM     00:00:37.1930350
-
-# 7   11/8/2011 3:00:01 AM    11/8/2011 3:00:57 AM     00:00:56.2570556
-
-# 8   11/9/2011 3:00:03 AM    11/9/2011 3:00:55 AM     00:00:51.8142222
-
-# 9   11/10/2011 3:00:02 AM   11/10/2011 3:00:42 AM    00:00:40.7195954
-
+ 2   11/3/2011 3:00:01 AM    11/3/2011 3:00:39 AM     00:00:38.0053854
+ 3   11/4/2011 3:00:02 AM    11/4/2011 3:01:01 AM     00:00:59.1188475
+ 4   11/5/2011 3:00:02 AM    11/5/2011 3:00:50 AM     00:00:48.3692034
+ 5   11/6/2011 3:00:01 AM    11/6/2011 3:00:54 AM     00:00:52.8013036
+ 6   11/7/2011 3:00:01 AM    11/7/2011 3:00:38 AM     00:00:37.1930350
+ 7   11/8/2011 3:00:01 AM    11/8/2011 3:00:57 AM     00:00:56.2570556
+ 8   11/9/2011 3:00:03 AM    11/9/2011 3:00:55 AM     00:00:51.8142222
+ 9   11/10/2011 3:00:02 AM   11/10/2011 3:00:42 AM    00:00:40.7195954
+ 
+```
 
 # MANAGE EXECUTION HISTORY
 
@@ -212,29 +216,47 @@ creates a scheduled job. The command uses the MaxResultCount parameter
 with a value of 12 to save only the 12 newest job instance results
 of the scheduled job.
 
-Register-ScheduledJob -Name ProcessJob -ScriptBlock {Get-Process} -MaxResultCount 12
+`Register-ScheduledJob -Name ProcessJob -ScriptBlock {Get-Process} -MaxResultCount 12`
 
 The following command uses the MaxResultCount parameter of the
 Set-ScheduledJob cmdlet to increase the number of saved instance
 results to 15.
 
-Get-ScheduledJob ProcessJob | Set-ScheduledJob -MaxResultCount 15
+`Get-ScheduledJob ProcessJob | Set-ScheduledJob -MaxResultCount 15`
 
 The following command deletes the execution history and all
 currently saved results of the ProcessJob scheduled job.
 
-Get-ScheduledJob ProcessJob | Set-ScheduledJob -ClearExecutionHistory
+`Get-ScheduledJob ProcessJob | Set-ScheduledJob -ClearExecutionHistory`
 
 The following command gets the values of the name and
 ExecutionHistoryLength properties of all scheduled jobs on the
 computer and displays them in a table.
 
-Get-ScheduledJob | Format-Table -Property Name, ExecutionHistoryLength -AutoSize
+`Get-ScheduledJob | Format-Table -Property Name, ExecutionHistoryLength -AutoSize`
 
 # SEE ALSO
 
+- [about_Scheduled_Jobs_Basics](about_Scheduled_Jobs_Basics.md)
+- [about_Scheduled_Jobs_Troubleshooting](about_Scheduled_Jobs_Troubleshooting.md)
+- [about_Scheduled_Jobs](about_Scheduled_Jobs.md)
+- [Task Scheduler](http://go.microsoft.com/fwlink/?LinkId=232928)
 
-about_Scheduled_Jobs
-about_Scheduled_Jobs_Troubleshooting
-about_Jobs
+## RELATED LINKS
 
+- [Add-JobTrigger](../Add-JobTrigger.md)
+- [Disable-JobTrigger](../Disable-JobTrigger.md)
+- [Disable-ScheduledJob](../Disable-ScheduledJob.md)
+- [Enable-JobTrigger](../Enable-JobTrigger.md)
+- [Enable-ScheduledJob](../Enable-ScheduledJob.md)
+- [Get-JobTrigger](../Get-JobTrigger.md)
+- [Get-ScheduledJob](../Get-ScheduledJob.md)
+- [Get-ScheduledJobOption](../Get-ScheduledJobOption.md)
+- [New-JobTrigger](../New-JobTrigger.md)
+- [New-ScheduledJobOption](../New-ScheduledJobOption.md)
+- [Register-ScheduledJob](../Register-ScheduledJob.md)
+- [Remove-JobTrigger](../Remove-JobTrigger.md)
+- [Set-JobTrigger](../Set-JobTrigger.md)
+- [Set-ScheduledJob](../Set-ScheduledJob.md)
+- [Set-ScheduledJobOption](../Set-ScheduledJobOption.md)
+- [Unregister-ScheduledJob](../Unregister-ScheduledJob.md)

@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
 title:  Composite resources--Using a DSC configuration as a resource
 ---
@@ -94,7 +92,7 @@ Configuration xVirtualMachine
         DependsOn = "[File]ParentVHDFile"
     }
 
-    # Creae VM specific diff VHD
+    # Create VM specific diff VHD
     foreach ($Name in $VMName)
     {
         xVHD "VHD$Name"
@@ -159,7 +157,7 @@ Next we create a configuration that calls the composite resource. This configura
 configuration RenameVM
 {
 
-    Import-DscResource -Module TestCompositeResource
+    Import-DscResource -Module xVirtualMachine
     Node localhost
     {
         xVirtualMachine VM
@@ -189,7 +187,7 @@ configuration RenameVM
 
 >**Note:** **PsDscRunAsCredential** is supported in PowerShell 5.0 and later.
 
-The **PsDscRunAsCredential** property can be used in [DSC configurations](configurations.md) resource block to specify that the 
+The **PsDscRunAsCredential** property can be used in [DSC configurations](configurations.md) resource block to specify that the
 resource should be run under a specified set of credentials.
 For more information, see [Running DSC with user credentials](runAsUser.md).
 
@@ -198,7 +196,7 @@ To access the user context from within a custom resource, you can use the automa
 For example the following code would write the user context under which the resource is running to the verbose output stream:
 
 ```powershell
-if (PsDscContext.RunAsUser) {
+if ($PsDscContext.RunAsUser) {
     Write-Verbose "User: $PsDscContext.RunAsUser";
 }
 ```
@@ -207,4 +205,3 @@ if (PsDscContext.RunAsUser) {
 ### Concepts
 * [Writing a custom DSC resource with MOF](authoringResourceMOF.md)
 * [Get Started with Windows PowerShell Desired State Configuration](overview.md)
-

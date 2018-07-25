@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,14 +17,14 @@ Retrieves the CIM instances that are connected to a specific CIM instance by an 
 ```
 Get-CimAssociatedInstance [[-Association] <String>] [-ResultClassName <String>] [-InputObject] <CimInstance>
  [-Namespace <String>] [-OperationTimeoutSec <UInt32>] [-ResourceUri <Uri>] [-ComputerName <String[]>]
- [-KeyOnly]
+ [-KeyOnly] [<CommonParameters>]
 ```
 
 ### SessionSet
 ```
 Get-CimAssociatedInstance [[-Association] <String>] [-ResultClassName <String>] [-InputObject] <CimInstance>
  [-Namespace <String>] [-OperationTimeoutSec <UInt32>] [-ResourceUri <Uri>] -CimSession <CimSession[]>
- [-KeyOnly]
+ [-KeyOnly] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,9 +32,9 @@ The Get-CimAssociatedInstance cmdlet retrieves the CIM instances connected to a 
 
 In an association, each CIM instance has a named role and the same CIM instance can participate in an association in different roles.
 
-If the InputObject parameter is not specified, the cmdlet works in one of the following ways: 
+If the InputObject parameter is not specified, the cmdlet works in one of the following ways:
 
---If neither the ComputerName parameter nor the CimSession parameter is specified, then this cmdlet works on local Windows Management Instrumentation (WMI) using a Component Object Model (COM) session. 
+--If neither the ComputerName parameter nor the CimSession parameter is specified, then this cmdlet works on local Windows Management Instrumentation (WMI) using a Component Object Model (COM) session.
 --If either the ComputerName parameter or the CimSession parameter is specified, then this cmdlet works against the CIM server specified by either the ComputerName parameter or the CimSession parameter.
 
 ## EXAMPLES
@@ -72,19 +72,19 @@ PS C:\>Get-CimClass -ClassName *Service* -Qualifier "Association"
 
 
 PS C:\>$c.CimClasName
-Win32_LoadOrderGroupServiceDependencies 
+Win32_LoadOrderGroupServiceDependencies
 
-                        
-Win32_DependentService 
 
-                        
-Win32_SystemServices 
+Win32_DependentService
 
-                        
-Win32_LoadOrderGroupServiceMembers 
 
-                        
-Win32_ServiceSpecificationService 
+Win32_SystemServices
+
+
+Win32_LoadOrderGroupServiceMembers
+
+
+Win32_ServiceSpecificationService
 
 
 PS C:\>Get-CimAssociatedInstance -InputObject $s -Association Win32_DependentService
@@ -105,7 +105,7 @@ For example, if class A is associated with class B through two associations, AB1
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -122,7 +122,7 @@ For more information, see about_CimSessions.
 ```yaml
 Type: CimSession[]
 Parameter Sets: SessionSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -154,7 +154,8 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
-ps_common_inputobject
+Specifies the input to this cmdlet.
+You can use this parameter, or you can pipe the input to this cmdlet.
 
 ```yaml
 Type: CimInstance
@@ -176,7 +177,7 @@ This reduces the amount of data that is transferred over the network.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -188,13 +189,13 @@ Accept wildcard characters: False
 ### -Namespace
 Specifies the namespace for the CIM operation.
 
-The default namespace is root/cimv2. 
-NOTE: You can use tab completion to browse the list of namespaces, because wps_2 gets a list of namespaces from the local WMI server to provide the list of namespaces.
+The default namespace is root/cimv2.
+NOTE: You can use tab completion to browse the list of namespaces, because PowerShell gets a list of namespaces from the local WMI server to provide the list of namespaces.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -227,7 +228,7 @@ Specifies the resource uniform resource identifier (URI) of the resource class o
 The URI is used to identify a specific type of resource, such as disks or processes, on a computer.
 
 A URI consists of a prefix and a path to a resource.
-For example: 
+For example:
 
 http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_LogicalDisk
 http://intel.com/wbem/wscim/1/amt-schema/1/AMT_GeneralSettings
@@ -242,7 +243,7 @@ If both the ResourceUri parameter and the Filter parameter are specified, the Fi
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -266,7 +267,7 @@ For example, if class A is associated with classes B, C and D, then this paramet
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -274,6 +275,10 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
+For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -289,7 +294,6 @@ This cmdlet returns an object.
 
 ## RELATED LINKS
 
-[Get-CimClass]()
+[Get-CimClass](get-cimclass.md)
 
-[Get-CimInstance]()
-
+[Get-CimInstance](get-ciminstance.md)

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -148,7 +148,7 @@ The default behavior is designed to prevent command name conflicts.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -184,7 +184,7 @@ If the certificate is not valid or does not have sufficient authority, the comma
 ```yaml
 Type: X509Certificate2
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -223,7 +223,7 @@ Use *CommandType* or its alias, *Type*.
 
 The acceptable values for this parameter are:
 
-- Alias: All Windows PowerShell aliases in the current session. 
+- Alias: All Windows PowerShell aliases in the current session.
 - All: All command types.
 It is the equivalent of "get-command *".
 - Application.
@@ -269,7 +269,7 @@ The default value is UTF-8.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Unicode, UTF7, UTF8, ASCII, UTF32, BigEndianUnicode, Default, OEM
 
 Required: False
@@ -285,7 +285,7 @@ Forces the command to run without asking for user confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -309,7 +309,7 @@ Similarly, if you use the *CommandName* parameter, the formatting files for the 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
@@ -319,7 +319,7 @@ Accept wildcard characters: False
 ```
 
 ### -FullyQualifiedModule
-Specifies modules with names that are specified in the form of **ModuleSpecification** objects (described by the Remarks section of ModuleSpecification Constructor (Hashtable)http://msdn.microsoft.com/library/windows/desktop/jj136290(v=vs.85).aspx on MSDN).
+Specifies modules with names that are specified in the form of **ModuleSpecification** objects (described in the Remarks section of [ModuleSpecification Constructor (Hashtable)](https://msdn.microsoft.com/library/jj136290) in the MSDN library).
 For example, the FullyQualifiedModule parameter accepts a module name that is specified in the format @{ModuleName = "modulename"; ModuleVersion = "version_number"} or @{ModuleName = "modulename"; ModuleVersion = "version_number"; Guid = "GUID"}.
 **ModuleName** and **ModuleVersion** are required, but **Guid** is optional.
 
@@ -328,7 +328,7 @@ You cannot specify the *FullyQualifiedModule* parameter in the same command as a
 ```yaml
 Type: ModuleSpecification[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -384,7 +384,7 @@ This parameter is required.
 ```yaml
 Type: PSSession
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -450,4 +450,3 @@ If the command does not import formatting data, any formatting files that are cr
 [Invoke-Command](../Microsoft.PowerShell.Core/Invoke-Command.md)
 
 [New-PSSession](../Microsoft.PowerShell.Core/New-PSSession.md)
-

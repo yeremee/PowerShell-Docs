@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -19,31 +19,28 @@ Creates or changes the value of a property of an item.
 ```
 Set-ItemProperty [-Path] <String[]> [-Name] <String> [-Value] <Object> [-PassThru] [-Force] [-Filter <String>]
  [-Include <String[]>] [-Exclude <String[]>] [-Credential <PSCredential>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf] [-Confirm] [-UseTransaction]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [-UseTransaction] [<CommonParameters>]
 ```
 
 ### propertyPSObjectPathSet
 ```
 Set-ItemProperty [-Path] <String[]> -InputObject <PSObject> [-PassThru] [-Force] [-Filter <String>]
  [-Include <String[]>] [-Exclude <String[]>] [-Credential <PSCredential>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf] [-Confirm] [-UseTransaction]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [-UseTransaction] [<CommonParameters>]
 ```
 
 ### propertyValueLiteralPathSet
 ```
 Set-ItemProperty -LiteralPath <String[]> [-Name] <String> [-Value] <Object> [-PassThru] [-Force]
  [-Filter <String>] [-Include <String[]>] [-Exclude <String[]>] [-Credential <PSCredential>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf] [-Confirm] [-UseTransaction]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [-UseTransaction] [<CommonParameters>]
 ```
 
 ### propertyPSObjectLiteralPathSet
 ```
 Set-ItemProperty -LiteralPath <String[]> -InputObject <PSObject> [-PassThru] [-Force] [-Filter <String>]
  [-Include <String[]>] [-Exclude <String[]>] [-Credential <PSCredential>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [-WhatIf] [-Confirm] [-UseTransaction]
+ [-WhatIf] [-Confirm] [-UseTransaction]
  [<CommonParameters>]
 ```
 
@@ -58,27 +55,23 @@ For example, you can add a new registry entry to a key and establish or change i
 ## EXAMPLES
 
 ### Example 1: Set a property of a file
-```
-PS C:\> Set-ItemProperty -Path "c:\GroupFiles\final.doc" -Name IsReadOnly -Value $True
+```powershell
+Set-ItemProperty -Path C:\GroupFiles\final.doc -Name IsReadOnly -Value $true
 ```
 
 This command sets the value of the **IsReadOnly** property of the final.doc file to true.
-
-The command uses **Set-ItemProperty** to change the value of the property of the final.doc file.
-It uses *Path* to specify the file.
-It uses *Name* to specify the name of the property and the *Value* parameter to specify the new value.
-
-The $True automatic variable represents a value of TRUE.
-For more information, see about_Automatic_Variables.
+It uses **Path** to specify the file, **Name** to specify the name of the property, and the **Value** parameter to specify the new value.
 
 The file is a **System.IO.FileInfo** object and **IsReadOnly** is just one of its properties.
-To see all of the properties and methods of a FileInfo object, pipe the file to the **Get-Member** cmdlet.
-For example, type `final.doc | Get-Member`.
+To see all of the properties, type `Get-Item C:\GroupFiles\final.doc | Get-Member -MemberType Property`.
+
+The `$true` automatic variable represents a value of TRUE.
+For more information, see [about_Automatic_Variables](../Microsoft.PowerShell.Core/About/about_Automatic_Variables.md).
 
 ### Example 2: Create a registry entry and value
 ```
 PS C:\> Set-ItemProperty -Path "HKLM:\Software\ContosoCompany" -Name "NoOfEmployees" -Value 823
-PS C:\> Get-ItemProperty -Path "HKLM:\Software\MyCompany"
+PS C:\> Get-ItemProperty -Path "HKLM:\Software\ContosoCompany"
 
 PSPath        : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\software\contosocompany
 PSParentPath  : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\software
@@ -146,7 +139,7 @@ This parameter is not supported by any providers installed with parameter is not
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -161,7 +154,7 @@ Specifies those items upon which the cmdlet does not act, and includes all other
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -179,7 +172,7 @@ Filters are more efficient than other parameters, because the provider applies t
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -196,7 +189,7 @@ For more information, see about_Providers.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -211,38 +204,7 @@ Specifies only those items upon which the cmdlet acts, which excludes all others
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-Type a user name, such as "User01" or "Domain01\User01", or enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
-
-This parameter is not supported by any providers installed with Windows PowerShell.```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-Type a user name, such as "User01" or "Domain01\User01", or enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
-
-This parameter is not supported by any providers installed with Windows PowerShell.```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -258,7 +220,7 @@ Enter a variable that contains the object or a command that gets the object.
 ```yaml
 Type: PSObject
 Parameter Sets: propertyPSObjectPathSet, propertyPSObjectLiteralPathSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -308,7 +270,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -323,7 +285,7 @@ Specifies the path of the items with the property to modify.
 ```yaml
 Type: String[]
 Parameter Sets: propertyValuePathSet, propertyPSObjectPathSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -338,7 +300,7 @@ Specifies the value of the property.
 ```yaml
 Type: Object
 Parameter Sets: propertyValuePathSet, propertyValueLiteralPathSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 3
@@ -431,4 +393,3 @@ Otherwise, this cmdlet does not generate any output.
 [Remove-ItemProperty](Remove-ItemProperty.md)
 
 [Rename-ItemProperty](Rename-ItemProperty.md)
-

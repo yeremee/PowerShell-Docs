@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,16 +16,19 @@ Configures and starts a trace of the specified expression or command.
 ## SYNTAX
 
 ### expressionSet (Default)
-```
-Trace-Command [-InputObject <PSObject>] [-Name] <String[]> [[-Option] <PSTraceSourceOptions>]
- [-Expression] <ScriptBlock> [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force] [-Debugger]
- [-PSHost] [<CommonParameters>]
+```powershell
+Trace-Command [-Name] <String[]> [-Expression] <ScriptBlock>
+ [[-Option] <PSTraceSourceOptions>] [-InputObject <PSObject>]
+ [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
+ [-Debugger] [-PSHost] [<CommonParameters>]
 ```
 
 ### commandSet
-```
-Trace-Command [-InputObject <PSObject>] [-Name] <String[]> [[-Option] <PSTraceSourceOptions>]
- [-Command] <String> [-ArgumentList <Object[]>] [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
+```powershell
+Trace-Command [-Name] <String[]> [-Command] <String>
+ [[-Option] <PSTraceSourceOptions>] [-InputObject <PSObject>]
+ [-ArgumentList <Object[]>]
+ [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
  [-Debugger] [-PSHost] [<CommonParameters>]
 ```
 
@@ -87,10 +90,10 @@ Specifies a command that is being processed during the trace.
 ```yaml
 Type: String
 Parameter Sets: commandSet
-Aliases: 
+Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -104,7 +107,7 @@ This parameter also selects the default trace listener.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -120,10 +123,10 @@ Enclose the expression in braces ({}).
 ```yaml
 Type: ScriptBlock
 Parameter Sets: expressionSet
-Aliases: 
+Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -153,7 +156,7 @@ Even using the Force parameter, the cmdlet cannot override security restrictions
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -170,7 +173,7 @@ You can enter a variable that represents the input that the expression accepts, 
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -180,16 +183,26 @@ Accept wildcard characters: False
 ```
 
 ### -ListenerOption
-Adds optional data to the prefix of each trace message in the output.
-The valid values are None, LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, and Callstack.
-"None" is the default.
+Specifies optional data to the prefix of each trace message in the output.
+The acceptable values for this parameter are:
+
+- None
+- LogicalOperationStack
+- DateTime
+- Timestamp
+- ProcessId
+- ThreadId
+- Callstack
+
+None is the default.
 
 To specify multiple options, separate them with commas, but with no spaces, and enclose them in quotation marks, such as "ProcessID,ThreadID".
 
 ```yaml
 Type: TraceOptions
 Parameter Sets: (All)
-Aliases: 
+Aliases:
+Accepted values: None, LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack
 
 Required: False
 Position: Named
@@ -207,10 +220,10 @@ To find the trace sources on your computer, type "Get-TraceSource".
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: True
@@ -233,10 +246,10 @@ To specify multiple options, separate them with commas, but with no spaces, and 
 ```yaml
 Type: PSTraceSourceOptions
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
-Position: 3
+Position: 2
 Default value: All
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -249,7 +262,7 @@ This parameter also selects the PSHost trace listener.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -299,4 +312,3 @@ If you include the parameter names, the parameters can appear in any order.
 [Get-TraceSource](Get-TraceSource.md)
 
 [Set-TraceSource](Set-TraceSource.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -46,12 +46,12 @@ PS C:\>
 ## PARAMETERS
 
 ### -Id
-@{Text=}
+
 
 ```yaml
 Type: Int32[]
 Parameter Sets: ProcessIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -61,12 +61,12 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-@{Text=}
+
 
 ```yaml
 Type: String[]
 Parameter Sets: ProcessNameParameterSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -82,7 +82,7 @@ The simplest way to use this parameter is to save the results of a **Get-Process
 ```yaml
 Type: Process[]
 Parameter Sets: ProcessParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -101,4 +101,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-

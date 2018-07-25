@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -80,18 +80,26 @@ The first command gets all the processes on the computer and then stores them in
 The second command uses the InputObject parameter to pass the process objects that are stored in the $a variable to the Get-Process cmdlet.
 The pipeline operator passes the objects to the Format-Table cmdlet, which formats the processes by using the Priority view.
 The Priority view, and other views, are defined in the PS1XML format files in the Windows PowerShell home directory ($pshome).
+
 ### Example 5
-```
-PS C:\> get-process powershell -computername S1, localhost | ft @{Label="NPM(K)";Expression={[int]($_.NPM/1024)}}, @{Label="PM(K)";Expression={[int]($_.PM/1024)}},@{Label="WS(K)";Expression={[int]($_.WS/1024)}},@{Label="VM(M)";Expression={[int]($_.VM/1MB)}}, @{Label="CPU(s)";Expression={if ($_.CPU -ne $()) { $_.CPU.ToString("N")}}}, Id, MachineName, ProcessName -auto
+```powershell
+PS C:\> Get-Process powershell -ComputerName S1, localhost |
+	ft @{Label = "NPM(K)"; Expression = {[int]($_.NPM / 1024)}},
+	@{Label = "PM(K)"; Expression = {[int]($_.PM / 1024)}},
+	@{Label = "WS(K)"; Expression = {[int]($_.WS / 1024)}},
+	@{Label = "VM(M)"; Expression = {[int]($_.VM / 1MB)}},
+	@{Label = "CPU(s)"; Expression = {if ($_.CPU) {$_.CPU.ToString("N")}}},
+	Id, MachineName, ProcessName -Auto
 
 NPM(K) PM(K) WS(K) VM(M) CPU(s)   Id MachineName ProcessName
 ------ ----- ----- ----- ------   -- ----------- -----------
-6 23500 31340   142        1980 S1          powershell
-6 23500 31348   142        4016 S1          powershell
-27 54572 54520   576        4428 localhost   powershell
+     6 23500 31340   142 1.70   1980 S1          powershell
+     6 23500 31348   142 2.75   4016 S1          powershell
+    27 54572 54520   576 5.52   4428 localhost   powershell
 ```
 
-This example provides a Format-Table (alias = ft) command that adds the MachineName property to the standard Get-Process output display.
+This example provides a `Format-Table` (alias = ft) command that adds the MachineName property to the standard `Get-Process` output display.
+
 ### Example 6
 ```
 PS C:\> get-process powershell -fileversioninfo
@@ -114,9 +122,10 @@ This command gets the modules for the processes that have names that begin with 
 
 To run this command on Windows Vista (and later versions of Windows) with processes that you do not own, you must start Windows PowerShell with the "Run as administrator" option.
 ### Example 8
-```
-PS C:\> $p = get-wmiobject win32_process -filter "name='powershell.exe'"
-PS C:\> $p.getowner()
+```powershell
+PS C:\> $p = Get-WmiObject Win32_Process -Filter "name='powershell.exe'"
+PS C:\> $p.GetOwner()
+
 
 __GENUS          : 2
 __CLASS          : __PARAMETERS
@@ -134,33 +143,38 @@ User             : user01
 ```
 
 This command shows how to find the owner of a process.
-Because the System.Diagnostics.Process object that Get-Process returns does not have a property or method that returns the process owner, the command uses
+Because the System.Diagnostics.Process object that `Get-Process` returns does not have a property or method that returns the process owner, the command uses the `Get-WmiObject` cmdlet to get a Win32_Process object that represents the same process.
 
-the Get-WmiObject cmdlet to get a Win32_Process object that represents the same process.
-
-The first command uses Get-WmiObject to get the PowerShell process.
+The first command uses `Get-WmiObject` to get the PowerShell process.
 It saves it in the $p variable.
 
 The second command uses the GetOwner method to get the owner of the process in $p.
-The command reveals that the owner is Domain01\user01.
+The output reveals that the owner is Domain01\user01.
+
 ### Example 9
-```
-PS C:\> get-process powershell
+```powershell
+PS C:\> Get-Process powershell
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
 -------  ------    -----      ----- -----   ------     -- -----------
-308      26    52308      61780   567     3.18   5632 powershell
-377      26    62676      63384   575     3.88   5888 powershell PS C:\> get-process -id $pid
+308      26        52308      61780   567     3.18   5632 powershell
+377      26        62676      63384   575     3.88   5888 powershell
+
+
+PS C:\> Get-Process -Id $PID
+
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
 -------  ------    -----      ----- -----   ------     -- -----------
-396      26    56488      57236   575     3.90   5888 powershell
+396      26        56488      57236   575     3.90   5888 powershell
 ```
 
-These commands show how to use the $pid automatic variable to identify the process that is hosting the current Windows PowerShell session.
-You can use this method to distinguish the host process from other Windows PowerShell processes that you might want to stop or close.
-The first command gets all of the Windows PowerShell processes in the current session.
+These commands show how to use the $PID automatic variable to identify the process that is hosting the current PowerShell session.
+You can use this method to distinguish the host process from other PowerShell processes that you might want to stop or close.
 
-The second command gets the Windows PowerShell process that is hosting the current session.
+The first command gets all of the PowerShell processes in the current session.
+
+The second command gets the PowerShell process that is hosting the current session.
+
 ### Example 10
 ```
 PS C:\> get-process | where {$_.mainWindowTitle} | format-table id, name, mainwindowtitle -autosize
@@ -242,7 +256,7 @@ Enter a variable that contains the objects, or type a command or expression that
 ```yaml
 Type: Process[]
 Parameter Sets: InputObject
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -268,7 +282,7 @@ When you use both the Module and FileVersionInfo parameters in the same command,
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -304,13 +318,14 @@ You can pipe a process object to Get-Process.
 
 ### System.Diagnostics.Process, System.Diagnotics.FileVersionInfo, System.Diagnostics.ProcessModule
 By default, Get-Process returns a System.Diagnostics.Process object.
-If you use the FileVersionInfo parameter, it returns a System.Diagnotics.FileVersionInfo object. 
+If you use the FileVersionInfo parameter, it returns a System.Diagnotics.FileVersionInfo object.
 If you use the Module parameter (without the FileVersionInfo parameter), it returns a System.Diagnostics.ProcessModule object.
+
 ## NOTES
 * You can also refer to Get-Process by its built-in aliases, "ps" and "gps". For more information, see about_Aliases.
 * On computers that are running a 64-bit version of Windows, the 64-bit version of Windows PowerShell gets only 64-bit process modules and the 32-bit version of Windows PowerShell gets only 32-bit process modules.
 * You can use the properties and methods of the WMI Win32_Process object in Windows PowerShell. For information, see T:Microsoft.PowerShell.Commands.Get-WmiObject and the Windows Management Instrumentation (WMI) SDK.
-* The default display of a process is a table that includes the following columns. For a description of all of the properties of process objects, see "Process Properties" in MSDN at http://go.microsoft.com/fwlink/?LinkId=204482http://go.microsoft.com/fwlink/?LinkId=204482
+* The default display of a process is a table that includes the following columns. For a description of all of the properties of process objects, see [Process Properties](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.process#Properties) in the MSDN library.
 
   - Handles: The number of handles that the process has opened.
 
@@ -344,4 +359,3 @@ Virtual memory includes storage in the paging files on disk.
 [Stop-Process](Stop-Process.md)
 
 [Wait-Process](Wait-Process.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -76,7 +76,7 @@ The modules that you import must be installed on the local computer or a remote 
 Starting in Windows PowerShell 3.0, installed modules are automatically imported to the session when you use any commands or providers in the module.
 However, you can still use the **Import-Module** command to import a module and you can enable and disable automatic module importing by using the $PSModuleAutoloadingPreference preference variable.
 For more information about modules, see about_Modules (http://go.microsoft.com/fwlink/?LinkID=144311).
-For more information about the $PSModuleAutoloadingPreference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information about the $PSModuleAutoloadingPreference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 A module is a package that contains members that can be used in Windows PowerShell.
 Members include cmdlets, providers, scripts, functions, variables, and other tools and files.
@@ -160,42 +160,31 @@ Without the *Verbose*, *PassThru*, or *AsCustomObject* parameter, **Import-Modul
 
 ### Example 5: Restrict module members imported into a session
 ```
-PS C:\> Import-Module BitsTransfer -cmdlet Add-BitsTransferFile, Get-BitsTransfer
-PS C:\> Get-Module BitsTransfer
+PS C:\> Import-Module BitsTransfer -Cmdlet Add-BitsFile, Get-BitsTransfer
+PS C:\> (Get-Module BitsTransfer).ExportedCmdlets
 
-Name              : BitsTransfer
-Path              : C:\Windows\system32\WindowsPowerShell\v1.0\Modules\BitsTransfer\BitsTransfer.psd1
-Description       :
-Guid              : 8fa5064b-8479-4c5c-86ea-0d311fe48875
-Version           : 1.0.0.0
-ModuleBase        : C:\Windows\system32\WindowsPowerShell\v1.0\Modules\BitsTransfer
-ModuleType        : Manifest
-PrivateData       :
-AccessMode        : ReadWrite
-ExportedAliases   : {}
-ExportedCmdlets   : {[Add-BitsTransfer, Add-BitsTransfer], [Complete-BitsTransfer, Complete-BitsTransfer],
- [Get-BitsTransfer, Get-BitsTransfer], [Remove-BitsTransfer, Remove-BitsTransfer]...}
-ExportedFunctions : {}
-ExportedVariables : {}
-NestedModules     : {Microsoft.BackgroundIntelligentTransfer.Management}
+Key                   Value
+---                   -----
+Add-BitsFile          Add-BitsFile
+Complete-BitsTransfer Complete-BitsTransfer
+Get-BitsTransfer      Get-BitsTransfer
+Remove-BitsTransfer   Remove-BitsTransfer
+Resume-BitsTransfer   Resume-BitsTransfer
+Set-BitsTransfer      Set-BitsTransfer
+Start-BitsTransfer    Start-BitsTransfer
+Suspend-BitsTransfer  Suspend-BitsTransfer
 
 PS C:\> Get-Command -Module BitsTransfer
 
-CommandType     Name                                               ModuleName
------------     ----                                               ----------
-Cmdlet          Add-BitsFile                                       bitstransfer
-Cmdlet          Complete-BitsTransfer                              bitstransfer
-Cmdlet          Get-BitsTransfer                                   bitstransfer
-Cmdlet          Remove-BitsTransfer                                bitstransfer
-Cmdlet          Resume-BitsTransfer                                bitstransfer
-Cmdlet          Set-BitsTransfer                                   bitstransfer
-Cmdlet          Start-BitsTransfer                                 bitstransfer
-Cmdlet          Suspend-BitsTransfer                               bitstransfer
+CommandType Name             Version Source
+----------- ----             ------- ------
+Cmdlet      Add-BitsFile     2.0.0.0 BitsTransfer
+Cmdlet      Get-BitsTransfer 2.0.0.0 BitsTransfer
 ```
 
 This example shows how to restrict the module members that are imported into the session and the effect of this command on the session.
 
-The first command imports only the **Add-BitsTransfer** and **Get-BitsTransfer** cmdlets from the **BitsTransfer** module.
+The first command imports only the **Add-BitsFile** and **Get-BitsTransfer** cmdlets from the **BitsTransfer** module.
 The command uses the *Cmdlet* parameter to restrict the cmdlets that the module imports.
 You can also use the *Alias*, *Variable*, and *Function* parameters to restrict other members that a module imports.
 
@@ -203,7 +192,7 @@ The second command uses the Get-Module cmdlet to get the object that represents 
 The **ExportedCmdlets** property lists all of the cmdlets that the module exports, even when they were not all imported.
 
 The third command uses the *Module* parameter of the Get-Command cmdlet to get the commands that were imported from the **BitsTransfer** module.
-The results confirm that only the **Add-BitsTransfer** and **Get-BitsTransfer** cmdlets were imported.
+The results confirm that only the **Add-BitsFile** and **Get-BitsTransfer** cmdlets were imported.
 
 ### Example 6: Import the members of a module and add a prefix
 ```
@@ -442,7 +431,7 @@ This parameter lets you select from among the exported aliases.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -480,7 +469,7 @@ You can save the custom object in a variable and use dot notation to invoke the 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -502,7 +491,7 @@ Use this parameter for debugging and testing the module, or when you are instruc
 ```yaml
 Type: Assembly[]
 Parameter Sets: Assembly
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -522,7 +511,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: CimSession
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -542,7 +531,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Uri
 Parameter Sets: CimSession
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -553,7 +542,7 @@ Accept wildcard characters: False
 
 ### -CimSession
 Specifies a CIM session on the remote computer.
-Enter a variable that contains the CIM session or a command that gets the CIM session, such as a Get-CIMSessionhttp://go.microsoft.com/fwlink/?LinkId=227966 command.
+Enter a variable that contains the CIM session or a command that gets the CIM session, such as a [Get-CimSession](../CimCmdlets/Get-CimSession.md) command.
 
 **Import-Module** uses the CIM session connection to import modules from the remote computer into the current session.
 When you use the commands from the imported module in the current session, the commands actually run on the remote computer.
@@ -565,7 +554,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: CimSession
 Parameter Sets: CimSession
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -584,7 +573,7 @@ This parameter lets you select from among the exported cmdlets.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -598,7 +587,7 @@ Indicates that this cmdlet suppresses the message that warns you when you import
 
 By default, when a module that you import exports cmdlets or functions that have unapproved verbs in their names, Windows PowerShell displays the following warning message:
 
-"WARNING: Some imported command names include unapproved verbs which might make them less discoverable. 
+"WARNING: Some imported command names include unapproved verbs which might make them less discoverable.
 Use the Verbose parameter for more detail or type Get-Verb to see the list of approved verbs."
 
 This message is only a warning.
@@ -608,7 +597,7 @@ Although the message is displayed to module users, the naming problem should be 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -618,12 +607,12 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-Indicates that this cmdlet re-imports a module and its members, even if the module or its members have an access mode of read-only.
+This parameter causes a module to be loaded, or reloaded, over top of the current one
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -638,7 +627,7 @@ Specifies the fully qualified name of the module specification.
 ```yaml
 Type: ModuleSpecification[]
 Parameter Sets: FullyQualifiedName, FullyQualifiedNameAndPSSession
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -657,7 +646,7 @@ This parameter lets you select from among the exported functions.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -668,15 +657,19 @@ Accept wildcard characters: False
 
 ### -Global
 Indicates that this cmdlet imports modules into the global session state so they are available to all commands in the session.
-By default, the commands in a module, including commands from nested modules, are imported into the caller's session state.
-To restrict the commands that a module exports, use an Export-ModuleMember command in the script module.
 
-The *Global* parameter is equivalent to the *Scope* parameter with a value of Global.
+By default, when Import-Module cmdlet is called from the command prompt, script file, or scriptblock, all the commands are imported into the global session state.
+
+When invoked from another module, Import-Module cmdlet imports the commands in a module, including commands from nested modules, into the caller's session state.
+
+The **Global** parameter is equivalent to the **Scope** parameter with a value of Global.
+
+To restrict the commands that a module exports, use an `Export-ModuleMember` command in the script module.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -719,7 +712,7 @@ You can also pipe module objects to **Import-Module**.
 ```yaml
 Type: PSModuleInfo[]
 Parameter Sets: ModuleInfo
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -744,7 +737,7 @@ If the module contains other files, they are not imported, and you might be miss
 ```yaml
 Type: String[]
 Parameter Sets: Name, PSSession, CimSession
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -793,7 +786,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: PSSession
 Parameter Sets: PSSession, FullyQualifiedNameAndPSSession
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -809,7 +802,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -833,7 +826,7 @@ The value of this parameter takes precedence over the **DefaultCommandPrefix** p
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -859,7 +852,7 @@ This is because Windows PowerShell module version numbers in future releases of 
 ```yaml
 Type: Version
 Parameter Sets: Name, PSSession, CimSession
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -876,14 +869,20 @@ The acceptable values for this parameter are:
 - **Global**. Available to all commands in the session. Equivalent to the *Global* parameter.
 - **Local**. Available only in the current scope.
 
-By default, the module is imported into the current scope, which could be a script or module.
+By default, when Import-Module cmdlet is called from the command prompt, script file, or scriptblock, all the commands are imported into the global session state.
+You can use the **-Scope** parameter with the value of **Local** to import module into the script or scriptblock scope.
+
+When invoked from another module, Import-Module cmdlet imports the commands in a module, including commands from nested modules, into the caller's session state.
+Specifying **-Scope Global** or **-Global** indicates that this cmdlet imports modules into the global session state so they are available to all commands in the session.
+
+The **Global** parameter is equivalent to the **Scope** parameter with a value of Global.
 
 This parameter was introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Local, Global
 
 Required: False
@@ -904,7 +903,7 @@ This parameter lets you select from among the exported variables.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -921,7 +920,7 @@ If no version qualifies, **Import-Module** generates an error.
 ```yaml
 Type: String
 Parameter Sets: Name, PSSession, CimSession
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -956,7 +955,7 @@ However, commands that use the cmdlets in these modules actually run in the remo
 * To update the formatting data for commands that have been imported from a module, use the Update-FormatData cmdlet. **Update-FormatData** also updates the formatting data for commands in the session that were imported from modules. If the formatting file for a module changes, you can run an **Update-FormatData** command to update the formatting data for imported commands. You do not need to import the module again.
 * Starting in Windows PowerShell 3.0, the core commands that are installed with Windows PowerShell are packaged in modules. In Windows PowerShell 2.0, and in host programs that create older-style sessions in later versions of Windows PowerShell, the core commands are packaged in snap-ins (**PSSnapins**). The exception is **Microsoft.PowerShell.Core**, which is always a snap-in. Also, remote sessions, such as those started by the New-PSSession cmdlet, are older-style sessions that include core snap-ins.
 
-  For information about the **CreateDefault2** method that creates newer-style sessions with core modules, see "CreateDefault2 Methodhttp://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.initialsessionstate.createdefault2(v=VS.85).aspx (http://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.initialsessionstate.createdefault2(v=VS.85).aspx) in the Microsoft Developer Network (MSDN) library.
+  For information about the **CreateDefault2** method that creates newer-style sessions with core modules, see [CreateDefault2 Method](https://msdn.microsoft.com/library/system.management.automation.runspaces.initialsessionstate.createdefault2) in the MSDN library.
 
 * **Import-Module** cannot import Windows PowerShell Core modules from another session. The Windows PowerShell Core modules have names that begin with Microsoft.PowerShell.
 * In Windows PowerShell 2.0, some of the property values of the module object, such as the **ExportedCmdlets** and **NestedModules** property values, were not populated until the module was imported and were not available on the module object that the *PassThru* parameter returns. In Windows PowerShell 3.0, all module property values are populated.
@@ -986,4 +985,3 @@ When you create a CIM session on the local computer, Windows PowerShell uses DCO
 [New-Module](New-Module.md)
 
 [Remove-Module](Remove-Module.md)
-

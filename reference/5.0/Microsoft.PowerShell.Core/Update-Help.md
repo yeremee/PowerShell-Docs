@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -33,45 +33,45 @@ Update-Help [[-Module] <String[]>] [-FullyQualifiedModule <ModuleSpecification[]
 
 ## DESCRIPTION
 
-The **Update-Help** cmdlet downloads the newest help files for Windows PowerShell modules and installs them on your computer.
-You can use the Get-Help cmdlet to view the new help files immediately.
-You do not have to restart Windows PowerShell to make the change effective.
+The `Update-Help` cmdlet downloads the newest help files for PowerShell modules and installs them on your computer.
+You can use the `Get-Help` cmdlet to view the new help files immediately.
+You do not have to restart PowerShell to make the change effective.
 This feature enables you to install help files for modules that do not include them and to update help files on your computer so that they never become obsolete.
 
-**Update-Help** checks the version of the help files on your computer.
-If you do not have help files for a module or do not have the newest help files for a module, **Update-Help** downloads the newest help files from the Internet or a file share and installs them on your computer in the correct module folder.
+`Update-Help` checks the version of the help files on your computer.
+If you do not have help files for a module or do not have the newest help files for a module, `Update-Help` downloads the newest help files from the Internet or a file share and installs them on your computer in the correct module folder.
 
-Without parameters, **Update-Help** updates the help for modules in the session and for all installed modules, in a **PSModulePath** location, that support Updatable Help, even if the module is not in the current session.
-You can also use the *Module* parameter to update help for a particular module and use the *UICulture* parameter to download help files in multiple languages and locales.
+Without parameters, `Update-Help` updates the help for modules in the session and for all installed modules, in a location listed in the `$env:PSModulePath` environment variable, that support Updatable Help, even if the module is not in the current session.
+You can also use the **Module** parameter to update help for a particular module and use the **UICulture** parameter to download help files in multiple languages and locales.
 
-You can use **Update-Help** even on computers that are not connected to the Internet.
-Use the Save-Help cmdlet to download help files from the Internet and save them in a file system location, such as a shared folder or file system directory.
-Then use the *SourcePath* parameter of **Update-Help** to get the updated help files from a file system location and install them on the computer.
+You can use `Update-Help` even on computers that are not connected to the Internet.
+Use the `Save-Help` cmdlet to download help files from the Internet and save them in a file system location, such as a shared folder or file system directory.
+Then use the **SourcePath** parameter of `Update-Help` to get the updated help files from a file system location and install them on the computer.
 
-You can even automate the running of **Update-Help** by adding an **Update-Help** command to your Windows PowerShell profile.
-By default, **Update-Help** runs only one time per day on each computer.
-To override the once-per-day limit, use the *Force* parameter.
+You can even automate the running of `Update-Help` by adding an `Update-Help` cmdlet to your PowerShell profile.
+By default, `Update-Help` runs only one time per day on each computer.
+To override the once-per-day limit, use the **Force** parameter.
 
 This cmdlet was introduced in Windows PowerShell 3.0.
 
-> **UPDATE-HELP REQUIRES ADMINISTRATIVE PRIVILEGES**
+> [!IMPORTANT]
+> `Update-Help` requires administrative privileges.
 >
 > You must be a member of the Administrators group on the computer
 > to update the help files for the PowerShell Core modules.
 >
-> To download or update the help files for modules in the Windows PowerShell
-> installation directory ($pshome\Modules), including the Windows PowerShell
-> Core modules, start Windows PowerShell by using the Run as administrator
-> option.
+> To download or update the help files for modules in the PowerShell
+> installation directory (`$PSHOME\Modules`), including the PowerShell
+> Core modules, start PowerShell by using the Run as administrator option.
 >
 > You can also update help files by using the Update Windows PowerShell Help
 > menu item in the Help menu in Windows PowerShell Integrated Scripting
 > Environment (ISE).
 >
-> The Update Windows PowerShell Help item runs an **Update-Help** command
+> The Update Windows PowerShell Help item runs an `Update-Help` cmdlet
 > without parameters.
-> To update help for modules in the $PSHome directory, start Windows PowerShell
-> ISE by using the Run as administrator option.
+> To update help for modules in the `$PSHOME` directory,
+> start Windows PowerShell ISE by using the Run as administrator option.
 
 ## EXAMPLES
 
@@ -96,7 +96,7 @@ Because these modules are in the $pshome\Modules folder, to run this command, st
 ### Example 3: Update help in different languages
 ```
 PS C:\> Update-Help -UICulture ja-JP, en-US
-Update-Help : Failed to update Help for the module(s) 'ServerManager' with UI culture(s) {ja-JP} : 
+Update-Help : Failed to update Help for the module(s) 'ServerManager' with UI culture(s) {ja-JP} :
 The specified culture is not supported: ja-JP. Specify a culture from the following list: {en-US}.
 ```
 
@@ -175,7 +175,7 @@ Param
          [parameter(Mandatory=$False)]
          [String[]]
          $Module
-      )      
+      )
 $HelpInfoNamespace = @{helpInfo="http://schemas.microsoft.com/powershell/help/2010/05"}
 
 if ($Module) { $Modules = Get-Module $Module -ListAvailable | where {$_.HelpInfoUri} }
@@ -193,7 +193,7 @@ foreach ($mModule in $Modules)
         {
             $mCulture=$mNode.Node.UICultureName
             $mVer=$mNode.Node.UICultureVersion
-            
+
             [PSCustomObject]@{"ModuleName"=$mName; "Culture"=$mCulture; "Version"=$mVer}
         }
     }
@@ -242,7 +242,7 @@ By providing explicit credentials, you can run the command on a remote computer 
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -263,7 +263,7 @@ To update help for a module in multiple UI cultures without the *Force* paramete
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -274,7 +274,7 @@ Accept wildcard characters: False
 
 ### -FullyQualifiedModule
 Specifies modules with names that are specified in the form of **ModuleSpecification** objects.
-These are described in the Remarks section of Module Specification Constructor (Hashtable)http://msdn.microsoft.com/library/windows/desktop/jj136290(v=vs.85).aspx (http://msdn.microsoft.com/library/windows/desktop/jj136290(v=vs.85).aspx) in the Microsoft Developer Network (MSDN).
+These are described in the Remarks section of [ModuleSpecification Constructor (Hashtable)](https://msdn.microsoft.com/library/jj136290) in the MSDN library.
 For example, the FullyQualifiedModule parameter accepts a module name that is specified in the format @{ModuleName = "modulename"; ModuleVersion = "version_number"} or @{ModuleName = "modulename"; ModuleVersion = "version_number"; Guid = "GUID"}.
 **ModuleName** and **ModuleVersion** are required, but **Guid** is optional.
 
@@ -283,7 +283,7 @@ You cannot specify the *FullyQualifiedModule* parameter in the same command as a
 ```yaml
 Type: ModuleSpecification[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -351,7 +351,7 @@ This parameter is valid only when *SourcePath* is used in the command.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -376,7 +376,7 @@ For more information, see about_Group_Policy_Settings (http://go.microsoft.com/f
 ```yaml
 Type: String[]
 Parameter Sets: Path
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -399,7 +399,7 @@ If the command fails because the specified UI culture is not supported, the erro
 ```yaml
 Type: CultureInfo[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -417,7 +417,7 @@ This parameter is effective only when the Web download uses NTLM, negotiate, or 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -484,4 +484,3 @@ To open the online version of any cmdlet help topic, type `Get-Help \<cmdlet-nam
 [Get-Module](Get-Module.md)
 
 [Save-Help](Save-Help.md)
-

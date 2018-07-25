@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -91,21 +91,23 @@ Specifies the name or names of the Windows PowerShell providers about which to r
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 ## INPUTS
 
-### None
-You cannot pipe objects to this cmdlet.
+### String[]
+
+You can pipe one or more provider name strings to this cmdlet.
+
 ## OUTPUTS
 
 ### System.Management.Automation.ProviderInfo
@@ -115,4 +117,3 @@ Get-PSProvider returns objects that represent the Windows PowerShell providers i
 ## RELATED LINKS
 
 [about_Providers](../Microsoft.PowerShell.Core/About/about_Providers.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -15,9 +15,18 @@ Sorts objects by property values.
 
 ## SYNTAX
 
+### Default
 ```
-Sort-Object [-Descending] [-Unique] [-InputObject <PSObject>] [[-Property] <Object[]>] [-Culture <String>]
- [-CaseSensitive] [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Sort-Object [[-Property] <Object[]>] [-Descending] [-Unique] [-Top <Int32>]
+ [-InputObject <PSObject>] [-Culture <String>] [-CaseSensitive]
+ [<CommonParameters>]
+```
+
+### Bottom
+```
+Sort-Object [[-Property] <Object[]>] -Bottom <Int32> [-Descending] [-Unique]
+ [-InputObject <PSObject>] [-Culture <String>] [-CaseSensitive]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -118,10 +127,10 @@ Status   Name               DisplayName
 Running  ALG                Application Layer Gateway Service
 Running  Ati HotKey Poller  Ati HotKey Poller
 Running  wuauserv           Automatic Updates
-Running  BITS               Background Intelligent Transfer Ser... 
+Running  BITS               Background Intelligent Transfer Ser...
 Running  Client for NFS     Client for NFS
-... 
-Stopped  clr_optimizatio... .NET Runtime Optimization Service v... 
+...
+Stopped  clr_optimizatio... .NET Runtime Optimization Service v...
 Stopped  Alerter            Alerter
 Stopped  AppMgmt            Application Management
 Stopped  aspnet_state       ASP.NET State Service
@@ -176,6 +185,21 @@ The second command uses the **Sort-Object** cmdlet with the *Unique* parameter t
 
 ## PARAMETERS
 
+### -Bottom
+Specifies the number of objects to get from the end of the sorted object array.
+
+```yaml
+Type: Int32
+Parameter Sets: Bottom
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -CaseSensitive
 Indicates that the sort should be case sensitive.
 By default, sorting is not case sensitive.
@@ -183,7 +207,7 @@ By default, sorting is not case sensitive.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -198,7 +222,7 @@ Specifies the cultural configuration to use when sorting.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -217,34 +241,7 @@ To sort by some properties in ascending order and others in descending order, yo
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -264,7 +261,7 @@ To sort objects, pipe them **to Sort-Object**.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -287,7 +284,7 @@ If you do not specify properties, the cmdlet sorts based on default properties f
 
 The value of the *Property* parameter can be a calculated property.
 To create a calculated, property, use a hash table.
-Valid keys are: 
+Valid keys are:
 
 - Expression \<string\> or \<script block\>
 - Ascending \<Boolean\>
@@ -296,10 +293,25 @@ Valid keys are:
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
-Position: 1
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Top
+Specifies the number of objects to get from the start of the sorted object array.
+
+```yaml
+Type: Int32
+Parameter Sets: Default
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -315,7 +327,7 @@ As a result, strings that differ only in character casing are considered to be t
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -342,7 +354,7 @@ You can pipe the objects to be sorted to **Sort-Object**.
 * If an object does not have one of the specified properties, the property value for that object is interpreted by the cmdlet as Null and is placed at the end of the sort order.
 * When sorting objects, **Sort-Object** uses the Compare method for each property. If a property does not implement IComparable, the cmdlet converts the property value to a string and uses the Compare method for **System.String**.
 * The **Sort-Object** cmdlet sorts objects in ascending or descending order based on the values of properties of the object.
-* If you sort on a property whose value is an enumeration, **Sort-Object** sorts the enumeration values in numeric order; it does not sort the enumeration member names. For example, if you sort services by status, services with a status of Stopped appear before services with a status of Running, because the value of Status is a ServiceControllerStatushttps://msdn.microsoft.com/en-us/library/system.serviceprocess.servicecontrollerstatus(v=vs.110).aspx enumeration, in which Stopped has a value of 1 and Running has a value of 4.
+* If you sort on a property whose value is an enumeration, **Sort-Object** sorts the enumeration values in numeric order; it does not sort the enumeration member names. For example, if you sort services by status, services with a status of Stopped appear before services with a status of Running, because the value of Status is a [ServiceControllerStatus Enumeration](https://msdn.microsoft.com/library/system.serviceprocess.servicecontrollerstatus), in which Stopped has a value of 1 and Running has a value of 4.
 
 ## RELATED LINKS
 
@@ -357,4 +369,3 @@ You can pipe the objects to be sorted to **Sort-Object**.
 [Select-Object](Select-Object.md)
 
 [Tee-Object](Tee-Object.md)
-

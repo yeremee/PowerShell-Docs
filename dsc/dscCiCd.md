@@ -1,17 +1,15 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
 title:  Building a Continuous Integration and Continuous Deployment pipeline with DSC
 ---
 
-# Building a Continuous Integration and Continuous Deplyoment pipeline with DSC
+# Building a Continuous Integration and Continuous Deployment pipeline with DSC
 
 This example demonstrates how to build a Continuous Integration/Continuous Deployment (CI/CD) pipeline by using PowerShell,
 DSC, Pester, and Visual Studio Team Foundation Server (TFS).
 
-After the pipeline is built and configured, you can use it to fully deploy, configure and test a DNS server and associated host records. 
+After the pipeline is built and configured, you can use it to fully deploy, configure and test a DNS server and associated host records.
 This process simulates the first part of a pipeline that would be used in a development environment.
 
 An automated CI/CD pipeline helps you update software faster and more reliably, ensuring that all code is tested,
@@ -35,6 +33,7 @@ To build and run this example, you will need an environment with several compute
 This is the computer where you'll do all of the work setting up and running the example.
 
 The client computer must be a Windows computer with the following installed:
+
 - [Git](https://git-scm.com/)
 - a local git repo cloned from https://github.com/PowerShell/Demo_CI
 - a text editor, such as [Visual Studio Code](https://code.visualstudio.com/)
@@ -61,7 +60,7 @@ The computer must be running [Windows Server 2016](https://www.microsoft.com/en-
 ### TestAgent2
 
 This is the computer that hosts the website this example configures.
-The computer must be running [Windows Server 2016](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016). 
+The computer must be running [Windows Server 2016](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016).
 
 ## Add the code to TFS
 
@@ -73,22 +72,23 @@ If you have not already cloned the Demo_CI repository to your client computer, d
 1. On your client computer, navigate to your TFS server in a web browser.
 1. In TFS, [Create a new team project](https://www.visualstudio.com/en-us/docs/setup-admin/create-team-project) named Demo_CI.
 
-    Make sure that **Version control** is set to **Git**.
+   Make sure that **Version control** is set to **Git**.
 1. On your client computer, add a remote to the repository you just created in TFS with the following command:
 
-    `git remote add tfs <YourTFSRepoURL>`
+   `git remote add tfs <YourTFSRepoURL>`
 
-    Where `<YourTFSRepoURL>` is the clone URL to the TFS repository you created in the previous step.
+   Where `<YourTFSRepoURL>` is the clone URL to the TFS repository you created in the previous step.
 
-    If you don't know where to find this URL, see [Clone an existing Git repo](https://www.visualstudio.com/en-us/docs/git/tutorial/clone).
+   If you don't know where to find this URL, see [Clone an existing Git repo](https://www.visualstudio.com/en-us/docs/git/tutorial/clone).
 1. Push the code from your local repository to your TFS repository with the following command:
 
-    `git push tfs --all`
+   `git push tfs --all`
 1. The TFS repository will be populated with the Demo_CI code.
 
->**Note:** This example uses the code in the `ci-cd-example` branch of the Git repo.
->Be sure to specify this branch as the default branch in your TFS project,
->and for the CI/CD triggers you create.
+> [!NOTE]
+> This example uses the code in the `ci-cd-example` branch of the Git repo.
+> Be sure to specify this branch as the default branch in your TFS project,
+> and for the CI/CD triggers you create.
 
 ## Understanding the code
 
@@ -157,10 +157,12 @@ Node $AllNodes.Where{$_.Role -eq 'DNSServer'}.NodeName
 This finds any nodes that were defined as having a role of `DNSServer` in the [configuration data](configData.md),
 which is created by the `DevEnv.ps1` script.
 
+You can read more about the `Where` method in [about_arrays](/powershell/reference/3.0/Microsoft.PowerShell.Core/About/about_Arrays.md)
+
 Using configuration data to define nodes is important when doing CI because node information will likely change between environments,
 and using configuration data allows you to easily make changes to node information without changing the configuration code.
 
-In the first resource block, the configuration calls the [WindowsFeature](windowsFeatureResource.md) to ensure that the DNS feature is enabled. 
+In the first resource block, the configuration calls the [WindowsFeature](windowsFeatureResource.md) to ensure that the DNS feature is enabled.
 The resource blocks that follow call resources from the [xDnsServer](https://github.com/PowerShell/xDnsServer) module to configure the primary zone
 and DNS records.
 
@@ -200,17 +202,17 @@ $DevEnvironment = @{
 Return New-DscConfigurationDataDocument -RawEnvData $DevEnvironment -OutputPath $OutputPath
 ```
 
-The `New-DscConfigurationDataDocument` function (defined in `\Assets\DscPipelineTools\DscPipelineTools.psm1`) 
-programmatically creates a configuration data document from the hashtable (node data) and array (non-node data) 
+The `New-DscConfigurationDataDocument` function (defined in `\Assets\DscPipelineTools\DscPipelineTools.psm1`)
+programmatically creates a configuration data document from the hashtable (node data) and array (non-node data)
 that are passed as the `RawEnvData` and `OtherEnvData` parameters.
 
 In our case, only the `RawEnvData` parameter is used.
 
 ### The psake build script
 
-The [psake](https://github.com/psake/psake) build script defined in `Build.ps1` (from the root of the Demo_CI repository, `./InfraDNS/Build.ps1`) 
+The [psake](https://github.com/psake/psake) build script defined in `Build.ps1` (from the root of the Demo_CI repository, `./InfraDNS/Build.ps1`)
 defines tasks that are part of the build.
-It also defines which other tasks each task depends on. 
+It also defines which other tasks each task depends on.
 When invoked, the psake script ensures that the specified task (or the task named `Default` if none is specified) runs,
 and that all dependencies also run (this is recursive, so that dependencies of dependencies run, and so on).
 
@@ -276,7 +278,7 @@ and removes any test results, configuration data files, and modules from previou
 
 ### The psake deploy script
 
-The [psake](https://github.com/psake/psake) deployment script defined in `Deploy.ps1` (from the root of the Demo_CI repository, `./InfraDNS/Deploy.ps1`) 
+The [psake](https://github.com/psake/psake) deployment script defined in `Deploy.ps1` (from the root of the Demo_CI repository, `./InfraDNS/Deploy.ps1`)
 defines tasks that deploy and run the configuration.
 
 `Deploy.ps1` defines the following tasks:
@@ -306,7 +308,7 @@ Removes any modules installed in previous runs, and ensures that the test result
 Acceptance, Integration, and Unit tests are defined in scripts in the `Tests` folder (from the root of the Demo_CI repository, `./InfraDNS/Tests`),
 each in files named `DNSServer.tests.ps1` in their respective folders.
 
-The test scripts use [Pester](https://github.com/pester/Pester/wiki) and 
+The test scripts use [Pester](https://github.com/pester/Pester/wiki) and
 [PoshSpec](https://github.com/Ticketmaster/poshspec/wiki/Introduction) syntax.
 
 #### Unit tests
@@ -316,9 +318,9 @@ The unit test script uses [Pester](https://github.com/pester/Pester/wiki).
 
 #### Integration tests
 
-The integration tests test the configuration of the system to ensure that when integrated with other components, 
+The integration tests test the configuration of the system to ensure that when integrated with other components,
 the system is configured as expected. These tests run on the target node after it has been configured with DSC.
-The integration test script uses a mixture of [Pester](https://github.com/pester/Pester/wiki) and 
+The integration test script uses a mixture of [Pester](https://github.com/pester/Pester/wiki) and
 [PoshSpec](https://github.com/Ticketmaster/poshspec/wiki/Introduction) syntax.
 
 #### Acceptance tests
@@ -368,14 +370,14 @@ and stores the results in the `InfraDNS/Tests/Results/*.xml` folder.
 
 1. Add each of the following lines to **Contents**:
 
-    ```
-    initiate.ps1
-    **\deploy.ps1
-    **\Acceptance\**
-    **\Integration\**
-    ```
+   ```
+   initiate.ps1
+   **\deploy.ps1
+   **\Acceptance\**
+   **\Integration\**
+   ```
 
-1. Set **TargetFolder** to `$(BuildArtifactStagingDirectory)\`
+1. Set **TargetFolder** to `$(Build.ArtifactStagingDirectory)\`
 
 This step copies the build and test scripts to the staging directory so that the can be published as build artifacts by the next step.
 
@@ -447,10 +449,3 @@ This example configures the DNS server `TestAgent1` so that the URL `www.contoso
 but it does not actually deploy a website.
 The skeleton for doing so is provided in the repo under the `WebApp` folder.
 You can use the stubs provided to create psake scripts, Pester tests, and DSC configurations to deploy your own website.
-
-
-
-
-
-
-

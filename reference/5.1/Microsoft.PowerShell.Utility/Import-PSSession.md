@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -261,7 +261,7 @@ By default, **Import-PSSession** does not import commands that have the same nam
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -298,7 +298,7 @@ If the certificate is not valid or does not have sufficient authority, the comma
 ```yaml
 Type: X509Certificate2
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -371,7 +371,7 @@ Indicates that this cmdlet suppresses the message that warns you when you import
 
 By default, when a module that you import exports cmdlets or functions that have unapproved verbs in their names, the Windows PowerShell displays the following warning message:
 
-"WARNING: Some imported command names include unapproved verbs which might make them less discoverable. 
+"WARNING: Some imported command names include unapproved verbs which might make them less discoverable.
 Use the Verbose parameter for more detail or type Get-Verb to see the list of approved verbs."
 
 This message is only a warning.
@@ -381,7 +381,7 @@ Although the message is displayed to module users, the naming problem should be 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -407,7 +407,7 @@ Similarly, if you use the *CommandName* parameter, the formatting files for the 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 3
@@ -417,7 +417,7 @@ Accept wildcard characters: False
 ```
 
 ### -FullyQualifiedModule
-Specifies modules with names that are specified in the form of **ModuleSpecification** objects (described by the Remarks section of Module Specification Constructor (Hashtable)http://msdn.microsoft.com/library/windows/desktop/jj136290(v=vs.85).aspx on MSDN).
+Specifies modules with names that are specified in the form of **ModuleSpecification** objects (described in the Remarks section of [ModuleSpecification Constructor (Hashtable)](https://msdn.microsoft.com/library/jj136290) in the MSDN library).
 For example, the *FullyQualifiedModule* parameter accepts a module name that is specified in the format @{ModuleName = "modulename"; ModuleVersion = "version_number"} or @{ModuleName = "modulename"; ModuleVersion = "version_number"; Guid = "GUID"}.
 **ModuleName** and **ModuleVersion** are required, but **Guid** is optional.
 
@@ -426,7 +426,7 @@ You cannot specify the *FullyQualifiedModule* parameter in the same command as a
 ```yaml
 Type: ModuleSpecification[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -466,7 +466,7 @@ For instance, if you specify the prefix Remote and then import a Get-Date cmdlet
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -484,7 +484,7 @@ This parameter is required.
 ```yaml
 Type: PSSession
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -524,4 +524,3 @@ To create a permanent module on disk, use the Export-PSSession cmdlet.
 ## RELATED LINKS
 
 [Export-PSSession](Export-PSSession.md)
-

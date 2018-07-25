@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -40,12 +40,12 @@ Unprotect-CmsMessage [-LiteralPath] <String> [-IncludeContext] [[-To] <CmsMessag
 ## DESCRIPTION
 The **Unprotect-CmsMessage** cmdlet decrypts content that has been encrypted by using the Cryptographic Message Syntax (CMS) format.
 
-The CMS cmdlets support encryption and decryption of content using the IETF standard format for cryptographically protecting messages, as documented by RFC5652http://tools.ietf.org/html/rfc5652.
+The CMS cmdlets support encryption and decryption of content using the IETF standard format for cryptographically protecting messages, as documented by [RFC5652](https://tools.ietf.org/html/rfc5652).
 
 The CMS encryption standard uses public key cryptography, where the keys used to encrypt content (the public key) and the keys used to decrypt content (the private key) are separate.
 Your public key can be shared widely, and is not sensitive data.
 If any content is encrypted with this public key, only your private key can decrypt it.
-For more information about Public Key Cryptography, see http://en.wikipedia.org/wiki/Public-key_cryptographyhttp://en.wikipedia.org/wiki/Public-key_cryptography.
+For more information, see [Public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography).
 
 **Unprotect-CmsMessage** decrypts content that has been encrypted in CMS format.
 You can run this cmdlet to decrypt content that you have encrypted by running the Protect-CmsMessage cmdlet.
@@ -56,7 +56,7 @@ The **Unprotect-CmsMessage** cmdlet returns the decrypted content.
 
 ### Example 1: Decrypt a message
 ```
-PS C:\> C:\Users\gabyk\Documents\PowerShell_ISEUnprotect-CmsMessage -LiteralPath "C:\Users\Test\Documents\PowerShell ISE\Future_Plans.txt" -To 'â€Ž0f 8j b1 ab e0 ce 35 1d 67 d2 f2 6f a2 d2 00 cl 22 z9 m9 85'
+PS C:\> C:\Users\gabyk\Documents\PowerShell_ISEUnprotect-CmsMessage -LiteralPath "C:\Users\Test\Documents\PowerShell ISE\Future_Plans.txt" -To '0f 8j b1 ab e0 ce 35 1d 67 d2 f2 6f a2 d2 00 cl 22 z9 m9 85'
 Try the new Break All command
 ```
 
@@ -72,7 +72,7 @@ Specifies an encrypted string, or a variable containing an encrypted string.
 ```yaml
 Type: String
 Parameter Sets: ByContent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -87,7 +87,7 @@ Specifies an event log record ID that represents a CMS encryption operation.
 ```yaml
 Type: PSObject
 Parameter Sets: ByWinEvent
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -97,12 +97,12 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeContext
-@{Text=}
+
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -121,7 +121,7 @@ Single quotation marks tell Windows PowerShell not to interpret any characters a
 ```yaml
 Type: String
 Parameter Sets: ByLiteralPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -136,7 +136,7 @@ Specifies the path to encrypted content that you want to decrypt.
 ```yaml
 Type: String
 Parameter Sets: ByPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -146,7 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -To
-Specifies one or more CMS message recipients, identified in any of the following formats. 
+Specifies one or more CMS message recipients, identified in any of the following formats.
 
 - An actual certificate (as retrieved from the certificate provider).
 - Path to the a file containing the certificate.
@@ -157,7 +157,7 @@ Specifies one or more CMS message recipients, identified in any of the following
 ```yaml
 Type: CmsMessageRecipient[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -171,10 +171,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-###  
+### System.Diagnostics.Eventing.Reader.EventLogRecord or System.String
 You can pipe an object containing encrypted content to **Unprotect-CmsMessage**.
 
 ## OUTPUTS
+
+### System.String
+The unencrypted message.
 
 ## NOTES
 
@@ -185,4 +188,3 @@ You can pipe an object containing encrypted content to **Unprotect-CmsMessage**.
 [Get-CmsMessage](Get-CmsMessage.md)
 
 [Protect-CmsMessage](Protect-CmsMessage.md)
-

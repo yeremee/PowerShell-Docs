@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -48,12 +48,12 @@ The **Get-Runspace** cmdlet gets active runspaces in a Windows PowerShell host p
 ## PARAMETERS
 
 ### -Id
-@{Text=}
+
 
 ```yaml
 Type: Int32[]
 Parameter Sets: IdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -68,7 +68,7 @@ Specifies the instance ID GUID of a running job.
 ```yaml
 Type: Guid[]
 Parameter Sets: InstanceIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -78,12 +78,12 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-@{Text=}
+
 
 ```yaml
 Type: String[]
 Parameter Sets: NameParameterSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -99,6 +99,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### System.Management.Automation.Runspaces.Runspace
+You can pipe the results of a `Get-Runspace` command to `Debug-Runspace`.
+
 ## NOTES
 
 ## RELATED LINKS
@@ -108,4 +111,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [New-Runspace]()
 
 [Remove-Runspace]()
-

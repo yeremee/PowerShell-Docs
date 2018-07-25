@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -55,12 +55,12 @@ If you do not add the *Trusted* parameter, by default, the package is not truste
 ## PARAMETERS
 
 ### -Credential
-Specifies a user account that has permission to install package providers.
+Specifies a user account that has permission to access the authenticated location.
 
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -75,7 +75,7 @@ Forces the command to run without asking for user confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -90,7 +90,7 @@ Indicates that this cmdlet automatically installs the package provider.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -105,7 +105,7 @@ Specifies the package source location.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -120,7 +120,7 @@ Specifies the name of the package source to register.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -135,7 +135,7 @@ Specifies the Package Management provider.
 ```yaml
 Type: String
 Parameter Sets: PowerShellGet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -166,7 +166,7 @@ Specifies the publish location.
 ```yaml
 Type: String
 Parameter Sets: PowerShellGet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -181,7 +181,7 @@ Specifies the script publish location.
 ```yaml
 Type: String
 Parameter Sets: PowerShellGet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -196,7 +196,7 @@ Specifies the script source location.
 ```yaml
 Type: String
 Parameter Sets: PowerShellGet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -211,7 +211,7 @@ Indicates that the package source is trusted.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -257,7 +257,7 @@ Accept wildcard characters: False
 ```yaml
 Type: String
 Parameter Sets: NuGet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -267,12 +267,12 @@ Accept wildcard characters: False
 ```
 
 ### -Proxy
-@{Text=}
+
 
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -282,12 +282,12 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyCredential
-@{Text=}
+
 
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -302,7 +302,7 @@ Accept wildcard characters: False
 ```yaml
 Type: SwitchParameter
 Parameter Sets: NuGet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -322,11 +322,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[about_PackageManagement](../about/about_packagemanagement.md)
+[about_PackageManagement](../Microsoft.PowerShell.Core/About/about_PackageManagement.md)
 
 [Get-PackageSource](Get-PackageSource.md)
 
 [Set-PackageSource](Set-PackageSource.md)
 
 [Unregister-PackageSource](Unregister-PackageSource.md)
-

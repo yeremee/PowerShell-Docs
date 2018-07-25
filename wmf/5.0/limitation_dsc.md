@@ -1,7 +1,7 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
@@ -12,7 +12,7 @@ Breaking Change: Certificates used to encrypt/decrypt passwords in DSC configura
 
 In WMF 4.0 and WMF 5.0 Preview releases, DSC would not allow passwords in the configuration to be of length more than 121 characters. DSC was forcing to use short passwords even if lengthy and strong password was desired. This breaking change allows passwords to be of arbitrary length in the DSC configuration.
 
-**Resolution:** Re-create the certificate with Data Encipherment or Key Encipherment Key usage, and Document Encryption Enhanced Key usage (1.3.6.1.4.1.311.80.1). Technet article <https://technet.microsoft.com/en-us/library/dn807171.aspx> has more information.
+**Resolution:** Re-create the certificate with Data Encipherment or Key Encipherment Key usage, and Document Encryption Enhanced Key usage (1.3.6.1.4.1.311.80.1). Technet article <https://technet.microsoft.com/library/dn807171.aspx> has more information.
 
 
 DSC cmdlets may fail after installing WMF 5.0 RTM
@@ -26,7 +26,7 @@ Start-DscConfiguration and other DSC cmdlets may fail after installing WMF 5.0 R
 ```
 
 **Resolution:** Delete DSCEngineCache.mof by running the following command in an elevated PowerShell session (Run as Administrator):
-	
+
 ```powershell
 Remove-Item -Path $env:SystemRoot\system32\Configuration\DSCEngineCache.mof
 ```
@@ -147,7 +147,7 @@ Debugging of class-based DSC Resources is not supported in this release.
 **Resolution:** None.
 
 
-Variables & Functions defined in $script scope in DSC Class-Based Resource are not preserved across multiple calls to a DSC Resource 
+Variables & Functions defined in $script scope in DSC Class-Based Resource are not preserved across multiple calls to a DSC Resource
 -------------------------------------------------------------------------------------------------------------------------------------
 
 Multiple consecutive calls to Start-DSCConfiguration will fail if configuration is using any class-based resource which has variables or functions defined in $script scope.
@@ -180,7 +180,7 @@ WindowsOptionalFeature is not available in Windows 7
 
 The WindowsOptionalFeature DSC resource is not available in Windows 7. This resource requires the DISM module, and DISM cmdlets that are available starting in Windows 8 and newer releases of the Windows operating system.
 
-For Class-based DSC resources, Import-DscResource -ModuleVersion may not work as expected   
+For Class-based DSC resources, Import-DscResource -ModuleVersion may not work as expected
 ------------------------------------------------------------------------------------------
 If the compilation node has multiple version of a class-based DSC resource module, `Import-DscResource -ModuleVersion` does not pick the specified version and results in following compilation error.
 
@@ -194,16 +194,16 @@ At C:\Windows\system32\WindowsPowerShell\v1.0\Modules\PSDesiredStateConfiguratio
 ```
 
 **Resolution:** Import the required version by defining the *ModuleSpecification* object to the `-ModuleName` with `RequiredVersion` key specified as follows:
-``` PowerShell  
-Import-DscResource -ModuleName @{ModuleName='MyModuleName';RequiredVersion='1.2'}  
-```  
+``` PowerShell
+Import-DscResource -ModuleName @{ModuleName='MyModuleName';RequiredVersion='1.2'}
+```
 
 Some DSC resources like registry resource may start to take a long time to process the request.
 --------------------------------------------------------------------------------------------------------------------------------
 
 **Resolution1:** Create a schedule task that cleans up the following folder periodically.
-``` PowerShell 
-$env:windir\system32\config\systemprofile\AppData\Local\Microsoft\Windows\PowerShell\CommandAnalysis 
+``` PowerShell
+$env:windir\system32\config\systemprofile\AppData\Local\Microsoft\Windows\PowerShell\CommandAnalysis
 ```
 
 **Resolution2:** Change the DSC configuration to clean up the *CommandAnalysis* folder at the end of the configuration.
@@ -222,7 +222,7 @@ Configuration $configName
         ValueData = $Node.RegisteredOwnerData
     }
     #
-    # Script to delete the config 
+    # Script to delete the config
     #
     script DeleteCommandAnalysisCache
     {
@@ -233,4 +233,3 @@ Configuration $configName
     }
 }
 ```
-

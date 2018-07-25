@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -70,7 +70,7 @@ The value of this parameter should match the value of the **URLPrefix** property
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -80,13 +80,13 @@ Accept wildcard characters: False
 ```
 
 ### -Authentication
-Specifies the mechanism that is used to authenticate the user's credentials. 
-Valid values are "Default", "Basic", "Credssp", "Digest", "Kerberos", "Negotiate", and "NegotiateWithImplicitCredential". 
+Specifies the mechanism that is used to authenticate the user's credentials.
+Valid values are "Default", "Basic", "Credssp", "Digest", "Kerberos", "Negotiate", and "NegotiateWithImplicitCredential".
 The default value is "Default".
 
 CredSSP authentication is available only in Windows Vista, Windows Server 2008, and later versions of Windows.
 
-For more information about the values of this parameter, see the description of the System.Management.Automation.Runspaces.AuthenticationMechanism enumeration in the MSDN (Microsoft Developer Network) library at http://go.microsoft.com/fwlink/?LinkID=144382.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Service Provider (CredSSP) authentication, in which the user's credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -95,7 +95,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -117,7 +117,7 @@ To get a certificate thumbprint, use the Get-Item cmdlet or the Get-ChildItem cm
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -163,7 +163,7 @@ When you type a user name, you will be prompted for a password.
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -196,7 +196,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -214,7 +214,7 @@ The name is not required to be unique to the computer or the current session.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -224,8 +224,8 @@ Accept wildcard characters: False
 ```
 
 ### -Port
-Specifies the network port on the remote computer that is used for this connection. 
-To connect to a remote computer, the remote computer must be listening on the port that the connection uses. 
+Specifies the network port on the remote computer that is used for this connection.
+To connect to a remote computer, the remote computer must be listening on the port that the connection uses.
 The default ports are 5985 (the WinRM port for HTTP) and 5986 (the WinRM port for HTTPS).
 
 Before using an alternate port, you must configure the WinRM listener on the remote computer to listen at that port.
@@ -244,7 +244,7 @@ An alternate port setting might prevent the command from running on all computer
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -254,7 +254,7 @@ Accept wildcard characters: False
 ```
 
 ### -SessionOption
-Sets advanced options for the session. 
+Sets advanced options for the session.
 Enter a **SessionOption** object, such as one that you create by using the New-PSSessionOption cmdlet.
 
 The default values for the options are determined by the value of the $PSSessionOption preference variable, if it is set.
@@ -265,12 +265,12 @@ However, they do not take precedence over maximum values, quotas or limits set i
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 For a description of the session options, including the default values, see **New-PSSessionOption**.
-For information about the **$PSSessionOption** preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For information about the **$PSSessionOption** preference variable, see [about_Preference_Variables](../Microsoft.PowerShell.Core/About/about_Preference_Variables.md).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -288,7 +288,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -309,7 +309,7 @@ If you use this parameter, but SSL is not available on the port used for the com
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -352,4 +352,3 @@ You can pipe a session or a computer name to **New-PSWorkflowSession**.
 [PSWorkflow Module](PSWorkflow.md)
 
 [PSWorkflowUtility Module](../PSWorkflowUtility/PSWorkflowUtility.md)
-

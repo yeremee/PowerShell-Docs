@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -78,19 +78,22 @@ Format-List automatically sends the results to the default output cmdlet for dis
 ## PARAMETERS
 
 ### -DisplayError
-Displays errors at the command line.
-This parameter is rarely used, but can be used as a debugging aid when you are formatting expressions in a Format-List command, and the expressions do not appear to be working.
-The following shows an example of the results of adding the DisplayError parameter with an expression.
+Indicates that this cmdlet displays errors at the command line.
+This parameter is rarely used, but can be used as a debugging aid when you are formatting expressions in a `Format-List` command, and the expressions do not appear to be working.
+The following shows an example of the results of adding the **DisplayError** parameter with an expression.
 
-PS \> Get-Date | Format-List DayOfWeek,{ $_ / $null } -ShowError
-DayOfWeek  $_ / $null
---------- ------------
-Wednesday #ERR
+```powershell
+PS C:\> Get-Date | Format-List DayOfWeek, { $_ / $null } -DisplayError
+
+
+DayOfWeek    : Monday
+ $_ / $null  : #ERR
+```
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -113,7 +116,7 @@ Valid values are:
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -130,7 +133,7 @@ By default, when an error object is written to the error or display streams, onl
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -154,7 +157,7 @@ Valid keys are:
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -170,7 +173,7 @@ Enter a variable that contains the objects or type a command or expression that 
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -198,7 +201,7 @@ Valid keys are:
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -224,7 +227,7 @@ Failed to evaluate expression " $_ / $null ".
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -239,7 +242,7 @@ Specifies the name of an alternate list format or "view." You cannot use the Pro
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -282,4 +285,3 @@ If the alternate view is neither a list nor a table, use Format-Custom.
 *
 
 ## RELATED LINKS
-

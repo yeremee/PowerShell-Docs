@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -93,9 +93,8 @@ As such, you cannot use common parameters, such as -Debug, in a Clear-Host comma
 
 ## RELATED LINKS
 
-[Get-Host]()
+[Get-Host](../microsoft.powershell.utility/get-host.md)
 
-[Out-Host]()
+[Out-Host](out-host.md)
 
 [Read-Host. Write-Host]()
-

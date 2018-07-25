@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -92,7 +92,7 @@ In Windows PowerShell 2.0, by default, **Get-History** gets the 32 most recent e
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -109,7 +109,7 @@ If you use both the *Id* and *Count* parameters in a command, **Get-History** ge
 ```yaml
 Type: Int64[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -133,7 +133,7 @@ This cmdlet returns a history object for each history item that it gets.
 
 ## NOTES
 * The session history is a list of the commands entered during the session. The session history represents the run order, the status, and the start and end times of the command. As you enter each command, Windows PowerShell adds it to the history so that you can reuse it. For more information about the command history, see about_History.
-* Starting in Windows PowerShell 3.0, the default value of the $MaximumHistoryCount preference variable is 4096. In Windows PowerShell 2.0, the default value is 64. For more information about the $MaximumHistoryCount variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248) in the TechNet library.
+* Starting in Windows PowerShell 3.0, the default value of the $MaximumHistoryCount preference variable is 4096. In Windows PowerShell 2.0, the default value is 64. For more information about the $MaximumHistoryCount variable, see [about_Preference_Variables](About/about_Preference_Variables.md) in the TechNet library.
 
 ## RELATED LINKS
 
@@ -144,4 +144,3 @@ This cmdlet returns a history object for each history item that it gets.
 [Invoke-History](Invoke-History.md)
 
 [about_History](About/about_History.md)
-

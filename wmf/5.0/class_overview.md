@@ -1,7 +1,7 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
@@ -16,4 +16,3 @@ We’ve improved the PowerShell language for defining classes and other user-def
 -   Inheritance support with class in PowerShell and class base DSC resource
 -   Debug types by using the PowerShell language
 -   Generate and handle exceptions by using formal mechanisms, and at the right level
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,7 +16,7 @@ Gets the current culture set in the operating system.
 ## SYNTAX
 
 ```
-Get-Culture [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+Get-Culture [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -44,9 +44,9 @@ LCID                           : 1033
 KeyboardLayoutId               : 1033
 Name                           : en-US
 IetfLanguageTag                : en-US
-DisplayName                    : English (United States) 
-NativeName                     : English (United States) 
-EnglishName                    : English (United States) 
+DisplayName                    : English (United States)
+NativeName                     : English (United States)
+EnglishName                    : English (United States)
 TwoLetterISOLanguageName       : en
 ThreeLetterISOLanguageName     : eng
 ThreeLetterWindowsLanguageName : ENU
@@ -81,17 +81,17 @@ RFC1123Pattern                   : ddd, dd MMM yyyy HH':'mm':'ss 'GMT'
 ShortDatePattern                 : M/d/yyyy
 ShortTimePattern                 : h:mm tt
 SortableDateTimePattern          : yyyy'-'MM'-'dd'T'HH':'mm':'ss
-TimeSeparator                    : : 
+TimeSeparator                    : :
 UniversalSortableDateTimePattern : yyyy'-'MM'-'dd HH':'mm':'ss'Z'
 YearMonthPattern                 : MMMM, yyyy
-AbbreviatedDayNames              : {Sun, Mon, Tue, Wed...} 
-ShortestDayNames                 : {Su, Mo, Tu, We...} 
-DayNames                         : {Sunday, Monday, Tuesday, Wednesday...} 
-AbbreviatedMonthNames            : {Jan, Feb, Mar, Apr...} 
-MonthNames                       : {January, February, March, April...} 
+AbbreviatedDayNames              : {Sun, Mon, Tue, Wed...}
+ShortestDayNames                 : {Su, Mo, Tu, We...}
+DayNames                         : {Sunday, Monday, Tuesday, Wednesday...}
+AbbreviatedMonthNames            : {Jan, Feb, Mar, Apr...}
+MonthNames                       : {January, February, March, April...}
 IsReadOnly                       : False
 NativeCalendarName               : Gregorian Calendar
-AbbreviatedMonthGenitiveNames    : {Jan, Feb, Mar, Apr...} 
+AbbreviatedMonthGenitiveNames    : {Jan, Feb, Mar, Apr...}
 MonthGenitiveNames               : {January, February, March, April...} PS C:\> $C.DateTimeFormat.FirstDayOfWeek
 Sunday
 ```
@@ -119,33 +119,6 @@ The fifth command uses dot notation to display the value of the FirstDayOfWeek p
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -169,4 +142,3 @@ You cannot pipe input to this cmdlet.
 [Set-Culture]()
 
 [Get-UICulture](Get-UICulture.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -43,8 +43,8 @@ Format-Table -Property Title, pubDate
 ```
 
 ```
-Title                                                                pubDate                        
------                                                                -------                        
+Title                                                                pubDate
+-----                                                                -------
 Join the PowerShell 10th Anniversary Celebration!                    Tue, 08 Nov 2016 23:00:04 +0000
 DSC Resource Kit November 2016 Release                               Thu, 03 Nov 2016 00:19:07 +0000
 PSScriptAnalyzer Community Call - Oct 18, 2016                       Thu, 13 Oct 2016 17:52:35 +0000
@@ -117,7 +117,7 @@ When the body is a form, or it is the output of another `Invoke-WebRequest` call
 
 For example:
 
-```PowerShell
+```powershell
 $R = Invoke-WebRequest http://website.com/login.aspx
 $R.Forms[0].Name = "MyName"
 $R.Forms[0].Password = "MyPassword"
@@ -126,7 +126,7 @@ Invoke-RestMethod http://website.com/service.aspx -Body $R
 
 or
 
-```PowerShell
+```powershell
 Invoke-RestMethod http://website.com/service.aspx -Body $R.Forms[0]
 ```
 
@@ -606,7 +606,7 @@ This cmdlet supports the common parameters: `-Debug`, `-ErrorAction`, `-ErrorVar
 ## Inputs
 
 ### System.Object
-You can pipe the body of a web request to `Invoke-Rest-Method`.
+You can pipe the body of a web request to `Invoke-RestMethod`.
 
 ## Outputs
 
@@ -625,4 +625,3 @@ If the request returns JSON strings, `Invoke-RestMethod` returns a PSObject that
 [ConvertFrom-Json](ConvertFrom-Json.md)
 
 [Invoke-WebRequest](Invoke-WebRequest.md)
-

@@ -1,17 +1,13 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
 title:  SendConfiguration method of the MSFT_DSCLocalConfigurationManager class
 ---
-
 # SendConfiguration method of the MSFT_DSCLocalConfigurationManager class
 
 Sends the configuration document to the managed node and saves it as a pending change.
 
-Syntax
-------
+## Syntax
 
 ```mof
 uint32 SendConfiguration(
@@ -20,17 +16,15 @@ uint32 SendConfiguration(
 );
 ```
 
-Parameters
-----------
+## Parameters
 
-*ConfigurationData* \[in\]  
+*ConfigurationData* \[in\]
 The environment data for the configuration.
 
-*force* \[in\]  
+*force* \[in\]
 **true** to force the configuration to stop.
 
 ## Return value
-------------
 
 Returns zero on success; otherwise returns an error code.
 
@@ -39,21 +33,11 @@ Returns zero on success; otherwise returns an error code.
 This is a static method.
 
 ## Requirements
-------------
->**MOF:** DscCore.mof
 
->**Namespace**: Root\Microsoft\Windows\DesiredStateConfiguration
+**MOF:** DscCore.mof
 
+**Namespace**: Root\Microsoft\Windows\DesiredStateConfiguration
 
 ## See also
 
-
 [**MSFT_DSCLocalConfigurationManager**](msft-dsclocalconfigurationmanager.md)
-
-
- 
-
- 
-
-
-

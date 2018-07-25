@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -119,7 +119,7 @@ These settings are designed for enterprises in which DCOM-based restarts fail be
 Indicates that this cmdlet runs as a background job.
 
 To use this parameter, the local and remote computers must be configured for remoting and, on Windows Vista and later versions of the Windows operating system, you must open Windows PowerShell by using the Run as administrator option.
-For more information, see about_Remote_Requirements (http://go.microsoft.com/fwlink/?LinkID=135187).
+For more information, see [about_Remote_Requirements](../Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
 
 When you specify the *AsJob* parameter, the command immediately returns an object that represents the background job.
 You can continue to work in the session while the job finishes.
@@ -127,12 +127,12 @@ The job is created on the local computer and the results from remote computers a
 To manage the job, use the **Job** cmdlets.
 To get the job results, use the Receive-Job cmdlet.
 
-For more information about Windows PowerShell background jobs, see about_Jobs (http://go.microsoft.com/fwlink/?LinkID=113251) and about_Remote_Jobs (http://go.microsoft.com/fwlink/?LinkID=135184).
+For more information about Windows PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and [about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: AsJobSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -187,7 +187,7 @@ Type a user name, such as User01 or Domain01\User01, or enter a **PSCredential**
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -201,7 +201,7 @@ Specifies the authentication level that is used for the WMI connection.
 The acceptable values for this parameter are:
 
 - Call.
-Call-level COM authentication 
+Call-level COM authentication
 - Connect.
 Connect-level COM authentication
 - Default.
@@ -209,17 +209,17 @@ Windows Authentication
 - None.
 No COM authentication
 - Packet.
-Packet-level COM authentication 
+Packet-level COM authentication
 - PacketIntegrity.
 Packet Integrity-level COM authentication
 - PacketPrivacy.
-Packet Privacy-level COM authentication 
+Packet Privacy-level COM authentication
 - Unchanged.
 The authentication level is the same as the previous command
 
 The default value is Packet.
 
-For more information about the values of this parameter, see AuthenticationLevel Enumerationhttp://go.microsoft.com/fwlink/?LinkID=235229 (http://go.microsoft.com/fwlink/?LinkID=235229) in the Microsoft Developer Network (MSDN) library.
+For more information about the values of this parameter, see [AuthenticationLevel Enumeration](https://msdn.microsoft.com/library/system.management.authenticationlevel) in the MSDN library.
 
 This parameter was introduced in Windows PowerShell 3.0.
 
@@ -248,7 +248,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Int16
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -264,11 +264,11 @@ This parameter is valid only with the *Wait* parameter.
 The acceptable values for this parameter are:
 
 - Default.
-Waits for Windows PowerShell to restart. 
+Waits for Windows PowerShell to restart.
 - PowerShell.
-Can run commands in a Windows PowerShell remote session on the computer. 
+Can run commands in a Windows PowerShell remote session on the computer.
 - WMI.
-Receives a reply to a Win32_ComputerSystem query for the computer. 
+Receives a reply to a Win32_ComputerSystem query for the computer.
 - WinRM.
 Can establish a remote session to the computer by using WS-Management.
 
@@ -277,7 +277,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: WaitForServiceTypes
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 Accepted values: Wmi, WinRM, PowerShell
 
 Required: False
@@ -308,11 +308,11 @@ Specifies the impersonation level that this cmdlet uses to call WMI.
 The acceptable values for this parameter are:
 
  -- Default.
-Default impersonation. 
+Default impersonation.
 - Anonymous.
-Hides the identity of the caller. 
+Hides the identity of the caller.
 - Identify.
-Allows objects to query the credentials of the caller. 
+Allows objects to query the credentials of the caller.
 - Impersonate.
 Allows objects to use the credentials of the caller.
 
@@ -321,7 +321,7 @@ The default value is Impersonate.
 ```yaml
 Type: ImpersonationLevel
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Default, Anonymous, Identify, Impersonate, Delegate
 
 Required: False
@@ -341,7 +341,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 Accepted values: DCOM, WSMan
 
 Required: False
@@ -360,7 +360,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: AsJobSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -404,7 +404,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -434,7 +434,7 @@ Specifies the mechanism that is used to authenticate the user credentials when y
 
 The acceptable values for this parameter are: Basic, CredSSP, Default, Digest, Kerberos, and Negotiate.
 The default value is Default.
-For more information about the values of this parameter, see AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=235230 (http://go.microsoft.com/fwlink/?LinkID=235230) in the MSDN library.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Service Provider (CredSSP) authentication, in which the user credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -445,7 +445,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: DefaultSet
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, CredSSP, Digest, Kerberos
 
 Required: False
@@ -491,4 +491,3 @@ Otherwise, it does not generate any output.
 [Stop-Computer](Stop-Computer.md)
 
 [Test-Connection](Test-Connection.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -227,7 +227,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ConnectionUriInstanceId, ConnectionUri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -250,7 +250,7 @@ It does not change the application that the session uses.
 ```yaml
 Type: String
 Parameter Sets: ComputerName, ComputerInstanceId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -266,17 +266,17 @@ This parameter configures the temporary connection that is created to run a **Ge
 
 The acceptable values for this parameter are:
 
-- Default 
-- Basic 
-- Credssp 
-- Digest 
-- Kerberos 
-- Negotiate 
-- NegotiateWithImplicitCredential. 
+- Default
+- Basic
+- Credssp
+- Digest
+- Kerberos
+- Negotiate
+- NegotiateWithImplicitCredential.
 
 The default value is Default.
 
-For information about the values of this parameter, see the description of the AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=144382 (http://go.microsoft.com/fwlink/?LinkID=144382) in the Microsoft Developer Network (MSDN) library.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 CAUTION: Credential Security Support Provider (CredSSP) authentication, in which the user's credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -287,7 +287,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: ComputerName, ComputerInstanceId, ConnectionUriInstanceId, ConnectionUri
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -313,7 +313,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: ComputerName, ComputerInstanceId, ConnectionUriInstanceId, ConnectionUri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -365,7 +365,7 @@ For more information about session configurations, see about_Session_Configurati
 ```yaml
 Type: String
 Parameter Sets: ComputerName, ComputerInstanceId, ConnectionUriInstanceId, ConnectionUri, VMIdInstanceId, ContainerId, ContainerIdInstanceId, VMId, VMName, VMNameInstanceId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -418,7 +418,7 @@ To see the containers that are available to you, use the **Get-Container** cmdle
 ```yaml
 Type: String[]
 Parameter Sets: ContainerId, ContainerIdInstanceId
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -442,7 +442,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerName, ComputerInstanceId, ConnectionUriInstanceId, ConnectionUri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -464,7 +464,7 @@ The ID of a session is stored in the ID property of the session.
 ```yaml
 Type: Int32[]
 Parameter Sets: Id
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -485,7 +485,7 @@ The instance ID of a session is stored in the **InstanceID** property of the ses
 ```yaml
 Type: Guid[]
 Parameter Sets: ComputerInstanceId, ConnectionUriInstanceId, VMIdInstanceId, ContainerIdInstanceId, VMNameInstanceId
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -497,7 +497,7 @@ Accept wildcard characters: False
 ```yaml
 Type: Guid[]
 Parameter Sets: InstanceId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -516,7 +516,7 @@ The friendly name of a session is stored in the **Name** property of the session
 ```yaml
 Type: String[]
 Parameter Sets: Name
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -528,7 +528,7 @@ Accept wildcard characters: False
 ```yaml
 Type: String[]
 Parameter Sets: ComputerName, ConnectionUri, ContainerId, VMId, VMName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -560,7 +560,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Int32
 Parameter Sets: ComputerName, ComputerInstanceId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -580,13 +580,13 @@ The session option values take precedence over default values for sessions set i
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
 
 For a description of the session options, including the default values, see New-PSSessionOption.
-For information about the $PSSessionOption preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248) in the Microsoft TechNet library.
+For information about the $PSSessionOption preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md) in the Microsoft TechNet library.
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: ComputerName, ComputerInstanceId, ConnectionUriInstanceId, ConnectionUri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -611,7 +611,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SessionFilterState
 Parameter Sets: ComputerName, ComputerInstanceId, ConnectionUriInstanceId, ConnectionUri, VMIdInstanceId, ContainerId, ContainerIdInstanceId, VMId, VMName, VMNameInstanceId
-Aliases: 
+Aliases:
 Accepted values: All, Opened, Disconnected, Closed, Broken
 
 Required: False
@@ -631,7 +631,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Int32
 Parameter Sets: ComputerName, ComputerInstanceId, ConnectionUriInstanceId, ConnectionUri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -652,7 +652,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName, ComputerInstanceId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -664,7 +664,7 @@ Accept wildcard characters: False
 ### -VMId
 Specifies an array of ID of virtual machines.
 This cmdlet starts an interactive session with each of the specified virtual machines.
-To see the virtual machines that are available to you, use the following command: 
+To see the virtual machines that are available to you, use the following command:
 
 `Get-VM | Select-Object -Property Name, ID`
 
@@ -688,7 +688,7 @@ To see the virtual machines that are available to you, use the **Get-VM** cmdlet
 ```yaml
 Type: String[]
 Parameter Sets: VMName, VMNameInstanceId
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -719,9 +719,9 @@ You cannot pipe input to this cmdlet.
   An **Availability** value of **None** indicates that you can connect to the session.
 A value of **Busy** indicates that you cannot connect to the **PSSession** because it is connected to another session.
 
-  For more information about the values of the **State** property of sessions, see RunspaceState Enumerationhttp://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspacestate(v=VS.85).aspx (http://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspacestate(v=VS.85).aspx) in the MSDN library.
+  For more information about the values of the **State** property of sessions, see [RunspaceState Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.runspacestate) in the MSDN library.
 
-  For more information about the values of the **Availability** property of sessions, see RunspaceAvailability Enumerationhttp://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspaceavailability(v=vs.85).aspx (http://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspaceavailability(v=vs.85).aspx).
+  For more information about the values of the **Availability** property of sessions, see [RunspaceAvailability Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.runspaceavailability) in the MSDN library.
 
 ## RELATED LINKS
 
@@ -740,4 +740,3 @@ A value of **Busy** indicates that you cannot connect to the **PSSession** becau
 [New-PSSession](New-PSSession.md)
 
 [Remove-PSSession](Remove-PSSession.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,32 +17,28 @@ Disables debugging on one or more runspaces, and releases any pending debugger s
 
 ### RunspaceNameParameterSet (Default)
 ```
-Disable-RunspaceDebug [[-RunspaceName] <String[]>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Disable-RunspaceDebug [[-RunspaceName] <String[]>] [<CommonParameters>]
 ```
 
 ### RunspaceParameterSet
 ```
-Disable-RunspaceDebug [-Runspace] <Runspace[]> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Disable-RunspaceDebug [-Runspace] <Runspace[]> [<CommonParameters>]
 ```
 
 ### RunspaceIdParameterSet
 ```
-Disable-RunspaceDebug [-RunspaceId] <Int32[]> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Disable-RunspaceDebug [-RunspaceId] <Int32[]> [<CommonParameters>]
 ```
 
 ### RunspaceInstanceIdParameterSet
 ```
-Disable-RunspaceDebug [-RunspaceInstanceId] <Guid[]> [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Disable-RunspaceDebug [-RunspaceInstanceId] <Guid[]> [<CommonParameters>]
 ```
 
 ### ProcessNameParameterSet
 ```
 Disable-RunspaceDebug [[-ProcessName] <String>] [[-AppDomainName] <String[]>]
- [-InformationAction <ActionPreference>] [-InformationVariable <String>] [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -63,12 +59,11 @@ The **Disable-RunspaceDebug** cmdlet disables debugging on one or more runspaces
 ## PARAMETERS
 
 ### -AppDomainName
-@{Text=}
 
 ```yaml
 Type: String[]
 Parameter Sets: ProcessNameParameterSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -77,40 +72,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ProcessName
-@{Text=}
 
 ```yaml
 Type: String
 Parameter Sets: ProcessNameParameterSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -120,12 +87,11 @@ Accept wildcard characters: False
 ```
 
 ### -Runspace
-@{Text=}
 
 ```yaml
 Type: Runspace[]
 Parameter Sets: RunspaceParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -135,12 +101,11 @@ Accept wildcard characters: False
 ```
 
 ### -RunspaceId
-@{Text=}
 
 ```yaml
 Type: Int32[]
 Parameter Sets: RunspaceIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -150,12 +115,11 @@ Accept wildcard characters: False
 ```
 
 ### -RunspaceInstanceId
-@{Text=}
 
 ```yaml
 Type: Guid[]
 Parameter Sets: RunspaceInstanceIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -165,12 +129,11 @@ Accept wildcard characters: False
 ```
 
 ### -RunspaceName
-@{Text=}
 
 ```yaml
 Type: String[]
 Parameter Sets: RunspaceNameParameterSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -193,4 +156,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Enable-RunspaceDebug](Enable-RunspaceDebug.md)
 
 [Get-RunspaceDebug](Get-RunspaceDebug.md)
-

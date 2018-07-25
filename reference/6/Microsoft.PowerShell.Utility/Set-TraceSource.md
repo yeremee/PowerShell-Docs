@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -18,20 +18,17 @@ Configures, starts, and stops a trace of Windows PowerShell components.
 ### optionsSet (Default)
 ```
 Set-TraceSource [-Name] <String[]> [[-Option] <PSTraceSourceOptions>] [-ListenerOption <TraceOptions>]
- [-FilePath <String>] [-Force] [-Debugger] [-PSHost] [-PassThru] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+ [-FilePath <String>] [-Force] [-Debugger] [-PSHost] [-PassThru] [<CommonParameters>]
 ```
 
 ### removeAllListenersSet
 ```
-Set-TraceSource [-Name] <String[]> [-RemoveListener <String[]>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Set-TraceSource [-Name] <String[]> [-RemoveListener <String[]>] [<CommonParameters>]
 ```
 
 ### removeFileListenersSet
 ```
-Set-TraceSource [-Name] <String[]> [-RemoveFileListener <String[]>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Set-TraceSource [-Name] <String[]> [-RemoveFileListener <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -67,7 +64,7 @@ This parameter also selects the default trace listener.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: optionsSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -100,34 +97,7 @@ Use with the *FilePath* parameter.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: optionsSet
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -137,7 +107,8 @@ Accept wildcard characters: False
 ```
 
 ### -ListenerOption
-Specifies optional data to add to the prefix of each trace message in the output.The acceptable values for this parameter are:
+Specifies optional data to the prefix of each trace message in the output.
+The acceptable values for this parameter are:
 
 - None
 - LogicalOperationStack
@@ -154,8 +125,8 @@ To specify multiple options, separate them with commas, but with no spaces, and 
 ```yaml
 Type: TraceOptions
 Parameter Sets: optionsSet
-Aliases: 
-Accepted values: None, Constructor, Dispose, Finalizer, Method, Property, Delegates, Events, Exception, Lock, Error, Errors, Warning, Verbose, WriteLine, Data, Scope, ExecutionFlow, Assert, All
+Aliases:
+Accepted values: None, LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack
 
 Required: False
 Position: Named
@@ -172,7 +143,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -219,7 +190,7 @@ To specify multiple options, separate them with commas, but with no spaces, and 
 ```yaml
 Type: PSTraceSourceOptions
 Parameter Sets: optionsSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 2
@@ -235,7 +206,7 @@ This parameter also selects the PSHost trace listener.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: optionsSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -251,7 +222,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: optionsSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -267,7 +238,7 @@ Enter the path and file name of the trace output file.
 ```yaml
 Type: String[]
 Parameter Sets: removeFileListenersSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -290,7 +261,7 @@ To remove the file trace listener, use the *RemoveFileListener* parameter.
 ```yaml
 Type: String[]
 Parameter Sets: removeAllListenersSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -339,4 +310,3 @@ You can elect to send the trace data to a user-mode or kernel-mode debugger, to 
 [Get-TraceSource](Get-TraceSource.md)
 
 [Trace-Command](Trace-Command.md)
-

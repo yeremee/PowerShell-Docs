@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -94,7 +94,7 @@ The commands that you enter run in the new session, and the results are returned
 ### Example 2: Work with an interactive session
 ```
 The first command uses the **Enter-PSSession** cmdlet to start an interactive session with Server01, a remote computer. When the session starts, the command prompt changes to include the computer name.
-PS C:\> Enter-PSSession -Computer Server01
+PS C:\> Enter-PSSession -ComputerName Server01
 [Server01]: PS C:\>
 
 The second command gets the Windows PowerShell process and redirects the output to the Process.txt file. The command is submitted to the remote computer, and the file is saved on the remote computer.
@@ -161,7 +161,7 @@ The default value is 5.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -185,7 +185,7 @@ The value of this parameter should match the value of the **URLPrefix** property
 ```yaml
 Type: String
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -198,19 +198,19 @@ Accept wildcard characters: False
 Specifies the mechanism that is used to authenticate the user's credentials.
 The acceptable values for this parameter are:
 
-- Default 
-- Basic 
-- Credssp 
-- Digest 
-- Kerberos 
-- Negotiate 
-- NegotiateWithImplicitCredential 
+- Default
+- Basic
+- Credssp
+- Digest
+- Kerberos
+- Negotiate
+- NegotiateWithImplicitCredential
 
 The default value is Default.
 
 CredSSP authentication is available only in Windows Vista, Windows Server 2008, and later versions of the Windows operating system.
 
-For information about the values of this parameter, see the AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=144382 (http://go.microsoft.com/fwlink/?LinkID=144382) in the Microsoft Developer Network (MSDN).
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Support Provider (CredSSP) authentication, in which the user's credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -219,7 +219,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -241,7 +241,7 @@ To get a certificate, use the Get-Item or Get-ChildItem command in the Windows P
 ```yaml
 Type: String
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -293,7 +293,7 @@ For more information, see about_Preference_Variables.
 ```yaml
 Type: String
 Parameter Sets: ComputerName, Uri, VMId, VMName, ContainerId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -339,7 +339,7 @@ Specifies the ID of a container.
 ```yaml
 Type: String
 Parameter Sets: ContainerId
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -359,7 +359,7 @@ When you type a user name, this cmdlet prompts you for a password.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -371,7 +371,7 @@ Accept wildcard characters: False
 ```yaml
 Type: PSCredential
 Parameter Sets: VMId, VMName
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -401,7 +401,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -419,7 +419,7 @@ To find the ID of a session, use the Get-PSSession cmdlet.
 ```yaml
 Type: Int32
 Parameter Sets: Id
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -440,7 +440,7 @@ Or, you can use the *ComputerName* parameter to start a temporary session.
 ```yaml
 Type: Guid
 Parameter Sets: InstanceId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -462,7 +462,7 @@ To establish a friendly name for a session, use the *Name* parameter of the **Ne
 ```yaml
 Type: String
 Parameter Sets: Name
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -492,7 +492,7 @@ An alternate port setting might prevent the command from running on all computer
 ```yaml
 Type: Int32
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -507,7 +507,7 @@ Indicates that the **PSSession** runs as administrator.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ContainerId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -531,7 +531,7 @@ When you use **Exit-PSSession** or the **EXIT** keyword, the interactive session
 ```yaml
 Type: PSSession
 Parameter Sets: Session
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -551,13 +551,13 @@ The session option values take precedence over default values for sessions set i
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
 
 For a description of the session options, including the default values, see **New-PSSessionOption**.
-For information about the $PSSessionOption preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For information about the $PSSessionOption preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -578,7 +578,7 @@ If you use this parameter, but SSL is not available on the port that is used for
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -608,7 +608,7 @@ Specifies the name of a virtual machine.
 ```yaml
 Type: String
 Parameter Sets: VMName
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -657,3 +657,6 @@ The cmdlet does not return any output.
 
 [Receive-PSSession](Receive-PSSession.md)
 
+[about_PSSessions](About/about_PSSessions.md)
+
+[about_Remote](About/about_Remote.md)

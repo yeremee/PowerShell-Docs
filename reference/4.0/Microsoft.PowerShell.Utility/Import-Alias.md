@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,27 +16,27 @@ Imports an alias list from a file.
 ## SYNTAX
 
 ### ByPath (Default)
-```
+```powershell
 Import-Alias [-Path] <String> [-Scope <String>] [-PassThru] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ByLiteralPath
-```
+```powershell
 Import-Alias -LiteralPath <String> [-Scope <String>] [-PassThru] [-Force] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Import-Alias** cmdlet imports an alias list from a file.
+The `Import-Alias` cmdlet imports an alias list from a file.
 
-Beginning in Windows PowerShell 3.0, as a security feature, **Import-Alias** does not overwrite existing aliases by default.
+Beginning in Windows PowerShell 3.0, as a security feature, `Import-Alias` does not overwrite existing aliases by default.
 To overwrite an existing alias, after assuring that the contents of the alias file is safe, use the **Force** parameter.
 
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\> import-alias test.txt
+```powershell
+Import-Alias test.txt
 ```
 
 This command imports alias information from a file named test.txt.
@@ -47,14 +47,14 @@ This command imports alias information from a file named test.txt.
 Allows the cmdlet to import an alias that is already defined or is read only.
 You can use the following command to display information about the currently-defined aliases:
 
-`get-alias | select-object name,Options`
+`Get-Alias | Select-Object Name, Options`
 
 If the corresponding alias is read-only, it will be displayed in the value of the **Options** property.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -70,7 +70,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -86,7 +86,7 @@ Wildcards are allowed but they must resolve to a single name.
 ```yaml
 Type: String
 Parameter Sets: ByPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -104,7 +104,7 @@ For more information, see about_Scopes.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -169,12 +169,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.String
-You can pipe a string that contains a path to Import-Alias.
+You can pipe a string that contains a path to `Import-Alias`.
 
 ## OUTPUTS
 
 ### None or System.Management.Automation.AliasInfo
-When you use the **Passthru** parameter, **Import-Alias** returns a **System.Management.Automation.AliasInfo** object that represents the alias.
+When you use the **Passthru** parameter, `Import-Alias` returns a **System.Management.Automation.AliasInfo** object that represents the alias.
 Otherwise, this cmdlet does not generate any output.
 
 ## NOTES
@@ -188,4 +188,3 @@ Otherwise, this cmdlet does not generate any output.
 [New-Alias](New-Alias.md)
 
 [Set-Alias](Set-Alias.md)
-

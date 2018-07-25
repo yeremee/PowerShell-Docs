@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -39,7 +39,7 @@ Accepts input to the cmdlet.
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -49,12 +49,12 @@ Accept wildcard characters: False
 ```
 
 ### -Transcript
-@{Text=}
+
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -83,4 +83,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Format-Wide](../Microsoft.PowerShell.Utility/Format-Wide.md)
 
 [about_Format.ps1xml](About/about_Format.ps1xml.md)
-

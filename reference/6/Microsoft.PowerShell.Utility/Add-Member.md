@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,29 +16,30 @@ Adds custom properties and methods to an instance of a Windows PowerShell object
 ## SYNTAX
 
 ### TypeNameSet (Default)
-```
-Add-Member -InputObject <PSObject> -TypeName <String> [-PassThru] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Add-Member -InputObject <PSObject> -TypeName <String> [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### MemberSet
-```
-Add-Member -InputObject <PSObject> [-MemberType] <PSMemberTypes> [-Name] <String> [[-Value] <Object>]
- [[-SecondValue] <Object>] [-TypeName <String>] [-Force] [-PassThru] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+```powershell
+Add-Member [-MemberType] <PSMemberTypes> [-Name] <String>
+ [[-Value] <Object>] [[-SecondValue] <Object>]
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### NotePropertySingleMemberSet
-```
-Add-Member -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru] [-NotePropertyName] <String>
- [-NotePropertyValue] <Object> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
+```powershell
+Add-Member [-NotePropertyName] <String> [-NotePropertyValue] <Object>
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
  [<CommonParameters>]
 ```
 
 ### NotePropertyMultiMemberSet
-```
-Add-Member -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
- [-NotePropertyMembers] <IDictionary> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
+```powershell
+Add-Member [-NotePropertyMembers] <IDictionary>
+ -InputObject <PSObject> [-TypeName <String>] [-Force] [-PassThru]
  [<CommonParameters>]
 ```
 
@@ -69,7 +70,8 @@ For more information, see the *PassThru* parameter description.
 PS C:\> $A = dir c:\ps-test\test.txt
 PS C:\> $A | Add-Member -NotePropertyName Status -NotePropertyValue Done
 PS C:\> $A | Add-Member Status Done
-PS C:\> $A.StatusDone
+PS C:\> $A.Status
+Done
 ```
 
 These commands add the Status note property with a value of "Done" to the FileInfo object that represents the Test.txt file.
@@ -88,7 +90,8 @@ As the output shows, the value is "Done".
 ```
 PS C:\> $A = dir c:\ps-test\test.txt
 PS C:\> $A | Add-Member -MemberType AliasProperty -Name FileLength -Value Length
-PS C:\> $A.FileLength2394
+PS C:\> $A.FileLength
+2394
 ```
 
 These commands add the FileLength alias property to the object that represents the Test.txt file.
@@ -102,8 +105,10 @@ The third command uses dot notation to get the value of the new FileLength prope
 
 ### Example 3: Add a StringUse note property to a string
 ```
-PS C:\> $A = "A string"PS C:\>  $A = $A | Add-Member @{StringUse="Display"} -PassThru
-PS C:\> $A.StringUseDisplay
+PS C:\> $A = "A string"
+PS C:\>  $A = $A | Add-Member @{StringUse="Display"} -PassThru
+PS C:\> $A.StringUse
+Display
 ```
 
 These commands add the **StringUse** note property to a string.
@@ -143,32 +148,20 @@ The third command uses dot notation to call the new PadBoth script method on the
 PS C:\> $Event = Get-EventLog -LogName System -Newest 1
 PS C:\> $Event.TimeWritten | Get-MemberTypeName: System.DateTime
 Name                 MemberType     Definition
-
-
 ----                 ----------     ----------
-
-
-Add                  Method         System.DateTime Add(System.TimeSpan value) 
-
-
-AddDays              Method         System.DateTime AddDays(double value) 
-
-
-AddHours             Method         System.DateTime AddHours(double value) 
-
-
-AddMilliseconds      Method         System.DateTime AddMilliseconds(double value) 
-
-
+Add                  Method         System.DateTime Add(System.TimeSpan value)
+AddDays              Method         System.DateTime AddDays(double value)
+AddHours             Method         System.DateTime AddHours(double value)
+AddMilliseconds      Method         System.DateTime AddMilliseconds(double value)
 AddMinutes           Method         System.DateTime AddMinutes(double value)...
-
 
 PS C:\> Add-Member -InputObject $Event -MemberType AliasProperty -Name When -Value TimeWritten -SecondValue System.String
 PS C:\> $Event.When | Get-MemberTypeName: System.String
+
 Name             MemberType            Definition
 ----             ----------            ----------
 Clone            Method                System.Object Clone()
-CompareTo        Method                int CompareTo(System.Object value), int CompareTo(string strB) 
+CompareTo        Method                int CompareTo(System.Object value), int CompareTo(string strB)
 Contains         Method                bool Contains(string value)
 ```
 
@@ -252,34 +245,7 @@ You cannot use the *Force* parameter to replace a standard member of a type.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: MemberSet, NotePropertySingleMemberSet, NotePropertyMultiMemberSet
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
+Aliases:
 
 Required: False
 Position: Named
@@ -295,7 +261,7 @@ Enter a variable that contains the objects, or type a command or expression that
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -316,7 +282,7 @@ The acceptable values for this parameter are:
 - ScriptMethod
 - CopyMethod
 
-For information about these values, see PSMemberTypes Enumerationhttp://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.psmembertypes(v=vs.85).aspx (http://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.psmembertypes(v=vs.85).aspx).
+For information about these values, see [PSMemberTypes Enumeration](https://msdn.microsoft.com/library/system.management.automation.psmembertypes) in the MSDN library.
 
 Not all objects have every type of member.
 If you specify a member type that the object does not have, Windows PowerShell returns an error.
@@ -328,7 +294,7 @@ Aliases: Type
 Accepted values: AliasProperty, CodeProperty, Property, NoteProperty, ScriptProperty, Properties, PropertySet, Method, CodeMethod, ScriptMethod, Methods, ParameterizedProperty, MemberSet, Event, Dynamic, All
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -340,10 +306,10 @@ Specifies the name of the member that this cmdlet adds.
 ```yaml
 Type: String
 Parameter Sets: MemberSet
-Aliases: 
+Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -363,7 +329,7 @@ Use the *PassThru* parameter to create an output object for any object that has 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -385,10 +351,10 @@ The second ScriptBlock, specified in the *SecondValue* parameter, is used to set
 ```yaml
 Type: Object
 Parameter Sets: MemberSet
-Aliases: 
+Aliases:
 
 Required: False
-Position: 4
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -401,10 +367,10 @@ If you add an **AliasProperty**, **CodeProperty**, **ScriptProperty** or **CodeM
 ```yaml
 Type: Object
 Parameter Sets: MemberSet
-Aliases: 
+Aliases:
 
 Required: False
-Position: 3
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -421,10 +387,10 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: IDictionary
 Parameter Sets: NotePropertyMultiMemberSet
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -441,10 +407,10 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: NotePropertySingleMemberSet
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -461,10 +427,10 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: Object
 Parameter Sets: NotePropertySingleMemberSet
-Aliases: 
+Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -474,7 +440,7 @@ Accept wildcard characters: False
 Specifies a name for the type.
 
 When the type is a class in the System namespace or a type that has a type accelerator, you can enter the short name of the type.
-Otherwise, the full type name is required. 
+Otherwise, the full type name is required.
 This parameter is effective only when the input object is a **PSObject**.
 
 This parameter was introduced in Windows PowerShell 3.0.
@@ -482,7 +448,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: TypeNameSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -494,7 +460,7 @@ Accept wildcard characters: False
 ```yaml
 Type: String
 Parameter Sets: MemberSet, NotePropertySingleMemberSet, NotePropertyMultiMemberSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -518,17 +484,15 @@ When you use the *PassThru* parameter, this cmdlet returns the newly-extended ob
 Otherwise, this cmdlet does not generate any output.
 
 ## NOTES
-* You can add members only to PSObject objects. To determine whether an object is a PSObject object, use the "is" operator. For instance, to test an object stored in the $obj variable, type `$obj -is \[PSObject\]`.
+You can add members only to PSObject objects. To determine whether an object is a PSObject object, use the "is" operator. For instance, to test an object stored in the $obj variable, type `$obj -is \[PSObject\]`.
 
-  The names of the *MemberType*, *Name*, *Value*, and *SecondValue* parameters are optional.
+The names of the *MemberType*, *Name*, *Value*, and *SecondValue* parameters are optional.
 If you omit the parameter names, the unnamed parameter values must appear in this order: *MemberType*, *Name*, *Value*, and *SecondValue*.
 If you include the parameter names, the parameters can appear in any order.
 
-  You can use the $this automatic variable in script blocks that define the values of new properties and methods.
+You can use the $this automatic variable in script blocks that define the values of new properties and methods.
 The $this variable refers to the instance of the object to which the properties and methods are being added.
 For more information about the $this variable, see about_Automatic_Variables.
-
-*
 
 ## RELATED LINKS
 
@@ -539,4 +503,3 @@ For more information about the $this variable, see about_Automatic_Variables.
 [Import-Clixml](Import-Clixml.md)
 
 [New-Object](New-Object.md)
-

@@ -1,5 +1,5 @@
----
-ms.date:  2017-06-09
+﻿---
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,10 +7,12 @@ online version:  http://go.microsoft.com/fwlink/?LinkID=141463
 external help file:  Microsoft.WSMan.Management.dll-Help.xml
 title:  Set-WSManQuickConfig
 ---
-
 # Set-WSManQuickConfig
+
 ## SYNOPSIS
+
 Configures the local computer for remote management.
+
 ## SYNTAX
 
 ```
@@ -18,6 +20,7 @@ Set-WSManQuickConfig [-UseSSL] [-Force] [-SkipNetworkProfileCheck] [<CommonParam
 ```
 
 ## DESCRIPTION
+
 The Set-WSManQuickConfig cmdlet configures the computer to receive Windows PowerShell remote commands that are sent by using the Web Services for Management (WS-Management) technology.
 
 The cmdlet performs the following:
@@ -28,31 +31,37 @@ The cmdlet performs the following:
 - Enables a firewall exception for WinRM traffic .
 
 To run this cmdlet, start Windows PowerShell with the "Run as administrator" option.
+
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\> Set-WSManQuickConfig
+
+```powershell
+Set-WSManQuickConfig
 ```
 
 This command sets the required configuration to enable remote management of the local computer.
 By default, this command creates a WS-Management listener on HTTP.
+
 ### Example 2
-```
-PS C:\> Set-WSManQuickConfig -UseSSL
+
+```powershell
+Set-WSManQuickConfig -UseSSL
 ```
 
 The command sets the required configuration to enable remote management of the local computer.
 The UseSSL parameter makes the command create a WS-Management listener on HTTPS.
+
 ## PARAMETERS
 
 ### -Force
+
 Sets the configuration without first prompting the user.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -62,6 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -SkipNetworkProfileCheck
+
 Configures client versions of Windows for remoting when the computer is on a public network.
 This parameter enables a firewall rule for public networks that allows remote access only from computers in the same local subnet.
 
@@ -75,7 +85,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -85,6 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -UseSSL
+
 Specifies that the Secure Sockets Layer (SSL) protocol should be used to establish a connnection to the remote computer.
 By default, SSL is not used.
 
@@ -95,7 +106,7 @@ If you specify this parameter, but SSL is not available on the port used for the
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -105,15 +116,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
+
 This cmdlet does not accept any input.
+
 ## OUTPUTS
 
 ### None
+
 This cmdlet does not generate any output.
+
 ## NOTES
 
 ## RELATED LINKS
@@ -141,4 +158,3 @@ This cmdlet does not generate any output.
 [New-WSManSessionOption](New-WSManSessionOption.md)
 
 [Test-WSMan](Test-WSMan.md)
-

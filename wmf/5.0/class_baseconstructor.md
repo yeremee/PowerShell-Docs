@@ -1,7 +1,7 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
@@ -9,8 +9,8 @@ keywords:  wmf,powershell,setup
 
 To call a base class constructor from a subclass, use the keyword **base**:
 
-```PowerShell
-class A 
+```powershell
+class A
 {
 	[int]$a
 
@@ -30,10 +30,9 @@ class B : A
 
 If a base class has a default (no parameter) constructor, you can omit an explicit constructor call:
 
-```PowerShell
+```powershell
 class C : B
 {
 	C([int]$c) {}
 }
 ```
-

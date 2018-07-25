@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -104,7 +104,7 @@ Required: False
 Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### CommonParameters
@@ -112,8 +112,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-You cannot pipe objects to this cmdlet.
+### String[]
+
+You can pipe one or more provider name strings to this cmdlet.
 
 ## OUTPUTS
 
@@ -123,4 +124,3 @@ This cmdlet returns objects that represent the Windows PowerShell providers in t
 ## NOTES
 
 ## RELATED LINKS
-

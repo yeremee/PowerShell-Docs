@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -72,8 +72,8 @@ PS C:\> Invoke-Expression $Command
 
 This example runs a command string that is saved in the $Command variable.
 
-The command string is enclosed in single quotation marks because it includes a variable, $_, which represents the current object.
-If it were enclosed in double quotation marks, the $_ variable would be replaced by its value before it was saved in the $Command variable.
+The command string is enclosed in single quotation marks because it includes a variable, `$_`, which represents the current object.
+If it were enclosed in double quotation marks, the `$_` variable would be replaced by its value before it was saved in the $Command variable.
 
 ### Example 4
 ```
@@ -99,7 +99,7 @@ The Command parameter is required.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -134,4 +134,3 @@ In general, it is best to design your script with predefined input options, rath
 ## RELATED LINKS
 
 [Invoke-Command](../Microsoft.PowerShell.Core/Invoke-Command.md)
-

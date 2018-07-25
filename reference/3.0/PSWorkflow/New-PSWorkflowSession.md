@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,10 +7,12 @@ online version:  http://go.microsoft.com/fwlink/?LinkID=238268
 external help file:  PSWorkflow-help.xml
 title:  New-PSWorkflowSession
 ---
-
 # New-PSWorkflowSession
+
 ## SYNOPSIS
+
 Creates a workflow session.
+
 ## SYNTAX
 
 ```
@@ -21,6 +23,7 @@ New-PSWorkflowSession [[-ComputerName] <String[]>] [-Credential <Object>] [-Name
 ```
 
 ## DESCRIPTION
+
 The **New-PSWorkflowSession** cmdlet creates a user-managed session ("PSSession") that is especially designed for running Windows PowerShell workflows.
 It uses the Microsoft.PowerShell.Workflow session configuration, which includes scripts, type and formatting files, and options that are required for workflows.
 
@@ -30,18 +33,22 @@ You can also add workflow common parameters to this command.
 For more information about workflow common parameters, see about_WorkflowCommonParametershttp://technet.microsoft.com/library/jj129719(v=wps.620).aspx.
 
 This cmdlet is introduced in Windows PowerShell 3.0.
+
 ## EXAMPLES
 
-### Example 1
-```
-PS C:\> New-PSWorkflowSession -ComputerName ServerNode01 -Name WorkflowTests -SessionOption (New-PSSessionOption -OutputBufferingMode Drop)
+### Example 1: Create a new workflow session
+
+```powershell
+New-PSWorkflowSession -ComputerName ServerNode01 -Name WorkflowTests -SessionOption (New-PSSessionOption -OutputBufferingMode Drop)
 ```
 
 This command creates the WorkflowTests session on the ServerNode01 remote computer.
 The value of the **SessionOption** parameter is a **New-PSSessionOption** command that sets the output buffering mode in the session to Drop.
-### Example 2
-```
-PS C:\> "ServerNode01", "Server12" | New-PSWorkflowSession -Name WorkflowSession -Credential Domain01\Admin01 -ThrottleLimit 150
+
+### Example 2: Create workflow sessions on remote computers
+
+```powershell
+"ServerNode01", "Server12" | New-PSWorkflowSession -Name WorkflowSession -Credential Domain01\Admin01 -ThrottleLimit 150
 ```
 
 This command creates workflow sessions on the ServerNode01 and Server12 computers.
@@ -49,9 +56,11 @@ The command uses the **Credential** parameter to run with the permissions of the
 
 The command uses the **ThrottleLimit** parameter to increase the per-command throttle limit to 150.
 This value takes precedence over the default throttle limit of 100 that is set in the Microsoft.PowerShell.Workflow session configuration.
+
 ## PARAMETERS
 
 ### -ApplicationName
+
 Specifies the application name segment of the connection URI.
 
 The default value is the value of the **$PSSessionApplicationName** preference variable on the local computer.
@@ -65,7 +74,7 @@ The value of this parameter should match the value of the **URLPrefix** property
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -75,13 +84,14 @@ Accept wildcard characters: False
 ```
 
 ### -Authentication
-Specifies the mechanism that is used to authenticate the user's credentials. 
-Valid values are "Default", "Basic", "Credssp", "Digest", "Kerberos", "Negotiate", and "NegotiateWithImplicitCredential". 
+
+Specifies the mechanism that is used to authenticate the user's credentials.
+Valid values are "Default", "Basic", "Credssp", "Digest", "Kerberos", "Negotiate", and "NegotiateWithImplicitCredential".
 The default value is "Default".
 
 CredSSP authentication is available only in Windows Vista, Windows Server 2008, and later versions of Windows.
 
-For more information about the values of this parameter, see the description of the System.Management.Automation.Runspaces.AuthenticationMechanism enumeration in the MSDN (Microsoft Developer Network) library at http://go.microsoft.com/fwlink/?LinkID=144382.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Service Provider (CredSSP) authentication, in which the user's credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -90,7 +100,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -101,6 +111,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificateThumbprint
+
 Specifies the digital public key certificate (X509) of a user account that has permission to perform this action.
 Enter the certificate thumbprint of the certificate.
 
@@ -112,7 +123,7 @@ To get a certificate thumbprint, use the Get-Item cmdlet or the Get-ChildItem cm
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -122,6 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -ComputerName
+
 Creates a persistent connection (PSSession) to the specified computer.
 If you enter multiple computer names, Windows PowerShell creates multiple PSSessions, one for each computer.
 The default is the local computer.
@@ -148,6 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -Credential
+
 Specifies a user account that has permission to perform this action.
 The default is the current user.
 
@@ -158,7 +171,7 @@ When you type a user name, you will be prompted for a password.
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -168,6 +181,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableNetworkAccess
+
 Adds an interactive security token to loopback sessions.
 The interactive token lets you run commands in the loopback session that get data from other computers.
 For example, you can run a command in the session that copies XML files from a remote computer to the local computer.
@@ -191,7 +205,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -201,6 +215,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies a friendly name for the workflow session.
 
 You can use the name to refer to the session when using other cmdlets, such as Get-PSSession and Enter-PSSession.
@@ -209,7 +224,7 @@ The name is not required to be unique to the computer or the current session.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -219,8 +234,9 @@ Accept wildcard characters: False
 ```
 
 ### -Port
-Specifies the network port on the remote computer that is used for this connection. 
-To connect to a remote computer, the remote computer must be listening on the port that the connection uses. 
+
+Specifies the network port on the remote computer that is used for this connection.
+To connect to a remote computer, the remote computer must be listening on the port that the connection uses.
 The default ports are 5985 (the WinRM port for HTTP) and 5986 (the WinRM port for HTTPS).
 
 Before using an alternate port, you must configure the WinRM listener on the remote computer to listen at that port.
@@ -239,7 +255,7 @@ An alternate port setting might prevent the command from running on all computer
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -249,7 +265,8 @@ Accept wildcard characters: False
 ```
 
 ### -SessionOption
-Sets advanced options for the session. 
+
+Sets advanced options for the session.
 Enter a **SessionOption** object, such as one that you create by using the New-PSSessionOption cmdlet.
 
 The default values for the options are determined by the value of the $PSSessionOption preference variable, if it is set.
@@ -260,12 +277,12 @@ However, they do not take precedence over maximum values, quotas or limits set i
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 For a description of the session options, including the default values, see **New-PSSessionOption**.
-For information about the **$PSSessionOption** preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For information about the **$PSSessionOption** preference variable, see [about_Preference_Variables](../Microsoft.PowerShell.Core/About/about_Preference_Variables.md).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -275,6 +292,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThrottleLimit
+
 Specifies the maximum number of concurrent connections that can be established to run this command.
 If you omit this parameter or enter a value of 0  (zero), the default value for the Microsoft.PowerShellWorkflow session configuration, 100, is used.
 
@@ -283,7 +301,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -293,6 +311,7 @@ Accept wildcard characters: False
 ```
 
 ### -UseSSL
+
 Uses the Secure Sockets Layer (SSL) protocol to establish a connection to the remote computer.
 By default, SSL is not used.
 
@@ -304,7 +323,7 @@ If you use this parameter, but SSL is not available on the port used for the com
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -314,17 +333,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Management.Automation.Runspaces.PSSession[], System.String
+
 You can pipe a session or a computer name to **New-PSWorkflowSession**.
+
 ## OUTPUTS
 
 ### System.Management.Automation.Runspaces.PSSession
 
 ## NOTES
-* A **New-PSWorkflowSession** command is equivalent to the following command: `New-PSSession -ConfigurationName Microsoft.PowerShell.Workflow`
+
+- A **New-PSWorkflowSession** command is equivalent to the following command: `New-PSSession -ConfigurationName Microsoft.PowerShell.Workflow`
+
 ## RELATED LINKS
 
 [New-PSSession](../Microsoft.PowerShell.Core/New-PSSession.md)
@@ -344,4 +369,3 @@ You can pipe a session or a computer name to **New-PSWorkflowSession**.
 [PSWorkflow Module](PSWorkflow.md)
 
 [PSWorkflowUtility Module](../PSWorkflowUtility/PSWorkflowUtility.md)
-

@@ -1,11 +1,12 @@
 ---
-ms.date:  2017-06-09
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821498
-external help file:  System.Management.Automation.dll-Help.xml
-title:  New-PSSession
+external help file: System.Management.Automation.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Core
+ms.date: 06/09/2017
+online version: http://go.microsoft.com/fwlink/?LinkId=821498
+schema: 2.0.0
+title: New-PSSession
 ---
 
 # New-PSSession
@@ -39,7 +40,7 @@ New-PSSession [-Credential <PSCredential>] [-Name <String[]>] [-EnableNetworkAcc
 
 ### VMId
 ```
-New-PSSession -Credential <PSCredential> [-Name <String[]>] [-ConfigurationName <String>] -VMId <Guid[]>
+New-PSSession -Credential <PSCredential> [-Name <String[]>] [-ConfigurationName <String>] [-VMId] <Guid[]>
  [-ThrottleLimit <Int32>] [<CommonParameters>]
 ```
 
@@ -55,6 +56,17 @@ New-PSSession [-Name <String[]>] [-ConfigurationName <String>] -ContainerId <Str
  [-ThrottleLimit <Int32>] [<CommonParameters>]
 ```
 
+### SSHHost
+```
+New-PSSession [-Name <String[]>] [-Port <Int32>] [-HostName] <String[]> [-UserName <String>]
+ [-KeyFilePath <String>] [-SSHTransport] [<CommonParameters>]
+```
+
+### SSHHostHashParam
+```
+New-PSSession [-Name <String[]>] -SSHConnection <Hashtable[]> [<CommonParameters>]
+```
+
 ## DESCRIPTION
 The **New-PSSession** cmdlet creates a Windows PowerShell session (**PSSession**) on a local or remote computer.
 When you create a **PSSession**, Windows PowerShell establishes a persistent connection to the remote computer.
@@ -66,6 +78,8 @@ For more information, see about_PSSessions (http://go.microsoft.com/fwlink/?Link
 
 You can run commands on a remote computer without creating a **PSSession** by using the *ComputerName* parameters of **Enter-PSSession** or **Invoke-Command**.
 When you use the *ComputerName* parameter, Windows PowerShell creates a temporary connection that is used for the command and is then closed.
+
+Starting with PowerShell 6.0 you can use Secure Shell (SSH) to establish a connection to and create a session on a remote computer, if SSH is available on the local computer and the remote computer is configured with a PowerShell SSH endpoint. The benefit of an SSH based PowerShell remote session is that it can work across multiple platforms (Windows, Linux, macOS). For SSH based sessions you use the **HostName** or **SSHConnection** parameter set to specify the remote computer and relevant connection information. For more information about how to set up PowerShell SSH remoting see (https://github.com/PowerShell/PowerShell/tree/master/demos/SSHRemoting).
 
 ## EXAMPLES
 
@@ -175,7 +189,7 @@ The command saves the **PSSession** objects in the $s variable.
 
 The second command uses the *AsJob* parameter of the Invoke-Command cmdlet to start a background job that runs a `Get-Process PowerShell` command in each of the **PSSession** objects in $s.
 
-For more information about background jobs, see about_Jobs (http://go.microsoft.com/fwlink/?LinkID=113251) and about_Remote_Jobs (http://go.microsoft.com/fwlink/?LinkID=135184).
+For more information about Windows PowerShell background jobs, see [about_Jobs](About/about_Jobs.md) and [about_Remote_Jobs](About/about_Remote_Jobs.md).
 
 ### Example 10: Create a session for a computer by using its URI
 ```
@@ -199,6 +213,28 @@ The second command uses the option in a new session.
 The command uses the **New-PSSession** cmdlet to create a new session.
 The value of the SessionOption parameter is the **SessionOption** object in the $so variable.
 
+### Example 12: Create a session using SSH
+```
+PS C:\> New-PSSession -HostName LinuxServer01 -UserName UserA
+```
+
+This example shows how to create a new **PSSession** using Secure Shell (SSH). If SSH is configured on the remote computer to prompt for passwords then you will get a password prompt. Otherwise you will have to use SSH key based user authentication.
+
+### Example 13: Create a session using SSH and specify the port and user authentication key
+```
+PS C:\> New-PSSession -HostName LinuxServer01 -UserName UserA -Port 22 -KeyFilePath c:\<path>\userAKey_rsa
+```
+
+This example shows how to create a **PSSession** using Secure Shell (SSH). It uses the *Port* parameter to specify the port to use and the *KeyFilePath* parameter to specify an RSA key used to identify and authenticate the user on the remote computer.
+
+### Example 14: Create multiple sessions using SSH
+```
+PS C:\> $sshConnections = @{ HostName="WinServer1"; UserName="domain\userA"; KeyFilePath="c:\users\UserA\id_rsa" }, @{ HostName="LinuxServer5"; UserName="UserB"; KeyFilePath="c:\UserB\<path>\id_rsa }
+PS C:\> New-PSSession -SSHConnection $sshConnections
+```
+
+This example shows how to create multiple sessions using Secure Shell (SSH) and the **SSHConnection** parameter set. The *SSHConnection* parameter takes an array of hash tables that contain connection information for each session. Note that this example requires that the target remote computers have SSH configured to support key based user authentication.
+
 ## PARAMETERS
 
 ### -AllowRedirection
@@ -214,7 +250,7 @@ The default value is 5.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -230,7 +266,7 @@ Use this parameter to specify the application name when you are not using the *C
 The default value is the value of the $PSSessionApplicationName preference variable on the local computer.
 If this preference variable is not defined, the default value is WSMAN.
 This value is appropriate for most uses.
-For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 The WinRM service uses the application name to select a listener to service the connection request.
 The value of this parameter should match the value of the **URLPrefix** property of a listener on the remote computer.
@@ -238,7 +274,7 @@ The value of this parameter should match the value of the **URLPrefix** property
 ```yaml
 Type: String
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -251,17 +287,17 @@ Accept wildcard characters: False
 Specifies the mechanism that is used to authenticate the user's credentials.
 The acceptable values for this parameter are:
 
-- Default 
-- Basic 
-- Credssp 
-- Digest  
-- Kerberos  
-- Negotiate 
-- NegotiateWithImplicitCredential 
+- Default
+- Basic
+- Credssp
+- Digest
+- Kerberos
+- Negotiate
+- NegotiateWithImplicitCredential
 
 The default value is Default.
 
-For more information about the values of this parameter, see the description of the AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=144382 (http://go.microsoft.com/fwlink/?LinkID=144382) in the Microsoft Developer Network (MSDN) library.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 Caution: Credential Security Support Provider (CredSSP) authentication, in which the user credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -270,7 +306,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -292,7 +328,7 @@ To get a certificate, use the Get-Item or Get-ChildItem command in the Windows P
 ```yaml
 Type: String
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -341,12 +377,12 @@ If the specified session configuration does not exist on the remote computer, th
 
 The default value is the value of the $PSSessionConfigurationName preference variable on the local computer.
 If this preference variable is not set, the default is Microsoft.PowerShell.
-For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 ```yaml
 Type: String
 Parameter Sets: ComputerName, VMName, Uri, VMId, ContainerId
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -386,6 +422,23 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -ContainerId
+Specifies an array of IDs of containers.
+This cmdlet starts an interactive session with each of the specified containers.
+To see the containers that are available to you, use the **Get-Container** cmdlet.
+
+```yaml
+Type: String[]
+Parameter Sets: ContainerId
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -Credential
 Specifies a user account that has permission to perform this action.
 The default is the current user.
@@ -397,7 +450,7 @@ When you type a user name, this cmdlet prompts you for a password.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -409,7 +462,7 @@ Accept wildcard characters: False
 ```yaml
 Type: PSCredential
 Parameter Sets: VMName, VMId
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -442,7 +495,43 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName, Uri, Session
-Aliases: 
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HostName
+Specifies an array of computer names for a Secure Shell (SSH) based connection. This is similar to the ComputerName parameter except that the connection to the remote computer is made using SSH rather than Windows WinRM.
+
+This parameter was introduced in PowerShell 6.0.
+
+```yaml
+Type: String[]
+Parameter Sets: SSHHost
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -KeyFilePath
+Specifies a key file path used by Secure Shell (SSH) to authenticate a user on a remote computer.
+
+SSH allows user authentication to be performed via private/public keys as an alternative to basic password authentication. If the remote computer is configured for key authentication then this parameter can be used to provide the key that identifies the user.
+
+This parameter was introduced in PowerShell 6.0.
+
+```yaml
+Type: String
+Parameter Sets: SSHHost
+Aliases: IdentityFilePath
 
 Required: False
 Position: Named
@@ -460,7 +549,7 @@ The name is not required to be unique to the computer or the current session.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -471,6 +560,11 @@ Accept wildcard characters: False
 
 ### -Port
 Specifies the network port on the remote computer that is used for this connection.
+
+In PowerShell 6.0 this parameter was included in the **HostName** and **SSHConnection** parameter sets which support Secure Shell (SSH) connections.
+
+**WinRM (ComputerName parameter set)**
+
 To connect to a remote computer, the remote computer must be listening on the port that the connection uses.
 The default ports are 5985, which is the WinRM port for HTTP, and 5986, which is the WinRM port for HTTPS.
 
@@ -487,10 +581,69 @@ Do not use the *Port* parameter unless you must.
 The port setting in the command applies to all computers or sessions on which the command runs.
 An alternate port setting might prevent the command from running on all computers.
 
+**SSH (HostName and SSHConnection parameter sets)**
+To connect to a remote computer, the remote computer must be configured with the SSH service (SSHD) and must be listening on the port that the connection uses. The default port for SSH is 22.
+
 ```yaml
 Type: Int32
-Parameter Sets: ComputerName
-Aliases: 
+Parameter Sets: ComputerName, SSHHost
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RunAsAdministrator
+Indicates that the **PSSession** runs as administrator.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ContainerId
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SSHConnection
+This parameter takes an array of hashtables where each hashtable contains one or more connection parameters needed to establish a Secure Shell (SSH) connection (HostName, Port, UserName, KeyFilePath).
+
+The hashtable connection parameters are the same as defined for the **HostName** parameter set.
+
+The *SSHConnection* parameter is useful for creating multiple sessions where each session requires different connection information.
+
+This parameter was introduced in PowerShell 6.0.
+
+```yaml
+Type: Hashtable[]
+Parameter Sets: SSHHostHashParam
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SSHTransport
+Indicates that the remote connection is established using Secure Shell (SSH).
+
+By default PowerShell uses Windows WinRM to connect to a remote computer. This switch forces PowerShell to use the HostName parameter set for establishing an SSH based remote connection.
+
+This parameter was introduced in PowerShell 6.0.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: SSHHost
+Aliases:
+Accepted values: true
 
 Required: False
 Position: Named
@@ -510,7 +663,7 @@ The resulting **PSSession** objects have the same computer name, application nam
 ```yaml
 Type: PSSession[]
 Parameter Sets: Session
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -530,13 +683,13 @@ The session option values take precedence over default values for sessions set i
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
 
 For a description of the session options that includes the default values, see New-PSSessionOption.
-For information about the $PSSessionOption preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For information about the $PSSessionOption preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -553,8 +706,8 @@ The throttle limit applies only to the current command, not to the session or to
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
-Aliases: 
+Parameter Sets: ComputerName, VMName, Uri, VMId, Session, ContainerId
+Aliases:
 
 Required: False
 Position: Named
@@ -575,7 +728,7 @@ If you use this parameter, but SSL is not available on the port that is used for
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -584,30 +737,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ContainerId
-Specifies an array of IDs of containers.
-This cmdlet starts an interactive session with each of the specified containers.
-To see the containers that are available to you, use the **Get-Container** cmdlet.
+### -UserName
+Specifies the user name for the account used to create a session on the remote computer. User authentication method will depend on how Secure Shell (SSH) is configured on the remote computer.
+
+If SSH is configured for basic password authentication then you will be prompted for the user password.
+
+If SSH is configured for key based user authentication then a key file path can be provided via the KeyFilePath parameter and no password prompt will occur. Note that if the client user key file is located in an SSH known location then the KeyFilePath parameter is not needed for key based authentication, and user authentication will occur automatically based on the user name. See SSH documentation about key based user authentication for more information.
+
+This is not a required parameter. If no UserName parameter is specified then the current log on user name is used for the connection.
+
+This parameter was introduced in PowerShell 6.0.
 
 ```yaml
-Type: String[]
-Parameter Sets: ContainerId
-Aliases: 
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -RunAsAdministrator
-Indicates that the **PSSession** runs as administrator.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: ContainerId
-Aliases: 
+Type: String
+Parameter Sets: SSHHost
+Aliases:
 
 Required: False
 Position: Named
@@ -619,7 +763,7 @@ Accept wildcard characters: False
 ### -VMId
 Specifies an array of ID of virtual machines.
 This cmdlet starts an interactive session with each of the specified virtual machines.
-To see the virtual machines that are available to you, use the following command: 
+To see the virtual machines that are available to you, use the following command:
 
 `Get-VM | Select-Object -Property Name, ID`
 
@@ -629,7 +773,7 @@ Parameter Sets: VMId
 Aliases: VMGuid
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -643,7 +787,7 @@ To see the virtual machines that are available to you, use the **Get-VM** cmdlet
 ```yaml
 Type: String[]
 Parameter Sets: VMName
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -665,11 +809,11 @@ You can pipe a string, URI, or session object to this cmdlet.
 ### System.Management.Automation.Runspaces.PSSession
 
 ## NOTES
-* This cmdlet uses the Windows PowerShell remoting infrastructure. To use this cmdlet, the local computer and any remote computers must be configured for Windows PowerShell remoting. For more information, see about_Remote_Requirements (http://go.microsoft.com/fwlink/?LinkID=135187).
+* This cmdlet uses the Windows PowerShell remoting infrastructure. To use this cmdlet, the local computer and any remote computers must be configured for Windows PowerShell remoting. For more information, see [about_Remote_Requirements](About/about_Remote_Requirements.md).
 * To create a **PSSession** on the local computer, start Windows PowerShell with the Run as administrator option.
 * When you are finished with the **PSSession**, use the Remove-PSSession cmdlet to delete the **PSSession** and release its resources.
-
-*
+* The **HostName** and **SSHConnection** parameter sets were included starting with PowerShell 6.0. They were added to provide PowerShell remoting based on Secure Shell (SSH). Both SSH and PowerShell are supported on multiple platforms (Windows, Linux, macOS) and PowerShell remoting will work over these platforms where PowerShell and SSH are installed and configured. This is separate from the previous Windows only remoting that is based on WinRM and much of the WinRM specific features and limitations do not apply. For example WinRM based quotas, session options, custom endpoint configuration, and disconnect/reconnect features are currently not supported.
+For more information about how to set up PowerShell SSH remoting see (https://github.com/PowerShell/PowerShell/tree/master/demos/SSHRemoting).
 
 ## RELATED LINKS
 
@@ -688,4 +832,3 @@ You can pipe a string, URI, or session object to this cmdlet.
 [Receive-PSSession](Receive-PSSession.md)
 
 [Remove-PSSession](Remove-PSSession.md)
-

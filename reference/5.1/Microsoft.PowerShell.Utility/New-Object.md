@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -198,7 +198,7 @@ Specifies the programmatic identifier (ProgID) of the COM object.
 ```yaml
 Type: String
 Parameter Sets: Com
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -219,7 +219,7 @@ If the object is not a **PSObject**, the command generates a non-terminating err
 ```yaml
 Type: IDictionary
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -235,7 +235,7 @@ This feature distinguishes actual COM objects from .NET Framework objects with C
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Com
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -251,7 +251,7 @@ You cannot specify both the *TypeName* parameter and the *ComObject* parameter.
 ```yaml
 Type: String
 Parameter Sets: Net
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -277,8 +277,6 @@ You cannot pipe input to this cmdlet.
 * **New-Object** provides the most commonly-used functionality of the VBScript CreateObject function. A statement like `Set objShell = CreateObject("Shell.Application")` in VBScript can be translated to `$objShell = New-Object -COMObject "Shell.Application"` in Windows PowerShell.
 * **New-Object** expands upon the functionality available in the Windows Script Host environment by making it easy to work with .NET Framework objects from the command line and within scripts.
 
-*
-
 ## RELATED LINKS
 
 [Compare-Object](Compare-Object.md)
@@ -292,4 +290,3 @@ You cannot pipe input to this cmdlet.
 [Sort-Object](Sort-Object.md)
 
 [Tee-Object](Tee-Object.md)
-

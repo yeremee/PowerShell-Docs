@@ -1,5 +1,5 @@
----
-ms.date:  2017-06-09
+﻿---
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,23 +7,28 @@ online version:  http://go.microsoft.com/fwlink/?LinkID=210604
 external help file:  System.Management.Automation.dll-Help.xml
 title:  Connect-PSSession
 ---
-
 # Connect-PSSession
+
 ## SYNOPSIS
+
 Reconnects to disconnected sessions
+
 ## SYNTAX
 
 ### Name (Default)
+
 ```
 Connect-PSSession -Name <String[]> [-ThrottleLimit <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Session
+
 ```
 Connect-PSSession [-Session] <PSSession[]> [-ThrottleLimit <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ComputerNameGuid
+
 ```
 Connect-PSSession [-ComputerName] <String[]> [-ApplicationName <String>] [-ConfigurationName <String>]
  -InstanceId <Guid[]> [-Credential <PSCredential>] [-Authentication <AuthenticationMechanism>]
@@ -32,6 +37,7 @@ Connect-PSSession [-ComputerName] <String[]> [-ApplicationName <String>] [-Confi
 ```
 
 ### ComputerName
+
 ```
 Connect-PSSession [-ComputerName] <String[]> [-ApplicationName <String>] [-ConfigurationName <String>]
  [-Name <String[]>] [-Credential <PSCredential>] [-Authentication <AuthenticationMechanism>]
@@ -40,6 +46,7 @@ Connect-PSSession [-ComputerName] <String[]> [-ApplicationName <String>] [-Confi
 ```
 
 ### ConnectionUri
+
 ```
 Connect-PSSession [-ConfigurationName <String>] [-ConnectionUri] <Uri[]> [-AllowRedirection] [-Name <String[]>]
  [-Credential <PSCredential>] [-Authentication <AuthenticationMechanism>] [-CertificateThumbprint <String>]
@@ -47,6 +54,7 @@ Connect-PSSession [-ConfigurationName <String>] [-ConnectionUri] <Uri[]> [-Allow
 ```
 
 ### ConnectionUriGuid
+
 ```
 Connect-PSSession [-ConfigurationName <String>] [-ConnectionUri] <Uri[]> [-AllowRedirection]
  -InstanceId <Guid[]> [-Credential <PSCredential>] [-Authentication <AuthenticationMechanism>]
@@ -55,16 +63,19 @@ Connect-PSSession [-ConfigurationName <String>] [-ConnectionUri] <Uri[]> [-Allow
 ```
 
 ### InstanceId
+
 ```
 Connect-PSSession -InstanceId <Guid[]> [-ThrottleLimit <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Id
+
 ```
 Connect-PSSession [-ThrottleLimit <Int32>] [-Id] <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The **Connect-PSSession** cmdlet reconnects to user-managed Windows PowerShell sessions ("PSSessions") that were disconnected.
 It works on sessions that are disconnected intentionally, such as by using the Disconnect-PSSession cmdlet or the **InDisconnectedSession** parameter of the Invoke-Command cmdlet, and those that were disconnected unintentionally, such as by a temporary network outage.
 
@@ -76,11 +87,13 @@ Also you cannot connect sessions to sessions started by other users, unless you 
 For more information about the Disconnected Sessions feature, see about_Remote_Disconnected_Sessions.
 
 This cmdlet is introduced in Windows PowerShell 3.0.
+
 ## EXAMPLES
 
 ### Example 1
+
 ```
-PS C:\> Connect-PSSession -ComputerName Server01 -Name ITTask
+PS> Connect-PSSession -ComputerName Server01 -Name ITTask
 Id Name            ComputerName    State         ConfigurationName     Availability
 -- ----            ------------    -----         -----------------     ------------
  4 ITTask          Server01        Opened        ITTasks                  Available
@@ -90,23 +103,25 @@ This command reconnects to the ITTask session on the Server01 computer.
 
 The output shows that the command was successful.
 The **State** of the session is **Opened** and the **Availability** is **Available**, indicating that you can run commands in the session.
+
 ### Example 2
+
 ```
-PS C:\> Get-PSSession 
+PS> Get-PSSession
 
 Id Name            ComputerName    State         ConfigurationName     Availability
 -- ----            ------------    -----         -----------------     ------------
  1 Backups         Localhost       Opened        Microsoft.PowerShell     Available
 
 
-PS C:\> Get-PSSession | Disconnect-PSSession
+PS> Get-PSSession | Disconnect-PSSession
 
 Id Name            ComputerName    State         ConfigurationName     Availability
 -- ----            ------------    -----         -----------------     ------------
  1 Backups         Localhost       Disconnected  Microsoft.PowerShell          None
 
 
-PS C:\> Get-PSSession | Connect-PSSession
+PS> Get-PSSession | Connect-PSSession
 
 Id Name            ComputerName    State         ConfigurationName     Availability
 -- ----            ------------    -----         -----------------     ------------
@@ -130,32 +145,34 @@ The output shows that the Backups session was reconnected.
 The **State** of the session is **Opened** and the **Availability** is **Available**.
 
 If you use the **Connect-PSSession** cmdlet on a session that is not disconnected, the command has no effect on the session and it does not generate any errors.
+
 ### Example 3
+
 ```
 The administrator begins by creating a sessions on a remote computer and running a script in the session.The first command uses the New-PSSession cmdlet to create the ITTask session on the Server01 remote computer. The command uses the **ConfigurationName** parameter to specify the ITTasks session configuration. The command saves the sessions in the $s variable.
-PS C:\> $s = New-PSSession -ComputerName Server01 -Name ITTask -ConfigurationName ITTasks
+PS> $s = New-PSSession -ComputerName Server01 -Name ITTask -ConfigurationName ITTasks
 
  The second command **Invoke-Command** cmdlet to start a background job in the session in the $s variable. It uses the **FilePath** parameter to run the script in the background job.
-PS C:\> Invoke-Command -Session $s {Start-Job -FilePath \\Server30\Scripts\Backup-SQLDatabase.ps1}
+PS> Invoke-Command -Session $s {Start-Job -FilePath \\Server30\Scripts\Backup-SQLDatabase.ps1}
 Id     Name            State         HasMoreData     Location             Command
 --     ----            -----         -----------     --------             -------
 2      Job2            Running       True            Server01             \\Server30\Scripts\Backup...
 
 The third command uses the Disconnect-PSSession cmdlet to disconnect from the session in the $s variable. The command uses the **OutputBufferingMode** parameter with a value of **Drop** to prevent the script from being blocked by having to deliver output to the session. It uses the **IdleTimeoutSec** parameter to extend the session timeout to 15 hours.When the command completes, the administrator locks her computer and goes home for the evening.
-PS C:\> Disconnect-PSSession -Session $s -OutputBufferingMode Drop -IdleTimeoutSec 60*60*15
+PS> Disconnect-PSSession -Session $s -OutputBufferingMode Drop -IdleTimeoutSec 60*60*15
 Id Name            ComputerName    State         ConfigurationName     Availability
 -- ----            ------------    -----         -----------------     ------------
  1 ITTask          Server01        Disconnected  ITTasks               None
 
 Later that evening, the administrator starts her home computer, logs on to the corporate network, and starts Windows PowerShell. The fourth command uses the  Get-PSSession cmdlet to get the sessions on the Server01 computer. The command finds the ITTask session.The fifth command uses the **Connect-PSSession** cmdlet to connect to the ITTask session. The command saves the session in the $s variable.
-PS C:\> Get-PSSession -ComputerName Server01 -Name ITTask
+PS> Get-PSSession -ComputerName Server01 -Name ITTask
 
 Id Name            ComputerName    State         ConfigurationName     Availability
 -- ----            ------------    -----         -----------------     ------------
  1 ITTask          Server01        Disconnected  ITTasks               None
 
 
-PS C:\> $s = Connect-PSSession -ComputerName Server01 -Name ITTask
+PS> $s = Connect-PSSession -ComputerName Server01 -Name ITTask
 
 
 Id Name            ComputerName    State         ConfigurationName     Availability
@@ -165,18 +182,18 @@ Id Name            ComputerName    State         ConfigurationName     Availabil
 The sixth command uses the Invoke-Command cmdlet to run a Get-Job command in the session in the $s variable. The output shows that the job completed successfully.The seventh command uses the **Invoke-Command** cmdlet to run a Receive-Job command in the session in the $s variable in the session. The command saves the results in the $BackupSpecs variable.The eighth command uses the **Invoke-Command** cmdlet to runs another script in the session. The command uses the value of the $BackupSpecs variable in the session as input to the script.
 
 
-PS C:\> Invoke-Command -Session $s {Get-Job}
+PS> Invoke-Command -Session $s {Get-Job}
 
 Id     Name            State         HasMoreData     Location             Command
 --     ----            -----         -----------     --------             -------
 2      Job2            Completed     True            Server01             \\Server30\Scripts\Backup...
 
-PS C:\> Invoke-Command -Session $s {$BackupSpecs = Receive-Job -JobName Job2}
+PS> Invoke-Command -Session $s {$BackupSpecs = Receive-Job -JobName Job2}
 
-PS C:\> Invoke-Command -Session $s {\\Server30\Scripts\New-SQLDatabase.ps1 -InitData $BackupSpecs.Initialization}
+PS> Invoke-Command -Session $s {\\Server30\Scripts\New-SQLDatabase.ps1 -InitData $BackupSpecs.Initialization}
 
 The ninth command disconnects from the session in the $s variable.The administrator closes Windows PowerShell and closes the computer. She can reconnect to the session on the next day and check the script status from her work computer.
-PS C:\> Disconnect-PSSession -Session $s -OutputBufferingMode Drop -IdleTimeoutSec 60*60*15
+PS> Disconnect-PSSession -Session $s -OutputBufferingMode Drop -IdleTimeoutSec 60*60*15
 Id Name            ComputerName    State         ConfigurationName     Availability
 -- ----            ------------    -----         -----------------     ------------
  1 ITTask          Server01        Disconnected  ITTasks               None
@@ -186,14 +203,16 @@ This series of commands shows how the **Connect-PSSession** cmdlet might be used
 In this case, a system administrator starts a long-running job in a session on a remote computer.
 After starting the job, the administrator disconnects from the session and goes home.
 Later that evening, the administrator logs on to her home computer and verifies that the job ran to completion.
+
 ## PARAMETERS
 
 ### -Authentication
+
 Specifies the mechanism that is used to authenticate the user's credentials in the command to reconnect to the disconnected session.
-Valid values are **Default**, **Basic**, **Credssp**, **Digest**, **Kerberos**, **Negotiate**, and **NegotiateWithImplicitCredential**. 
+Valid values are **Default**, **Basic**, **Credssp**, **Digest**, **Kerberos**, **Negotiate**, and **NegotiateWithImplicitCredential**.
 The default value is **Default**.
 
-For information about the values of this parameter, see "AuthenticationMechanism enumeration" in MSDN.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 CAUTION: Credential Security Support Provider (CredSSP) authentication, in which the user's credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -202,7 +221,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: ComputerNameGuid, ComputerName, ConnectionUri, ConnectionUriGuid
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -212,6 +231,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificateThumbprint
+
 Specifies the digital public key certificate (X509) of a user account that has permission to connect to the disconnected session.
 Enter the certificate thumbprint of the certificate.
 
@@ -223,7 +243,7 @@ To get a certificate thumbprint, use a **Get-Item** or **Get-ChildItem** command
 ```yaml
 Type: String
 Parameter Sets: ComputerNameGuid, ComputerName, ConnectionUri, ConnectionUriGuid
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -233,6 +253,7 @@ Accept wildcard characters: False
 ```
 
 ### -ComputerName
+
 Specifies the computers on which the disconnected sessions are stored.
 Sessions are stored on the computer that is at the "server-side" or receiving end of a connection.
 The default is the local computer.
@@ -254,6 +275,7 @@ Accept wildcard characters: False
 ```
 
 ### -Credential
+
 Specifies a user account that has permission to connect to the disconnected session.
 The default is the current user.
 
@@ -264,7 +286,7 @@ If you type a user name, you will be prompted for a password.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerNameGuid, ComputerName, ConnectionUri, ConnectionUriGuid
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -274,6 +296,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the IDs of the disconnected sessions.
 The ID parameter works only when the disconnected session was previously connected to the current session.
 
@@ -282,7 +305,7 @@ This parameter is valid, but not effective, when the session is stored on the lo
 ```yaml
 Type: Int32[]
 Parameter Sets: Id
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -292,6 +315,7 @@ Accept wildcard characters: False
 ```
 
 ### -InstanceId
+
 Specifies the instance IDs of the disconnected sessions.
 
 The instance ID is a GUID that uniquely identifies a PSSession on a local or remote computer.
@@ -301,7 +325,7 @@ The instance ID is stored in the **InstanceID** property of the PSSession.
 ```yaml
 Type: Guid[]
 Parameter Sets: ComputerNameGuid, ConnectionUriGuid, InstanceId
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -311,12 +335,13 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the friendly names of the disconnected sessions.
 
 ```yaml
 Type: String[]
 Parameter Sets: Name
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -328,7 +353,7 @@ Accept wildcard characters: False
 ```yaml
 Type: String[]
 Parameter Sets: ComputerName, ConnectionUri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -338,8 +363,9 @@ Accept wildcard characters: False
 ```
 
 ### -Port
-Specifies the network port on the remote computer that is used to reconnect to the session. 
-To connect to a remote computer, the remote computer must be listening on the port that the connection uses. 
+
+Specifies the network port on the remote computer that is used to reconnect to the session.
+To connect to a remote computer, the remote computer must be listening on the port that the connection uses.
 The default ports are 5985 (the WinRM port for HTTP) and 5986 (the WinRM port for HTTPS).
 
 Before using an alternate port, you must configure the WinRM listener on the remote computer to listen at that port.
@@ -356,7 +382,7 @@ An alternate port setting might prevent the command from running on all computer
 ```yaml
 Type: Int32
 Parameter Sets: ComputerNameGuid, ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -366,13 +392,14 @@ Accept wildcard characters: False
 ```
 
 ### -Session
+
 Specifies the disconnected sessions.
 Enter a variable that contains the PSSessions or a command that creates or gets the PSSessions, such as a Get-PSSession command.
 
 ```yaml
 Type: PSSession[]
 Parameter Sets: Session
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -382,7 +409,8 @@ Accept wildcard characters: False
 ```
 
 ### -SessionOption
-Sets advanced options for the session. 
+
+Sets advanced options for the session.
 Enter a **SessionOption** object, such as one that you create by using the New-PSSessionOption cmdlet, or a hash table in which the keys are session option names and the values are session option values.
 
 The default values for the options are determined by the value of the **$PSSessionOption** preference variable, if it is set.
@@ -392,13 +420,13 @@ The session option values take precedence over default values for sessions set i
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
 
 For a description of the session options, including the default values, see New-PSSessionOption.
-For information about the **$PSSessionOption** preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For information about the **$PSSessionOption** preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: ComputerNameGuid, ComputerName, ConnectionUri, ConnectionUriGuid
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -408,6 +436,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThrottleLimit
+
 Specifies the maximum number of concurrent connections that can be established to run this command.
 If you omit this parameter or enter a value of 0, the default value, 32, is used.
 
@@ -416,7 +445,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -426,6 +455,7 @@ Accept wildcard characters: False
 ```
 
 ### -UseSSL
+
 Uses the Secure Sockets Layer (SSL) protocol to connect to the disconnected session.
 By default, SSL is not used.
 
@@ -437,7 +467,7 @@ If you use this parameter, but SSL is not available on the port used for the com
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerNameGuid, ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -447,6 +477,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowRedirection
+
 Allows redirection of this connection to an alternate Uniform Resource Identifier (URI).
 
 When you use the **ConnectionURI** parameter, the remote destination can return an instruction to redirect to a different URI.
@@ -459,7 +490,7 @@ The default value is 5.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ConnectionUri, ConnectionUriGuid
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -469,6 +500,7 @@ Accept wildcard characters: False
 ```
 
 ### -ApplicationName
+
 Connects only to sessions that use the specified application.
 
 Enter the application name segment of the connection URI.
@@ -481,7 +513,7 @@ It does not change the application that the session uses.
 ```yaml
 Type: String
 Parameter Sets: ComputerNameGuid, ComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -491,6 +523,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConfigurationName
+
 Connects only to sessions that use the specified session configuration.
 
 Enter a configuration name or the fully qualified resource URI for a session configuration.
@@ -505,7 +538,7 @@ For more information about session configurations, see about_Session_Configurati
 ```yaml
 Type: String
 Parameter Sets: ComputerNameGuid, ComputerName, ConnectionUri, ConnectionUriGuid
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -515,9 +548,10 @@ Accept wildcard characters: False
 ```
 
 ### -ConnectionUri
+
 Specifies the Uniform Resource Identifiers (URIs) of the connection endpoints for the disconnected sessions.
 
-The URI must be fully qualified. 
+The URI must be fully qualified.
 The format of this string is as follows:
 
 `\<Transport\>://\<ComputerName\>:\<Port\>/\<ApplicationName\>`
@@ -547,6 +581,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -562,6 +597,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -578,34 +614,42 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### System.Management.Automation.Runspaces.PSSession
+
 You can pipe a session (PSSession) to the **Connect-PSSession** cmdlet.
+
 ## OUTPUTS
 
 ### System.Management.Automation.Runspaces.PSSession
+
 **Connect-PSSession** returns an object that represents the session to which it reconnected.
+
 ## NOTES
-* **Connect-PSSession** reconnects only to sessions that are disconnected, that is, sessions that have a value of **Disconnected** for  the **State** property. Only sessions that are connected to (terminate at) computers running Windows PowerShell 3.0 or later can be disconnected and reconnected.
-* If you use the **Connect-PSSession** cmdlet on a session that is not disconnected, the command has no effect on the session and it does not generate errors.
-* Disconnected loopback sessions with interactive tokens (those created with the **EnableNetworkAccess** parameter) can be reconnected only from the computer on which the session was created. This restriction protects the computer from malicious access.
-* The value of the **State** property of a PSSession is relative to the current session. Therefore, a value of **Disconnected** means that the PSSession is not connected to the current session. However, it does not mean that the PSSession is disconnected from all sessions. It might be connected to a different session. To determine whether you can connect or reconnect to the session, use the **Availability** property.
+
+- **Connect-PSSession** reconnects only to sessions that are disconnected, that is, sessions that have a value of **Disconnected** for  the **State** property. Only sessions that are connected to (terminate at) computers running Windows PowerShell 3.0 or later can be disconnected and reconnected.
+- If you use the **Connect-PSSession** cmdlet on a session that is not disconnected, the command has no effect on the session and it does not generate errors.
+- Disconnected loopback sessions with interactive tokens (those created with the **EnableNetworkAccess** parameter) can be reconnected only from the computer on which the session was created. This restriction protects the computer from malicious access.
+- The value of the **State** property of a PSSession is relative to the current session. Therefore, a value of **Disconnected** means that the PSSession is not connected to the current session. However, it does not mean that the PSSession is disconnected from all sessions. It might be connected to a different session. To determine whether you can connect or reconnect to the session, use the **Availability** property.
 
   An **Availability** value of **None** indicates that you can connect to the session.
 A value of **Busy** indicates that you cannot connect to the PSSession because it is connected to another session.
 
-  For more information about the values of the **State** property of sessions, see "RunspaceState Enumeration" in MSDN at http://msdn.microsoft.com/library/windows/desktop/system.management.automation.runspaces.runspacestate(v=VS.85).aspxhttp://msdn.microsoft.com/library/windows/desktop/system.management.automation.runspaces.runspacestate(v=VS.85).aspx.
+  For more information about the values of the **State** property of sessions, see [RunspaceState Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.runspacestate) in the MSDN library.
 
-  For more information about the values of the **Availability** property of sessions, see RunspaceAvailability Enumeration at http://msdn.microsoft.com/library/windows/desktop/system.management.automation.runspaces.runspaceavailability(v=vs.85).aspxhttp://msdn.microsoft.com/library/windows/desktop/system.management.automation.runspaces.runspaceavailability(v=vs.85).aspx.
+  For more information about the values of the **Availability** property of sessions, see [RunspaceAvailability Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.runspaceavailability) in the MSDN library.
 
-* You cannot change the idle timeout value of a PSSession when you connect to the PSSession. The **SessionOption** parameter of **Connect-PSSession** takes a **SessionOption** object that has an **IdleTimeout** value. However, the **IdleTimeout** value of the **SessionOption** object and the **IdleTimeout** value of the **$PSSessionOption** variable are ignored when connecting to a PSSession.
+- You cannot change the idle timeout value of a PSSession when you connect to the PSSession. The **SessionOption** parameter of **Connect-PSSession** takes a **SessionOption** object that has an **IdleTimeout** value. However, the **IdleTimeout** value of the **SessionOption** object and the **IdleTimeout** value of the **$PSSessionOption** variable are ignored when connecting to a PSSession.
 
   You can set and change the idle timeout of a PSSession when you create the PSSession (by using the New-PSSession or Invoke-Command cmdlets) and when you disconnect from the PSSession.
 
   The **IdleTimeout** property of  a PSSession is critical to disconnected sessions, because it determines how long a disconnected session is maintained on the remote computer.
 Disconnected sessions are considered to be idle from the moment that they are disconnected, even if commands are running in the disconnected session.
+
 ## RELATED LINKS
 
 [Connect-PSSession](Connect-PSSession.md)
@@ -639,4 +683,3 @@ Disconnected sessions are considered to be idle from the moment that they are di
 [about_Remote_Disconnected_Sessions](About/about_Remote_Disconnected_Sessions.md)
 
 [about_Session_Configurations](About/about_Session_Configurations.md)
-

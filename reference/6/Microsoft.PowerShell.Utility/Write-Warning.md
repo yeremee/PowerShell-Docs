@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,8 +16,7 @@ Writes a warning message.
 ## SYNTAX
 
 ```
-Write-Warning [-Message] <String> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+Write-Warning [-Message] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -51,8 +50,8 @@ PS C:\> Write-Warning "This is only a test warning."
 PS C:\>
 PS C:\> $warningpreference = "Stop"
 PS C:\> Write-Warning "This is only a test warning."
-WARNING: This is only a test message. 
-Write-Warning : Command execution stopped because the shell variable "WarningPreference" is set to Stop. 
+WARNING: This is only a test message.
+Write-Warning : Command execution stopped because the shell variable "WarningPreference" is set to Stop.
 At line:1 char:14
      + Write-Warning <<<<  "This is only a test message."
 ```
@@ -71,9 +70,9 @@ For more information about the $WarningPreference variable, see about_Preference
 ### Example 4: Set the WarningAction parameter and write a warning
 ```
 PS C:\> Write-Warning "This is only a test warning." -WarningAction Inquire
-WARNING: This is only a test warning. 
+WARNING: This is only a test warning.
 Confirm
-Continue with this operation? 
+Continue with this operation?
  [Y] Yes  [A] Yes to All  [H] Halt Command  [S] Suspend  [?] Help (default is "Y"):
 ```
 
@@ -88,32 +87,6 @@ For more information about the *WarningAction* common parameter, see about_Commo
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Message
 Specifies the warning message.
@@ -164,4 +137,3 @@ It does not generate any other output.
 [Write-Progress](Write-Progress.md)
 
 [Write-Verbose](Write-Verbose.md)
-

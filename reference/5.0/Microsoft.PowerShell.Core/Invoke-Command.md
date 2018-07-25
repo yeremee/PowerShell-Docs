@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -387,13 +387,13 @@ As a result, if the remote computer specified by *ConnectionURI* returns a redir
 
 ### Example 14: Use a session option
 ```
-PS C:\> $so = New-PSSessionOption -SkipCACheck
-PS C:\> Invoke-Command -Session $s -ScriptBlock { Get-HotFix } -SessionOption $so -Credential server01\user01
+PS C:\> $so = New-PSSessionOption -SkipCACheck -SkipCNCheck –SkipRevocationCheck
+PS C:\> Invoke-Command -ComputerName server01 -UseSSL -ScriptBlock { Get-HotFix } -SessionOption $so -Credential server01\user01
 ```
 
 This example shows how to create and use a *SessionOption* parameter.
 
-The first command uses the **New-PSSessionOption** cmdlet to create a session option.
+The first command uses the **New-PSSessionOption** cmdlet to create session options. These options cause the remote end not to verify the Certificate Authority, Cannonical Name and Revocation Lists while evaluating the incoming HTTPS connection (disabling these checks is convenient for troubleshooting, but obviously not secure).
 It saves the resulting SessionOption object in the $so parameter.
 
 The second command uses the **Invoke-Command** cmdlet to run a Get-HotFix command remotely.
@@ -462,7 +462,7 @@ The default value is 5.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: FilePathUri, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -478,7 +478,7 @@ Use this parameter to specify the application name when you are not using the *C
 The default value is the value of the $PSSessionApplicationName preference variable on the local computer.
 If this preference variable is not defined, the default value is WSMAN.
 This value is appropriate for most uses.
-For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 The WinRM service uses the application name to select a listener to service the connection request.
 The value of this parameter should match the value of the **URLPrefix** property of a listener on the remote computer.
@@ -486,7 +486,7 @@ The value of this parameter should match the value of the **URLPrefix** property
 ```yaml
 Type: String
 Parameter Sets: ComputerName, FilePathComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -535,12 +535,12 @@ To get the job results, use the Receive-Job cmdlet.
 The *AsJob* parameter resembles using the **Invoke-Command** cmdlet to run a Start-Job command remotely.
 However, with *AsJob*, the job is created on the local computer, even though the job runs on a remote computer, and the results of the remote job are automatically returned to the local computer.
 
-For more information about Windows PowerShell background jobs, see about_Jobs (http://go.microsoft.com/fwlink/?LinkID=113251) and about_Remote_Jobs (http://go.microsoft.com/fwlink/?LinkID=135184).
+For more information about Windows PowerShell background jobs, see [about_Jobs](About/about_Jobs.md) and [about_Remote_Jobs](About/about_Remote_Jobs.md).
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Session, FilePathRunspace, ComputerName, FilePathComputerName, FilePathVMName, FilePathUri, FilePathVMId, VMId, VMName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -553,19 +553,19 @@ Accept wildcard characters: False
 Specifies the mechanism that is used to authenticate the user's credentials.
 The acceptable values for this parameter are:
 
-- Default 
-- Basic 
-- Credssp 
-- Digest 
-- Kerberos 
-- Negotiate 
-- NegotiateWithImplicitCredential 
+- Default
+- Basic
+- Credssp
+- Digest
+- Kerberos
+- Negotiate
+- NegotiateWithImplicitCredential
 
 The default value is Default.
 
 CredSSP authentication is available only in Windows Vista, Windows Server 2008, and later versions of the Windows operating system.
 
-For information about the values of this parameter, see the description of the AuthenticationMechanism Enumerationhttp://go.microsoft.com/fwlink/?LinkID=144382 (http://go.microsoft.com/fwlink/?LinkID=144382) in the Microsoft Developer Network (MSDN) library.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 CAUTION: Credential Security Support Provider (CredSSP) authentication, in which the user's credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
 This mechanism increases the security risk of the remote operation.
@@ -574,7 +574,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: ComputerName, FilePathComputerName, FilePathUri, Uri
-Aliases: 
+Aliases:
 Accepted values: Default, Basic, Negotiate, NegotiateWithImplicitCredential, Credssp, Digest, Kerberos
 
 Required: False
@@ -596,7 +596,7 @@ To get a certificate thumbprint, use a Get-Item or Get-ChildItem command in the 
 ```yaml
 Type: String
 Parameter Sets: ComputerName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -649,7 +649,7 @@ For more information, see about_Preference_Variables.
 ```yaml
 Type: String
 Parameter Sets: ComputerName, FilePathComputerName, FilePathUri, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -701,7 +701,7 @@ If you type a user name, this cmdlet prompts you for a password.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerName, FilePathComputerName, FilePathUri, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -713,7 +713,7 @@ Accept wildcard characters: False
 ```yaml
 Type: PSCredential
 Parameter Sets: FilePathVMName, FilePathVMId, VMId, VMName
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -747,7 +747,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName, FilePathComputerName, FilePathUri, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -840,7 +840,7 @@ When using the *InputObject* parameter, use the $Input automatic variable in the
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -855,12 +855,12 @@ By default, jobs are named Job\<n\>, where \<n\> is an ordinal number.
 
 If you use the *JobName* parameter in a command, the command is run as a job, and **Invoke-Command** returns a job object, even if you do not include *AsJob* in the command.
 
-For more information about Windows PowerShell background jobs, see about_Jobs (http://go.microsoft.com/fwlink/?LinkID=113251).
+For more information about Windows PowerShell background jobs, see [about_Jobs](About/about_Jobs.md).
 
 ```yaml
 Type: String
 Parameter Sets: Session, FilePathRunspace, ComputerName, FilePathComputerName, FilePathUri, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -880,7 +880,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: InProcess
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -891,7 +891,7 @@ Accept wildcard characters: False
 
 ### -Port
 Specifies the network port on the remote computer that is used for this command.
-To connect to a remote computer, the remote computer must be listening on the port that the connection uses. 
+To connect to a remote computer, the remote computer must be listening on the port that the connection uses.
 The default ports are 5985, which is the WinRM port for HTTP, and 5986, which is the WinRM port for HTTPS.
 
 Before using an alternate port, configure the WinRM listener on the remote computer to listen at that port.
@@ -908,7 +908,7 @@ An alternate port setting might prevent the command from running on all computer
 ```yaml
 Type: Int32
 Parameter Sets: ComputerName, FilePathComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -949,7 +949,7 @@ For more information, see about_PSSessions.
 ```yaml
 Type: PSSession[]
 Parameter Sets: Session, FilePathRunspace
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -968,7 +968,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String[]
 Parameter Sets: ComputerName, FilePathComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -988,13 +988,13 @@ The session option values take precedence over default values for sessions set i
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
 
 For a description of the session options that includes the default values, see **New-PSSessionOption**.
-For information about the $PSSessionOption preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For information about the $PSSessionOption preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
 
 ```yaml
 Type: PSSessionOption
 Parameter Sets: ComputerName, FilePathComputerName, FilePathUri, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -1012,7 +1012,7 @@ The throttle limit applies only to the current command, not to the session or to
 ```yaml
 Type: Int32
 Parameter Sets: Session, FilePathRunspace, ComputerName, FilePathComputerName, FilePathVMName, FilePathUri, FilePathVMId, VMId, VMName, Uri
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -1033,7 +1033,7 @@ If you use this parameter, but SSL is not available on the port that is used for
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerName, FilePathComputerName
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -1043,12 +1043,12 @@ Accept wildcard characters: False
 ```
 
 ### -VMGuid
-{{Fill VMGuid Description}}
+Specifies an array of IDs of virtual machines.
 
 ```yaml
 Type: Guid[]
 Parameter Sets: FilePathVMId, VMId
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -1063,7 +1063,7 @@ Specifies an array of names of virtual machines.
 ```yaml
 Type: String[]
 Parameter Sets: FilePathVMName, VMName
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -1111,9 +1111,9 @@ To determine whether you can connect or reconnect to the session, use the **Avai
   An **Availability** value of None indicates that you can connect to the session.
 A value of Busy indicates that you cannot connect to the PSSession because it is connected to another session.
 
-  For more information about the values of the **State** property of sessions, see RunspaceState Enumerationhttp://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspacestate(v=VS.85).aspx (http://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspacestate(v=VS.85).aspx) in the MSDN library.
+  For more information about the values of the **State** property of sessions, see [RunspaceState Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.runspacestate) in the MSDN library.
 
-  For more information about the values of the **Availability** property of sessions, see RunspaceAvailability Enumerationhttp://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspaceavailability(v=vs.85).aspx (http://msdn.microsoft.com/en-us/library/windows/desktop/system.management.automation.runspaces.runspaceavailability(v=vs.85).aspx) in MSDN.
+  For more information about the values of the **Availability** property of sessions, see [RunspaceAvailability Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.runspaceavailability) in the MSDN library.
 
 ## RELATED LINKS
 
@@ -1139,5 +1139,4 @@ A value of Busy indicates that you cannot connect to the PSSession because it is
 
 [about_Remote_Variables](About/about_Remote_Variables.md)
 
-[about_Scopes](About/about_Scopes.md)
-
+[about_Scopes](About/about_scopes.md)

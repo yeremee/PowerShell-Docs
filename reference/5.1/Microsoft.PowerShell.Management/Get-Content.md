@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,19 +16,23 @@ Gets the content of the item at the specified location.
 ## SYNTAX
 
 ### Path (Default)
-```
-Get-Content [-ReadCount <Int64>] [-TotalCount <Int64>] [-Tail <Int32>] [-Path] <String[]> [-Filter <String>]
- [-Include <String[]>] [-Exclude <String[]>] [-Force] [-Credential <PSCredential>] [-UseTransaction]
- [-Delimiter <String>] [-Wait] [-Raw] [-Encoding <FileSystemCmdletProviderEncoding>] [-Stream <String>]
+```powershell
+Get-Content [-Path] <String[]> [-ReadCount <Int64>] [-TotalCount <Int64>]
+ [-Tail <Int32>] [-Filter <String>] [-Include <String[]>] [-Exclude <String[]>]
+ [-Force] [-Credential <PSCredential>] [-UseTransaction]
+ [-Delimiter <String>] [-Wait] [-Raw]
+ [-Encoding <FileSystemCmdletProviderEncoding>] [-Stream <String>]
  [<CommonParameters>]
 ```
 
 ### LiteralPath
-```
-Get-Content [-ReadCount <Int64>] [-TotalCount <Int64>] [-Tail <Int32>] -LiteralPath <String[]>
- [-Filter <String>] [-Include <String[]>] [-Exclude <String[]>] [-Force] [-Credential <PSCredential>]
- [-UseTransaction] [-Delimiter <String>] [-Wait] [-Raw] [-Encoding <FileSystemCmdletProviderEncoding>]
- [-Stream <String>] [<CommonParameters>]
+```powershell
+Get-Content -LiteralPath <String[]> [-ReadCount <Int64>] [-TotalCount <Int64>]
+ [-Tail <Int32>] [-Filter <String>] [-Include <String[]>] [-Exclude <String[]>]
+ [-Force] [-Credential <PSCredential>] [-UseTransaction]
+ [-Delimiter <String>] [-Wait] [-Raw]
+ [-Encoding <FileSystemCmdletProviderEncoding>] [-Stream <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -88,7 +92,7 @@ This parameter is not supported by any providers that are installed with Windows
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -103,7 +107,7 @@ This parameter is not supported by any providers that are installed with Windows
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -118,7 +122,7 @@ This parameter is not supported by any providers that are installed with Windows
 ```yaml
 Type: FileSystemCmdletProviderEncoding
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32
 
 Required: False
@@ -137,7 +141,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -155,7 +159,7 @@ Filters are more efficient than other parameters, because the provider applies t
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -170,7 +174,7 @@ Forces the command to run without asking for user confirmation.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -188,7 +192,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -224,7 +228,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: Path
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -239,7 +243,7 @@ This parameter is not supported by any providers that are installed with Windows
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -260,7 +264,7 @@ This can make a perceptible difference in very large items.
 ```yaml
 Type: Int64
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -275,7 +279,7 @@ This parameter is not supported by any providers that are installed with Windows
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -344,7 +348,7 @@ This parameter is not supported by any providers that are installed with Windows
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -368,7 +372,7 @@ This cmdlet returns strings or bytes.
 The output type depends upon the content that it gets.
 
 ## NOTES
-* This cmdlet is designed to work with the data exposed by any provider. To get the providers in your session, use the Get-PSProvider cmdlet. For more information, see about_Providers(http://go.microsoft.com/fwlink/?LinkID=113250).
+* This cmdlet is designed to work with the data exposed by any provider. To get the providers in your session, use the Get-PSProvider cmdlet. For more information, see [about_Providers](../Microsoft.PowerShell.Core/About/about_Providers.md)
 
 *
 
@@ -381,5 +385,3 @@ The output type depends upon the content that it gets.
 [Set-Content](Set-Content.md)
 
 [Get-PSProvider](Get-PSProvider.md)
-
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -33,7 +33,7 @@ For more information, see about_Execution_Policies (http://go.microsoft.com/fwli
 ## EXAMPLES
 
 ### Example 1
-```
+```powershell
 PS C:\> Get-ExecutionPolicy
 Restricted
 ```
@@ -41,7 +41,7 @@ Restricted
 This command gets the current execution policy for the computer.
 
 ### Example 2
-```
+```powershell
 PS C:\> Set-ExecutionPolicy RemoteSigned
 PS C:\> Get-ExecutionPolicy
 RemoteSigned
@@ -52,16 +52,16 @@ The commands are separated by a semicolon (;).
 In this example, because there is no Group Policy setting, the user preference is the effective policy for the computer.
 
 ### Example 3
-```
-PS C:\> Get-ExecutionPolicy -list
+```powershell
+PS C:\> Get-ExecutionPolicy -List
 
-Scope  ExecutionPolicy
------  ---------------
+Scope          ExecutionPolicy
+-----          ---------------
 MachinePolicy  Undefined
-UserPolicy  Undefined
-Process  Undefined
-CurrentUser  AllSigned
-LocalMachine  RemoteSigned
+UserPolicy     Undefined
+Process        Undefined
+CurrentUser    AllSigned
+LocalMachine   RemoteSigned
 
 PS C:\> Get-ExecutionPolicy
 AllSigned
@@ -75,7 +75,7 @@ The policies are listed in precedence order.
 The second command gets only the effective execution policy, which is the one set in the CurrentUser scope.
 
 ### Example 4
-```
+```powershell
 The first command uses the **Get-ExecutionPolicy** cmdlet to get the effective execution policy in the current session.
 PS C:\> Get-ExecutionPolicy
 RemoteSigned
@@ -107,13 +107,13 @@ It also shows how to use the Unblock-File cmdlet to unblock scripts, so that you
 ## PARAMETERS
 
 ### -List
-Gets all execution policy values for the session listed in precedence order. 
+Gets all execution policy values for the session listed in precedence order.
 By default, **Get-ExecutionPolicy** gets only the effective execution policy.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -Scope
-Gets the execution policy in the specified scope. 
+Gets the execution policy in the specified scope.
 By default, **Get-ExecutionPolicy** gets the effective execution policy for the current session.
 
 Valid values are:
@@ -137,7 +137,7 @@ Valid values are:
 ```yaml
 Type: ExecutionPolicyScope
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -179,4 +179,3 @@ The precedence order is Computer Group Policy \> User Group Policy \> Process (s
 [about_Execution_Policies](../Microsoft.PowerShell.Core/About/about_Execution_Policies.md)
 
 [about_Signing](../Microsoft.PowerShell.Core/About/about_Signing.md)
-

@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,8 +17,7 @@ If the command is the last command in the pipeline, the objects are displayed in
 ## SYNTAX
 
 ```
-Write-Output [-InputObject] <PSObject[]> [-NoEnumerate] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Write-Output [-InputObject] <PSObject[]> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -67,33 +66,6 @@ This command adds the *NoEnumerate* parameter to treat a collection or array as 
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -InputObject
 Specifies the objects to send down the pipeline.
 Enter a variable that contains the objects, or type a command or expression that gets the objects.
@@ -101,7 +73,7 @@ Enter a variable that contains the objects, or type a command or expression that
 ```yaml
 Type: PSObject[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -118,7 +90,7 @@ The *NoEnumerate* parameter has no effect on collections that were created by wr
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -159,4 +131,3 @@ You can pipe objects to **Write-Output**.
 [Write-Verbose](Write-Verbose.md)
 
 [Write-Warning](Write-Warning.md)
-

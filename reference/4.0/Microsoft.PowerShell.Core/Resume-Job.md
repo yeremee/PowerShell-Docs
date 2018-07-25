@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -110,7 +110,7 @@ The command uses the Invoke-Command cmdlet to run a command on the Srv01 compute
 The remote command uses the **State** parameter of the Get-Job cmdlet to get all suspended jobs on the computer.
 A pipeline operator (|) sends the suspended jobs to the **Resume-Job** cmdlet, which resumes them.
 
-### Example 4: Wait for jobs to resume
+### Example 5: Wait for jobs to resume
 ```
 PS C:\> Resume-Job -Name WorkflowJob, InventoryWorkflow, WFTest* -Wait
 ```
@@ -118,7 +118,7 @@ PS C:\> Resume-Job -Name WorkflowJob, InventoryWorkflow, WFTest* -Wait
 This command uses the **Wait** parameter to direct Resume-Job to return only after all specified jobs are resumed.
 The **Wait** parameter is especially useful in scripts that assume that jobs are resumed before the script continues.
 
-### Example 5: Resume a Workflow that Suspends Itself
+### Example 6: Resume a Workflow that Suspends Itself
 ```
 This code sample shows the **Suspend-Workflow** activity in a workflow.
 #SampleWorkflow
@@ -202,7 +202,7 @@ Enter a hash table where the keys are job properties and the values are job prop
 ```yaml
 Type: Hashtable
 Parameter Sets: FilterParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -222,7 +222,7 @@ To find the ID of a job, use the Get-Job cmdlet.
 ```yaml
 Type: Int32[]
 Parameter Sets: SessionIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -241,7 +241,7 @@ To find the instance ID of a job, use the Get-Job cmdlet.
 ```yaml
 Type: Guid[]
 Parameter Sets: InstanceIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -258,7 +258,7 @@ You can also pipe jobs to the **Resume-Job** cmdlet.
 ```yaml
 Type: Job[]
 Parameter Sets: JobParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -275,7 +275,7 @@ Wildcards are supported.
 ```yaml
 Type: String[]
 Parameter Sets: NameParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -288,12 +288,12 @@ Accept wildcard characters: False
 Resumes only those jobs in the specified state.
 Valid values are NotStarted, Running, Completed, Failed, Stopped, Blocked, Suspended, Disconnected, Suspending, and Stopping, but **Resume-Job** resumes only jobs in the **Suspended** state.
 
-For more information about job states, see "JobState Enumeration" in MSDN at http://msdn.microsoft.com/library/windows/desktop/system.management.automation.jobstate(v=vs.85).aspxhttp://msdn.microsoft.com/library/windows/desktop/system.management.automation.jobstate(v=vs.85).aspx
+For more information about job states, see [JobState Enumeration](https://msdn.microsoft.com/library/system.management.automation.jobstate) in the MSDN library.
 
 ```yaml
 Type: JobState
 Parameter Sets: StateParameterSet
-Aliases: 
+Aliases:
 Accepted values: NotStarted, Running, Completed, Failed, Stopped, Blocked, Suspended, Disconnected, Suspending, Stopping
 
 Required: True
@@ -310,7 +310,7 @@ By default, Resume-Job returns immediately.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -374,4 +374,3 @@ Otherwise, this cmdlet does not generate any output.
 [Suspend-Job](Suspend-Job.md)
 
 [Wait-Job](Wait-Job.md)
-

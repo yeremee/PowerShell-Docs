@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -97,10 +97,12 @@ For example, you can use Test-Path to test the path to a registry key, but if yo
 ### -OlderThan
 Returns "True" when the LastWriteTime value of a file is less than the specified date. Otherwise, it returns "False". Enter a DateTime object, such as one that the Get-Date cmdlet returns, or a string that can be converted to a DateTime object, such as "August 10, 2011 2:00 PM".
 
-OlderThan is a dynamic parameter that works only on file system paths. It was introduced in Windows PowerShell 3.0.```yaml
+OlderThan is a dynamic parameter that works only on file system paths. It was introduced in Windows PowerShell 3.0.
+
+```yaml
 Type: DateTime
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -112,10 +114,12 @@ Accept wildcard characters: False
 ### -NewerThan
 Returns "True" when the LastWriteTime value of a file is greater than the specified date. Otherwise, it returns "False". Enter a DateTime object, such as one that the Get-Date cmdlet returns, or a string that can be converted to a DateTime object, such as "August 10, 2011 2:00 PM".
 
-NewerThan is a dynamic parameter that works only on file system paths. It was introduced in Windows PowerShell 3.0.```yaml
+NewerThan is a dynamic parameter that works only on file system paths. It was introduced in Windows PowerShell 3.0.
+
+```yaml
 Type: DateTime
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -137,7 +141,7 @@ This parameter is not supported by any providers installed with Windows PowerShe
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -155,7 +159,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -173,7 +177,7 @@ Filters are more efficient than other parameters, because the provider applies t
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -191,7 +195,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -207,7 +211,7 @@ This parameter returns TRUE if the path syntax is valid and FALSE if it is not.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -244,7 +248,7 @@ The parameter name ("Path") is optional.
 ```yaml
 Type: String[]
 Parameter Sets: Path
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -323,5 +327,3 @@ For more information, see about_Providers.
 [Split-Path](Split-Path.md)
 
 [about_Providers](../Microsoft.PowerShell.Core/About/about_Providers.md)
-
-

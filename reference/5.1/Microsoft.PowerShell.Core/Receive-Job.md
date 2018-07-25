@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -158,12 +158,14 @@ If the job has more results, the job is still deleted, but **Receive-Job** displ
 This parameter works only on custom job types.
 It is designed for instances of job types that save the job or the type outside of the session, such as instances of scheduled jobs.
 
+This parameter cannot be used without the **Wait** parameter.
+
 This parameter was introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -206,7 +208,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -228,7 +230,7 @@ To find the ID of a job, type `Get-Job` without parameters.
 ```yaml
 Type: Int32[]
 Parameter Sets: SessionIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -248,7 +250,7 @@ To find the instance ID of a job, use the Get-Job cmdlet.
 ```yaml
 Type: Guid[]
 Parameter Sets: InstanceIdParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -266,7 +268,7 @@ You can also pipe a job object to **Receive-Job**.
 ```yaml
 Type: Job[]
 Parameter Sets: Location, Session, ComputerName
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -284,7 +286,7 @@ To delete the results, use **Receive-Job** to receive them again without specify
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -301,7 +303,7 @@ The default is all jobs in the current session.
 ```yaml
 Type: String[]
 Parameter Sets: Location
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -319,7 +321,7 @@ The default is all jobs in the current session.
 ```yaml
 Type: String[]
 Parameter Sets: NameParameterSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -335,7 +337,7 @@ By default, **Receive-Job** also gets the results of all child jobs of the speci
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -353,7 +355,7 @@ The default is all jobs in the current session.
 ```yaml
 Type: PSSession[]
 Parameter Sets: Session
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -374,7 +376,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -393,7 +395,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -412,7 +414,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -453,4 +455,3 @@ This cmdlet returns the results of the commands in the job.
 [Suspend-Job](Suspend-Job.md)
 
 [Wait-Job](Wait-Job.md)
-

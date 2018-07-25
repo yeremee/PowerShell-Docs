@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -85,7 +85,7 @@ You can pipe a string that contains the message to **Write-Verbose**.
 
 ## NOTES
 * Verbose messages are returned only when the command uses the **Verbose** common parameter. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
-* In Windows PowerShell background jobs and remote commands, the **$VerbosePreference** variable in the job session and remote session determine whether the verbose message is displayed by default. For more information about the **$VerbosePreference** variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+* In Windows PowerShell background jobs and remote commands, the **$VerbosePreference** variable in the job session and remote session determine whether the verbose message is displayed by default. For more information about the **$VerbosePreference** variable, see [about_Preference_Variables](../Microsoft.PowerShell.Core/About/about_Preference_Variables.md).
 
 ## RELATED LINKS
 
@@ -94,4 +94,3 @@ You can pipe a string that contains the message to **Write-Verbose**.
 [Write-Warning](Write-Warning.md)
 
 [about_Preference_Variables](../Microsoft.PowerShell.Core/About/about_Preference_Variables.md)
-

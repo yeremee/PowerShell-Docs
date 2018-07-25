@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  eslesar
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  dsc,powershell,configuration,setup
 title:  Using resources with multiple versions
 ---
@@ -15,7 +13,7 @@ that are contained in the same module folder.
 
 ## Installing multiple resource versions side-by-side
 
-You can use the **MinimumVersion**, **MaximumVersion**, and **RequiredVersion** parameters of the [Install-Module](https://technet.microsoft.com/en-us/library/dn807162.aspx) cmdlet to specify
+You can use the **MinimumVersion**, **MaximumVersion**, and **RequiredVersion** parameters of the [Install-Module](https://technet.microsoft.com/library/dn807162.aspx) cmdlet to specify
 which version of a module to install. Calling **Install-Module** without specifying a version installs the most recent version.
 
 For example, there are multiple versions of the **xFailOverCluster** module, each of which contains an **xCluster** resouce. The result of calling **Install-Module** without specifying the
@@ -44,7 +42,7 @@ PowerShell      xCluster                  xFailOverCluster               1.2.0.0
 
 ## Specifying a resource version in a configuration
 
-If you have multiple resources installed on a computer, you must specify the version of that resource when you use it in a configuration. You do this by specifying the **ModuleVersion** 
+If you have multiple resources installed on a computer, you must specify the version of that resource when you use it in a configuration. You do this by specifying the **ModuleVersion**
 parameter of the **Import-DscResource** keyword. If you fail to specify the version of a resource module of a resource of which you have more than one version installed, the configuration
 generates an error.
 
@@ -64,10 +62,10 @@ configuration VersionTest
             DomainAdministratorCredential = Get-Credential
         }
      }
-}     
+}
 ```
 
->Note: The ModuleVersion parameter of Import-DscResource is not available in PowerShell 4.0. In PowerShell 4.0, you can specify a module version by passing a module specification 
+>Note: The ModuleVersion parameter of Import-DscResource is not available in PowerShell 4.0. In PowerShell 4.0, you can specify a module version by passing a module specification
 >object to the ModuleName parameter of Import-DscResource. A module specification object is a hash table that contains ModuleName and RequiredVersion  keys. For example:
 
 ```powershell
@@ -84,7 +82,7 @@ configuration VersionTest
             DomainAdministratorCredential = Get-Credential
         }
      }
-}     
+}
 ```
 
 This will also work in PowerShell 5.0, but it is recommended that you use the **ModuleVersion** parameter.
@@ -92,4 +90,3 @@ This will also work in PowerShell 5.0, but it is recommended that you use the **
 ## See also
 * [DSC Configurations](configurations.md)
 * [DSC Resources](resources.md)
-

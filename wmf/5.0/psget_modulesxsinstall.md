@@ -1,7 +1,7 @@
 ---
-ms.date:  2017-06-12
-author:  JKeithB
-ms.topic:  reference
+ms.date:  06/12/2017
+
+
 keywords:  wmf,powershell,setup
 ---
 
@@ -12,25 +12,27 @@ Also, we have added a -RequiredVersion parameter to the Publish-Module cmdlet to
 
 **Install-Module examples:**
 ```powershell
-PS C:\\windows\\system32&gt; Install-Module -Name PSScriptAnalyzer -RequiredVersion 1.1.0 -Repository PSGallery
-PS C:\\windows\\system32&gt; Get-Module -ListAvailable -Name PSScriptAnalyzer | Format-List Name,Version,ModuleBase
+Install-Module -Name PSScriptAnalyzer -RequiredVersion 1.1.0 -Repository PSGallery
+Get-Module -ListAvailable -Name PSScriptAnalyzer | Format-List Name,Version,ModuleBase
+
 Name : PSScriptAnalyzer
 Version : 1.1.0
 ModuleBase : C:\Program Files\WindowsPowerShell\Modules\PSScriptAnalyzer\1.1.0
 
-PS C:\\windows\\system32&gt; Install-Module -Name PSScriptAnalyzer -RequiredVersion 1.1.1 -Repository PSGallery
-PS C:\\windows\\system32&gt; Get-Module -ListAvailable -Name PSScriptAnalyzer | Format-List Name,Version,ModuleBase
-Name       : PSScriptAnalyzer 
+Install-Module -Name PSScriptAnalyzer -RequiredVersion 1.1.1 -Repository PSGallery
+Get-Module -ListAvailable -Name PSScriptAnalyzer | Format-List Name,Version,ModuleBase
+
+Name       : PSScriptAnalyzer
 Version    : 1.1.1
 ModuleBase : C:\Program Files\WindowsPowerShell\Modules\PSScriptAnalyzer\1.1.1
 Name       : PSScriptAnalyzer
 Version    : 1.1.0
 ModuleBase : C:\Program Files\WindowsPowerShell\Modules\PSScriptAnalyzer\1.1.0
 
-PS C:\\windows\\system32&gt; Get-InstalledModule -Name PSScriptAnalyzer -AllVersions
-Version    Name                                Type       Repository           Description            
--------    ----                                ----       ----------           -----------            
-1.1.0      PSScriptAnalyzer                    Module     PSGallery            PSScriptAnalyzer provides script analysis... 
+Get-InstalledModule -Name PSScriptAnalyzer -AllVersions
+
+Version    Name                                Type       Repository           Description
+-------    ----                                ----       ----------           -----------
+1.1.0      PSScriptAnalyzer                    Module     PSGallery            PSScriptAnalyzer provides script analysis...
 1.1.1      PSScriptAnalyzer                    Module     PSGallery            PSScriptAnalyzer provides script analysis...
 ```
-

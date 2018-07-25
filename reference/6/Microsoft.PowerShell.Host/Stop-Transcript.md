@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -15,19 +15,19 @@ Stops a transcript.
 
 ## SYNTAX
 
-```
+```powershell
 Stop-Transcript [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Stop-Transcript** cmdlet stops a transcript that was started by the Start-Transcript cmdlet.
+The `Stop-Transcript` cmdlet stops a transcript that was started by the `Start-Transcript` cmdlet.
 Alternatively, you can end a session to stop a transcript.
 
 ## EXAMPLES
 
 ### Example 1: Stop all transcripts
-```
-PS C:\> Stop-Transcript
+```powershell
+Stop-Transcript
 ```
 
 This command stops all transcripts.
@@ -55,4 +55,3 @@ This cmdlet returns a string that contains a status message and the path to the 
 ## RELATED LINKS
 
 [Start-Transcript](Start-Transcript.md)
-

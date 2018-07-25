@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -56,7 +56,7 @@ In **Get-PackageProvider**, this means the *Force* parameter acts the same as th
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -71,7 +71,7 @@ Indicates that this cmdlet forces Package Management to automatically install th
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -88,7 +88,7 @@ Valid values for this parameter include names of providers that you have install
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -110,11 +110,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[about_PackageManagement](../Microsoft.PowerShell.Core/About/about_PackageManagement.md)
+[about_PackageManagement](../Microsoft.PowerShell.Core/About/about_packagemanagement.md)
 
 [Get-PackageSource](Get-PackageSource.md)
 
 [Register-PackageSource](Register-PackageSource.md)
 
 [Unregister-PackageSource](Unregister-PackageSource.md)
-

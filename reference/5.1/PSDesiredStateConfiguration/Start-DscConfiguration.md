@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -96,13 +96,13 @@ The command creates **Job** objects for each configured computer.
 
 ### -CimSession
 Runs the cmdlet in a remote session or on a remote computer.
-Enter a computer name or a session object, such as the output of a New-CimSessionhttp://go.microsoft.com/fwlink/p/?LinkId=227967 or Get-CimSessionhttp://go.microsoft.com/fwlink/p/?LinkId=227966 cmdlet.
+Enter a computer name or a session object, such as the output of a [New-CimSession](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/new-cimsession) or [Get-CimSession](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-cimsession) cmdlet.
 The default is the current session on the local computer.
 
 ```yaml
 Type: CimSession[]
 Parameter Sets: CimSessionAndPathSet, CimSessionAndUseExistingSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -150,7 +150,7 @@ For more information, type `Get-Help Get-Credential`.
 ```yaml
 Type: PSCredential
 Parameter Sets: ComputerNameAndPathSet, ComputerNameAndUseExistingSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -166,7 +166,7 @@ If the **RefreshMode** property of the Local Configuration Manager is set to **P
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -186,7 +186,7 @@ If you specify the *Wait* parameter, do not specify this parameter.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -203,7 +203,7 @@ Each target node must have a settings file of the following format: NetBIOS Name
 ```yaml
 Type: String
 Parameter Sets: ComputerNameAndPathSet, CimSessionAndPathSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -220,7 +220,7 @@ The throttle limit applies only to the current cmdlet, not to the session or to 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -238,7 +238,7 @@ Before you specify this parameter for this cmdlet, review the information in Wha
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ComputerNameAndUseExistingSet, CimSessionAndUseExistingSet
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -255,7 +255,7 @@ If you specify this parameter, do not specify the *JobName* parameter.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -304,4 +304,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Test-DscConfiguration](Test-DscConfiguration.md)
 
 [Update-DscConfiguration](Update-DscConfiguration.md)
-

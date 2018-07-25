@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -119,16 +119,16 @@ FindInterfaces                 Method     System.Type[] FindInt... PS C:\> [Basi
 TypeName: BasicTest
 Name            MemberType Definition
 ----            ---------- ----------
-Add             Method     static System.Int32 Add(Int32 a, Int32 b) 
-Equals          Method     static System.Boolean Equals(Object objA, 
+Add             Method     static System.Int32 Add(Int32 a, Int32 b)
+Equals          Method     static System.Boolean Equals(Object objA,
 ReferenceEquals Method     static System.Boolean ReferenceEquals(Obj PS C:\> $BasicTestObject | Get-Member
 TypeName: BasicTest
 Name        MemberType Definition
 ----        ---------- ----------
-Equals      Method     System.Boolean Equals(Object obj) 
+Equals      Method     System.Boolean Equals(Object obj)
 GetHashCode Method     System.Int32 GetHashCode()
 GetType     Method     System.Type GetType()
-Multiply    Method     System.Int32 Multiply(Int32 a, Int32 b) 
+Multiply    Method     System.Int32 Multiply(Int32 a, Int32 b)
 ToString    Method     System.String ToString()
 ```
 
@@ -160,9 +160,15 @@ The command uses the *PassThru* parameter to generate objects that represent the
 ```
 PS C:\> Add-Type -Path "c:\ps-test\Hello.vb"
 PS C:\> [VBFromFile]::SayHello(", World")
+
 # From Hello.vb
 
-Public Class VBFromFilePublic Shared Function SayHello(sourceName As String) As String Dim myValue As String = "Hello" return myValue + sourceName End Function End Class
+Public Class VBFromFile
+  Public Shared Function SayHello(sourceName As String) As String
+    Dim myValue As String = "Hello"
+    return myValue + sourceName
+  End Function
+End Class
 
 Hello, World
 ```
@@ -180,7 +186,7 @@ The second command calls the SayHello function as a static method of the VBFromF
 PS C:\> $Signature = @"
 [DllImport("user32.dll")]public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
 "@
-$ShowWindowAsync = Add-Type -MemberDefinition $Signature -Name "Win32ShowWindowAsync" -Namespace Win32Functions -PassThru 
+$ShowWindowAsync = Add-Type -MemberDefinition $Signature -Name "Win32ShowWindowAsync" -Namespace Win32Functions -PassThru
 
 # Minimize the Windows PowerShell console
 
@@ -195,7 +201,7 @@ The commands in this example demonstrate how to call native Windows APIs in Wind
 **Add-Type** uses the Platform Invoke (P/Invoke) mechanism to call a function in User32.dll from Windows PowerShell.
 
 The first command stores the C# signature of the **ShowWindowAsync** function in the $Signature variable.
-For more information, see ShowWindowAsync Functionhttp://go.microsoft.com/fwlink/?LinkId=143643 (http://go.microsoft.com/fwlink/?LinkId=143643) in the MSDN library.
+(For more information, see [ShowWindowAsync function](https://go.microsoft.com/fwlink/?LinkId=143643) in the MSDN library.)
 To ensure that the resulting method will be visible in a Windows PowerShell session, the "public" keyword has been added to the standard signature.
 
 The second command uses the **Add-Type** cmdlet to add the ShowWindowAsync function to the Windows PowerShell session as a static method of a class that **Add-Type** creates.
@@ -326,7 +332,7 @@ Use this parameter to prevent **Add-Type** from handling compiler warnings as er
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -351,7 +357,7 @@ CSharp is the default value.
 ```yaml
 Type: Language
 Parameter Sets: FromSource, FromMember
-Aliases: 
+Aliases:
 Accepted values: CSharp, CSharpVersion3, CSharpVersion2, VisualBasic, JScript
 
 Required: False
@@ -390,7 +396,7 @@ For more information, see the examples.
 ```yaml
 Type: String[]
 Parameter Sets: FromMember
-Aliases: 
+Aliases:
 
 Required: True
 Position: 1
@@ -411,7 +417,7 @@ Otherwise, the command fails.
 ```yaml
 Type: String
 Parameter Sets: FromMember
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -465,7 +471,7 @@ The acceptable values for this parameter are:
 - ConsoleApplication
 - WindowsApplication
 
-For more information about the values, see OutputAssemblyType Enumerationhttps://msdn.microsoft.com/en-us/library/microsoft.powershell.commands.outputassemblytype(v=vs.85).aspx (https://msdn.microsoft.com/en-us/library/microsoft.powershell.commands.outputassemblytype(v=vs.85).aspx)in MSDN.
+For more information about the values, see [OutputAssemblyType Enumeration](https://msdn.microsoft.com/library/microsoft.powershell.commands.outputassemblytype) in the MSDN library.
 
 By default, no output type is specified.
 
@@ -491,7 +497,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -512,7 +518,7 @@ To specify an in-memory assembly or the global assembly cache, use the *Assembly
 ```yaml
 Type: String[]
 Parameter Sets: FromPath
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -552,7 +558,7 @@ For instance, if you define a type called Exception, scripts that use Exception 
 ```yaml
 Type: String
 Parameter Sets: FromSource
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -603,7 +609,7 @@ Otherwise, this cmdlet does not generate any output.
 
 ## RELATED LINKS
 
-[OutputAssemblyType Enumeration](https://msdn.microsoft.com/en-us/library/microsoft.powershell.commands.outputassemblytype(v=vs.85).aspx)
+[OutputAssemblyType Enumeration](https://msdn.microsoft.com/library/microsoft.powershell.commands.outputassemblytype)
 
 [Add-Member](Add-Member.md)
 
@@ -613,5 +619,4 @@ Otherwise, this cmdlet does not generate any output.
 
 [about_Quoting_Rules](../Microsoft.PowerShell.Core/About/about_Quoting_Rules.md)
 
-[about_Profiles](../Microsoft.PowerShell.Core/About/about_Profiles.md)
-
+[about_Profiles](../Microsoft.PowerShell.Core/About/about_profiles.md)

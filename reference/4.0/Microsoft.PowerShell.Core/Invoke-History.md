@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -61,12 +61,12 @@ Because you can list only one ID value, the command uses the ForEach-Object cmdl
 
 ### Example 5
 ```
-PS C:\> Get-History -Id 255 -Count 7 | Invoke-History
+PS C:\> Get-History -Id 255 -Count 7 | ForEach {Invoke-History -Id $_.Id}
 ```
 
 This command runs the 7 commands in the history that end with command 255 (typically 249 through 255).
 It uses the Get-History cmdlet to retrieve the commands.
-The pipeline operator (|) passes the commands to **Invoke-History**, which executes them.
+Because you can list only one ID value, the command uses the ForEach-Object cmdlet to run the **Invoke-History** command once for each ID value.
 
 ## PARAMETERS
 
@@ -97,7 +97,7 @@ To find the ID number of a command, use the Get-History cmdlet.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -152,4 +152,3 @@ For more information, see about_Aliases (http://go.microsoft.com/fwlink/?LinkID=
 [Get-History](Get-History.md)
 
 [about_History](About/about_History.md)
-

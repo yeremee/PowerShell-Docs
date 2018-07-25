@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,17 +17,20 @@ Saves command output in a file or variable and also sends it down the pipeline.
 
 ### File (Default)
 ```
-Tee-Object [-InputObject <PSObject>] [-FilePath] <String> [-Append] [<CommonParameters>]
+Tee-Object [-FilePath] <String> [-InputObject <PSObject>] [-Append]
+ [<CommonParameters>]
 ```
 
 ### LiteralFile
 ```
-Tee-Object [-InputObject <PSObject>] -LiteralPath <String> [<CommonParameters>]
+Tee-Object -LiteralPath <String> [-InputObject <PSObject>]
+ [<CommonParameters>]
 ```
 
 ### Variable
 ```
-Tee-Object [-InputObject <PSObject>] -Variable <String> [<CommonParameters>]
+Tee-Object -Variable <String> [-InputObject <PSObject>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -88,7 +91,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: File
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -104,7 +107,7 @@ Wildcard characters are permitted, but must resolve to a single file.
 ```yaml
 Type: String
 Parameter Sets: File
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -124,7 +127,7 @@ Because *InputObject* cannot return individual properties from an array or colle
 ```yaml
 Type: PSObject
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -159,7 +162,7 @@ Enter a variable name without the preceding dollar sign ($).
 ```yaml
 Type: String
 Parameter Sets: Variable
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -204,4 +207,3 @@ You can pipe objects to **Tee-Object**.
 [Where-Object](../Microsoft.PowerShell.Core/Where-Object.md)
 
 [about_Redirection](../Microsoft.PowerShell.Core/About/about_Redirection.md)
-

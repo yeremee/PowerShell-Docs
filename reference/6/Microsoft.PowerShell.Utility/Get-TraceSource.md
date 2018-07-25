@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,8 +16,7 @@ Gets Windows PowerShell components that are instrumented for tracing.
 ## SYNTAX
 
 ```
-Get-TraceSource [[-Name] <String[]>] [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+Get-TraceSource [[-Name] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -46,33 +45,6 @@ This command gets all of the Windows PowerShell components that can be traced.
 
 ## PARAMETERS
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Name
 Specifies the trace sources to get.
 Wildcards are permitted.
@@ -81,10 +53,10 @@ The parameter name *Name* is optional.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -110,4 +82,3 @@ You can pipe a string that contains the name of a trace source to **Get-TraceSou
 [Set-TraceSource](Set-TraceSource.md)
 
 [Trace-Command](Trace-Command.md)
-

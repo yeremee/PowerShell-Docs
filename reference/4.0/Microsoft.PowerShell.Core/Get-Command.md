@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,35 +17,33 @@ Gets all commands.
 
 ### CmdletSet (Default)
 ```
-Get-Command [-Verb <String[]>] [-Noun <String[]>] [-Module <String[]>] [-TotalCount <Int32>] [-Syntax]
- [[-ArgumentList] <Object[]>] [-All] [-ListImported] [-ParameterName <String[]>]
- [-ParameterType <PSTypeName[]>] [<CommonParameters>]
+Get-Command [[-ArgumentList] <Object[]>]
+ [-Verb <String[]>] [-Noun <String[]>]
+ [-Module <String[]>] [-TotalCount <Int32>] [-Syntax] [-All] [-ListImported]
+ [-ParameterName <String[]>] [-ParameterType <PSTypeName[]>] [<CommonParameters>]
 ```
 
 ### AllCommandSet
 ```
-Get-Command [[-Name] <String[]>] [-Module <String[]>] [-CommandType <CommandTypes>] [-TotalCount <Int32>]
- [-Syntax] [[-ArgumentList] <Object[]>] [-All] [-ListImported] [-ParameterName <String[]>]
- [-ParameterType <PSTypeName[]>] [<CommonParameters>]
+Get-Command [[-Name] <String[]>] [[-ArgumentList] <Object[]>]
+ [-CommandType <CommandTypes>]
+ [-Module <String[]>] [-TotalCount <Int32>] [-Syntax] [-All] [-ListImported]
+ [-ParameterName <String[]>] [-ParameterType <PSTypeName[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-Command** cmdlet gets all commands that are installed on the computer, including cmdlets, aliases, functions, workflows, filters, scripts, and applications.
-**Get-Command** gets the commands from Windows PowerShell modules and snap-ins and commands that were imported from other sessions.
+The `Get-Command` cmdlet gets all commands that are installed on the computer, including cmdlets, aliases, functions, filters, scripts, and applications.
+`Get-Command` gets the commands from PowerShell modules and snap-ins and commands that were imported from other sessions.
 To get only commands that have been imported into the current session, use the **ListImported** parameter.
 
-Without parameters, a "`Get-Command`" command gets all of the cmdlets, functions, workflows and aliases installed on the computer.
-A "`Get-Command *`" command gets all types of commands, including all of the non-Windows-PowerShell files in the Path environment variable ($env:path), which it lists in the "Application" command type.
+Without parameters, `Get-Command` gets all of the cmdlets, functions, and aliases installed on the computer.
+`Get-Command *` gets all types of commands, including all of the non-PowerShell files in the Path environment variable (`$env:Path`), which it lists in the Application command type.
 
-A **Get-Command** command that uses the exact name of the command (without wildcard characters) automatically imports the module that contains the command so you can use the command immediately.
-To enable, disable, and configure automatic importing of modules, use the **$PSModuleAutoLoadingPreference** preference variable.
-For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+`Get-Command` that uses the exact name of the command, without wildcard characters, automatically imports the module that contains the command so that you can use the command immediately.
+To enable, disable, and configure automatic importing of modules, use the `$PSModuleAutoLoadingPreference` preference variable.
+For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
-**Get-Command** gets its data directly from the command code, unlike Get-Help, which gets its information from help topics.
-
-In Windows PowerShell 2.0, **Get-Command** gets only commands in current session.
-It does not get commands from modules that are installed, but not imported.
-To limit **Get-Command** in Windows PowerShell 3.0 and later to commands in the current session, use the **ListImported** parameter.
+`Get-Command` gets its data directly from the command code, unlike `Get-Help`, which gets its information from help topics.
 
 ## EXAMPLES
 
@@ -89,7 +87,7 @@ It also imports the **AppLocker** module, which adds all of the commands in the 
 When a module is imported automatically, the effect is the same as using the Import-Module cmdlet.
 The module can add commands, types and formatting files, and run scripts in the session.
 To enable, disable, and configuration automatic importing of modules, use the **$PSModuleAutoLoadingPreference** preference variable.
-For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 ### Example 6
 ```
@@ -232,7 +230,7 @@ In Windows PowerShell 2.0, Get-Command gets all commands by default.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -242,14 +240,14 @@ Accept wildcard characters: False
 ```
 
 ### -ArgumentList
-Gets information about a cmdlet or function when it is used with the specified  parameters ("arguments"). 
+Gets information about a cmdlet or function when it is used with the specified  parameters ("arguments").
 The alias for **ArgumentList** is **Args**.
 
 To detect dynamic parameters that are available only when certain other parameters are used, set the value of ArgumentList to the parameters that trigger the dynamic parameters.
 
-To detect the dynamic parameters that a provider adds to a cmdlet, set the value of the **ArgumentList** parameter to a path in the provider drive, such as "WSMan:", "HKLM:" or "Cert:". 
+To detect the dynamic parameters that a provider adds to a cmdlet, set the value of the **ArgumentList** parameter to a path in the provider drive, such as "WSMan:", "HKLM:" or "Cert:".
 When the command is a Windows PowerShell provider cmdlet, enter only one path in each command; the provider cmdlets return only the dynamic parameters for the first path the value of **ArgumentList**.
-For information about the provider cmdlets, see about_Providers (http://go.microsoft.com/fwlink/?LinkID=113250).
+For information about the provider cmdlets, see [about_Providers](About/about_Providers.md).
 
 ```yaml
 Type: Object[]
@@ -267,7 +265,7 @@ Accept wildcard characters: False
 Gets only the specified types of commands.
 Enter one or more command types.
 Use **CommandType** or its alias, **Type**.
-By default, **Get-Command** gets all cmdlets, functions, and workflows, and aliases.
+By default, **Get-Command** gets all cmdlets, functions, workflows, and aliases.
 
 Valid values are:
 
@@ -304,7 +302,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -345,7 +343,7 @@ When two commands have the same name, by default, **Get-Command** gets the comma
 ```yaml
 Type: String[]
 Parameter Sets: AllCommandSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: 0
@@ -362,7 +360,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: CmdletSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -383,7 +381,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -404,7 +402,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: PSTypeName[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -424,7 +422,7 @@ Gets only specified data about the command.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -440,7 +438,7 @@ You can use this parameter to limit the output of a command.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -457,7 +455,7 @@ Wildcards are permitted.
 ```yaml
 Type: String[]
 Parameter Sets: CmdletSet
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -496,7 +494,7 @@ Represents functions and filters
 
 ## NOTES
 * When more than one command with the same name is available to the session, **Get-Command** returns the command that runs when you type the command name. To get commands with the same name (listed in execution order), use the **All** parameter. For more information, see about_Command_Precedence.
-* When a module is imported automatically, the effect is the same as using the Import-Module cmdlet. The module can add commands, types and formatting files, and run scripts in the session. To enable, disable, and configuration automatic importing of modules, use the **$PSModuleAutoLoadingPreference** preference variable. For more information, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+* When a module is imported automatically, the effect is the same as using the Import-Module cmdlet. The module can add commands, types and formatting files, and run scripts in the session. To enable, disable, and configuration automatic importing of modules, use the **$PSModuleAutoLoadingPreference** preference variable. For more information, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 ## RELATED LINKS
 
@@ -511,4 +509,3 @@ Represents functions and filters
 [Import-PSSession](../Microsoft.PowerShell.Utility/Import-PSSession.md)
 
 [about_Command_Precedence](About/about_Command_Precedence.md)
-

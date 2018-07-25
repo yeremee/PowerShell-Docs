@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -16,13 +16,15 @@ Converts object properties in comma-separated value (CSV) format into CSV versio
 ## SYNTAX
 
 ### Delimiter (Default)
-```
-ConvertFrom-Csv [[-Delimiter] <Char>] [-InputObject] <PSObject[]> [-Header <String[]>] [<CommonParameters>]
+```powershell
+ConvertFrom-Csv [-InputObject] <PSObject[]> [[-Delimiter] <Char>]
+ [-Header <String[]>] [<CommonParameters>]
 ```
 
 ### UseCulture
-```
-ConvertFrom-Csv [-UseCulture] [-InputObject] <PSObject[]> [-Header <String[]>] [<CommonParameters>]
+```powershell
+ConvertFrom-Csv [-InputObject] <PSObject[]> -UseCulture
+ [-Header <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -140,10 +142,10 @@ Instead, it returns the strings.
 ```yaml
 Type: Char
 Parameter Sets: Delimiter
-Aliases: 
+Aliases:
 
 Required: False
-Position: 2
+Position: 1
 Default value: "," (comma)
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -165,7 +167,7 @@ Otherwise, ConvertFrom-CSV creates an extra object from the items in the header 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -182,10 +184,10 @@ You can also pipe the CSV strings to ConvertFrom-CSV.
 ```yaml
 Type: PSObject[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -202,7 +204,7 @@ Instead, it returns the strings.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: UseCulture
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
@@ -240,4 +242,3 @@ ConvertTo-Csv does not export the methods of the object.
 [Export-Csv](Export-Csv.md)
 
 [Import-Csv](Import-Csv.md)
-

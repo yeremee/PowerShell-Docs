@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -46,6 +46,8 @@ Unless specified in the parameter description, if you omit a parameter from the 
 
 In Windows PowerShell 2.0, **New-ModuleManifest** prompts you for the values of frequently used parameters that are not specified in the command, in addition to required parameter values.
 Starting in Windows PowerShell 3.0, it prompts only when required parameter values are not specified.
+
+Module manifest (.psd1) file encoding is UTF-8 (no BOM) on all platforms.
 
 ## EXAMPLES
 
@@ -149,8 +151,8 @@ For information about the HelpInfo XML file, see "Supporting Updatable Help" in 
 ```
 PS C:\> Get-Module PSScheduledJob -List | Format-List -Property *
 
-LogPipelineExecutionDetails : 
-FalseName                        : 
+LogPipelineExecutionDetails :
+FalseName                        :
 PSScheduledJobPath                        : C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\PSScheduledJob\PSScheduledJob.psd1
 Definition                  :
 Description                 :
@@ -159,7 +161,7 @@ HelpInfoUri                 : http://go.microsoft.com/fwlink/?LinkID=223911
 ModuleBase                  : C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\PSScheduledJob
 PrivateData                 :
 Version                     : 1.0.0.0
-ModuleType                  : 
+ModuleType                  :
 BinaryAuthor                      : Microsoft Corporation
 AccessMode                  : ReadWrite
 ClrVersion                  : 4.0
@@ -208,7 +210,7 @@ IscsiTarget                                                 4.0
 Kds                                                         4.0
 Microsoft.PowerShell.Diagnostics                            4.0
 Microsoft.PowerShell.Host                                   4.0
-Microsoft.PowerShell.Management                             4.0â€¦
+Microsoft.PowerShell.Management                             4.0
 ```
 
 This example shows how to get the module manifest values of a module.
@@ -236,7 +238,7 @@ If you omit this parameter, **New-ModuleManifest** creates an **AliasesToExport*
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -253,7 +255,7 @@ If you omit this parameter, **New-ModuleManifest** creates an **Author** key wit
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -268,7 +270,7 @@ Specifies the minimum version of the Common Language Runtime (CLR) of the Micros
 ```yaml
 Type: Version
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -289,7 +291,7 @@ If you omit this parameter, **New-ModuleManifest** creates a **CmdletsToExport**
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -306,7 +308,7 @@ If you omit this parameter, **New-ModuleManifest** creates a **CompanyName** key
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -339,7 +341,7 @@ All rights reserved." where \<year\> is the current year and \<username\> is the
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -359,7 +361,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -374,7 +376,7 @@ Describes the contents of the module.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -389,7 +391,7 @@ Specifies the minimum version of the Microsoft .NET Framework that the module re
 ```yaml
 Type: Version
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -399,12 +401,12 @@ Accept wildcard characters: False
 ```
 
 ### -DscResourcesToExport
-@{Text=}
+
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -422,7 +424,7 @@ The files listed in the key are not automatically exported with the module.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -440,7 +442,7 @@ Because formatting files are not scoped, they affect all session states in the s
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -461,7 +463,7 @@ If you omit this parameter, **New-ModuleManifest** creates an **FunctionsToExpor
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -481,7 +483,7 @@ To create a new GUID in Windows PowerShell, type "\[guid\]::NewGuid()".
 ```yaml
 Type: Guid
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -504,7 +506,7 @@ This parameter was introduced in Windows PowerShell 3.0.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -514,12 +516,12 @@ Accept wildcard characters: False
 ```
 
 ### -IconUri
-@{Text=}
+
 
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -529,12 +531,12 @@ Accept wildcard characters: False
 ```
 
 ### -LicenseUri
-@{Text=}
+
 
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -557,7 +559,7 @@ The modules that are listed in the value of this key are not automatically proce
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -575,7 +577,7 @@ If you omit this parameter, **New-ModuleManifest** creates a **ModuleVersion** k
 ```yaml
 Type: Version
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -604,7 +606,7 @@ To run a script in the caller's session state, list the script file name in the 
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -620,7 +622,7 @@ By default, this cmdlet does not generate any output.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -644,7 +646,7 @@ To use a variable, include the **Path** parameter in the command.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
@@ -663,7 +665,7 @@ To find the name of a host program, in the program, type `$host.name`.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -679,7 +681,7 @@ Enter a version number, such as 1.1.
 ```yaml
 Type: Version
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -695,7 +697,7 @@ For example, you can enter 3.0, 4.0, or 5.0 as the value of this parameter.
 ```yaml
 Type: Version
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -710,7 +712,7 @@ Specifies data that is passed to the module when it is imported.
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -727,7 +729,7 @@ None indicates unknown or unspecified.
 ```yaml
 Type: ProcessorArchitecture
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: None, MSIL, X86, IA64, Amd64, Arm
 
 Required: False
@@ -738,12 +740,12 @@ Accept wildcard characters: False
 ```
 
 ### -ProjectUri
-@{Text=}
+
 
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -758,7 +760,7 @@ Specifies release notes.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -778,7 +780,7 @@ This includes assemblies that must be loaded to update any formatting or type fi
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -803,7 +805,7 @@ It just verifies that the required modules are in the global session state.
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -846,7 +848,7 @@ To specify scripts that run in the module's session state, use the **NestedModul
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -856,12 +858,12 @@ Accept wildcard characters: False
 ```
 
 ### -Tags
-@{Text=}
+
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -879,7 +881,7 @@ Because type files are not scoped, they affect all session states in the session
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -900,7 +902,7 @@ If you omit this parameter, **New-ModuleManifest** creates a **VariablesToExport
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -926,15 +928,14 @@ Accept wildcard characters: False
 ```
 
 ### -CompatiblePSEditions
-You can use this parameter to restrict the aliases that are exported by the module.
-It can remove aliases from the list of exported aliases, but it cannot add aliases to the list.
-
-If you omit this parameter, **New-ModuleManifest** creates an **AliasesToExport** key with a value of * (all), meaning that all aliases that are exported by the module are exported by the manifest.
+Specifies the compatible PSEditions of the module.
+For information about PSEdition, see [Modules with compatible PowerShell Editions](https://msdn.microsoft.com/en-us/powershell/gallery/psget/module/modulewithpseditionsupport).
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
+Accepted values: Desktop, Core
 
 Required: False
 Position: Named
@@ -979,4 +980,3 @@ Typically, it refers to the global session state, but when a module imports nest
 [Remove-Module](Remove-Module.md)
 
 [Test-ModuleManifest](Test-ModuleManifest.md)
-

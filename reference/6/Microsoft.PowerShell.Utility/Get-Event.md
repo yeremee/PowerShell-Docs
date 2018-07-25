@@ -1,5 +1,5 @@
 ---
-ms.date:  2017-06-09
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -17,14 +17,12 @@ Gets the events in the event queue.
 
 ### BySource (Default)
 ```
-Get-Event [[-SourceIdentifier] <String>] [-InformationAction <ActionPreference>]
- [-InformationVariable <String>] [<CommonParameters>]
+Get-Event [[-SourceIdentifier] <String>] [<CommonParameters>]
 ```
 
 ### ById
 ```
-Get-Event [-EventIdentifier] <Int32> [-InformationAction <ActionPreference>] [-InformationVariable <String>]
- [<CommonParameters>]
+Get-Event [-EventIdentifier] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,7 +56,7 @@ This command gets events in which the value of the SourceIdentifier property is 
 ```
 PS C:\> $Events = Get-Event
 PS C:\> $Events[0] | Format-List -Property *
-ComputerName     : 
+ComputerName     :
 RunspaceId       : c2153740-256d-46c0-a57c-b805917d1b7b
 EventIdentifier  : 1
 Sender           : System.Management.ManagementEventWatcher
@@ -67,7 +65,7 @@ SourceArgs       : {System.Management.ManagementEventWatcher, System.Management.
 SourceIdentifier : ProcessStarted
 TimeGenerated    : 11/13/2008 12:09:32 PM
 MessageData      : PS C:\> Get-Event | Where {$_.TimeGenerated -ge "11/13/2008 12:15:00 PM"}
-ComputerName     : 
+ComputerName     :
 RunspaceId       : c2153740-256d-46c0-a57c-b8059325d1a0
 EventIdentifier  : 1
 Sender           : System.Management.ManagementEventWatcher
@@ -112,33 +110,6 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -InformationAction
-@{Text=}```yaml
-Type: ActionPreference
-Parameter Sets: (All)
-Aliases: infa
-Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InformationVariable
-@{Text=}```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: iv
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SourceIdentifier
 Specifies source identifiers for which this cmdlet gets events.
 The default is all events in the event queue.
@@ -147,7 +118,7 @@ Wildcards are not permitted.
 ```yaml
 Type: String
 Parameter Sets: BySource
-Aliases: 
+Aliases:
 
 Required: False
 Position: 1
@@ -208,12 +179,11 @@ In the value of the *Action* parameter, the SourceIdentifier property of the $Ev
 A **DateTime** object that represents the time at which the event was generated.
 In the value of the *Action* parameter, the TimeGenerated property of the $Event automatic variable contains this value.
 
-  --MessageData.
+  - MessageData.
 Data associated with the event subscription.
 Users specify this data when they register an event.
 In the value of the *Action* parameter, the MessageData property of the $Event automatic variable contains this value.
 
-*
 
 ## RELATED LINKS
 
@@ -228,4 +198,3 @@ In the value of the *Action* parameter, the MessageData property of the $Event a
 [Unregister-Event](Unregister-Event.md)
 
 [Wait-Event](Wait-Event.md)
-

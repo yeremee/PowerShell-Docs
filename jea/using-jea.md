@@ -1,7 +1,5 @@
 ---
-ms.date:  2017-06-12
-author:  rpsqrd
-ms.topic:  conceptual
+ms.date:  06/12/2017
 keywords:  jea,powershell,security
 title:  Using JEA
 ---
@@ -22,7 +20,7 @@ To use JEA interactively, you will need:
 - The name of the JEA endpoint registered on that computer
 - Credentials for the computer that have access to the JEA endpoint
 
-With that information in hand, you can start a JEA session using [New-PSSession](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/New-PSSession) or [Enter-PSSession](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.core/enter-pssession).
+With that information in hand, you can start a JEA session using [New-PSSession](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/New-PSSession) or [Enter-PSSession](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/enter-pssession).
 
 ```powershell
 $nonAdminCred = Get-Credential
@@ -99,11 +97,11 @@ $jeaDefaultCmdlets = 'Clear-Host', 'Exit-PSSession', 'Get-Command', 'Get-FormatD
 $filteredCommands = $commands.Name | Where-Object { $jeaDefaultCmdlets -notcontains $_ }
 
 # Import only commands explicitly added in role capabilities and prefix each imported cmdlet with "JEA"
-Import-PSSession -Session $jeasession -Prefix 'JEA' -CommandName $filteredCommands 
+Import-PSSession -Session $jeasession -Prefix 'JEA' -CommandName $filteredCommands
 ```
 
 You can also persist the proxied cmdlets from implicit remoting using [Export-PSSession](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.utility/Export-PSSession).
-For more information about implicit remoting, check out the help documentation for [Import-PSSession](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.utility/import-pssession) and [Import-Module](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.core/import-module).
+For more information about implicit remoting, check out the help documentation for [Import-PSSession](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.utility/import-pssession) and [Import-Module](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.core/import-module).
 
 ## Using JEA programatically
 
@@ -185,4 +183,3 @@ It is strongly recommended that you create a dedicated local user with no other 
 Remember that even an unprivileged user can still log into a Windows machine by default, including using unconstrained PowerShell.
 That will allow them to browse (some of) the file system and learn more about your OS environment.
 To lock down a Hyper-V administrator to only access a VM using PowerShell Direct with JEA, you will need to deny local logon rights to the Hyper-V admin's JEA account.
-

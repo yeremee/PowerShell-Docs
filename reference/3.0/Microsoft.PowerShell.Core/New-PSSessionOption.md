@@ -1,5 +1,5 @@
----
-ms.date:  2017-06-09
+﻿---
+ms.date:  06/09/2017
 schema:  2.0.0
 locale:  en-us
 keywords:  powershell,cmdlet
@@ -7,10 +7,12 @@ online version:  http://go.microsoft.com/fwlink/?LinkID=144305
 external help file:  System.Management.Automation.dll-Help.xml
 title:  New-PSSessionOption
 ---
-
 # New-PSSessionOption
+
 ## SYNOPSIS
+
 Creates an object that contains advanced options for a PSSession.
+
 ## SYNTAX
 
 ```
@@ -24,6 +26,7 @@ New-PSSessionOption [-MaximumRedirection <Int32>] [-NoCompression] [-NoMachinePr
 ```
 
 ## DESCRIPTION
+
 The **New-PSSessionOption** cmdlet creates an object that contains advanced options for a user-managed session ("PSSession").
 You can use the object as the value of the **SessionOption** parameter of cmdlets that create a PSSession, such as New-PSSession, Enter-PSSession, and Invoke-Command.
 
@@ -33,16 +36,18 @@ Because all of the properties can be edited, you can use the resulting object as
 You can also save a session option object in the **$PSSessionOption** preference variable.
 The values of this variable establish new default values for the session options.
 They effective when no session options are set for the session and they take precedence over options set in the session configuration, but you can override them by specifying session options or a session option object in a cmdlet that creates a session.
-For more information about the **$PSSessionOption** preference variable, see **about_Preference_Variables** (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information about the **$PSSessionOption** preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 
 When you use a session option object in a cmdlet that creates a session, the session option values take precedence over default values for sessions set in the **$PSSessionOption** preference variable and in the session configuration.
 However, they do not take precedence over maximum values, quotas or limits set in the session configuration.
 For more information about session configurations, see about_Session_Configurations (http://go.microsoft.com/fwlink/?LinkID=145152).
+
 ## EXAMPLES
 
 ### Example 1
+
 ```
-PS C:\> New-PSSessionOption
+PS> New-PSSessionOption
 
 MaximumConnectionRedirectionCount : 5
 NoCompression                     : False
@@ -67,10 +72,12 @@ IdleTimeout                       : 00:04:00
 ```
 
 This command creates a session option object with all of the default values.
+
 ### Example 2
+
 ```
-PS C:\> $pso = New-PSSessionOption -Culture "fr-fr" -MaximumReceivedObjectSize 10MB
-PS C:\> New-PSSession -ComputerName Server01 -SessionOption $pso
+PS> $pso = New-PSSessionOption -Culture "fr-fr" -MaximumReceivedObjectSize 10MB
+PS> New-PSSession -ComputerName Server01 -SessionOption $pso
 ```
 
 This example shows how to use a session option object to configure a session.
@@ -79,18 +86,22 @@ The first command creates a new session option object and saves it in the value 
 
 The second command uses the New-PSSession cmdlet to create a session on the Server01 remote computer.
 The command uses the session option object in the value of the $pso variable as the value of the SessionOption parameter of the command.
+
 ### Example 3
+
 ```
-PS C:\> Enter-PSSession -ComputerName Server01 -SessionOption (New-PSSessionOption -NoEncryption -NoCompression)
+PS> Enter-PSSession -ComputerName Server01 -SessionOption (New-PSSessionOption -NoEncryption -NoCompression)
 ```
 
 This command uses the Enter-PSSession cmdlet to start an interactive session with the Server01 computer.
 The value of the **SessionOption** parameter is a **New-PSSessionOption** command with the **NoEncryption** and **NoCompression** switch parameters.
 
 The **New-PSSessionOption** command is enclosed in parentheses to make sure that it runs before the **Enter-PSSession** command.
+
 ### Example 4
+
 ```
-PS C:\> $a = New-PSSessionOption
+PS> $a = New-PSSessionOption
 
 MaximumConnectionRedirectionCount : 5
 NoCompression                     : False
@@ -113,10 +124,10 @@ OpenTimeout                       : 00:03:00
 CancelTimeout                     : 00:01:00
 IdleTimeout                       : 00:04:00
 
-PS C:\> $a.UICulture = (Get-UICulture)
-PS C:\> $a.OpenTimeout = (New-Timespan -Minutes 4)
-PS C:\> $a.MaximumConnectionRedirectionCount = 1
-PS C:\> $a
+PS> $a.UICulture = (Get-UICulture)
+PS> $a.OpenTimeout = (New-Timespan -Minutes 4)
+PS> $a.MaximumConnectionRedirectionCount = 1
+PS> $a
 
 MaximumConnectionRedirectionCount : 1
 NoCompression                     : False
@@ -144,9 +155,11 @@ This example demonstrates that you can edit the session option object.
 All properties have read/write values.
 
 Use this method to create a standard session object for your enterprise, and then create customized versions of it for particular uses.
+
 ### Example 5
+
 ```
-PS C:\> $PSSessionOption = New-PSSessionOption -OpenTimeOut 120000
+PS> $PSSessionOption = New-PSSessionOption -OpenTimeOut 120000
 ```
 
 This command creates a **$PSSessionOption** preference variable.
@@ -155,12 +168,14 @@ When the **$PSSessionOption** preference variable exists in the session, it esta
 
 To make the **$PSSessionOption** variable available in all sessions, add it to your Windows PowerShell session and to your Windows PowerShell profile.
 
-For more information about the **$PSSessionOption** preference variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
+For more information about the **$PSSessionOption** preference variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
 For more information about profiles, see about_Profiles (http://go.microsoft.com/fwlink/?LinkID=113729).
+
 ### Example 6
+
 ```
-PS C:\> $skipCN = New-PSSessionOption -SkipCNCheck
-PS C:\> New-PSSession -ComputerName 171.09.21.207 -UseSSL -Credential Domain01\User01 -SessionOption $SkipCN
+PS> $skipCN = New-PSSessionOption -SkipCNCheck
+PS> New-PSSession -ComputerName 171.09.21.207 -UseSSL -Credential Domain01\User01 -SessionOption $SkipCN
 ```
 
 This example shows how to use a **SessionOption** object to fulfill the requirements for a remote session configuration.
@@ -173,12 +188,14 @@ The $skipCN check variable is used in the value of the **SessionOption** paramet
 
 Because the computer is identified by its IP address, the value of the **ComputerName** parameter does not match any of the common names in the certificate used for Secure Sockets Layer (SSL).
 As a result, the **SkipCNCheck** option is required.
+
 ### Example 7
+
 ```
-PS C:\> $team = @{Team="IT"; Use="Testing"}
-PS C:\> $TeamOption = New-PSSessionOption -ApplicationArguments $team
-PS C:\> $s = New-PSSession -ComputerName Server01 -SessionOption $TeamOption
-PS C:\> Invoke-Command -Session $s {$PSSenderInfo.SpplicationArguments}
+PS> $team = @{Team="IT"; Use="Testing"}
+PS> $TeamOption = New-PSSessionOption -ApplicationArguments $team
+PS> $s = New-PSSession -ComputerName Server01 -SessionOption $TeamOption
+PS> Invoke-Command -Session $s {$PSSenderInfo.SpplicationArguments}
 
 Name                 Value
 ----                 -----
@@ -186,7 +203,7 @@ Team                 IT
 Use                  Testing
 PSVersionTable       {CLRVersion, BuildVersion, PSVersion, WSManStackVersion...}
 
-PS C:\> Invoke-Command -Session $s {if ($PSSenderInfo.ApplicationArguments.Use -ne "Testing") {.\logFiles.ps1} else {"Just testing."}}
+PS> Invoke-Command -Session $s {if ($PSSenderInfo.ApplicationArguments.Use -ne "Testing") {.\logFiles.ps1} else {"Just testing."}}
 Just testing.
 ```
 
@@ -210,9 +227,11 @@ The data appears in the **ApplicationArguments** property of the $PSSenderInfo a
 The fifth command shows how the data might be used.
 The command uses the Invoke-Command cmdlet to run a script only when the value of the Use property is not "Testing".
 When the value of Use is "Testing", the command returns "Just testing."
+
 ## PARAMETERS
 
 ### -ApplicationArguments
+
 Specifies a primitive dictionary that is sent to the remote session.
 Commands and scripts in the remote session, including startup scripts in the session configuration, can find this dictionary in the **ApplicationArguments** property of the **$PSSenderInfo** automatic variable.
 You can use this parameter to send data to the remote session.
@@ -225,7 +244,7 @@ For more information, see about_Hash_Tables (http://go.microsoft.com/fwlink/?Lin
 ```yaml
 Type: PSPrimitiveDictionary
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -235,6 +254,7 @@ Accept wildcard characters: False
 ```
 
 ### -CancelTimeout
+
 Determines how long Windows PowerShell waits for a cancel operation (CTRL + C)  to complete before terminating it.
 Enter a value in milliseconds.
 
@@ -254,6 +274,7 @@ Accept wildcard characters: False
 ```
 
 ### -Culture
+
 Specifies the culture to use for the session.
 Enter a culture name in \<languagecode2\>-\<country/regioncode2\> format, such as "ja-jP",  a variable that contains a CultureInfo object, or a command that gets a CultureInfo object, such as "get-culture".
 
@@ -262,7 +283,7 @@ The default value is $null, and the culture that is set in the operating system 
 ```yaml
 Type: CultureInfo
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -272,6 +293,7 @@ Accept wildcard characters: False
 ```
 
 ### -IdleTimeout
+
 Determines how long the session stays open if the remote computer does not receive any communication from the local computer, including the heartbeat signal.
 When the interval expires, the session closes.
 
@@ -310,6 +332,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaximumReceivedDataSizePerCommand
+
 Specifies the maximum number of bytes that the local computer can receive from the remote computer in a single command.
 Enter a value in bytes.
 By default, there is no data size limit.
@@ -319,7 +342,7 @@ This option is designed to protect the resources on the client computer.
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -329,6 +352,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaximumReceivedObjectSize
+
 Specifies the maximum size of an object that the local computer can receive from the remote computer.
 This option is designed to protect the resources on the client computer.
 Enter a value in bytes.
@@ -339,7 +363,7 @@ Beginning in Windows PowerShell 3.0, if you omit this parameter, the default val
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -349,6 +373,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaximumRedirection
+
 Determines how many times Windows PowerShell redirects a connection to an alternate Uniform Resource Identifier (URI) before the connection fails.
 The default value is 5.
 A value of 0 (zero) prevents all redirection.
@@ -358,7 +383,7 @@ This option is used in the session only when the AllowRedirection parameter is u
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -368,13 +393,14 @@ Accept wildcard characters: False
 ```
 
 ### -NoCompression
+
 Turns off packet compression in the session.
 Compression uses more processor cycles, but it makes transmission faster.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -384,12 +410,13 @@ Accept wildcard characters: False
 ```
 
 ### -NoEncryption
+
 Turns off data encryption.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -399,13 +426,14 @@ Accept wildcard characters: False
 ```
 
 ### -NoMachineProfile
+
 Prevents loading the user's Windows user profile.
 As a result, the session might be created faster, but user-specific registry settings, items such as environment variables, and certificates are not available in the session.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -415,6 +443,7 @@ Accept wildcard characters: False
 ```
 
 ### -OpenTimeout
+
 Determines how long the client computer waits for the session connection to be established.
 When the interval expires, the command to establish the connection fails.
 Enter a value in milliseconds.
@@ -435,6 +464,7 @@ Accept wildcard characters: False
 ```
 
 ### -OperationTimeout
+
 Determines the maximum time that any operation in the session can run.
 When the interval expires, the operation fails.
 Enter a value in milliseconds.
@@ -455,6 +485,7 @@ Accept wildcard characters: False
 ```
 
 ### -OutputBufferingMode
+
 Determines how command output is managed in disconnected sessions when the output buffer becomes full.
 
 If the output buffering mode is not set in the session or in the session configuration, the default value is **Block**.
@@ -476,7 +507,7 @@ This parameter is introduced in Windows PowerShell 3.0.
 ```yaml
 Type: OutputBufferingMode
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -486,16 +517,17 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyAccessType
+
 Determines which mechanism is used to resolve the host name.
 Valid values are **IEConfig**, **WinHttpConfig**, **AutoDetect**, **NoProxyServer** and **None**.
 The default value is **None**.
 
-For information about the values of this parameter, see the description of the System.Management.Automation.Remoting.ProxyAccessType enumeration in the MSDN (Microsoft Developer Network) Library at http://go.microsoft.com/fwlink/?LinkId=144756.
+For information about the values of this parameter, see [ProxyAccessType Enumeration](https://msdn.microsoft.com/library/system.management.automation.remoting.proxyaccesstype) in the MSDN library.
 
 ```yaml
 Type: ProxyAccessType
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -505,16 +537,17 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyAuthentication
+
 Specifies the authentication method that is used for proxy resolution.
 Valid values are **Basic**, **Digest**, and **Negotiate**.
 The default value is **Negotiate**.
 
-For information about the values of this parameter, see the description of the System.Management.Automation.Runspaces.AuthenticationMechanism enumeration in the MSDN library at http://go.microsoft.com/fwlink/?LinkID=144382.
+For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
 
 ```yaml
 Type: AuthenticationMechanism
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -524,6 +557,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProxyCredential
+
 Specifies the credentials to use for proxy authentication.
 Enter a variable that contains a **PSCredential** object or a command that gets a **PSCredential** object, such as a Get-Credential command.
 If this option is not set, no credentials are specified.
@@ -531,7 +565,7 @@ If this option is not set, no credentials are specified.
 ```yaml
 Type: PSCredential
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -541,6 +575,7 @@ Accept wildcard characters: False
 ```
 
 ### -SkipCACheck
+
 Specifies that when connecting over HTTPS, the client does not validate that the server certificate is signed by a trusted certification authority (CA).
 
 Use this option only when the remote computer is trusted by using another mechanism, such as when the remote computer is part of a network that is physically secure and isolated or when the remote computer is listed as a trusted host in a WinRM configuration.
@@ -548,7 +583,7 @@ Use this option only when the remote computer is trusted by using another mechan
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -558,6 +593,7 @@ Accept wildcard characters: False
 ```
 
 ### -SkipCNCheck
+
 Specifies that the certificate common name (CN) of the server does not need to match the hostname of the server.
 This option is used only in remote operations that use the HTTPS protocol.
 
@@ -566,7 +602,7 @@ Use this option only for trusted computers.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -576,12 +612,13 @@ Accept wildcard characters: False
 ```
 
 ### -SkipRevocationCheck
+
 Does not validate the revocation status of the server certificate.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -591,6 +628,7 @@ Accept wildcard characters: False
 ```
 
 ### -UICulture
+
 Specifies the UI culture to use for the session.
 
 Enter a culture name in \<languagecode2\>-\<country/regioncode2\> format, such as "ja-jP",  a variable that contains a **CultureInfo** object, or a command that gets a CultureInfo object, such as a Get-Culture command.
@@ -600,7 +638,7 @@ The default value is $null, and the UI culture that is set in the operating syst
 ```yaml
 Type: CultureInfo
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -610,12 +648,13 @@ Accept wildcard characters: False
 ```
 
 ### -UseUTF16
+
 Encode the request in UTF16 format rather than UTF8 format.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -625,6 +664,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludePortInSPN
+
 Includes the port number in the Service Principal Name (SPN) used for Kerberos authentication, for example, "HTTP/\<ComputerName\>:5985".
 This option allows a client that uses a non-default SPN to authenticate against a remote computer that uses Kerberos authentication.
 
@@ -633,14 +673,14 @@ For example, an IIS application that allows Kerberos authentication can require 
 In such cases, Windows PowerShell remoting cannot use Kerberos to authenticate because it requires an SPN that is registered to the computer account.
 To resolve this problem, administrators can create different SPNs (such as by using Setspn.exe) that are registered to different user accounts and can distinguish between them by including the port number in the SPN.
 
-For more information about SetSPN.exe, see "SetSPN Overview" at http://go.microsoft.com/fwlink/?LinkID=189413.
+For more information about Setspn.exe, see [Setspn Overview](https://go.microsoft.com/fwlink/?LinkID=189413).
 
 This parameter is introduced in Windows PowerShell 3.0.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: False
 Position: Named
@@ -650,18 +690,24 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
+
 You cannot pipe input to this cmdlet.
+
 ## OUTPUTS
 
 ### System.Management.Automation.Remoting.PSSessionOption
 
 ## NOTES
-* If the **SessionOption** parameter is not used in a command to create a PSSession, the session options are determined by the property values of the **$PSSessionOption** preference variable, if it is set. For more information about the $PSSessionOption variable, see about_Preference_Variables (http://go.microsoft.com/fwlink/?LinkID=113248).
-* The properties of a session configuration object vary with the options set for the session configuration and the values of those options. Also, session configurations that use a session configuration file have additional properties.
+
+- If the **SessionOption** parameter is not used in a command to create a PSSession, the session options are determined by the property values of the **$PSSessionOption** preference variable, if it is set. For more information about the $PSSessionOption variable, see [about_Preference_Variables](About/about_Preference_Variables.md).
+- The properties of a session configuration object vary with the options set for the session configuration and the values of those options. Also, session configurations that use a session configuration file have additional properties.
+
 ## RELATED LINKS
 
 [Enter-PSSession](Enter-PSSession.md)
@@ -669,4 +715,3 @@ You cannot pipe input to this cmdlet.
 [Invoke-Command](Invoke-Command.md)
 
 [New-PSSession](New-PSSession.md)
-
