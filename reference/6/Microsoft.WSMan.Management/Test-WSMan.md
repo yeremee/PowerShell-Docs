@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821738
-external help file:  Microsoft.WSMan.Management.dll-Help.xml
-title:  Test-WSMan
+external help file: Microsoft.WSMan.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.WSMan.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.wsman.management/test-wsman?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Test-WSMan
 ---
-
 # Test-WSMan
 
 ## SYNOPSIS
@@ -22,12 +22,14 @@ Test-WSMan [[-ComputerName] <String>] [-Authentication <AuthenticationMechanism>
 ```
 
 ## DESCRIPTION
+
 The **Test-WSMan** cmdlet submits an identification request that determines whether the WinRM service is running on a local or remote computer.
 If the tested computer is running the service, the cmdlet displays the WS-Management identity schema, the protocol version, the product vendor, and the product version of the tested service.
 
 ## EXAMPLES
 
 ### Example 1: Determine the status of the WinRM service
+
 ```
 PS C:\> Test-WSMan
 wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
@@ -42,6 +44,7 @@ ProductVersion  : OS: 0.0.0 SP: 0.0 Stack: 2.0
 This command determines whether the WinRM service is running on the local computer or on a remote computer.
 
 ### Example 2: Determine the status of the WinRM service on a remote computer
+
 ```
 PS C:\> Test-WSMan -ComputerName "server01"
 wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
@@ -56,6 +59,7 @@ ProductVersion  : OS: 0.0.0 SP: 0.0 Stack: 2.0
 This command determines whether the WinRM service is running on the server01 computer.
 
 ### Example 3: Determine the status of the WinRM service and the operating system version
+
 ```
 PS C:\> Test-WSMan -Authentication default
 wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
@@ -72,6 +76,7 @@ This command tests to see whether the WS-Management (WinRM) service is running o
 Using the authentication parameter enables **Test-WSMan** to return the operating system version.
 
 ### Example 4: Determine the status of the WinRM service and the operating system version on a remote computer
+
 ```
 PS C:\> Test-WSMan -ComputerName "server01" -Authentication default
 wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
@@ -90,6 +95,7 @@ Using the authentication parameter enables **Test-WSMan** to return the operatin
 ## PARAMETERS
 
 ### -ApplicationName
+
 Specifies the application name in the connection.
 The default value of the *ApplicationName* parameter is WSMAN.
 The complete identifier for the remote endpoint is in the following format:
@@ -100,7 +106,7 @@ For example: `http://server01:8080/WSMAN`
 
 Internet Information Services (IIS), which hosts the session, forwards requests with this endpoint to the specified application.
 This default setting of WSMAN is appropriate for most uses.
-This parameter is designed to be used if many computers establish remote connections to one computer that is running Windows PowerShell.
+This parameter is designed to be used if many computers establish remote connections to one computer that is running PowerShell.
 In this case, IIS hosts Web Services for Management (WS-Management) for efficiency.
 
 ```yaml
@@ -116,6 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -Authentication
+
 Specifies the authentication mechanism to be used at the server.
 The acceptable values for this parameter are:
 
@@ -147,6 +154,7 @@ Instead, this cmdlet displays null values for the operating system version and s
 Type: AuthenticationMechanism
 Parameter Sets: (All)
 Aliases: auth, am
+Accepted values: None, Default, Digest, Negotiate, Basic, Kerberos, ClientCertificate, Credssp
 
 Required: False
 Position: Named
@@ -156,13 +164,14 @@ Accept wildcard characters: False
 ```
 
 ### -CertificateThumbprint
+
 Specifies the digital public key certificate (X509) of a user account that has permission to perform this action.
 Enter the certificate thumbprint of the certificate.
 
 Certificates are used in client certificate-based authentication.
 They can be mapped only to local user accounts; they do not work with domain accounts.
 
-To get a certificate thumbprint, use the Get-Item or Get-ChildItem command in the Windows PowerShell Cert: drive.
+To get a certificate thumbprint, use the Get-Item or Get-ChildItem command in the PowerShell Cert: drive.
 
 ```yaml
 Type: String
@@ -177,6 +186,7 @@ Accept wildcard characters: False
 ```
 
 ### -ComputerName
+
 Specifies the computer against which to run the management operation.
 The value can be a fully qualified domain name, a NetBIOS name, or an IP address.
 Use the local computer name, use localhost, or use a dot (.) to specify the local computer.
@@ -190,13 +200,14 @@ Parameter Sets: (All)
 Aliases: cn
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
 ### -Credential
+
 Specifies a user account that has permission to perform this action.
 The default is the current user.
 Type a user name, such as User01, Domain01\User01, or User@Domain.com.
@@ -216,6 +227,7 @@ Accept wildcard characters: False
 ```
 
 ### -Port
+
 Specifies the port to use when the client connects to the WinRM service.
 When the transport is HTTP, the default port is 80.
 When the transport is HTTPS, the default port is 443.
@@ -235,10 +247,11 @@ Accept wildcard characters: False
 ```
 
 ### -UseSSL
+
 Specifies that the Secure Sockets Layer (SSL) protocol is used to establish a connection to the remote computer.
 By default, SSL is not used.
 
-WS-Management encrypts all the Windows PowerShell content that is transmitted over the network.
+WS-Management encrypts all the PowerShell content that is transmitted over the network.
 The *UseSSL* parameter lets you specify the additional protection of HTTPS instead of HTTP.
 If SSL is not available on the port that is used for the connection, and you specify this parameter, the command fails.
 
@@ -255,19 +268,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 This cmdlet does not accept any input.
 
 ## OUTPUTS
 
 ### None
+
 This cmdlet does not generate any output object.
 
 ## NOTES
+
 * By default, the **Test-WSMan** cmdlet queries the WinRM service without using authentication, and it returns no information that is specific to the operating-system version. Instead, it displays null values for the operating system version and service pack level (OS: 0.0.0 SP: 0.0).
 
 *
@@ -297,3 +314,5 @@ This cmdlet does not generate any output object.
 [Set-WSManInstance](Set-WSManInstance.md)
 
 [Set-WSManQuickConfig](Set-WSManQuickConfig.md)
+
+

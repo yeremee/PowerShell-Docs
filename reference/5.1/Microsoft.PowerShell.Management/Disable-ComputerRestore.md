@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821578
-external help file:  Microsoft.PowerShell.Commands.Management.dll-Help.xml
-title:  Disable-ComputerRestore
+external help file: Microsoft.PowerShell.Commands.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/disable-computerrestore?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Disable-ComputerRestore
 ---
 
 # Disable-ComputerRestore
@@ -49,21 +50,6 @@ The command uses the *Drive* parameter, but it omits the Drive parameter name.
 
 ## PARAMETERS
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Drive
 Specifies the file system drives.
 Enter one or more file system drive letters, each followed by a colon and a backslash and enclosed in quotation marks, such as C:\ or D:\.
@@ -85,6 +71,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
@@ -102,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -115,7 +116,7 @@ You cannot pipe input to this cmdlet.
 This cmdlet does not generate any output.
 
 ## NOTES
-* To run this cmdlet on Windows Vistaand later versions of Windows, open Windows PowerShell with the Run as administrator option.
+* To run this cmdlet on Windows Vista and later versions of Windows, open Windows PowerShell with the Run as administrator option.
 
   To find the file system drives that are eligible for system restore, in System in Control Panel, see the System Protection tab.
 To open this tab in Windows PowerShell, type `SystemPropertiesProtection`.
@@ -135,3 +136,5 @@ To open this tab in Windows PowerShell, type `SystemPropertiesProtection`.
 [Restart-Computer](Restart-Computer.md)
 
 [Restore-Computer](Restore-Computer.md)
+
+

@@ -1,15 +1,14 @@
 ---
-ms.date:  11/29/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Jobs
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 11/29/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_jobs?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Jobs
 ---
-
 # About Jobs
 
 ## SHORT DESCRIPTION
-
 Provides information about how PowerShell background jobs run a
 command or expression in the background without interacting with the
 current session.
@@ -43,11 +42,11 @@ work in the session without interruption while the job runs.
 
 ## HOW TO START A JOB ON THE LOCAL COMPUTER
 
-To start a background job on the local computer, use the Start-Job
+To start a background job on the local computer, use the `Start-Job`
 cmdlet.
 
-To write a Start-Job command, enclose the command that the job runs in
-braces ( { } ). Use the ScriptBlock parameter to specify the command.
+To write a `Start-Job` command, enclose the command that the job runs in curly
+braces ( `{ }` ). Use the **ScriptBlock** parameter to specify the command.
 
 The following command starts a background job that runs a `Get-Process`
 command on the local computer.
@@ -68,9 +67,21 @@ object and saves the resulting job object in the \$job variable.
 $job = Start-Job -ScriptBlock {Get-Process}
 ```
 
+Beginning in PowerShell 6.0, you can use an amersand (`&`) at the end of a
+pipeline to start a background job. The following command is functionally
+equivalent to the command above.
+
+```powershell
+$job = Get-Process &
+```
+
+The `&` is called the background operator.
+For more information on the background operator,
+see [background operator](about_Operators.md#background-operator-).
+
 You can also use the `Get-Job` cmdlet to get objects that represent the jobs
 started in the current session. `Get-Job` returns the same job object that
-Start-Job returns.
+`Start-Job` returns.
 
 ## GETTING JOB OBJECTS
 

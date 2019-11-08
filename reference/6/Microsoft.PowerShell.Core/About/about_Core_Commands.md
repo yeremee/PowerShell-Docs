@@ -1,21 +1,20 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Core_Commands
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_core_commands?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Core_Commands
 ---
-
 # About Core Commands
 
 ## SHORT DESCRIPTION
-
 Lists the cmdlets that are designed for use with PowerShell providers.
 
 ## LONG DESCRIPTION
 
 PowerShell includes a set of cmdlets that are specifically designed to manage
-the items in the data stores that are exposed by Windows PowerShell providers.
+the items in the data stores that are exposed by PowerShell providers.
 You can use these cmdlets in the same ways to manage all the different types
 of data that the providers make available to you. For more information about
 providers, type "get-help about_providers".

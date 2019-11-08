@@ -1,9 +1,10 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Providers
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_providers?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Providers
 ---
 
 # About Providers
@@ -224,7 +225,7 @@ Get-ChildItem
 
 You can move through a provider drive just as you would a hard disk drive.
 If the data is arranged in a hierarchy of items within items, use a
-backslash () to indicate a child item. Use the following format:
+backslash (`\`) to indicate a child item. Use the following format:
 
 ```
 drive:\location\child-location\...

@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821880
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Write-Verbose
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/write-verbose?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Write-Verbose
 ---
 
 # Write-Verbose
@@ -71,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -84,7 +85,7 @@ You can pipe a string that contains the message to **Write-Verbose**.
 **Write-Verbose** writes only to the verbose message stream.
 
 ## NOTES
-* Verbose messages are returned only when the command uses the **Verbose** common parameter. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+* Verbose messages are returned only when the command uses the **Verbose** common parameter. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 * In Windows PowerShell background jobs and remote commands, the **$VerbosePreference** variable in the job session and remote session determine whether the verbose message is displayed by default. For more information about the **$VerbosePreference** variable, see [about_Preference_Variables](../Microsoft.PowerShell.Core/About/about_Preference_Variables.md).
 
 ## RELATED LINKS
@@ -102,3 +103,7 @@ You can pipe a string that contains the message to **Write-Verbose**.
 [Write-Progress](Write-Progress.md)
 
 [Write-Warning](Write-Warning.md)
+
+
+
+

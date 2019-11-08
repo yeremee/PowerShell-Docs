@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821866
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Trace-Command
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/trace-command?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Trace-Command
 ---
 
 # Trace-Command
@@ -16,19 +17,16 @@ Configures and starts a trace of the specified expression or command.
 ## SYNTAX
 
 ### expressionSet (Default)
-```powershell
-Trace-Command [-Name] <String[]> [-Expression] <ScriptBlock>
- [[-Option] <PSTraceSourceOptions>] [-InputObject <PSObject>]
- [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
- [-Debugger] [-PSHost] [<CommonParameters>]
+```
+Trace-Command [-InputObject <PSObject>] [-Name] <String[]> [[-Option] <PSTraceSourceOptions>]
+ [-Expression] <ScriptBlock> [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force] [-Debugger]
+ [-PSHost] [<CommonParameters>]
 ```
 
 ### commandSet
-```powershell
-Trace-Command [-Name] <String[]> [-Command] <String>
- [[-Option] <PSTraceSourceOptions>] [-InputObject <PSObject>]
- [-ArgumentList <Object[]>]
- [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
+```
+Trace-Command [-InputObject <PSObject>] [-Name] <String[]> [[-Option] <PSTraceSourceOptions>]
+ [-Command] <String> [-ArgumentList <Object[]>] [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
  [-Debugger] [-PSHost] [<CommonParameters>]
 ```
 
@@ -294,7 +292,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -329,3 +327,5 @@ You can elect to send the trace data to a user-mode or kernel-mode debugger, to 
 [Set-TraceSource](Set-TraceSource.md)
 
 [Show-Command](Show-Command.md)
+
+

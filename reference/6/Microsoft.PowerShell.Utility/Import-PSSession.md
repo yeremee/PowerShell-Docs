@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821821
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Import-PSSession
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-pssession?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Import-PSSession
 ---
-
 # Import-PSSession
 
 ## SYNOPSIS
@@ -23,10 +23,11 @@ Import-PSSession [-Prefix <String>] [-DisableNameChecking] [[-CommandName] <Stri
 ```
 
 ## DESCRIPTION
+
 The **Import-PSSession** cmdlet imports commands , such as cmdlets, functions, and aliases, from a PSSession on a local or remote computer into the current session.
 You can import any command that the Get-Command cmdlet can find in the PSSession.
 
-Use an **Import-PSSession** command to import commands from a customized shell, such as a Microsoft Exchange Server shell, or from a session that includes Windows PowerShell modules and snap-ins or other elements that are not in the current session.
+Use an **Import-PSSession** command to import commands from a customized shell, such as a Microsoft Exchange Server shell, or from a session that includes PowerShell modules and snap-ins or other elements that are not in the current session.
 
 To import commands, first use the New-PSSession cmdlet to create a PSSession.
 Then, use the **Import-PSSession** cmdlet to import the commands.
@@ -35,18 +36,18 @@ To import all the commands, use the *AllowClobber* parameter.
 
 You can use imported commands just as you would use any command in the session.
 When you use an imported command, the imported part of the command runs implicitly in the session from which it was imported.
-However, the remote operations are handled entirely by Windows PowerShell.
+However, the remote operations are handled entirely by PowerShell.
 You need not even be aware of them, except that you must keep the connection to the other session (PSSession) open.
 If you close it, the imported commands are no longer available.
 
 Because imported commands might take longer to run than local commands, **Import-PSSession** adds an *AsJob* parameter to every imported command.
-This parameter allows you to run the command as a Windows PowerShell background job.
+This parameter allows you to run the command as a PowerShell background job.
 For more information, see about_Jobs.
 
-When you use **Import-PSSession**, Windows PowerShell adds the imported commands to a temporary module that exists only in your session and returns an object that represents the module.
+When you use **Import-PSSession**, PowerShell adds the imported commands to a temporary module that exists only in your session and returns an object that represents the module.
 To create a persistent module that you can use in future sessions, use the Export-PSSession cmdlet.
 
-The **Import-PSSession** cmdlet uses the implicit remoting feature of Windows PowerShell.
+The **Import-PSSession** cmdlet uses the implicit remoting feature of PowerShell.
 When you import commands into the current session, they run implicitly in the original session or in a similar session on the originating computer.
 
 Beginning in Windows PowerShell 3.0, you can use the Import-Module cmdlet to import modules from a remote session into the current session.
@@ -56,6 +57,7 @@ It is equivalent to using **Import-PSSession** to import selected modules from a
 ## EXAMPLES
 
 ### Example 1: Import all commands from a PSSession
+
 ```
 PS C:\> $S = New-PSSession -ComputerName Server01
 PS C:\> Import-PSSession -Session $S
@@ -66,6 +68,7 @@ This command imports all commands from a PSSession on the Server01 computer into
 Because this command does not use the *CommandName* parameter, it also imports all of the formatting data required for the imported commands.
 
 ### Example 2: Import commands that end with a specific string
+
 ```
 PS C:\> $S = New-PSSession https://ps.testlabs.com/powershell
 PS C:\> Import-PSSession -Session $S -CommandName *-test -FormatTypeName *
@@ -86,6 +89,7 @@ Because imported commands are actually added to the current session, you use the
 You do not need to use the Invoke-Command cmdlet to run an imported command.
 
 ### Example 3: Import cmdlets from a PSSession
+
 ```
 PS C:\> $S1 = New-PSSession -ComputerName s1
 PS C:\> $S2 = New-PSSession -ComputerName s2
@@ -101,6 +105,7 @@ These commands import the New-Test and Get-Test cmdlets from a PSSession on the 
 Even though the cmdlets were imported from different PSSessions, you can pipe an object from one cmdlet to another without error.
 
 ### Example 4: Run an imported command as a background job
+
 ```
 PS C:\> $S = New-PSSession -ComputerName Server01
 PS C:\> Import-PSSession -Session $S -CommandName *-test* -FormatTypeName *
@@ -122,24 +127,26 @@ The command saves the job object that New-Test returns in the $batch variable.
 
 The fourth command uses the Receive-Job cmdlet to get the results of the job in the $batch variable.
 
-### Example 5: Import cmdlets and functions from a Windows PowerShell module
+### Example 5: Import cmdlets and functions from a PowerShell module
+
 ```
 PS C:\> $S = New-PSSession -ComputerName Server01
 PS C:\> Invoke-Command -Session $S {Import-Module TestManagement}
 PS C:\> Import-PSSession -Session $S -Module TestManagement
 ```
 
-This example shows how to import the cmdlets and functions from a Windows PowerShell module on a remote computer into the current session.
+This example shows how to import the cmdlets and functions from a PowerShell module on a remote computer into the current session.
 
 The first command creates a PSSession on the Server01 computer and saves it in the $S variable.
 
 The second command uses the **Invoke-Command** cmdlet to run an Import-Module command in the PSSession in $S.
 
-Typically, the module would be added to all sessions by an **Import-Module** command in a Windows PowerShell profile, but profiles are not run in PSSessions.
+Typically, the module would be added to all sessions by an **Import-Module** command in a PowerShell profile, but profiles are not run in PSSessions.
 
 The third command uses the *Module*  parameter of **Import-PSSession** to import the cmdlets and functions in the module into the current session.
 
 ### Example 6: Create a module in a temporary file
+
 ```
 PS C:\> Import-PSSession $S -CommandName Get-Date, SearchHelp -FormatTypeName * -AllowClobber
 
@@ -170,6 +177,7 @@ The value of the **Path** property shows that **Import-PSSession** created a scr
 The **ExportedFunctions** property shows that the **Get-Date** cmdlet and the SearchHelp function were both imported as functions.
 
 ### Example 7: Run a command that is hidden by an imported command
+
 ```
 PS C:\> Import-PSSession $S -CommandName Get-Date -FormatTypeName * -AllowClobber
 
@@ -200,17 +208,18 @@ The output shows that the session includes the original **Get-Date** cmdlet and 
 The **Get-Date** function runs the imported **Get-Date** cmdlet in the PSSession in $S.
 
 The third command runs a **Get-Date** command.
-Because functions take precedence over cmdlets, Windows PowerShell runs the imported **Get-Date** function, which returns a Julian date.
+Because functions take precedence over cmdlets, PowerShell runs the imported **Get-Date** function, which returns a Julian date.
 
 The fourth and fifth commands show how to use a qualified name to run a command that is hidden by an imported command.
 
-The fourth command gets the name of the Windows PowerShell snap-in that added the original **Get-Date** cmdlet to the current session.
+The fourth command gets the name of the PowerShell snap-in that added the original **Get-Date** cmdlet to the current session.
 
 The fifth command uses the snap-in-qualified name of the **Get-Date** cmdlet to run a **Get-Date** command.
 
 For more information about command precedence and hidden commands, see about_Command_Precedence.
 
 ### Example 8: Import commands that have a specific string in their names
+
 ```
 PS C:\> Import-PSSession -Session $S -CommandName *Item* -AllowClobber
 ```
@@ -221,6 +230,7 @@ Because the command includes the *CommandName* parameter but not the *FormatType
 Use this command when you are using **Import-PSSession** to run a command on a remote computer and you already have the formatting data for the command in the current session.
 
 ### Example 9: Use the Module parameter to discover which commands were imported into the session
+
 ```
 PS C:\> $M = Import-PSSession -Session $S -CommandName *bits* -FormatTypeName *bits*
 PS C:\> Get-Command -Module $M
@@ -244,13 +254,14 @@ The **Import-PSSession** command returns a temporary module, and the command sav
 The second command uses the Get-Command cmdlet to get the commands that are exported by the module in the $M variable.
 
 The *Module* parameter takes a string value, which is designed for the module name.
-However, when you submit a module object, Windows PowerShell uses the **ToString** method on the module object, which returns the module name.
+However, when you submit a module object, PowerShell uses the **ToString** method on the module object, which returns the module name.
 
 The **Get-Command** command is the equivalent of `Get-Command $M.Name`".
 
 ## PARAMETERS
 
 ### -AllowClobber
+
 Indicates that this cmdlet imports the specified commands, even if they have the same names as commands in the current session.
 
 If you import a command with the same name as a command in the current session, the imported command hides or replaces the original commands.
@@ -271,6 +282,7 @@ Accept wildcard characters: False
 ```
 
 ### -ArgumentList
+
 Specifies an array of commands that results from using the specified arguments (parameter values).
 
 For instance, to import the variant of the Get-Item command in the certificate (Cert:) drive in the PSSession in $S, type `Import-PSSession -Session $S -Command Get-Item -ArgumentList cert:`.
@@ -287,7 +299,29 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Certificate
+
+Specifies the client certificate that is used to sign the format files (*.Format.ps1xml) or script module files (.psm1) in the temporary module that **Import-PSSession** creates.
+
+Enter a variable that contains a certificate or a command or expression that gets the certificate.
+
+To find a certificate, use the Get-PfxCertificate cmdlet or use the Get-ChildItem cmdlet in the Certificate (Cert:) drive.
+If the certificate is not valid or does not have sufficient authority, the command fails.
+
+```yaml
+Type: X509Certificate2
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -CommandName
+
 Specifies commands with the specified names or name patterns.
 Wildcards are permitted.
 Use *CommandName* or its alias, *Name*.
@@ -305,31 +339,32 @@ Parameter Sets: (All)
 Aliases: Name
 
 Required: False
-Position: 3
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -CommandType
+
 Specifies the type of command objects.
 The default value is Cmdlet.
 Use *CommandType* or its alias, *Type*.
 The acceptable values for this parameter are:
 
 - Alias.
-The Windows PowerShell aliases in the remote session.
+The PowerShell aliases in the remote session.
 - All.
 The cmdlets and functions in the remote session.
 - Application.
-All the files other than Windows-PowerShell files in the paths that are listed in the Path environment variable ($env:path) in the remote session, including .txt, .exe, and .dll files.
+All the files other than PowerShell files in the paths that are listed in the Path environment variable ($env:path) in the remote session, including .txt, .exe, and .dll files.
 - Cmdlet.
 The cmdlets in the remote session.
 "Cmdlet" is the default.
 - ExternalScript.
 The .ps1 files in the paths listed in the Path environment variable ($env:path) in the remote session.
 - Filter and Function.
-The Windows PowerShell functions in the remote session.
+The PowerShell functions in the remote session.
 - Script.
 The script blocks in the remote session.
 
@@ -347,9 +382,10 @@ Accept wildcard characters: False
 ```
 
 ### -DisableNameChecking
+
 Indicates that this cmdlet suppresses the message that warns you when you import a cmdlet or function whose name includes an unapproved verb or a prohibited character.
 
-By default, when a module that you import exports cmdlets or functions that have unapproved verbs in their names, the Windows PowerShell displays the following warning message:
+By default, when a module that you import exports cmdlets or functions that have unapproved verbs in their names, the PowerShell displays the following warning message:
 
 "WARNING: Some imported command names include unapproved verbs which might make them less discoverable.
 Use the Verbose parameter for more detail or type Get-Verb to see the list of approved verbs."
@@ -371,6 +407,7 @@ Accept wildcard characters: False
 ```
 
 ### -FormatTypeName
+
 Specifies formatting instructions for the specified Microsoft .NET Framework types.
 Enter the type names.
 Wildcards are permitted.
@@ -390,13 +427,14 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -FullyQualifiedModule
+
 Specifies modules with names that are specified in the form of **ModuleSpecification** objects (described in the Remarks section of [ModuleSpecification Constructor (Hashtable)](https://msdn.microsoft.com/library/jj136290) in the MSDN library).
 For example, the *FullyQualifiedModule* parameter accepts a module name that is specified in the format @{ModuleName = "modulename"; ModuleVersion = "version_number"} or @{ModuleName = "modulename"; ModuleVersion = "version_number"; Guid = "GUID"}.
 **ModuleName** and **ModuleVersion** are required, but **Guid** is optional.
@@ -416,13 +454,14 @@ Accept wildcard characters: False
 ```
 
 ### -Module
-Specifies and array of commands in the Windows PowerShell snap-ins and modules.
+
+Specifies and array of commands in the PowerShell snap-ins and modules.
 Enter the snap-in and module names.
 Wildcards are not permitted.
 
 **Import-PSSession** cannot import providers from a snap-in.
 
-For more information, see about_PSSnapins and about_Modules.
+For more information, see about_PSSnapins and [about_Modules](../Microsoft.PowerShell.Core/About/about_Modules.md).
 
 ```yaml
 Type: String[]
@@ -437,6 +476,7 @@ Accept wildcard characters: False
 ```
 
 ### -Prefix
+
 Specifies a prefix to the nouns in the names of imported commands.
 
 Use this parameter to avoid name conflicts that might occur when different commands in the session have the same name.
@@ -456,6 +496,7 @@ Accept wildcard characters: False
 ```
 
 ### -Session
+
 Specifies the **PSSession** from which the cmdlets are imported.
 Enter a variable that contains a session object or a command that gets a session object, such as a New-PSSession or Get-PSSession command.
 You can specify only one session.
@@ -467,56 +508,40 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Certificate
-Specifies the client certificate that is used to sign the format files (*.Format.ps1xml) or script module files (.psm1) in the temporary module that **Import-PSSession** creates.
-
-Enter a variable that contains a certificate or a command or expression that gets the certificate.
-
-To find a certificate, use the Get-PfxCertificate cmdlet or use the Get-ChildItem cmdlet in the Certificate (Cert:) drive.
-If the certificate is not valid or does not have sufficient authority, the command fails.
-
-```yaml
-Type: X509Certificate2
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 You cannot pipe objects to this cmdlet.
 
 ## OUTPUTS
 
 ### System.Management.Automation.PSModuleInfo
+
 **Import-PSSession** returns the same module object that New-Module and Get-Module cmdlets return.
 However, the imported module is temporary and exists only in the current session.
 To create a permanent module on disk, use the Export-PSSession cmdlet.
 
 ## NOTES
-* **Import-PSSession** relies on the Windows PowerShell remoting infrastructure. To use this cmdlet, the computer must be configured for WS-Management remoting. For more information, see about_Remote and about_Remote_Requirements.
-* **Import-PSSession** does not import variables or Windows PowerShell providers.
+
+* **Import-PSSession** relies on the PowerShell remoting infrastructure. To use this cmdlet, the computer must be configured for WS-Management remoting. For more information, see about_Remote and about_Remote_Requirements.
+* **Import-PSSession** does not import variables or PowerShell providers.
 * When you import commands that have the same names as commands in the current session, the imported commands can hide aliases, functions, and cmdlets in the session and they can replace functions and variables in the session. To prevent name conflicts, use the *Prefix* parameter. For more information, see about_Command_Precedence.
 * **Import-PSSession** converts all commands into functions before it imports them. As a result, imported commands behave a bit differently than they would if they retained their original command type. For example, if you import a cmdlet from a PSSession and then import a cmdlet with the same name from a module or snap-in, the cmdlet that is imported from the PSSession always runs by default because functions take precedence over cmdlets. Conversely, if you import an alias into a session that has an alias with the same name, the original alias is always used, because aliases take precedence over functions. For more information, see about_Command_Precedence.
 * **Import-PSSession** uses the Write-Progress cmdlet to display the progress of the command. You might see the progress bar while the command is running.
 * To find the commands to import, **Import-PSSession** uses the Invoke-Command cmdlet to run a Get-Command command in the PSSession. To get formatting data for the commands, it uses the Get-FormatData cmdlet. You might see error messages from these cmdlets when you run an **Import-PSSession** command. Also, **Import-PSSession** cannot import commands from a PSSession that does not include the Get-Command, Get-FormatData, Select-Object, and Get-Help cmdlets.
 * Imported commands have the same limitations as other remote commands, including the inability to start a program with a user interface, such as Notepad.
-* Because Windows PowerShell profiles are not run in PSSessions, the commands that a profile adds to a session are not available to **Import-PSSession**. To import commands from a profile, use an Invoke-Command command to run the profile in the PSSession manually before importing commands.
+* Because PowerShell profiles are not run in PSSessions, the commands that a profile adds to a session are not available to **Import-PSSession**. To import commands from a profile, use an Invoke-Command command to run the profile in the PSSession manually before importing commands.
 * The temporary module that **Import-PSSession** creates might include a formatting file, even if the command does not import formatting data. If the command does not import formatting data, any formatting files that are created will not contain formatting data.
 * To use **Import-PSSession**, the execution policy in the current session cannot be Restricted or AllSigned, because the temporary module that **Import-PSSession** creates contains unsigned script files that are prohibited by these policies. To use **Import-PSSession** without changing the execution policy for the local computer, use the *Scope* parameter of Set-ExecutionPolicy to set a less restrictive execution policy for a single process.
 * In Windows PowerShell 2.0, help topics for commands that are imported from another session do not include the prefix that you assign by using the *Prefix* parameter. To get help for an imported command in Windows PowerShell 2.0, use the original (non-prefixed) command name.
@@ -524,3 +549,5 @@ To create a permanent module on disk, use the Export-PSSession cmdlet.
 ## RELATED LINKS
 
 [Export-PSSession](Export-PSSession.md)
+
+

@@ -1,16 +1,16 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821713
-external help file:  Microsoft.PowerShell.Security.dll-Help.xml
-title:  Get-Credential
+external help file: Microsoft.PowerShell.Security.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Security
+ms.date: 02/25/2019
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-Credential
 ---
 # Get-Credential
 
 ## SYNOPSIS
-
 Gets a credential object based on a user name and password.
 
 ## SYNTAX
@@ -18,13 +18,13 @@ Gets a credential object based on a user name and password.
 ### CredentialSet (Default)
 
 ```
-Get-Credential [-Credential] <PSCredential> [<CommonParameters>]
+Get-Credential [[-Credential] <PSCredential>] [<CommonParameters>]
 ```
 
 ### MessageSet
 
 ```
-Get-Credential -Message <String> [[-UserName] <String>] [<CommonParameters>]
+Get-Credential [-Message <String>] [[-UserName] <String>] [-Title <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,7 +37,7 @@ message on the dialog box that prompts the user for their name and password.
 
 The **Get-Credential** cmdlet prompts the user for a password or a user name and password. By
 default, an authentication dialog box appears to prompt the user. However, in some host programs,
-such as the Windows PowerShell console, you can prompt the user at the command line by changing a
+such as the PowerShell console, you can prompt the user at the command line by changing a
 registry entry. For more information about this registry entry, see the notes and examples.
 
 ## EXAMPLES
@@ -55,7 +55,7 @@ enter the requested information, the cmdlet creates a **PSCredential** object re
 credentials of the user and saves it in the $c variable.
 
 You can use the object as input to cmdlets that request user authentication, such as those with a
-**Credential** parameter. However, some providers that are installed with Windows PowerShell do not
+**Credential** parameter. However, some providers that are installed with PowerShell do not
 support the **Credential** parameter.
 
 ### Example 2
@@ -90,11 +90,10 @@ computer. It uses the **Credential** parameter to authenticate the user, Domain0
 ```
 PS> $c = Get-Credential -credential User01
 PS> $c.Username
-\User01
+User01
 ```
 
-This example creates a credential that includes a user name without a domain name. It demonstrates
-that Get-Credential inserts a backslash before the user name.
+This example creates a credential that includes a user name without a domain name.
 
 The first command gets a credential with the user name User01 and stores it in the $c variable.
 
@@ -124,12 +123,12 @@ This example shows how to modify the registry so that the user is prompted at th
 instead of by using a dialog box.
 
 The command creates the **ConsolePrompting** registry entry and sets its value to True. To run this
-command, start Windows PowerShell with the "Run as administrator" option.
+command, start PowerShell with the "Run as administrator" option.
 
 To use a dialog box for prompting, set the value of the ConsolePrompting to false ($false) or use
 the Remove-ItemProperty cmdlet to delete it.
 
-The ConsolePrompting registry entry works in some host programs, such as the Windows PowerShell
+The ConsolePrompting registry entry works in some host programs, such as the PowerShell
 console. It might not work in all host programs.
 
 ### Example 7
@@ -191,15 +190,21 @@ the remote security message that **Get-Credential** includes in the authenticati
 
 ### -Credential
 
-Specifies a user name for the credential, such as "User01" or "Domain01\User01".
-The parameter name ("Credential") is optional.
+Specifies a user name for the credential, such as **User01** or **Domain01\User01**. The parameter
+name, `-Credential`, is optional.
 
-When you submit the command, you will be prompted for a password.
+When you submit the command and specify a user name, you're prompted for a password. If you omit
+this parameter, you're prompted for a user name and a password.
 
-Starting in Windows PowerShell 3.0, if you enter a user name without a domain, Get-Credential no
+Starting in Windows PowerShell 3.0, if you enter a user name without a domain, `Get-Credential` no
 longer inserts a backslash before the name.
 
-If you omit this parameter, you will be prompted for a user name and a password.
+Credentials are stored in a [PSCredential](/dotnet/api/system.management.automation.pscredential)
+object and the password is stored as a [SecureString](/dotnet/api/system.security.securestring).
+
+> [!NOTE]
+> For more information about **SecureString** data protection, see
+> [How secure is SecureString?](/dotnet/api/system.security.securestring#how-secure-is-securestring).
 
 ```yaml
 Type: PSCredential
@@ -227,7 +232,25 @@ Type: String
 Parameter Sets: MessageSet
 Aliases:
 
-Required: True
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Title
+
+Sets the text of the title bar for the authentication dialog.
+
+This parameter was introduced in PowerShell 6.0.
+
+```yaml
+Type: String
+Parameter Sets: MessageSet
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -261,8 +284,7 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
 -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
--WarningAction, and -WarningVariable. For more information, see about_CommonParameters
-(http://go.microsoft.com/fwlink/?LinkID=113216).
+-WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -287,15 +309,15 @@ at the command line, add the **ConsolePrompting** registry entry
 **ConsolePrompting** registry entry does not exist or if its value is False, the authentication
 prompt appears in a dialog box. For instructions, see the examples.
 
-The **ConsolePrompting** registry entry works in the Windows PowerShell console, but it does not
+The **ConsolePrompting** registry entry works in the PowerShell console, but it does not
 work in all host programs.
 
 For example, it has no effect in the Windows PowerShell Integrated Scripting Environment (ISE). For
 information about the effect of the **ConsolePrompting** registry entry, see the help topics for
 the host program.
 
-The **Credential** parameter is not supported by all providers that are installed with Windows
-PowerShell. Beginning in Windows PowerShell 3.0, it is supported on selected cmdlet, such as the
-Get-WmiObject and New-PSDrive cmdlets.
+The **Credential** parameter is not supported by all providers that are installed with PowerShell.
+Beginning in Windows PowerShell 3.0, it is supported on selected cmdlet, such as the `Get-WmiObject`
+and `New-PSDrive` cmdlets.
 
 ## RELATED LINKS

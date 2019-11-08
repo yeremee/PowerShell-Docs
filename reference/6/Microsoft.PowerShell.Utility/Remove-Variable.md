@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821852
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Remove-Variable
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/remove-variable?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Remove-Variable
 ---
 
 # Remove-Variable
@@ -97,7 +98,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -159,7 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -172,7 +173,7 @@ You can pipe a variable object to **Remove-Variable**.
 This cmdlet does not return any output.
 
 ## NOTES
-* Changes affect only the current scope, such as a session. To delete a variable from all sessions, add a **Remove-Variable** command to your Windows PowerShell profile.
+* Changes affect only the current scope, such as a session. To delete a variable from all sessions, add a **Remove-Variable** command to your PowerShell profile.
 
   You can also refer to **Remove-Variable** by its built-in alias, **rv**.
 For more information, see about_Aliases.
@@ -188,3 +189,5 @@ For more information, see about_Aliases.
 [New-Variable](New-Variable.md)
 
 [Set-Variable](Set-Variable.md)
+
+

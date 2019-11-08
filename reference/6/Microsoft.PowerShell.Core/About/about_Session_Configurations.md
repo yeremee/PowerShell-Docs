@@ -1,24 +1,22 @@
 ---
-ms.date:  12/091/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Session_Configurations
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 12/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_session_configurations?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Session_Configurations
 ---
-
 # About Session Configurations
 
 ## SHORT DESCRIPTION
-
 Describes session configurations, which determine the users who can connect to
 the computer remotely and the commands they can run.
 
 ## LONG DESCRIPTION
 
 A session configuration, also known as an "endpoint" is a group of settings on
-the local computer that define the environment for the PowerShell
-sessions that are created when remote or local users connect to Windows
-PowerShell on the local computer.
+the local computer that define the environment for the PowerShell sessions that
+are created when remote or local users connect to PowerShell on the local computer.
 
 Administrators of the computer can use session configurations to protect the
 computer and to define custom environments for users who connect to the
@@ -195,7 +193,9 @@ supported versions of Windows, you must change the security descriptors of the
 session configurations to allow remote access.
 
 To enable remote access to the session configurations on the computer, use the
-Enable-PSRemoting cmdlet.
+Enable-PSRemoting cmdlet. This cmdlet creates two session configurations:
+- with the name defined as: "PowerShell." + "current PowerShell version"
+- with name "PowerShell.6", untied to any specific PowerShell version.
 
 Also, by default, only members of the Administrators group on the computer
 have Execute permission to the default session configurations, but you can

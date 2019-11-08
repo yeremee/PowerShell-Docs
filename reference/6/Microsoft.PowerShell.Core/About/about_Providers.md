@@ -1,15 +1,14 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Providers
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_providers?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Providers
 ---
-
 # About Providers
 
 ## Short description
-
 Describes how PowerShell providers provide access to data and
 components that would not otherwise be easily accessible at the command line.
 The data is presented in a consistent format that resembles a file system
@@ -216,7 +215,7 @@ Get-ChildItem
 
 You can move through a provider drive just as you would a hard disk drive.
 If the data is arranged in a hierarchy of items within items, use a
-backslash () to indicate a child item. Use the following format:
+backslash (`\`) to indicate a child item. Use the following format:
 
 ```
 drive:\location\child-location\...
@@ -229,13 +228,30 @@ type a Set-Location command, such as:
 Set-Location HKLM:\SOFTWARE\
 ```
 
-You can also use relative references to locations. A dot (.) represents the
+If any element in the fully qualified name includes spaces, you must enclose
+the name in quotation marks `" "`. The following example shows a fully
+qualified path that includes spaces.
+
+```
+"C:\Program Files\Internet Explorer\iexplore.exe"
+```
+
+You can also use relative references to locations. A dot (`.`) represents the
 current location. For example, if you are in the HKLM:\Software\Microsoft
 registry key, and you want to list the registry subkeys in the
 HKLM:\Software\Microsoft\PowerShell key, type the following command:
 
 ```powershell
 Get-ChildItem .\PowerShell
+```
+
+In addition, two dots (`..`) refers to the directory or container directly
+above your current location. You can combine dots (`.`) and double dots (`..`)
+along with your paths to work through a provider hierarchy.
+
+```
+PS C:\Windows\System32> cd "..\..\Program Files"
+PS C:\Program Files>
 ```
 
 ## Provider Home

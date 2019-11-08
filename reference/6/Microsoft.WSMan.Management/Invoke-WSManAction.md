@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821731
-external help file:  Microsoft.WSMan.Management.dll-Help.xml
-title:  Invoke-WSManAction
+external help file: Microsoft.WSMan.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.WSMan.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.wsman.management/invoke-wsmanaction?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Invoke-WSManAction
 ---
-
 # Invoke-WSManAction
 
 ## SYNOPSIS
@@ -39,8 +39,12 @@ This cmdlet uses the WSMan connection/transport layer to run the action.
 ## EXAMPLES
 
 ### Example 1: Invoke a method
+
+```powershell
+Invoke-WSManAction -Action startservice -ResourceURI wmicimv2/win32_service  -SelectorSet @{name="spooler"} -Authentication default
 ```
-PS C:\> Invoke-WSManAction -Action "StartService" -ResourceURI wmicimv2/win32_service -SelectorSet @{name="spooler"} -Authentication default
+
+```Output
 xsi         : http://www.w3.org/2001/XMLSchema-instance
 p           : http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Service
 cim         : http://schemas.dmtf.org/wbem/wscim/1/common
@@ -54,9 +58,13 @@ The return value indicates whether the action was successful.
 In this case, a return value of 0 indicates success.
 A return value of 5 indicates that the service is already started.
 
-### Example 2: Invoke a method by using input from a file
+### Example 2: Invoke a method
+
+```powershell
+Invoke-WSManAction -Action stopservice -ResourceURI wmicimv2/Win32_Service -SelectorSet @{Name="spooler"} -FilePath:input.xml -Authentication default
 ```
-PS C:\> Invoke-WSManAction -Action "StopService" -ResourceURI wmicimv2/Win32_Service -SelectorSet @{Name="spooler"} -FilePath:input.xml -Authentication default
+
+```Output
 xsi         : http://www.w3.org/2001/XMLSchema-instance
 p           : http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Service
 cim         : http://schemas.dmtf.org/wbem/wscim/1/common
@@ -67,11 +75,15 @@ ReturnValue : 0
 This command calls the **StopService** method on the Spooler service by using input from a file.
 The file, Input.xml, contains the following content:
 
-`\<p:StopService_INPUT xmlns:p="http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Service"/\>`
+`<p:StopService_INPUT xmlns:p="http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Service" />`
 
 ### Example 3: Invoke a method with specified parameter values
+
+```powershell
+Invoke-WSManAction -Action create -ResourceURI wmicimv2/win32_process -ValueSet @{commandline="notepad.exe";currentdirectory="C:\"}
 ```
-PS C:\> Invoke-WSManAction -Action "Create" -ResourceURI wmicimv2/win32_process -ValueSet @{commandline="notepad.exe";currentdirectory="C:\"}
+
+```Output
 xsi         : http://www.w3.org/2001/XMLSchema-instance
 p           : http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Process
 cim         : http://schemas.dmtf.org/wbem/wscim/1/common
@@ -85,16 +97,16 @@ It passes the method two parameter values, Notepad.exe and C:\.
 As a result, a new process is created to run Notepad, and the current directory of the new process is set to C:\.
 
 ### Example 4: Invoke a method on a remote computer
+
+```powershell
+Invoke-WSManAction -Action startservice -ResourceURI wmicimv2/win32_service  -SelectorSet @{name="spooler"} -ComputerName server01 -Authentication default
 ```
-PS C:\> Invoke-WSManAction -Action "StartService" -ResourceURI wmicimv2/win32_service -SelectorSet @{name="spooler"} -ComputerName "server01" -Authentication default
+
+```Output
 xsi         : http://www.w3.org/2001/XMLSchema-instance
-
 p           : http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Service
-
 cim         : http://schemas.dmtf.org/wbem/wscim/1/common
-
 lang        : en-US
-
 ReturnValue : 0
 ```
 
@@ -112,7 +124,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -129,7 +141,7 @@ For example: `http://server01:8080/WSMAN`
 
 Internet Information Services (IIS), which hosts the session, forwards requests with this endpoint to the specified application.
 This default setting of WSMAN is appropriate for most uses.
-This parameter is designed to be used if many computers establish remote connections to one computer that is running Windows PowerShell.
+This parameter is designed to be used if many computers establish remote connections to one computer that is running PowerShell.
 In this case, IIS hosts Web Services for Management (WS-Management) for efficiency.
 
 ```yaml
@@ -172,6 +184,7 @@ If the remote computer is compromised, when credentials are passed to it, the cr
 Type: AuthenticationMechanism
 Parameter Sets: (All)
 Aliases: auth, am
+Accepted values: None, Default, Digest, Negotiate, Basic, Kerberos, ClientCertificate, Credssp
 
 Required: False
 Position: Named
@@ -187,7 +200,7 @@ Enter the certificate thumbprint of the certificate.
 Certificates are used in client certificate-based authentication.
 They can be mapped only to local user accounts; they do not work with domain accounts.
 
-To get a certificate thumbprint, use the Get-Item or Get-ChildItem command in the Windows PowerShell Cert: drive.
+To get a certificate thumbprint, use the Get-Item or Get-ChildItem command in the PowerShell Cert: drive.
 
 ```yaml
 Type: String
@@ -274,12 +287,12 @@ For example, the following command uses the *FilePath* parameter:
 This command calls the **StopService** method on the **Spooler** service by using input from a file.
 The file, Input.xml, contains the following content:
 
-`\<p:StopService_INPUT xmlns:p="http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Service"/\>`
+`<p:StopService_INPUT xmlns:p="http://schemas.microsoft.com/wbem/wsman/1/wmi/root/cimv2/Win32_Service" />`
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path
 
 Required: False
 Position: Named
@@ -347,7 +360,7 @@ Parameter Sets: (All)
 Aliases: ruri
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -368,7 +381,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: 2
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -395,7 +408,7 @@ Accept wildcard characters: False
 Specifies that the Secure Sockets Layer (SSL) protocol is used to establish a connection to the remote computer.
 By default, SSL is not used.
 
-WS-Management encrypts all the Windows PowerShell content that is transmitted over the network.
+WS-Management encrypts all the PowerShell content that is transmitted over the network.
 The *UseSSL* parameter lets you specify the additional protection of HTTPS instead of HTTP.
 If SSL is not available on the port that is used for the connection, and you specify this parameter, the command fails.
 
@@ -429,7 +442,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -468,3 +481,5 @@ This cmdlet does not generate any output.
 [Set-WSManQuickConfig](Set-WSManQuickConfig.md)
 
 [Test-WSMan](Test-WSMan.md)
+
+

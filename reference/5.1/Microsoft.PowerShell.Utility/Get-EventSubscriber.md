@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821786
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Get-EventSubscriber
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-eventsubscriber?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-EventSubscriber
 ---
 
 # Get-EventSubscriber
@@ -74,12 +75,17 @@ The fourth command uses the **Get-EventSubscriber** cmdlet to get the event subs
 PS C:\> $Timer = New-Object Timers.Timer
 PS C:\> $Timer.Interval = 500
 PS C:\> Register-ObjectEvent -InputObject $Timer -EventName Elapsed -SourceIdentifier Timer.Random -Action { $Random = Get-Random -Min 0 -Max 100 }
+
 Id  Name           State      HasMoreData  Location  Command
 --  ----           -----      -----------  --------  -------
-3   Timer.Random   NotStarted False                  $Random = Get-Random ... PS C:\> $Timer.Enabled = $True
-PS C:\> $Subscriber = Get-EventSubcriber -SourceIdentifer Timer.Random
+3   Timer.Random   NotStarted False                  $Random = Get-Random ...
+
+PS C:\> $Timer.Enabled = $True
+PS C:\> $Subscriber = Get-EventSubscriber -SourceIdentifier Timer.Random
 PS C:\> ($Subscriber.action).gettype().fullname
-PSEventJob PS C:\> $Subscriber.action | Format-List -Property *
+System.Management.Automation.PSEventJob
+PS C:\> $Subscriber.action | Format-List -Property *
+
 State         : Running
 Module        : __DynamicModule_6b5cbe82-d634-41d1-ae5e-ad7fe8d57fe0
 StatusMessage :
@@ -92,8 +98,11 @@ InstanceId    : 88944290-133d-4b44-8752-f901bd8012e2
 Id            : 1
 Name          : Timer.Random
 ChildJobs     : {}
-... PS C:\> & $Subscriber.action.module {$Random}
-96 PS C:\> & $Subscriber.action.module {$Random}
+...
+
+PS C:\> & $Subscriber.action.module {$Random}
+96
+PS C:\> & $Subscriber.action.module {$Random}
 23
 ```
 
@@ -125,7 +134,7 @@ The remaining commands use the call operator (&) to invoke the command in the mo
 You can use the call operator to invoke any command in a module, including commands that are not exported.
 In this case, the commands show the random number that is being generated when the Elapsed event occurs.
 
-For more information about modules, see about_Modules.
+For more information about modules, see [about_Modules](../Microsoft.PowerShell.Core/About/about_Modules.md).
 
 ## PARAMETERS
 
@@ -179,7 +188,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -214,3 +223,5 @@ If you close the current session, the event queue is discarded and the event sub
 [Unregister-Event](Unregister-Event.md)
 
 [Wait-Event](Wait-Event.md)
+
+

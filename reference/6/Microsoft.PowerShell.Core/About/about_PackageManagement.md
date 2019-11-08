@@ -1,15 +1,14 @@
 ---
-ms.date:  11/30/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_PackageManagement
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 11/30/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_packagemanagement?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_PackageManagement
 ---
-
 # About PackageManagement
 
 ## SHORT DESCRIPTION
-
 PackageManagement is an aggregator for software package managers.
 
 ## LONG DESCRIPTION
@@ -28,9 +27,9 @@ PackageManagement supports a flexible plug-in model that enables support for
 other software package management systems.
 
 The PackageManagement module is included with Windows PowerShell 5.0 and later
-releases of Windows PowerShell, and works on three levels of package
-management structure: package providers, package sources, and the packages
-themselves. Let us define some terms:
+releases of Windows PowerShell and PowerShell Core, and works on three levels
+of package management structure: package providers, package sources,
+and the packages themselves. Let us define some terms:
 
 - Package manager: Software package management system. In PackageManagement
   terms, this is a package provider.

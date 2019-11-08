@@ -1,11 +1,11 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_While
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_while?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_While
 ---
-
 # About While
 
 ## SHORT DESCRIPTION
@@ -13,6 +13,7 @@ Describes a language statement that you can use to run a command block
 based on the results of a conditional test.
 
 ## LONG DESCRIPTION
+
 The While statement (also known as a While loop) is a language construct
 for creating a loop that runs commands in a command block as long as a
 conditional test evaluates to true. The While statement is easier to

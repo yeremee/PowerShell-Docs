@@ -1,15 +1,14 @@
 ---
-ms.date:  12/01/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Scripts
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 12/01/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Scripts
 ---
-
 # About Scripts
 
 ## SHORT DESCRIPTION
-
 Describes how to run and write scripts in PowerShell.
 
 ## LONG DESCRIPTION
@@ -224,7 +223,7 @@ methods:
   Create a Help topic by using special keywords in the comments. To create
   comment-based Help for a script, the comments must be placed at the
   beginning or end of the script file. For more information about
-  comment-based Help, see about_Comment_Based_Help.
+  comment-based Help, see [about_Comment_Based_Help](about_Comment_Based_Help.md).
 
 - XML-Based Help  for Scripts
 
@@ -234,7 +233,8 @@ methods:
 
 To associate the script with the XML-based Help topic, use the .ExternalHelp
 Help comment keyword. For more information about the ExternalHelp keyword, see
-about_Comment_Based_Help. For more information about XML-based help, see [How
+[about_Comment_Based_Help](about_Comment_Based_Help.md).
+For more information about XML-based help, see [How
 to Write Cmdlet Help](https://go.microsoft.com/fwlink/?LinkID=123415) in the
 MSDN library.
 
@@ -344,7 +344,7 @@ which is a module that consists entirely or primarily of a script and
 supporting resources. A script module is just a script with a .psm1 file name
 extension.
 
-For more information about modules, see about_Modules.
+For more information about modules, see [about_Modules](about_Modules.md).
 
 ### OTHER SCRIPT FEATURES
 

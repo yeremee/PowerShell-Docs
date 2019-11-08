@@ -1,0 +1,40 @@
+name: PR-$(System.PullRequest.PullRequestNumber)-$(Date:yyyyMMdd)$(Rev:.rr)
+trigger:
+  branches:
+    include:
+    - live
+    - staging
+  paths:
+    include:
+      - '*'
+    exclude:
+      - .github/*
+      - .vscode/*
+      - contributing/*
+      - tools/terms/*
+
+pr:
+  branches:
+    include:
+    - staging
+    - live
+  paths:
+    include:
+      - '*'
+    exclude:
+      - .github/*
+      - .vscode/*
+      - contributing/*
+      - tools/terms/*
+
+resources:
+- repo: self
+  clean: true
+
+jobs:
+- job: build_and_test
+  displayName: Build And Test
+  pool: Hosted VS2017
+
+  steps:
+    - template: ci-steps.yml

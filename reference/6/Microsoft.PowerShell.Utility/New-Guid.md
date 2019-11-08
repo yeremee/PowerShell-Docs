@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821834
-external help file:  Microsoft.PowerShell.Utility-help.xml
-title:  New-Guid
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-guid?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: New-Guid
 ---
-
 # New-Guid
 
 ## SYNOPSIS
@@ -20,12 +20,14 @@ New-Guid [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The **New-Guid** cmdlet creates a random globally unique identifier (GUID).
 If you need a unique ID in a script, you can create a GUID, as needed.
 
 ## EXAMPLES
 
 ### Example 1: Create a GUID
+
 ```
 PS C:\> New-Guid
 Guid
@@ -39,17 +41,17 @@ Alternatively, you could store the output of this cmdlet in a variable to use el
 ## PARAMETERS
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
 ### System.Guid
+
 This cmdlet returns a GUID.
 
 ## NOTES
 
 ## RELATED LINKS
-
-[Windows PowerShelll Utility Module](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Utility/Microsoft.PowerShell.Utility)

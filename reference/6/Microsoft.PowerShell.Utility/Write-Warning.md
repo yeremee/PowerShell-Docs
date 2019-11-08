@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821881
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Write-Warning
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/write-warning?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Write-Warning
 ---
 
 # Write-Warning
@@ -20,7 +21,7 @@ Write-Warning [-Message] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Write-Warning** cmdlet writes a warning message to the Windows PowerShell host.
+The **Write-Warning** cmdlet writes a warning message to the PowerShell host.
 The response to the warning depends on the value of the user's $WarningPreference variable and the use of the *WarningAction* common parameter.
 
 ## EXAMPLES
@@ -77,7 +78,7 @@ Continue with this operation?
 ```
 
 This example shows the effect of the *WarningAction* common parameter on a **Write-Warning** command.
-You can use the *WarningAction* common parameter with any cmdlet to determine how Windows PowerShell responds to warnings resulting from that command.
+You can use the *WarningAction* common parameter with any cmdlet to determine how PowerShell responds to warnings resulting from that command.
 The *WarningAction* common parameter overrides the value of the $WarningPreference only for that particular command.
 
 This command uses the **Write-Warning** cmdlet to display a warning.
@@ -86,7 +87,6 @@ The *WarningAction* common parameter with a value of Inquire directs the system 
 For more information about the *WarningAction* common parameter, see about_CommonParameters.
 
 ## PARAMETERS
-
 
 ### -Message
 Specifies the warning message.
@@ -97,14 +97,14 @@ Parameter Sets: (All)
 Aliases: Msg
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -137,3 +137,5 @@ It does not generate any other output.
 [Write-Progress](Write-Progress.md)
 
 [Write-Verbose](Write-Verbose.md)
+
+

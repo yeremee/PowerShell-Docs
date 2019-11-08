@@ -1,15 +1,14 @@
 ---
-ms.date:  12/091/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Type_Operators
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 12/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_type_operators?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Type_Operators
 ---
-
 # About Type Operators
 
 ## SHORT DESCRIPTION
-
 Describes the operators that work with Microsoft .NET Framework types.
 
 ## LONG DESCRIPTION
@@ -24,7 +23,7 @@ The -as operator tries to convert the input object to the specified .NET
 Framework type. If it succeeds, it returns the converted object. It if
 fails, it returns \$null. It does not return an error.
 
-The following table lists the type operators in  Windows PowerShell.
+The following table lists the type operators in PowerShell.
 
 |Operator|Description                |Example                          |
 |--------|---------------------------|---------------------------------|
@@ -81,6 +80,7 @@ System.Globalization.CultureInfo
 ```
 
 ## EXAMPLES
+
 The following examples show some uses of the Type operators:
 
 ```powershell

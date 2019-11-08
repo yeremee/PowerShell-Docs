@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821705
-external help file:  Microsoft.PowerShell.ScheduledJob.dll-Help.xml
-title:  Set-ScheduledJob
+external help file: Microsoft.PowerShell.ScheduledJob.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: PSScheduledJob
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/psscheduledjob/set-scheduledjob?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Set-ScheduledJob
 ---
 
 # Set-ScheduledJob
@@ -338,6 +339,8 @@ Accept wildcard characters: False
 
 ### -RunEvery
 
+Used to specify how often to run the job. For example, use this option to run a job every 15
+minutes.
 
 ```yaml
 Type: TimeSpan
@@ -446,7 +449,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -494,3 +497,5 @@ Otherwise, this cmdlet does not generate any output.
 [Set-ScheduledJobOption](Set-ScheduledJobOption.md)
 
 [Unregister-ScheduledJob](Unregister-ScheduledJob.md)
+
+

@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821866
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Trace-Command
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/trace-command?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Trace-Command
 ---
 
 # Trace-Command
@@ -16,19 +17,16 @@ Configures and starts a trace of the specified expression or command.
 ## SYNTAX
 
 ### expressionSet (Default)
-```powershell
-Trace-Command [-Name] <String[]> [-Expression] <ScriptBlock>
- [[-Option] <PSTraceSourceOptions>] [-InputObject <PSObject>]
- [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
- [-Debugger] [-PSHost] [<CommonParameters>]
+```
+Trace-Command [-InputObject <PSObject>] [-Name] <String[]> [[-Option] <PSTraceSourceOptions>]
+ [-Expression] <ScriptBlock> [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force] [-Debugger]
+ [-PSHost] [<CommonParameters>]
 ```
 
 ### commandSet
-```powershell
-Trace-Command [-Name] <String[]> [-Command] <String>
- [[-Option] <PSTraceSourceOptions>] [-InputObject <PSObject>]
- [-ArgumentList <Object[]>]
- [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
+```
+Trace-Command [-InputObject <PSObject>] [-Name] <String[]> [[-Option] <PSTraceSourceOptions>]
+ [-Command] <String> [-ArgumentList <Object[]>] [-ListenerOption <TraceOptions>] [-FilePath <String>] [-Force]
  [-Debugger] [-PSHost] [<CommonParameters>]
 ```
 
@@ -53,7 +51,7 @@ PS C:\> $A = "i*"
 PS C:\> Trace-Command ParameterBinding {Get-Alias $Input} -PSHost -InputObject $A
 ```
 
-These commands trace the actions of the ParameterBinding operations of Windows PowerShell while it processes a Get-Alias expression that takes input from the pipeline.
+These commands trace the actions of the ParameterBinding operations of PowerShell while it processes a Get-Alias expression that takes input from the pipeline.
 
 In **Trace-Command**, the *InputObject* parameter passes an object to the expression that is being processed during the trace.
 
@@ -139,7 +137,7 @@ This parameter also selects the file trace listener.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: PSPath
+Aliases: PSPath, Path
 
 Required: False
 Position: Named
@@ -212,7 +210,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-Specifies an array of Windows PowerShell components that are traced.
+Specifies an array of PowerShell components that are traced.
 Enter the name of the trace source of each component.
 Wildcards are permitted.
 To find the trace sources on your computer, type `Get-TraceSource`.
@@ -268,6 +266,7 @@ To specify multiple options, separate them with commas, but with no spaces, and 
 Type: PSTraceSourceOptions
 Parameter Sets: (All)
 Aliases:
+Accepted values: None, Constructor, Dispose, Finalizer, Method, Property, Delegates, Events, Exception, Lock, Error, Errors, Warning, Verbose, WriteLine, Data, Scope, ExecutionFlow, Assert, All
 
 Required: False
 Position: 2
@@ -277,7 +276,7 @@ Accept wildcard characters: False
 ```
 
 ### -PSHost
-Indicates that the cmdlet sends the trace output to the Windows PowerShell host.
+Indicates that the cmdlet sends the trace output to the PowerShell host.
 This parameter also selects the PSHost trace listener.
 
 ```yaml
@@ -293,7 +292,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -307,16 +306,16 @@ Returns the command trace in the debug stream.
 
 ## NOTES
 * Tracing is a method that developers use to debug and refine programs. When tracing, the program generates detailed messages about each step in its internal processing.
-* The Windows PowerShell tracing cmdlets are designed to help Windows PowerShell developers, but they are available to all users. They let you monitor nearly every aspect of the functionality of the shell.
-* To find the Windows PowerShell components that are enabled for tracing, type `Get-Help Get-TraceSource`.
+* The PowerShell tracing cmdlets are designed to help PowerShell developers, but they are available to all users. They let you monitor nearly every aspect of the functionality of the shell.
+* To find the PowerShell components that are enabled for tracing, type `Get-Help Get-TraceSource`.
 
-  A trace source is the part of each Windows PowerShell component that manages tracing and generates trace messages for the component.
+  A trace source is the part of each PowerShell component that manages tracing and generates trace messages for the component.
 To trace a component, you identify its trace source.
 
   A trace listener receives the output of the trace and displays it to the user.
 You can elect to send the trace data to a user-mode or kernel-mode debugger, to the host or console, to a file, or to a custom listener derived from the **System.Diagnostics.TraceListener** class.
 
-* When you use the commandSet parameter set, Windows PowerShell processes the command just as it would be processed in a pipeline. For example, command discovery is not repeated for each incoming object.
+* When you use the commandSet parameter set, PowerShell processes the command just as it would be processed in a pipeline. For example, command discovery is not repeated for each incoming object.
 * The names of the *Name*, *Expression*, *Option*, and *Command* parameters are optional. If you omit the parameter names, the unnamed parameter values must appear in this order: *Name*, *Expression*, *Option* or *Name*, *Command*, *Option*. If you include the parameter names, the parameters can appear in any order.
 
 ## RELATED LINKS
@@ -327,4 +326,4 @@ You can elect to send the trace data to a user-mode or kernel-mode debugger, to 
 
 [Set-TraceSource](Set-TraceSource.md)
 
-[Show-Command](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Utility/Show-Command)
+

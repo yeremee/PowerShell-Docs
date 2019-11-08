@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821610
-external help file:  Microsoft.PowerShell.Commands.Management.dll-Help.xml
-title:  Pop-Location
+external help file: Microsoft.PowerShell.Commands.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/pop-location?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Pop-Location
 ---
-
 # Pop-Location
 
 ## SYNOPSIS
@@ -16,16 +16,18 @@ Changes the current location to the location most recently pushed onto the stack
 ## SYNTAX
 
 ```
-Pop-Location [-PassThru] [-StackName <String>] [-UseTransaction] [<CommonParameters>]
+Pop-Location [-PassThru] [-StackName <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The **Pop-Location** cmdlet changes the current location to the location most recently pushed onto the stack by using the Push-Location cmdlet.
 You can pop a location from the default stack or from a stack that you create by using a **Push-Location** command.
 
 ## EXAMPLES
 
 ### Example 1: Change to most recent location
+
 ```
 PS C:\> Pop-Location
 ```
@@ -33,6 +35,7 @@ PS C:\> Pop-Location
 This command changes your location to the location most recently added to the current stack.
 
 ### Example 2: Change to most recent location in a named stack
+
 ```
 PS C:\> Pop-Location -StackName "Stack2"
 ```
@@ -42,6 +45,7 @@ This command changes your location to the location most recently added to the St
 For more information about location stacks, see the Notes.
 
 ### Example 3: Move between locations for different providers
+
 ```
 PS C:\> pushd HKLM:\Software\Microsoft\PowerShell
 PS HKLM:\Software\Microsoft\PowerShell> pushd Cert:\LocalMachine\TrustedPublisher
@@ -50,12 +54,12 @@ PS HKLM:\Software\Microsoft\PowerShell> popd
 PS C:\>
 ```
 
-These commands use the **Push-Location** and **Pop-Location** cmdlets to move between locations supported by different Windows PowerShell providers.
+These commands use the **Push-Location** and **Pop-Location** cmdlets to move between locations supported by different PowerShell providers.
 The commands use the **pushd** alias for **Push-Location** and the **popd** alias for **Pop-Location**.
 
-The first command pushes the current file system location onto the stack and moves to the HKLM drive supported by the Windows PowerShell Registry provider.
+The first command pushes the current file system location onto the stack and moves to the HKLM drive supported by the PowerShell Registry provider.
 
-The second command pushes the registry location onto the stack and moves to a location supported by the Windows PowerShell certificate provider.
+The second command pushes the registry location onto the stack and moves to a location supported by the PowerShell certificate provider.
 
 The last two commands pop those locations off the stack.
 The first **popd** command returns to the Registry drive, and the second command returns to the file system drive.
@@ -63,6 +67,7 @@ The first **popd** command returns to the Registry drive, and the second command
 ## PARAMETERS
 
 ### -PassThru
+
 Passes an object that represents the location to the pipeline.
 By default, this cmdlet does not generate any output.
 
@@ -79,11 +84,12 @@ Accept wildcard characters: False
 ```
 
 ### -StackName
+
 Specifies the location stack from which the location is popped.
 Enter a location stack name.
 
 Without this parameter, **Pop-Location** pops a location from the current location stack.
-By default, the current location stack is the unnamed default location stack that Windows PowerShell creates.
+By default, the current location stack is the unnamed default location stack that PowerShell creates.
 To make a location stack the current location stack, use the *StackName* parameter of **Set-Location**.
 
 **Pop-Location** cannot pop a location from the unnamed default stack unless it is the current location stack.
@@ -100,43 +106,28 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -UseTransaction
-Includes the command in the active transaction.
-This parameter is valid only when a transaction is in progress.
-For more information, see Includes the command in the active transaction.
-This parameter is valid only when a transaction is in progress.
-For more information, see
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: usetx
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 You cannot pipe input to this cmdlet.
 
 ## OUTPUTS
 
 ### None, System.Management.Automation.PathInfo
+
 This cmdlet generates a **System.Management.Automation.PathInfo** object that represents the location, if you specify the *PassThru* parameter.
 Otherwise, this cmdlet does not generate any output.
 
 ## NOTES
-* A stack is a last-in, first-out list in which only the most recently added item can be accessed. You add items to a stack in the order that you use them, and then retrieve them for use in the reverse order. Windows PowerShell lets you store provider locations in location stacks.
-* Windows PowerShell lets you store provider locations in location stacks. Windows PowerShell creates an unnamed default location stack and you can create multiple named location stacks. If you do not specify a stack name, Windows PowerShell uses the current location stack. By default, the unnamed default location is the current location stack, but you can use the Set-Location cmdlet to change the current location stack.
-* To manage location stacks, use the Windows PowerShell**Location** cmdlets, as follows:
+
+* A stack is a last-in, first-out list in which only the most recently added item can be accessed. You add items to a stack in the order that you use them, and then retrieve them for use in the reverse order. PowerShell lets you store provider locations in location stacks.
+* PowerShell lets you store provider locations in location stacks. PowerShell creates an unnamed default location stack and you can create multiple named location stacks. If you do not specify a stack name, PowerShell uses the current location stack. By default, the unnamed default location is the current location stack, but you can use the Set-Location cmdlet to change the current location stack.
+* To manage location stacks, use the PowerShell**Location** cmdlets, as follows:
 
 - To add a location to a location stack, use the **Push-Location** cmdlet.
 - To get a location from a location stack, use the **Pop-Location** cmdlet.
@@ -155,3 +146,5 @@ Otherwise, this cmdlet does not generate any output.
 [Push-Location](Push-Location.md)
 
 [Set-Location](Set-Location.md)
+
+

@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821765
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Enable-RunspaceDebug
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/enable-runspacedebug?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Enable-RunspaceDebug
 ---
-
 # Enable-RunspaceDebug
 
 ## SYNOPSIS
@@ -16,41 +16,49 @@ Enables debugging on runspaces where any breakpoint is preserved until a debugge
 ## SYNTAX
 
 ### RunspaceNameParameterSet (Default)
+
 ```
 Enable-RunspaceDebug [-BreakAll] [[-RunspaceName] <String[]>] [<CommonParameters>]
 ```
 
 ### RunspaceParameterSet
+
 ```
 Enable-RunspaceDebug [-BreakAll] [-Runspace] <Runspace[]> [<CommonParameters>]
 ```
 
 ### RunspaceIdParameterSet
+
 ```
 Enable-RunspaceDebug [-BreakAll] [-RunspaceId] <Int32[]> [<CommonParameters>]
 ```
 
 ### RunspaceInstanceIdParameterSet
+
 ```
 Enable-RunspaceDebug [-RunspaceInstanceId] <Guid[]> [<CommonParameters>]
 ```
 
 ### ProcessNameParameterSet
+
 ```
 Enable-RunspaceDebug [[-ProcessName] <String>] [[-AppDomainName] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The **Enable-RunspaceDebug** cmdlet enables debugging on runspaces where any breakpoint is preserved until a debugger is attached.
 
 ## EXAMPLES
 
 ### 1:
+
 ```
 
 ```
 
 ### 2:
+
 ```
 
 ```
@@ -59,14 +67,13 @@ The **Enable-RunspaceDebug** cmdlet enables debugging on runspaces where any bre
 
 ### -AppDomainName
 
-
 ```yaml
 Type: String[]
 Parameter Sets: ProcessNameParameterSet
 Aliases:
 
 Required: False
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -80,7 +87,7 @@ Parameter Sets: RunspaceNameParameterSet, RunspaceParameterSet, RunspaceIdParame
 Aliases:
 
 Required: False
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -94,7 +101,7 @@ Parameter Sets: ProcessNameParameterSet
 Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -108,7 +115,7 @@ Parameter Sets: RunspaceParameterSet
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -122,7 +129,7 @@ Parameter Sets: RunspaceIdParameterSet
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -136,7 +143,7 @@ Parameter Sets: RunspaceInstanceIdParameterSet
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -150,14 +157,15 @@ Parameter Sets: RunspaceNameParameterSet
 Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -170,3 +178,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Disable-RunspaceDebug](Disable-RunspaceDebug.md)
 
 [Get-RunspaceDebug](Get-RunspaceDebug.md)
+
+

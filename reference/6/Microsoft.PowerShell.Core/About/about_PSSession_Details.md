@@ -1,46 +1,45 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_PSSession_Details
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_pssession_details?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_PSSession_Details
 ---
-
 # About PSSession Details
 
 ## Short Description
-
-Provides detailed information about Windows PowerShell sessions and the
+Provides detailed information about PowerShell sessions and the
 role they play in remote commands.
 
 ## Long Description
 
-A session is an environment in which Windows PowerShell runs. A session is
-created for you whenever you start Windows PowerShell. You can create
-additional sessions, called "Windows PowerShell sessions" or "PSSessions"
+A session is an environment in which PowerShell runs. A session is
+created for you whenever you start PowerShell. You can create
+additional sessions, called "PowerShell sessions" or "PSSessions"
 on your computer or another computer.
 
-Unlike the sessions that Windows PowerShell creates for you, you control
+Unlike the sessions that PowerShell creates for you, you control
 and manage the PSSessions that you create.
 
 PSSessions play an important role in remote computing. When you create a
-PSSession that is connected to a remote computer, Windows PowerShell
+PSSession that is connected to a remote computer, PowerShell
 establishes a persistent connection to the remote computer to support the
 PSSession. You can use the PSSession to run a series of commands,
 functions, and scripts that share data.
 
 This topic provides detailed information about sessions and PSSessions
-in Windows PowerShell. For basic information about the tasks that you
+in PowerShell. For basic information about the tasks that you
 can perform with sessions, see [about_PSSessions](about_PSSessions.md).
 
 ## About Sessions
 
-Technically, a session is an execution environment in which Windows
+Technically, a session is an execution environment in which
 PowerShell runs. Each session includes an instance of the
-System.Management.Automation engine and a host program in which Windows
-PowerShell runs. The host can be the familiar Windows PowerShell console
+System.Management.Automation engine and a host program in which
+PowerShell runs. The host can be the familiar PowerShell console
 or another program that runs commands, such as Cmd.exe, or a program built
-to host Windows PowerShell, such as Windows PowerShell Integrated Scripting
+to host PowerShell, such as Windows PowerShell Integrated Scripting
 Environment (ISE). From a Windows perspective, a session is a Windows
 process on the target computer.
 
@@ -57,22 +56,21 @@ asynchronously (concurrently) fails.
 
 ## About PSSessions
 
-A session is created each time that you start Windows PowerShell. And,
-Windows PowerShell creates temporary sessions to run individual commands.
-However, you can also create sessions (called "Windows PowerShell sessions"
+A session is created each time that you start PowerShell. And,
+PowerShell creates temporary sessions to run individual commands.
+However, you can also create sessions (called "PowerShell sessions"
 or "PSSessions") that you control and manage.
 
 PSSessions are critical to remote commands. If you use the **ComputerName**
-parameter of the `Invoke-Command` or `Enter-PSSession` cmdlets, Windows
-PowerShell establishes a temporary session to run the command and then
-closes the session as soon as the command or the interactive session
-is complete.
+parameter of the `Invoke-Command` or `Enter-PSSession` cmdlets, PowerShell
+establishes a temporary session to run the command and then closes the session
+as soon as the command or the interactive session is complete.
 
-However, if you use the `New-PSSession` cmdlet to create a PSSession, Windows
-PowerShell establishes a persistent session on the remote computer in which
-you can run multiple commands or interactive sessions. The PSSessions that
-you create remain open and available for use until you delete them or until
-you close the session in which they were created.
+However, if you use the `New-PSSession` cmdlet to create a PSSession,
+PowerShell establishes a persistent session on the remote computer in which you
+can run multiple commands or interactive sessions. The PSSessions that you
+create remain open and available for use until you delete them or until you
+close the session in which they were created.
 
 When you create a PSSession on a remote computer, the system creates a
 PowerShell process on the remote computer and establishes a connection
@@ -94,7 +92,7 @@ parameter to run commands in the PSSession.
 
 Many other cmdlets that get data from remote computers, such as
 `Get-Process`, `Get-Service`, `Get-EventLog`, and `Get-WmiObject` have only a
-**ComputerName** parameter. They use technologies other than Windows PowerShell
+**ComputerName** parameter. They use technologies other than PowerShell
 remoting to gather data remotely. These cmdlets do not have a **Session**
 parameter, but you can use the `Invoke-Command` cmdlet to run these commands
 in a PSSession.
@@ -107,7 +105,7 @@ To create a PSSession, use the `New-PSSession` cmdlet. You can use
 ## Can I Create a PSSession on Any Computer?
 
 To create a PSSession that is connected to a remote computer, the computer
-must be configured for remoting in Windows PowerShell. The current user
+must be configured for remoting in PowerShell. The current user
 must be a member of the Administrators group on the remote computer, or
 the current user must be able to supply the credentials of a member of
 the Administrators group. For more information,
@@ -161,7 +159,7 @@ You can use the `Disconnect-PSSession` cmdlet to disconnect
 from a PSSession. The PSSession is disconnected from the
 local session, but is maintained on the remote computer.
 Commands continue to run in the disconnected PSSession. You
-can close Windows PowerShell and shut down the originating computer
+can close PowerShell and shut down the originating computer
 without interrupting the PSSession.
 
 Then, even hours later, you can use the `Get-PSSession` cmdlet to
@@ -177,19 +175,19 @@ in which they were created. If you disconnect a PSSession
 and then close the originating computer, the PSSession is
 maintained on the remote computer.
 
-In addition, Windows PowerShell attempts to recover active
+In addition, PowerShell attempts to recover active
 PSSessions that are disconnected unintentionally, such as
 by a computer reboot, a temporary power outage or network
-disruption. Windows PowerShell attempts to maintain or recover
+disruption. PowerShell attempts to maintain or recover
 the PSSession to an Opened state, if the originating session
 is still available, or to a disconnected state if it is not.
 
 An "active" PSSession is one that is running commands. If
 a PSSession is connected (not disconnected) and commands are
 running in the PSSession when the connected session closes,
-Windows PowerShell attempts to maintain the PSSession on the
+PowerShell attempts to maintain the PSSession on the
 remote computer. However, if no commands are running in the
-PSSession, Windows PowerShell closes the PSSession when the
+PSSession, PowerShell closes the PSSession when the
 connected session closes.
 
 For more information, see [about_Remote_Disconnected_Sessions](about_Remote_Disconnected_Sessions.md).
@@ -211,9 +209,8 @@ cmdlet with its **AsJob** parameter, or use the `Invoke-Command` cmdlet to run a
 you can use the **ComputerName** or **Session** parameters.
 
 When using `Invoke-Command` to run a `Start-Job` command, you must run the
-command in a PSSession. If you use the **ComputerName** parameter, Windows
-PowerShell ends the connection when the job object returns, and the job is
-interrupted.
+command in a PSSession. If you use the **ComputerName** parameter, PowerShell
+ends the connection when the job object returns, and the job is interrupted.
 
 For more information, see [about_Jobs](about_Jobs.md).
 

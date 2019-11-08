@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821878
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Write-Output
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 03/28/2019
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/write-output?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Write-Output
 ---
 
 # Write-Output
@@ -76,7 +77,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
@@ -86,6 +87,12 @@ Accept wildcard characters: False
 By default, the **Write-Output** cmdlet always enumerates its output.
 The *NoEnumerate* parameter suppresses the default behavior, and prevents **Write-Output** from enumerating output.
 The *NoEnumerate* parameter has no effect on collections that were created by wrapping commands in parentheses, because the parentheses force enumeration.
+
+> [!NOTE]
+> This switch only works correctly with PowerShell Core 6.2 and newer. On older
+> versions of PowerShell Core, the collection is still enumerated even with
+> use of this switch.  The behavior in PowerShell Core 6.2 is consistent with
+> Windows PowerShell.
 
 ```yaml
 Type: SwitchParameter
@@ -100,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -131,3 +138,5 @@ You can pipe objects to **Write-Output**.
 [Write-Verbose](Write-Verbose.md)
 
 [Write-Warning](Write-Warning.md)
+
+

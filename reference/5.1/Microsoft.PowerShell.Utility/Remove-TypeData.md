@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821849
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Remove-TypeData
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/remove-typedata?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Remove-TypeData
 ---
 
 # Remove-TypeData
@@ -37,7 +38,7 @@ This cmdlet affects only the current session and sessions that are created in th
 You can add properties and methods to objects in Windows PowerShell by defining them in Update-TypeData commands and Types.ps1xml files.
 **Remove-TypeData** deletes those extended properties and methods from the current session.
 **Remove-TypeData** does not delete the Types.ps1xml files or delete any extended type definitions from the Types.ps1xml files.
-For more information about Types.ps1xml files, see about_Types.ps1xml (http://go.microsoft.com/fwlink/?LinkID=113274).
+For more information about Types.ps1xml files, see about_Types.ps1xml (https://go.microsoft.com/fwlink/?LinkID=113274).
 
 This cmdlet was introduced in Windows PowerShell 3.0.
 
@@ -88,7 +89,7 @@ This command uses the *Path* parameter of the **Remove-TypeData** cmdlet to remo
 This command does not affect dynamic type data that is added by using the Update-TypeData cmdlet.
 The command succeeds only when the modules have been imported into the current session.
 
-For more information about modules, see about_Modules (http://go.microsoft.com/fwlink/?LinkID=144311).
+For more information about modules, see [about_Modules](../Microsoft.PowerShell.Core/About/about_Modules.md).
 
 ### Example 5: Remove extended types from a remote session
 ```
@@ -99,21 +100,6 @@ This command removes extended types from a remote session.
 The command uses the Invoke-Command cmdlet to remove extended type data for all CIM types in the sessions in the $S variable.
 
 ## PARAMETERS
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Path
 Specifies an array of files that this cmdlet deletes from the session extended type data.
@@ -155,7 +141,7 @@ Accept wildcard characters: False
 
 ### -TypeName
 Specifies the types that this cmdlet deletes all extended type data for.
-For For types in the System namespace, enter the short name.
+For types in the System namespace, enter the short name.
 Otherwise, the full type name is required.
 Wildcards are not supported.
 
@@ -171,6 +157,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -191,7 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -215,3 +216,6 @@ This cmdlet does not generate any output.
 [Get-TypeData](Get-TypeData.md)
 
 [Update-TypeData](Update-TypeData.md)
+
+
+

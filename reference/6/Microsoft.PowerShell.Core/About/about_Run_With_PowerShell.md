@@ -1,15 +1,14 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Run_With_PowerShell
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_run_with_powershell?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Run_With_PowerShell
 ---
-
 # About Run With PowerShell
 
 ## SHORT DESCRIPTION
-
 Explains how to use the "Run with PowerShell" feature to run a script from a
 file system drive.
 
@@ -22,7 +21,7 @@ and from Windows Explorer in earlier versions of Windows.
 The "Run with PowerShell" feature is designed to run scripts that do not have
 required parameters and do not return output to the command prompt.
 
-When you use the "Run with PowerShell" feature, the Windows PowerShell console
+When you use the "Run with PowerShell" feature, the PowerShell console
 window appears only briefly, if at all. You cannot interact with it.
 
 To use the "Run with PowerShell" feature:
@@ -30,7 +29,7 @@ To use the "Run with PowerShell" feature:
 In File Explorer (or Windows Explorer), right-click the script file name and
 then select "Run with PowerShell".
 
-The "Run with PowerShell" feature starts a Windows PowerShell session that has
+The "Run with PowerShell" feature starts a PowerShell session that has
 an execution policy of Bypass, runs the script, and closes the session.
 
 It runs a command that has the following format:

@@ -1,11 +1,14 @@
 ---
-ms.date:  11/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Write-Host
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 11/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/write-host?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Write-Host
 ---
+
 # Write-Host
 
 ## SYNOPSIS
@@ -102,8 +105,9 @@ Write-Host "I won't print" 6>$null
 
 ```
 
-This command displays the string "Red on white text." The text is 'red', as defined by the `ForegroundColor` parameter.
-The background is 'white', as defined by the `BackgroundColor` parameter.
+These commands effectively suppress output of the `Write-Host` cmdlet.
+The first one uses the `InformationAction` parameter with the `Ignore` Value to suppress output to the information stream.
+The second example redirects the information stream of the command to the `$null` variable and thereby suppresses it.
 
 ## PARAMETERS
 
@@ -204,7 +208,7 @@ Objects to display in the host.
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: Message, Msg
+Aliases:
 
 Required: False
 Position: 0
@@ -230,8 +234,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](../Microsoft.PowerShell.Core/About/about_CommonParameters.md).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -266,3 +269,5 @@ However, the host might display the objects that `Write-Host` sends to it.
 [Write-Verbose](Write-Verbose.md)
 
 [Write-Warning](Write-Warning.md)
+
+

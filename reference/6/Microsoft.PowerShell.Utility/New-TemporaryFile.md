@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821836
-external help file:  Microsoft.PowerShell.Utility-help.xml
-title:  New-TemporaryFile
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: New-TemporaryFile
 ---
-
 # New-TemporaryFile
 
 ## SYNOPSIS
@@ -20,25 +20,28 @@ New-TemporaryFile [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **New-TemporaryFile** cmdlet creates an empty file that has the .tmp file name extension.
+
+The `New-TemporaryFile` cmdlet creates an empty file that has the .tmp file name extension.
 This cmdlet names the file `tmp`NNNN`.tmp`, where NNNN is a random hexadecimal number.
-The cmdlet creates the file in your $Env:Temp folder.
+The cmdlet creates the file in your `$Env:Temp` folder.
 
 This cmdlet creates temporary files that you can use in scripts.
 
 ## EXAMPLES
 
 ### Example 1: Create a temporary file
-```
-PS C:\> $TempFile = New-TemporaryFile
+
+```powershell
+$TempFile = New-TemporaryFile
 ```
 
-This command generates a .tmp file in your temporary folder, and then stores a reference to the file in the $TempFile variable.
-You can use this file later in your script.
+This command generates a `.tmp` file in your temporary folder, and then stores a reference to the file
+in the `$TempFile` variable. You can use this file later in your script.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -54,6 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -70,13 +74,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
+-InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
+-WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](../Microsoft.PowerShell.Core/About/about_CommonParameters.md).
 
 ## INPUTS
 
 ## OUTPUTS
 
 ### System.IO.FileInfo
+
 This cmdlet returns a **FileInfo** object that represents the temporary file.
 
 ## NOTES

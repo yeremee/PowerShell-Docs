@@ -1,9 +1,10 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_WMI
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_wmi?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_WMI
 ---
 
 # About WMI
@@ -16,11 +17,11 @@ manageable components of the modern enterprise.
 
 ## LONG DESCRIPTION
 
-Windows Management Instrumentation (WMI) is Microsoft’s implementation of
+Windows Management Instrumentation (WMI) is Microsoft's implementation of
 Web-Based Enterprise Management (WBEM), the industry standard.
 
 Classic WMI uses DCOM to communicate with networked devices to manage remote
-systems. Windows PowerShell® 3.0 introduces a CIM provider model that uses
+systems. Windows PowerShell 3.0 introduces a CIM provider model that uses
 WinRM to remove the dependency on DCOM. This CIM provider model also uses new
 WMI provider APIs that enable developers to write Windows PowerShell cmdlets
 in native code (C\+\+).

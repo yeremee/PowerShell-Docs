@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821848
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Remove-PSBreakpoint
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/remove-psbreakpoint?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Remove-PSBreakpoint
 ---
 
 # Remove-PSBreakpoint
@@ -32,8 +33,8 @@ Enter a breakpoint object or a breakpoint ID.
 When you remove a breakpoint, the breakpoint object is no longer available or functional.
 If you have saved a breakpoint object in a variable, the reference still exists, but the breakpoint does not function.
 
-**Remove-PSBreakpoint** is one of several cmdlets designed for debugging Windows PowerShell scripts.
-For more information about the Windows PowerShell debugger, see about_Debuggers.
+**Remove-PSBreakpoint** is one of several cmdlets designed for debugging PowerShell scripts.
+For more information about the PowerShell debugger, see about_Debuggers.
 
 ## EXAMPLES
 
@@ -79,7 +80,7 @@ Then, it uses a pipeline operator (|) to send the breakpoints to the **Remove-PS
 
 As a result, you can type `del-psb` instead of the longer command.
 
-To save the function, add it to your Windows PowerShell profile.
+To save the function, add it to your PowerShell profile.
 
 ## PARAMETERS
 
@@ -94,7 +95,7 @@ Parameter Sets: Breakpoint
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
@@ -109,7 +110,7 @@ Parameter Sets: Id
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -147,7 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -172,3 +173,5 @@ The cmdlet does not generate any output.
 [Get-PSCallStack](Get-PSCallStack.md)
 
 [Set-PSBreakpoint](Set-PSBreakpoint.md)
+
+

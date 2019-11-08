@@ -1,9 +1,10 @@
 ---
-ms.date:  11/27/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Arithmetic_Operators
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 11/27/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_arithmetic_operators?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Arithmetic_Operators
 ---
 
 # About Arithmetic Operators
@@ -67,7 +68,7 @@ PowerShell processes arithmetic operators in the following order:
 |----------|---------------|---------------------------------------|
 |1         | `()`          |Parentheses                            |
 |2         | `-`           |For a negative number or unary operator|
-|3         | `*`, `/`, `%` |For muliplication and division         |
+|3         | `*`, `/`, `%` |For multiplication and division         |
 |4         | `+`, `-`      |For addition and subtraction           |
 
 PowerShell processes the expressions from left to right according to the

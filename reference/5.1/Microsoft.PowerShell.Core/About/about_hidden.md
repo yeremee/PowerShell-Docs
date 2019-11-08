@@ -1,15 +1,14 @@
 ---
-ms.date:  01/04/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Hidden
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/04/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_hidden?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Hidden
 ---
-
 # about_Hidden
 
 ## SHORT DESCRIPTION
-
 Describes the Hidden keyword, which hides class members from default
 Get-Member results.
 
@@ -107,7 +106,7 @@ ModelYear   Property   string ModelYear {get;set;}
 
 ```
 
-Now, try running Get-Member again, but this time, add the –Force parameter.
+Now, try running Get-Member again, but this time, add the -Force parameter.
 Note that the results contain the hidden rides property, among other members
 that are hidden by default.
 
@@ -118,7 +117,7 @@ PS C:\Windows\system32> $TestCar | Get-Member -Force
 
 Name          MemberType   Definition
 ----          ----------   ----------
-pstypenames   CodeProperty System.Collections.ObjectModel.Collection`1…
+pstypenames   CodeProperty System.Collections.ObjectModel.Collection`1
 psadapted     MemberSet    psadapted {Color, ModelYear, Distance,
 psbase        MemberSet    psbase {Color, ModelYear, Distance,...
 psextended    MemberSet    psextended {}

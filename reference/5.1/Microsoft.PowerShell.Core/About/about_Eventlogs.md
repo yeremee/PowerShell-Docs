@@ -1,9 +1,10 @@
 ---
-ms.date:  11/27/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Eventlogs
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 11/27/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_eventlogs?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Eventlogs
 ---
 
 # About Eventlogs
@@ -65,7 +66,7 @@ Get-EventLog -List
 ```
 
 You can also use the `Get-WmiObject` cmdlet to use the event-related Windows
-Management Instumentation (WMI) classes to examine the event log. For example,
+Management Instrumentation (WMI) classes to examine the event log. For example,
 to view all the properties of the event log file, type:
 
 ```powershell

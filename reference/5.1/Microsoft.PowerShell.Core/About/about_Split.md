@@ -1,9 +1,10 @@
 ---
-ms.date:  12/20/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Split
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 12/20/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_split?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Split
 ---
 
 # About Split
@@ -205,7 +206,7 @@ The RegexMatch options are:
   operator is specified.
 - **CultureInvariant**: Ignores cultural differences in language
   when evaluting the delimiter. Valid only with RegexMatch.
-- IgnorePatternWhitespace: Ignores unescaped whitespace and
+- **IgnorePatternWhitespace**: Ignores unescaped whitespace and
   comments marked with the number sign (#). Valid only with
   RegexMatch.
 - **Multiline**: Multiline mode forces `^` and `$` to match the beginning
@@ -419,13 +420,27 @@ The second line.
 The third of three lines.
 ```
 
-The following statement uses the SimpleMatch option to direct the -split
-operator to interpret the dot (.) delimiter literally.
+The following statement uses the backslash character to escape the dot (.)
+delimiter.
 
 With the default, RegexMatch, the dot enclosed in quotation marks (".") is
 interpreted to match any character except for a newline character. As a
 result, the Split statement returns a blank line for every character except
 newline.
+
+```powershell
+"This.is.a.test" -split "\."
+```
+
+```output
+This
+is
+a
+test
+```
+
+The following statement uses the SimpleMatch option to direct the -split
+operator to interpret the dot (.) delimiter literally.
 
 The 0 represents the "return all" value of the Max-substrings parameter. You
 can use options, such as SimpleMatch, only when the Max-substrings value is

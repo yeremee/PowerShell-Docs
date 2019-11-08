@@ -1,15 +1,14 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Logical_Operators
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_logical_operators?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Logical_Operators
 ---
-
 # about_Logical_Operators
 
 ## SHORT DESCRIPTION
-
 Describes the operators that connect statements in PowerShell.
 
 ## LONG DESCRIPTION
@@ -34,7 +33,7 @@ PowerShell supports the following logical operators.
 |        |statements are TRUE.               |`False`                   |
 |`-or`   |Logical OR. TRUE when either       |`(1 -eq 1) -or (1 -eq 2)` |
 |        |statement is TRUE.                 |`True`                    |
-|`-xor`  |Logical EXCLUSIVE OR. TRUE when    |`(1 -eq 1) -xor (2 -eq 2) |
+|`-xor`  |Logical EXCLUSIVE OR. TRUE when    |`(1 -eq 1) -xor (2 -eq 2)`|
 |        |only one statement is TRUE         |`False`                   |
 |`-not`  |Logical not. Negates the statement |`-not (1 -eq 1)`          |
 |        |that follows.                      |`False`                   |

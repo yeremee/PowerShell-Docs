@@ -1,15 +1,14 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Path_Syntax
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_path_syntax?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Path_Syntax
 ---
-
 # About Path Syntax
 
 ## SHORT DESCRIPTION
-
 Describes the full and relative path name formats in  PowerShell.
 
 ## LONG DESCRIPTION

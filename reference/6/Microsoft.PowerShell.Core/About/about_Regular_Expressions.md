@@ -1,151 +1,445 @@
 ---
-ms.date:  12/01/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Regular_Expressions
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 12/01/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_regular_expressions?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Regular_Expressions
 ---
 
 # About Regular Expressions
 
-## SHORT DESCRIPTION
+## Short description
+Describes regular expressions in PowerShell.
 
-Describes regular expressions in Windows PowerShell.
+## Long description
 
-## LONG DESCRIPTION
+> [!NOTE]
+> This article will show you the syntax and methods for using regular
+> expressions in PowerShell, not all syntax is discussed. For a more complete
+> reference, see the
+> [Regular Expression Language - Quick Reference](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
-Windows PowerShell supports the following regular expression characters.
+A regular expression is a pattern used to match text. It can be made up of
+literal characters, operators, and other constructs.
 
-```
-Format   value
-Logic    Matches exact characters anywhere in the original value.
-Example  "book" -match "oo"
+This article demonstrates regular expression syntax in PowerShell. PowerShell
+has several operators and cmdlets that use regular expressions. You can read
+more about their syntax and usage at the links below.
 
-Format   .
-Logic    Matches any single character.
-Example  "copy" -match "c..y"
+- [Select-String](../../Microsoft.PowerShell.Utility/Select-String.md)
+- [-match and -replace operators](about_Comparison_Operators.md)
+- [-split](about_Split.md)
+- [switch statement with -regex option](about_Switch.md)
 
-Format   [value]
-Logic    Matches at least one of the characters in the brackets.
-Example  "big" -match "b[iou]g"
+PowerShell regular expressions are case-insensitive by default. Each method
+shown above has a different way to force case sensitivity.
 
-Format   [range]
-Logic    Matches at least one of the characters within the range. The use
-         of a hyphen (-) allows you to specify an adjacent character.
-Example  "and" -match "[a-e]nd"
+|Method  |Case Sensitivity  |
+|---------|---------|
+|`Select-String`|use `-CaseSensitive` switch|
+|`switch` statement |use the `-casesensitive` option|
+|operators|prefix with **'c'** (`-cmatch`, `-csplit`, or `-creplace`)|
 
-Format   [^]
-Logic    Matches any characters except those in brackets.
-Example  "and" -match "[^brt]nd"
+### Character literals
 
-Format   ^
-Logic    Matches the beginning characters.
-Example  "book" -match "^bo"
+A regular expression can be a literal character or a string. The expression
+causes the engine to match the text specified exactly.
 
-Format   $
-Logic    Matches the end characters.
-Example  "book" -match "ok$"
-
-Format   *
-Logic    Matches any instances of the preceding character.
-Example  "baggy" -match "g*"
-
-Format   ?
-Logic    Matches zero or one instance of the preceding character.
-Example  "baggy" -match "g?"
-
-Format   \
-Logic    Matches the character that follows as an escaped character.
-Example  "Try$" -match "Try\\$"
+```powershell
+# This statement returns true because book contains the string "oo"
+"book" -match "oo"
 ```
 
-Windows PowerShell supports the character classes available in Microsoft .NET
-Framework regular expressions.
+### Character classes
 
-```
-Format:  \p{name}
-Logic:   Matches any character in the named character class specified by
-         {name}. Supported names are Unicode groups and block ranges such
-         as Ll, Nd, Z, IsGreek, and IsBoxDrawing.
-Example: "abcd defg" -match "\p{Ll}+"
+While character literals work if you know the exact pattern, character classes
+allow you to be less specific.
 
-Format:  \P{name}
-Logic:   Matches text not included in the groups and block ranges specified
-         in {name}.
-Example: 1234 -match "\P{Ll}+"
+#### Character groups
 
-Format:  \w
-Logic:   Matches any word character. Equivalent to the Unicode character
-         categories [\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}\p{Pc}]. If ECMAScript-
-         compliant behavior is specified with the ECMAScript option, \w is
-         equivalent to [a-zA-Z_0-9].
-Example: "abcd defg" -match "\w+" (this matches abcd)
+`[character group]` allows you to match any number of characters one time,
+while `[^character group]` only matches characters NOT in the group.
 
-Format:  \W
-Logic:   Matches any nonword character. Equivalent to the Unicode categories
-         [^\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}\p{Pc}].
-Example: "abcd defg" -match "\W+" (this matches the space)
-
-Format:  \s
-Logic:   Matches any white-space character. Equivalent to the Unicode
-         character categories [\f\n\r\t\v\x85\p{Z}].
-Example: "abcd defg" -match "\s+"
-
-Format:  \S
-Logic:   Matches any non-white-space character. Equivalent to the Unicode
-         character categories [^\f\n\r\t\v\x85\p{Z}].
-Example: "abcd defg" -match "\S+"
-
-Format:  \d
-Logic:   Matches any decimal digit. Equivalent to \p{Nd} for Unicode and
-         [0-9] for non-Unicode behavior.
-Example: 12345 -match "\d+"
-
-Format:  \D
-Logic:   Matches any nondigit. Equivalent to \P{Nd} for Unicode and [^0-9]
-         for non-Unicode behavior.
-Example: "abcd" -match "\D+"
-```
-Windows PowerShell supports the quantifiers available in .NET Framework
-regular expressions. The following are some examples of quantifiers.
-
-```
-Format:  *
-Logic    Specifies zero or more matches; for example, \wor (abc). Equivalent
-         to {0,}.
-Example: "abc" -match "\w*"
-
-Format:  +
-Logic:   Matches repeating instances of the preceding characters.
-Example: "xyxyxy" -match "xy+"
-
-Format:  ?
-Logic:   Specifies zero or one matches; for example, \w? or (abc)?.
-         Equivalent to {0,1}.
-Example: "abc" -match "\w?"
-
-Format:  {n}
-Logic:   Specifies exactly n matches; for example, (pizza){2}.
-Example: "abc" -match "\w{2}"
-
-Format:  {n,}
-Logic:   Specifies at least n matches; for example, (abc){2,}.
-Example: "abc" -match "\w{2,}"
-
-Format:  {n,m}
-Logic:   Specifies at least n, but no more than m, matches.
-Example: "abc" -match "\w{2,3}"
+```powershell
+# This expression returns true if the pattern matches big, bog, or bug.
+"big" -match "b[iou]g"
 ```
 
-All the comparisons shown in the preceding table evaluate to true.
+If your list of characters to match includes the hyphen character (`-`), it
+must be at the beginning or end of the list to distinguish it from a character
+range expression.
 
-Notice that the escape character for regular expressions, a backslash (\\), is
-different from the escape character for Windows PowerShell. The escape
-character for Windows PowerShell is the backtick character (`) (ASCII 96).
+#### Character ranges
 
-For more information, see [Regular Expression Language - Quick Reference](https://go.microsoft.com/fwlink/?LinkId=133231).
+A pattern can also be a range of characters. The characters can be alphabetic `[A-Z]`,
+numeric `[0-9]`, or even ASCII-based `[ -~]` (all printable characters).
 
-## SEE ALSO
+```powershell
+# This expression returns true if the pattern matches any 2 digit number.
+42 -match "[0-9][0-9]"
+```
+
+#### Numbers
+
+The `\d` character class will match any decimal digit. Conversely, `\D` will
+match any non-decimal digit.
+
+```powershell
+# This expression returns true if it matches a server name.
+# (Server-01 - Server-99).
+"Server-01" -match "Server-\d\d"
+```
+
+#### Word characters
+
+The `\w` character class will match any word character `[a-zA-Z_0-9]`. To match
+any non-word character, use `\W`.
+
+```powershell
+# This expression returns true.
+# The pattern matches the first word character 'B'.
+"Book" -match "\w"
+```
+
+#### Wildcards
+
+The period (`.`) is a wildcard character in regular expressions. It will match
+any character except a newline (`\n`).
+
+```powershell
+# This expression returns true.
+# The pattern matches any 4 characters except the newline.
+"a1\ " -match "...."
+```
+
+#### Whitespace
+
+Whitespace is matched using the `\s` character class. Any non-whitespace
+character is matched using `\S`. Literal space characters `' '` can also be
+used.
+
+```powershell
+# This expression returns true.
+# The pattern uses both methods to match the space.
+" - " -match "\s- "
+```
+
+### Quantifiers
+
+Quantifiers control how many instances of each element should be present in the
+input string.
+
+The following are a few of the quantifiers available in PowerShell:
+
+|Quantifier  |Description  |
+|---------|---------|
+|`*`|Zero or more times.|
+|`+`|One or more times.|
+|`?`|Zero or one time.|
+|`{n,m}`|At least `n`, but no more than `m` times.|
+
+The asterisk (`*`) matches the previous element zero or more times. The result
+is that even an input string without the element would be a match.
+
+```powershell
+# This returns true for all account name strings even if the name is absent.
+"ACCOUNT NAME:    Administrator" -match "ACCOUNT NAME:\s*\w*"
+```
+
+The plus sign (`+`) matches the previous element one or more times.
+
+```powershell
+# This returns true if it matches any server name.
+"DC-01" -match "[A-Z]+-\d\d"
+```
+
+The question mark `?` matches the previous element zero or one time. Like
+asterisk `*`, it will even match strings where the element is absent.
+
+```powershell
+# This returns true for any server name, even server names without dashes.
+"SERVER01" -match "[A-Z]+-?\d\d"
+```
+
+The `{n, m}` quantifier can be used several different ways to allow granular
+control over the quantifier. The second element `m` and the comma `,` are
+optional.
+
+|Quantifier  |Description  |
+|---------|---------|
+|`{n}`|Match EXACTLY `n` number of times.|
+|`{n,}`|Match at LEAST `n` number of times.|
+|`{n,m}`|Match between `n` and `m` number of times.|
+
+```powershell
+# This returns true if it matches any phone number.
+"111-222-3333" -match "\d{3}-\d{3}-\d{4}"
+```
+
+### Anchors
+
+Anchors allow you to cause a match to succeed or fail based on the matches
+position within the input string.
+
+The two commonly used anchors are `^` and `$`. The caret `^` matches the start
+of a string, and `$`, which matches the end of a string. The anchors allow you
+to match your text at a specific position while also discarding unwanted
+characters.
+
+```powershell
+# The pattern expects the 'h' to be followed by the end of the word.
+# This will return FALSE.
+"fishing" -match "^fish$"
+```
+
+When using anchors in powershell, you should understand the difference between
+**Singleline** and **Multiline** regular expression options.
+
+- **Multiline**: Multiline mode forces `^` and `$` to match the beginning end
+  of every LINE instead of the beginning and end of the input string.
+- **Singleline**: Singleline mode treats the input string as a **SingleLine**.
+  It forces the `.` character to match every character (including newlines),
+  instead of matching every character EXCEPT the newline `\n`.
+
+To read more about these options and how to use them, visit the
+[Regular Expression Language - Quick Reference](/dotnet/standard/base-types/regular-expression-language-quick-reference).
+
+### Escaping characters
+
+The backslash (`\`) is used to escape characters so they aren't parsed by the
+regular expression engine.
+
+The following characters are reserved: `[]().\^$|?*+{}`.
+
+You'll need to escape these characters in your patterns to match them in your
+input strings.
+
+```powershell
+# This returns true and matches numbers with at least 2 digits of precision.
+# The decimal point is escaped using the backslash.
+"3.141" -match "3\.\d{2,}"
+```
+
+There`s a static method of the regex class that can escape text for you.
+
+```powershell
+[regex]::escape("3.\d{2,}")
+```
+
+```Output
+3\.\\d\{2,}
+```
+
+> [!NOTE]
+> This escapes all reserved regular expression characters, including existing
+> backslashes used in character classes. Be sure to only use it on the portion
+> of your pattern that you need to escape.
+
+#### Other character escapes
+
+There are also reserved character escapes that you can use to match special
+character types.
+
+The following are a few commonly used character escapes:
+
+|Character Escape  |Description  |
+|---------|---------|
+|`\t`|Matches a tab|
+|`\n`|Matches a newline|
+|`\r`|Matches a carriage return|
+
+### Groups, Captures, and Substitutions
+
+Grouping constructs separate an input string into substrings that can be
+captured or ignored. Grouped substrings are called subexpressions. By default
+subexpressions are captured in numbered groups, though you can assign names to
+them as well.
+
+A grouping construct is a regular expression surrounded by parentheses. Any
+text matched by the enclosed regular expression is captured. The following
+example will break the input text into two capturing groups.
+
+```powershell
+"The last logged on user was CONTOSO\jsmith" -match "(.+was )(.+)"
+```
+
+```Output
+True
+```
+
+Use the `$Matches` **Hashtable** automatic variable to retrieve captured text.
+The text representing the entire match is stored at key `0`.
+
+```powershell
+$Matches.0
+```
+
+```Output
+The last logged on user was CONTOSO\jsmith
+```
+
+Captures are stored in numeric **Integer** keys that increase from left to
+right. Capture `1` contains all the text until the username, capture `2`
+contains just the username.
+
+```powershell
+$Matches
+```
+
+```Output
+Name                           Value
+----                           -----
+2                              CONTOSO\jsmith
+1                              The last logged on user was
+0                              The last logged on user was CONTOSO\jsmith
+```
+
+> [!IMPORTANT]
+> The `0` key is an **Integer**. You can use any **Hashtable** method to access
+> the value stored.
+>
+> ```
+> PS> "Good Dog" -match "Dog"
+> True
+>
+> PS> $Matches[0]
+> Dog
+>
+> PS> $Matches.Item(0)
+> Dog
+>
+> PS> $Matches.0
+> Dog
+> ```
+
+#### Named Captures
+
+By default, captures are stored in ascending numeric order, from left to right.
+You can also assign a **name** to a capturing group. This **name** becomes a
+key on the `$Matches` **Hashtable** automatic variable.
+
+Inside a capturing group, use `?<keyname>` to store captured data under a named
+key.
+
+```
+PS> $string = "The last logged on user was CONTOSO\jsmith"
+PS> $string -match "was (?<domain>.+)\\(?<user>.+)"
+True
+
+PS> $Matches
+
+Name                           Value
+----                           -----
+domain                         CONTOSO
+user                           jsmith
+0                              was CONTOSO\jsmith
+
+PS> $Matches.domain
+CONTOSO
+
+PS> $Matches.user
+jsmith
+```
+
+The following example stores the message from the newest log entry in the
+Windows Security Log. The provided regular expression extracts the username and
+domain from the message and stores them under the keys: **N** for name and
+**D** for domain.
+
+```powershell
+$log = (Get-WinEvent -LogName Security -MaxEvents 1).message
+$r = '(?s).*Account Name:\s*(?<N>.*).*Account Domain:\s*(?<D>[A-Z,0-9]*)'
+$log -match $r
+```
+
+```Output
+True
+```
+
+```powershell
+$Matches
+```
+
+```Output
+Name                           Value
+----                           -----
+D                              CONTOSO
+N                              jsmith
+0                              A process has exited....
+```
+
+For more information, see
+[Grouping Constructs in Regular Expressions](/dotnet/standard/base-types/grouping-constructs-in-regular-expressions).
+
+#### Substitutions in Regular Expressions
+
+Using the regular expressions with the `-replace` operator allows you to
+dynamically replace text using captured text. Capturing groups can be
+referenced in the \<substitute\> string. The substitution is done by using the
+`$` character before the group identifier.
+
+`<input> -replace <original>, <substitute>`
+
+Two ways to reference capturing groups are by **Number** and by **Name**.
+
+- By **Number** - Capturing Groups are numbered from left to right.
+
+  ```powershell
+  "John D. Smith" -replace "(\w+) (\w+)\. (\w+)", '$1.$2.$3@contoso.com'
+  ```
+
+  ```Output
+  John.D.Smith@contoso.com
+  ```
+
+- By **Name** - Capturing Groups can also be referenced by name.
+
+  ```powershell
+  "CONTOSO\Administrator" -replace '\w+\\(?<user>\w+)', 'FABRIKAM\${user}'
+  ```
+
+  ```Output
+  FABRIKAM\Administrator
+  ```
+
+The `$&` expression represents all the text matched.
+
+```powershell
+"Gobble" -replace "Gobble", "$& $&"
+```
+
+```Output
+Gobble Gobble
+```
+
+> [!WARNING]
+> Since the `$` character is used in string expansion, you'll need to use
+> literal strings with substitution, or escape the `$` character.
+>
+> ```powershell
+> 'Hello World' -replace '(\w+) \w+', "`$1 Universe"
+> ```
+>
+> ```Output
+> Hello Universe
+> ```
+>
+> Additionally, since the `$` character is used in substitution, you will need
+> to escape any instances in your string.
+>
+> ```powershell
+> '5.72' -replace '(.+)', '$$$1'
+> ```
+>
+> ```Output
+> $5.72
+> ```
+
+For more information, see
+[Substitutions in Regular Expressions](/dotnet/standard/base-types/substitutions-in-regular-expressions).
+
+## See also
 
 [about_Comparison_Operators](about_Comparison_Operators.md)
 

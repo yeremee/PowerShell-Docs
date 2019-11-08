@@ -1,16 +1,16 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_PSSnapins
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_pssnapins?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_PSSnapins
 ---
-
 # About PSSnapins
 
 ## SHORT DESCRIPTION
 
-Describes  Windows PowerShell® snap-ins and shows how to use and manage them.
+Describes  Windows PowerShell snap-ins and shows how to use and manage them.
 
 ## LONG DESCRIPTION
 
@@ -33,27 +33,26 @@ NOTE: Windows PowerShell snap-ins (PSSnapins) are available for use in Windows
 PowerShell 3.0 and Windows PowerShell 2.0. They might be altered or
 unavailable in subsequent versions. To package Windows PowerShell cmdlets and
 providers, use modules. For information about creating modules and converting
-snap-ins to modules, see [Writing a Windows PowerShell Module](http://go.microsoft.com/fwlink/?LinkID=141556)
-in the MSDN library.
+snap-ins to modules, see [Writing a Windows PowerShell Module](/powershell/developer/module/writing-a-windows-powershell-module).
 
 ### FINDING SNAP-INS
 
 To get a list of the  Windows PowerShell snap-ins on your computer, type:
 
 ```powershell
-get-pssnapin
+Get-PSSnapin
 ```
 
 To get the snap-in for each  Windows PowerShell provider, type:
 
 ```powershell
-get-psprovider | format-list name, pssnapin
+Get-PSProvider | Format-List name, pssnapin
 ```
 
 To get a list of the cmdlets in a  Windows PowerShell snap-in, type:
 
 ```powershell
-get-command -module <snap-in_name>
+Get-Command -Module <snap-in_name>
 ```
 
 ### INSTALLING A SNAP-IN
@@ -79,7 +78,7 @@ To get all the registered snap-ins on your system or to verify that a snap-in
 is registered, type:
 
 ```powershell
-get-pssnapin -registered
+Get-PSSnapin -registered
 ```
 
 ### ADDING THE SNAP-IN TO THE CURRENT SESSION
@@ -89,7 +88,7 @@ cmdlet. For example, to add the Microsoft SQL Server snap-in to the session,
 type:
 
 ```powershell
-add-pssnapin sql
+Add-PSSnapin sql
 ```
 
 After the command is completed, the providers and cmdlets in the snap-in are
@@ -116,7 +115,7 @@ session configuration to the NewConsole.psc1 file in the current directory,
 type:
 
 ```powershell
-export-console NewConsole
+Export-Console NewConsole
 ```
 
 For more information, see Export-Console.
@@ -142,7 +141,7 @@ Remove-PsSnapin cmdlet. For example, to remove the SQL Server snap-in from the
 current session, type:
 
 ```powershell
-remove-pssnapin sql
+Remove-PSSnapin sql
 ```
 
 This cmdlet removes the snap-in from the session. The snap-in is still loaded,

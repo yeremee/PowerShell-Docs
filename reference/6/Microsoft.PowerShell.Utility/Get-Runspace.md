@@ -1,46 +1,52 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821801
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Get-Runspace
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-runspace?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-Runspace
 ---
-
 # Get-Runspace
 
 ## SYNOPSIS
-Gets active runspaces within a Windows PowerShellhost process.
+Gets active runspaces within a PowerShellhost process.
 
 ## SYNTAX
 
 ### NameParameterSet (Default)
+
 ```
 Get-Runspace [[-Name] <String[]>] [<CommonParameters>]
 ```
 
 ### IdParameterSet
+
 ```
 Get-Runspace [-Id] <Int32[]> [<CommonParameters>]
 ```
 
 ### InstanceIdParameterSet
+
 ```
 Get-Runspace [-InstanceId] <Guid[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Get-Runspace** cmdlet gets active runspaces in a Windows PowerShell host process.
+
+The **Get-Runspace** cmdlet gets active runspaces in a PowerShell host process.
 
 ## EXAMPLES
 
 ### 1:
+
 ```
 
 ```
 
 ### 2:
+
 ```
 
 ```
@@ -55,7 +61,7 @@ Parameter Sets: IdParameterSet
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -69,7 +75,7 @@ Parameter Sets: InstanceIdParameterSet
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -83,20 +89,22 @@ Parameter Sets: NameParameterSet
 Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
 ### System.Management.Automation.Runspaces.Runspace
+
 You can pipe the results of a `Get-Runspace` command to `Debug-Runspace`.
 
 ## NOTES
@@ -104,3 +112,5 @@ You can pipe the results of a `Get-Runspace` command to `Debug-Runspace`.
 ## RELATED LINKS
 
 [Debug-Runspace](Debug-Runspace.md)
+
+

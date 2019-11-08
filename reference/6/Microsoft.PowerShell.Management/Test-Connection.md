@@ -1,149 +1,260 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821646
-external help file:  Microsoft.PowerShell.Commands.Management.dll-Help.xml
-title:  Test-Connection
+external help file: Microsoft.PowerShell.Commands.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 10/09/2019
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/test-connection?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Test-Connection
 ---
 
 # Test-Connection
 
 ## SYNOPSIS
-Sends ICMP echo request packets ("pings") to one or more computers.
+Sends ICMP echo request packets, or pings, to one or more computers.
 
 ## SYNTAX
 
-### Default (Default)
+### PingCount (Default)
+
 ```
-Test-Connection [-AsJob] [-DcomAuthentication <AuthenticationLevel>] [-WsmanAuthentication <String>]
- [-Protocol <String>] [-BufferSize <Int32>] [-ComputerName] <String[]> [-Count <Int32>]
- [-Impersonation <ImpersonationLevel>] [-ThrottleLimit <Int32>] [-TimeToLive <Int32>] [-Delay <Int32>]
- [<CommonParameters>]
+Test-Connection [-TargetName] <String[]> [-Ping] [-IPv4] [-IPv6] [-ResolveDestination]
+ [-Source <String>] [-MaxHops <Int32>] [-Count <Int32>] [-Delay <Int32>] [-BufferSize <Int32>]
+ [-DontFragment] [-TimeoutSeconds <Int32>] [-Quiet] [<CommonParameters>]
 ```
 
-### Source
+### PingContinues
+
 ```
-Test-Connection [-AsJob] [-DcomAuthentication <AuthenticationLevel>] [-WsmanAuthentication <String>]
- [-Protocol <String>] [-BufferSize <Int32>] [-ComputerName] <String[]> [-Count <Int32>]
- [-Credential <PSCredential>] [-Source] <String[]> [-Impersonation <ImpersonationLevel>]
- [-ThrottleLimit <Int32>] [-TimeToLive <Int32>] [-Delay <Int32>] [<CommonParameters>]
+Test-Connection [-TargetName] <String[]> [-Ping] [-IPv4] [-IPv6] [-ResolveDestination]
+ [-Source <String>] [-MaxHops <Int32>] [-Delay <Int32>] [-BufferSize <Int32>] [-DontFragment]
+ [-Continues] [-TimeoutSeconds <Int32>] [-Quiet] [<CommonParameters>]
 ```
 
-### Quiet
+### DetectionOfMTUSize
+
 ```
-Test-Connection [-DcomAuthentication <AuthenticationLevel>] [-WsmanAuthentication <String>]
- [-Protocol <String>] [-BufferSize <Int32>] [-ComputerName] <String[]> [-Count <Int32>]
- [-Impersonation <ImpersonationLevel>] [-TimeToLive <Int32>] [-Delay <Int32>] [-Quiet]
- [<CommonParameters>]
+Test-Connection [-TargetName] <String[]> -MTUSizeDetect [-IPv4] [-IPv6] [-ResolveDestination]
+ [-TimeoutSeconds <Int32>] [-Quiet] [<CommonParameters>]
+```
+
+### TraceRoute
+
+```
+Test-Connection [-TargetName] <String[]> -Traceroute [-IPv4] [-IPv6] [-ResolveDestination]
+ [-Source <String>] [-MaxHops <Int32>] [-TimeoutSeconds <Int32>] [-Quiet] [<CommonParameters>]
+```
+
+### ConnectionByTCPPort
+
+```
+Test-Connection [-TargetName] <String[]> -TCPPort <Int32> [-IPv4] [-IPv6] [-ResolveDestination]
+ [-Source <String>] [-TimeoutSeconds <Int32>] [-Quiet] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The **Test-Connection** cmdlet sends Internet Control Message Protocol (ICMP) echo request packets, or pings, to one or more remote computers and returns the echo response replies.
-You can use this cmdlet to determine whether a particular computer can be contacted across an IP network.
 
-You can use the parameters of **Test-Connection** to specify both the sending and receiving computers, to run the command as a background job, to set a time-out and number of pings, and to configure the connection and authentication.
+The `Test-Connection` cmdlet sends Internet Control Message Protocol (ICMP) echo request packets, or
+pings, to one or more remote computers and returns the echo response replies. You can use this
+cmdlet to determine whether a particular computer can be contacted across an IP network.
 
-Unlike the familiar **ping** command, **Test-Connection** returns a **Win32_PingStatus** object that you can investigate in Windows PowerShell.
-You can use the *Quiet* parameter to force it to return only a **Boolean** value.
+You can use the parameters of `Test-Connection` to specify both the sending and receiving computers,
+to run the command as a background job, to set a time-out and number of pings, and to configure the
+connection and authentication.
+
+Unlike the familiar **ping** command, `Test-Connection` returns a
+**TestConnectionCommand+PingReport** object that you can investigate in PowerShell. The **Quiet**
+parameter returns a **Boolean** value in a **System.Boolean** object for each tested connection. If
+multiple connections are tested, an array of **Boolean** values is returned.
 
 ## EXAMPLES
 
 ### Example 1: Send echo requests to a remote computer
-```
-PS C:\> Test-Connection "Server01"
 
-Source        Destination     IPV4Address     IPV6Address  Bytes    Time(ms)
-------        -----------     -----------     -----------  -----    --------
-ADMIN1        Server01         10.59.137.44                32       0
-ADMIN1        Server01         10.59.137.44                32       0
-ADMIN1        Server01         10.59.137.44                32       0
-ADMIN1        Server01         10.59.137.44                32       1
+This example sends echo request packets from the local computer to the Server01 computer.
+
+```powershell
+Test-Connection -TargetName Server01 -IPv4
 ```
 
-This command sends echo request packets from the local computer to the Server01 computer.
-This command uses the *ComputerName* parameter to specify the Server01 computer, but omits the optional parameter name.
+```Output
+Pinging Server01 [10.59.137.44] with 32 bytes of data:
+Reply from 10.59.137.44: bytes=32 time=0ms TTL=128
+Reply from 10.59.137.44: bytes=32 time=0ms TTL=128
+Reply from 10.59.137.44: bytes=32 time=0ms TTL=128
+Reply from 10.59.137.44: bytes=32 time=0ms TTL=128
+Ping complete.
+
+Source     Destination Replies
+------     ----------- -------
+Server01   Server01    {System.Net.NetworkInformation.PingReply, System.Net.NetworkInformation ...
+```
+
+`Test-Connection` uses the **TargetName** parameter to specify the Server01 computer. The **IPv4**
+parameter specifies the protocol for the test.
+
+The ping output is sent to the **Information** stream while the **TestConnectionCommand+PingReport**
+object sent to the **Success** stream. For more information about the output streams, see
+[about_Redirection](../microsoft.powershell.core/about/about_redirection.md).
 
 ### Example 2: Send echo requests to several computers
-```
-PS C:\> Test-Connection -ComputerName "Server01", "Server02", "Server12"
-```
 
-This command sends pings from the local computer to several remote computers.
+This example sends pings from the local computer to several remote computers.
+
+```powershell
+Test-Connection -TargetName Server01, Server02, Server12
+```
 
 ### Example 3: Send echo requests from several computers to a computer
-```
-PS C:\> Test-Connection -Source "Server02", "Server12", "localhost" -ComputerName "Server01" -Credential Domain01\Admin01
+
+This example sends pings from different source computers to a single remote computer, Server01.
+
+```powershell
+Test-Connection -Source Server02, Server12, localhost -TargetName Server01
 ```
 
-This command sends pings from different source computers to a single remote computer, Server01.
-It uses the *Credential* parameter to specify the credentials of a user who has permission to send a ping request from the source computers.
 Use this command format to test the latency of connections from multiple points.
 
-### Example 4: Customize the test command
-```
-PS C:\> Test-Connection -ComputerName "Server01" -Count 3 -Delay 2 -TTL 255 -BufferSize 256 -ThrottleLimit 32
+### Example 4: Use parameters to customize the test command
+
+This example uses the parameters of `Test-Connection` to customize the command. The local computer
+sends a ping test to a remote computer.
+
+```powershell
+Test-Connection -TargetName Server01 -Count 3 -Delay 2 -MaxHops 255 -BufferSize 256
 ```
 
-This command sends three pings from the local computer to the Server01 computer.
-It uses the parameters of **Test-Connection** to customize the command.
+`Test-Connection` uses the **TargetName** parameter to specify Server01. The **Count** parameter
+specifies three pings are sent to the Server01 computer with a **Delay** of 2-second intervals.
 
-Use this command format when the ping response is expected to take longer than usual, either because of an extended number of hops or a high-traffic network condition.
+You might use these options when the ping response is expected to take longer than usual, either
+because of an extended number of hops or a high-traffic network condition.
 
 ### Example 5: Run a test as a background job
-```
-PS C:\> $job = Test-Connection -ComputerName (Get-Content "Servers.txt") -AsJob
-PS C:\> if ($job.JobStateInfo.State -ne "Running") {$Results = Receive-Job $job}
-```
 
-This example shows how to run a **Test-Connection** command as a Windows PowerShell background job.
+This example shows how to run a `Test-Connection` command as a PowerShell background job.
 
-The first command uses the **Test-Connection** cmdlet to ping many computers in an enterprise.
-The value of the *ComputerName* parameter is a Get-Content command that reads a list of computer names from the Servers.txt file.
-The command uses the *AsJob* parameter to run the command as a background job and it saves the job in the $job variable.
-
-The second command checks to see that the job is not still running, and if it is not, it uses a Receive-Job command to get the results and store them in the $Results variable.
-
-### Example 6: Ping a remote computer with credentials
-```
-PS C:\> Test-Connection "Server55" -Credential Domain55\User01 -Impersonation Identify
+```powershell
+$job = Start-Job -ScriptBlock { Test-Connection -TargetName (Get-Content "Servers.txt") }
+if ($job.JobStateInfo.State -ne "Running") { $Results = Receive-Job $job }
 ```
 
-This command uses the **Test-Connection** cmdlet to ping a remote computer.
-The command uses the *Credential* parameter to specify a user account that has permission to ping the remote computer and the *Impersonation* parameter to change the impersonation level to Identify.
+The `Start-Job` command uses the `Test-Connection` cmdlet to ping many computers in an enterprise.
+The value of the **TargetName** parameter is a `Get-Content` command that reads a list of computer
+names from the `Servers.txt` file. The command uses the `Start-Job` cmdlet to run the command as a
+background job and it saves the job in the `$job` variable.
 
-### Example 7: Create a session only if a connection test succeeds
+The `if` command checks to see that the job isn't still running. If the job isn't running,
+`Receive-Job` gets the results and stores them in the `$Results` variable.
+
+### Example 6: Create a session only if a connection test succeeds
+
+This example creates a session on the Server01 computer only if at least one of the pings sent to
+the computer succeeds.
+
+```powershell
+if (Test-Connection -TargetName Server01 -Quiet) {New-PSSession Server01}
 ```
-PS C:\> if (Test-Connection -ComputerName "Server01" -Quiet) {New-PSSession Server01}
+
+The `if` command uses the `Test-Connection` cmdlet to ping the Server01 computer. The command uses
+the **Quiet** parameter, which returns a **Boolean** value, instead of a
+**TestConnectionCommand+PingReport** object.
+
+The value is `$True` if any of the four pings succeed. If none of the pings succeed, the value is
+`$False`.
+
+If the `Test-Connection` command returns a value of `$True`, the command uses the `New-PSSession`
+cmdlet to create the **PSSession**.
+
+### Example 7: Use the Traceroute parameter
+
+Beginning in PowerShell 6.0, the **Traceroute** parameter maps a route between the local computer
+and the remote destination you specify with the **TargetName** parameter.
+
+```powershell
+Test-Connection -TargetName www.microsoft.com -Traceroute | ForEach-Object {
+  $_ | Format-Table Source, DestinationAddress, DestinationHost
+  $_.Replies | ForEach-Object {
+      $_ | Format-Table Hop, ReplyRouterAddress
+      $_.PingReplies | Format-Table
+  }
+}
 ```
 
-This command creates a session on the Server01 computer only if at least one of the pings sent to the computer succeeds.
+```Output
+Tracing route to www.microsoft.com [96.6.27.90] over a maximum of 128 hops:
+  1   0 ms   0 ms   0 ms   192.168.0.3 [192.168.0.3]
+  2   0 ms   0 ms   0 ms   192.168.1.1 [192.168.1.1]
+  3   3 ms   29 ms   4 ms   96.6.27.90 [96.6.27.90]
+Trace complete.
 
-The command uses the **Test-Connection** cmdlet to ping the Server01 computer.
-The command uses the *Quiet* parameter, which returns a **Boolean** value, instead of a **Win32_PingStatus** object.
-The value is $True if any of the four pings succeed and is, otherwise, $False.
+Source      DestinationAddress DestinationHost   Replies
+------      ------------------ ---------------   -------
+SERVER01    96.6.27.90         www.microsoft.com {, , }
 
-If the **Test-Connection** command returns a value of $True, the command uses the New-PSSession cmdlet to create the **PSSession**.
+Hop ReplyRouterAddress
+--- ------------------
+  1 192.168.0.3
+
+    Status Address      RoundtripTime Options Buffer
+    ------ -------      ------------- ------- ------
+TtlExpired 192.168.86.1             0         {}
+TtlExpired 192.168.86.1             0         {}
+TtlExpired 192.168.86.1             0         {}
+
+Hop ReplyRouterAddress
+--- ------------------
+  2 192.168.1.1
+
+    Status Address     RoundtripTime Options Buffer
+    ------ -------     ------------- ------- ------
+TtlExpired 192.168.1.1             0         {}
+TtlExpired 192.168.1.1             0         {}
+TtlExpired 192.168.1.1             0         {}
+
+Hop ReplyRouterAddress
+--- ------------------
+  3 96.6.27.90
+
+ Status Address    RoundtripTime Options                                   Buffer
+ ------ -------    ------------- -------                                   ------
+Success 96.6.27.90             3 System.Net.NetworkInformation.PingOptions {97, 98, 99, 100…}
+Success 96.6.27.90             2 System.Net.NetworkInformation.PingOptions {97, 98, 99, 100…}
+Success 96.6.27.90             4 System.Net.NetworkInformation.PingOptions {97, 98, 99, 100…}
+```
+
+The `Test-Connection` command uses the **Traceroute** parameter. The results, which are
+`[Microsoft.PowerShell.Commands.TestConnectionCommand+TraceRouteResult]` objects, are piped to the
+`ForEach-Object` cmdlet. `ForEach-Object` creates a structured output of the contained
+`[Microsoft.PowerShell.Commands.TestConnectionCommand+TraceRouteReply]` objects and subsequent
+`[System.Net.NetworkInformation.PingReply]` objects.
 
 ## PARAMETERS
 
-### -AsJob
-Indicates that this cmdlet runs as a background job.
+### -BufferSize
 
-To use this parameter, the local and remote computers must be configured for remoting and, on Windows Vista and later versions of the Windows operating system, you must open Windows PowerShell by using the Run as administrator option.
-For more information, see about_Remote_Requirements.
+Specifies the size, in bytes, of the buffer sent with this command. The default value is 32.
 
-When you specify the *AsJob* parameter, the command immediately returns an object that represents the background job.
-You can continue to work in the session while the job finishes.
-The job is created on the local computer and the results from remote computers are automatically returned to the local computer.
-To get the job results, use the Receive-Job cmdlet.
+```yaml
+Type: Int32
+Parameter Sets: PingCount, PingContinues
+Aliases: Size, Bytes, BS
 
-For more information about Windows PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and [about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
+Required: False
+Position: Named
+Default value: 32
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Continues
+
+Causes the cmdlet to send ping requests continuously. This parameter can't be used with the
+**Count** parameter.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Default, Source
+Parameter Sets: PingContinues
 Aliases:
 
 Required: False
@@ -153,50 +264,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BufferSize
-Specifies the size, in bytes, of the buffer sent with this command.
-The default value is 32.
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: Size, Bytes, BS
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ComputerName
-Specifies the computers to ping.
-Type the computer names or type IP addresses in IPv4 or IPv6 format.
-Wildcard characters are not permitted.
-This parameter is required.
-
-This parameter does not rely on Windows PowerShell remoting.
-You can use the *ComputerName* parameter even if your computer is not configured to run remote commands.
-
-```yaml
-Type: String[]
-Parameter Sets: (All)
-Aliases: CN, IPAddress, __SERVER, Server, Destination
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
 ### -Count
-Specifies the number of echo requests to send.
-The default value is 4.
+
+Specifies the number of echo requests to send. The default value is 4.
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
+Parameter Sets: PingCount
 Aliases:
 
 Required: False
@@ -206,31 +280,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Credential
-Specifies a user account that has permission to send a ping request from the source computer.
-Type a user name, such as User01 or Domain01\User01, or enter a **PSCredential** object, such as one from the Get-Credential cmdlet.
-
-The *Credential* parameter is valid only when the *Source* parameter is used in the command.
-The credentials do not affect the destination computer.
-
-```yaml
-Type: PSCredential
-Parameter Sets: Source
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Delay
+
 Specifies the interval between pings, in seconds.
 
 ```yaml
-Type: Int32
-Parameter Sets: (All)
+Type: System.Int32
+Parameter Sets: PingCount, PingContinues
 Aliases:
 
 Required: False
@@ -240,214 +296,259 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Impersonation
-Specifies the impersonation level to use when this cmdlet calls WMI.
-**Test-Connection** uses WMI.
-The acceptable values for this parameter are:
+### -DontFragment
 
-- Default.
-Default impersonation.
-- Anonymous.
-Hides the identity of the caller.
-- Identify.
-Allows objects to query the credentials of the caller.
-- Impersonate.
-Allows objects to use the credentials of the caller.
-
-The default value is Impersonate.
+This parameter sets the **Don't Fragment** flag in the IP header. You can use this parameter with
+the **BufferSize** parameter to test the Path MTU size. For more information about Path MTU, see the
+[Path MTU Discovery](https://wikipedia.org/wiki/Path_MTU_Discovery) article in wikipedia.
 
 ```yaml
-Type: ImpersonationLevel
-Parameter Sets: (All)
+Type: SwitchParameter
+Parameter Sets: PingCount, PingContinues
 Aliases:
-Accepted values: Default, Anonymous, Identify, Impersonate, Delegate
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IPv4
+
+Forces the cmdlet to use the IPv4 protocol for the test.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IPv6
+
+Forces the cmdlet to use the IPv6 protocol for the test.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MaxHops
+
+Sets the maximum number of hops that an ICMP request message can be sent. The default value is
+controlled by the operating system. The default value for Windows 10 is 128 hops.
+
+```yaml
+Type: Int32
+Parameter Sets: PingCount, PingContinues, TraceRoute
+Aliases: Ttl
+
+Required: False
+Position: Named
+Default value: 128 hops in Windows 10
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MTUSizeDetect
+
+This parameter is used to discover the Path MTU size. The cmdlet returns a **PingReply#MTUSize**
+object that contains the Path MTU size to the target. For more information about Path MTU, see the
+[Path MTU Discovery](https://wikipedia.org/wiki/Path_MTU_Discovery) article in wikipedia.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: DetectionOfMTUSize
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Ping
+
+Causes the cmdlet to do a ping test, which is the default action.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: PingCount, PingContinues
+Aliases:
+
+Required: False
+Position: Named
+Default value: Ping test
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Quiet
-Indicates that this cmdlet suppresses all errors.
-If any pings succeed, this cmdlet returns $True.
-If all pings fail, this cmdlet returns $False.
+
+The **Quiet** parameter returns a **Boolean** value in a **System.Boolean** object. Using this
+parameter suppresses all errors.
+
+Each connection that's tested returns a **Boolean** value. If the **TargetName** parameter
+specifies multiple computers, an array of **Boolean** values is returned.
+
+If **any** ping succeeds, `$True` is returned.
+
+If **all** pings fail, `$False` is returned.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Quiet
+Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ResolveDestination
+
+Causes the cmdlet to attempt to resolve the DNS name of the target.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Source
-Specifies the names of the computers where the ping originates.
-Enter a comma-separated list of computer names.
-The default is the local computer.
+
+Specifies the names of the computers where the ping originates. Enter a comma-separated list of
+computer names. The default is the local computer.
+
+```yaml
+Type: String
+Parameter Sets: PingCount, PingContinues, TraceRoute, ConnectionByTCPPort
+Aliases:
+
+Required: False
+Position: Named
+Default value: Local computer
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TargetName
+
+Specifies the computers to test. Type the computer names or type IP addresses in IPv4 or IPv6
+format. Wildcard characters aren't permitted. This parameter is required. **ComputerName** is an
+alias for this parameter.
 
 ```yaml
 Type: String[]
-Parameter Sets: Source
-Aliases: FCN, SRC
+Parameter Sets: (All)
+Aliases: ComputerName
 
 Required: True
-Position: 2
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -ThrottleLimit
-Specifies the maximum number of concurrent connections that can be established to run this command.
-If you omit this parameter or enter a value of 0, the default value, 32, is used.
+### -TCPPort
 
-The throttle limit applies only to the current command, not to the session or to the computer.
+Specifies the TCP port number on the target to be used in the TCP connection test. The cmdlet will
+attempt to make a TCP connection to the specified port on the target.
 
 ```yaml
 Type: Int32
-Parameter Sets: Default, Source
+Parameter Sets: ConnectionByTCPPort
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -TimeToLive
-Specifies the maximum time, in seconds, that each echo request packet, or ping, is active.
-Enter an integer between 1 and 255.
-The default value is 80 (seconds).
-The alias of the *TimeToLive* parameter is *TTL*.
+### -TimeoutSeconds
+
+Sets the timeout value for the test. The test fails if a response isn't received before the timeout
+expires. The default is five seconds.
+
+This parameter was introduced in PowerShell 6.0.
 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: TTL
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -DcomAuthentication
-Specifies the authentication level that this cmdlet uses with WMI.
-**Test-Connection** uses WMI.
-The acceptable values for this parameter are:
-
-- Default.
-Windows Authentication
-- None.
-No COM authentication
-- Connect.
-Connect-level COM authentication
-- Call.
-Call-level COM authentication
-- Packet .
-Packet-level COM authentication
-- PacketIntegrity.
-Packet Integrity-level COM authentication
-- PacketPrivacy.
-Packet Privacy-level COM authentication
-- Unchanged.
-Same as the previous command
-
-The default value is Packet.
-
-For more information about the values of this parameter, see [AuthenticationLevel Enumeration](https://msdn.microsoft.com/library/system.management.authenticationlevel) in the MSDN library.
-
-```yaml
-Type: AuthenticationLevel
-Parameter Sets: (All)
-Aliases: Authentication
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Protocol
-Specifies a protocol.
-The acceptable values for this parameter are: DCOM and WSMan.
-
-```yaml
-Type: String
-Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: 5 seconds
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WsmanAuthentication
-Specifies the mechanism that is used to authenticate the user credentials when this cmdlet uses the WSMan protocol.
-The acceptable values for this parameter are:
+### -Traceroute
 
-- Basic
-- CredSSP
-- Default
-- Digest
-- Kerberos
-- Negotiate.
-
-The default value is Default.
-
-For more information about the values of this parameter, see [AuthenticationMechanism Enumeration](https://msdn.microsoft.com/library/system.management.automation.runspaces.authenticationmechanism) in the MSDN library.
-
-Caution: Credential Security Service Provider (CredSSP) authentication, in which the user credentials are passed to a remote computer to be authenticated, is designed for commands that require authentication on more than one resource, such as accessing a remote network share.
-This mechanism increases the security risk of the remote operation.
-If the remote computer is compromised, the credentials that are passed to it can be used to control the network session.
-
-This parameter was introduced in Windows PowerShell 3.0.
+Causes the cmdlet to do a traceroute test. When this parameter is used, the cmdlet returns a
+`TestConnectionCommand+TraceRouteResult` object.
 
 ```yaml
-Type: String
-Parameter Sets: (All)
+Type: SwitchParameter
+Parameter Sets: TraceRoute
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
+-InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
-You cannot pipe input to this cmdlet.
+
+You can't pipe input to this cmdlet.
 
 ## OUTPUTS
 
-### System.Management.ManagementObject#root\cimv2\Win32_PingStatus, System.Management.Automation.RemotingJob, System.Boolean
-This cmdlet returns a job object, if you specify the *AsJob* parameter.
-If you specify the *Quiet* parameter, it returns a **Boolean**.
-Otherwise, this cmdlet returns a **Win32_PingStatus** object for each ping.
+### TestConnectionCommand+PingReport, TestConnectionCommand+TraceRouteResult, Boolean, PingReply#MTUSize
+
+If you specify the **Quiet** parameter, it returns a **Boolean** value. If multiple connections are
+tested, an array of **Boolean** values is returned. Otherwise, `Test-Connection` returns a
+**TestConnectionCommand+PingReport** object for each ping.
 
 ## NOTES
-* This cmdlet uses the **Win32_PingStatus** class. A `Get-WMIObject Win32_PingStatus` command is equivalent to a **Test-Connection** command.
-* The *Source* parameter set was introduced in Windows PowerShell 3.0.
 
 ## RELATED LINKS
-
-[Add-Computer](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Management/Add-Computer)
 
 [Restart-Computer](Restart-Computer.md)
 

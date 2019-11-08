@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821577
-external help file:  Microsoft.PowerShell.Commands.Management.dll-Help.xml
-title:  Debug-Process
+external help file: Microsoft.PowerShell.Commands.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/debug-process?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Debug-Process
 ---
 
 # Debug-Process
@@ -114,21 +115,6 @@ The second command uses the *InputObject* parameter of the **Debug-Process** cmd
 
 ## PARAMETERS
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
 Specifies the process IDs of the processes to be debugged.
 The *Id* parameter name is optional.
@@ -167,7 +153,7 @@ Accept wildcard characters: False
 ### -Name
 Specifies the names of the processes to be debugged.
 If there is more than one process with the same name, this cmdlet attaches a debugger to all processes with that name.
-The *Name * parameter is optional.
+The *Name* parameter is optional.
 
 ```yaml
 Type: String[]
@@ -178,6 +164,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -198,7 +199,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -211,7 +212,7 @@ You can pipe a process ID (Int32), a process object (System.Diagnostics.Process)
 This cmdlet does not generate any output.
 
 ## NOTES
-* This cmdlet uses the AttachDebugger method of the Windows Management Instrumentation (WMI) Win32_Process class. For more information about this method, see [AttachDebugger method](http://go.microsoft.com/fwlink/?LinkId=143640) in the MSDN library.
+* This cmdlet uses the AttachDebugger method of the Windows Management Instrumentation (WMI) Win32_Process class. For more information about this method, see [AttachDebugger method](https://go.microsoft.com/fwlink/?LinkId=143640) in the MSDN library.
 
 ## RELATED LINKS
 
@@ -224,3 +225,6 @@ This cmdlet does not generate any output.
 [Stop-Process](Stop-Process.md)
 
 [Wait-Process](Wait-Process.md)
+
+
+

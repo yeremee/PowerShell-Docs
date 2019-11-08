@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821504
-external help file:  System.Management.Automation.dll-Help.xml
-title:  Out-Null
+external help file: System.Management.Automation.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Core
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/out-null?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Out-Null
 ---
 
 # Out-Null
@@ -21,7 +22,7 @@ Out-Null [-InputObject <PSObject>] [<CommonParameters>]
 
 ## DESCRIPTION
 The **Out-Null** cmdlet sends its output to NULL, in effect, removing it from the pipeline and
-preventing the output to be displayed at the screen. Ihis only affects the standard output stream.
+preventing the output to be displayed at the screen. This only affects the standard output stream.
 Other output streams, like the Error stream are not affected. Exceptions will be displayed. This
 makes it easier to test your command for any errors.
 
@@ -55,7 +56,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -77,3 +78,5 @@ This cmdlet does not generate any output.
 [Out-Default](Out-Default.md)
 
 [Out-Host](Out-Host.md)
+
+

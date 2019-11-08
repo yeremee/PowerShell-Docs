@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821844
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Register-EngineEvent
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/register-engineevent?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Register-EngineEvent
 ---
 
 # Register-EngineEvent
@@ -71,7 +72,7 @@ The commands in the *Action* run when an event is raised, instead of sending the
 Enclose the commands in braces ( { } ) to create a script block.
 
 The value of the *Action* parameter can include the $Event, $EventSubscriber, $Sender, $EventArgs, and $Args automatic variables, which provide information about the event to the Action script block.
-For more information, see about_Automatic_Variables (http://go.microsoft.com/fwlink/?LinkID=113212).
+For more information, see about_Automatic_Variables (https://go.microsoft.com/fwlink/?LinkID=113212).
 
 When you specify an action, **Register-EngineEvent** returns an event job object that represents that action.
 You can use the Job cmdlets to manage the event job.
@@ -108,7 +109,7 @@ Accept wildcard characters: False
 Specifies the max trigger count.
 
 The value of the *Action* parameter can include the $Event, $EventSubscriber, $Sender, $EventArgs, and $Args automatic variables, which provide information about the event to the Action script block.
-For more information, see about_Automatic_Variables (http://go.microsoft.com/fwlink/?LinkID=113212).
+For more information, see about_Automatic_Variables (https://go.microsoft.com/fwlink/?LinkID=113212).
 
 When you specify an action, **Register-EngineEvent** returns an event job object that represents that action.
 You can use the Job cmdlets to manage the event job.
@@ -181,7 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -212,3 +213,7 @@ Otherwise, it does not generate any output.
 [Unregister-Event](Unregister-Event.md)
 
 [Wait-Event](Wait-Event.md)
+
+
+
+

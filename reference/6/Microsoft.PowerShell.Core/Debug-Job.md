@@ -1,17 +1,18 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=512991
-external help file:  System.Management.Automation.dll-Help.xml
-title:  Debug-Job
+external help file: System.Management.Automation.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Core
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/debug-job?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Debug-Job
 ---
 
 # Debug-Job
 
 ## SYNOPSIS
-Debugs a running background, remote, or Windows PowerShell Workflow job.
+Debugs a running background, remote, or PowerShell Workflow job.
 
 ## SYNTAX
 
@@ -37,7 +38,7 @@ Debug-Job [-InstanceId] <Guid> [-WhatIf] [-Confirm] [<CommonParameters>]
 
 ## DESCRIPTION
 The **Debug-Job** cmdlet lets you debug scripts that are running within jobs.
-The cmdlet is designed to debug Windows PowerShell Workflow jobs, background jobs, and jobs running in remote sessions.
+The cmdlet is designed to debug PowerShell Workflow jobs, background jobs, and jobs running in remote sessions.
 **Debug-Job** accepts a running job object, name, ID, or instance ID as input, and starts a debugging session on the script it is running.
 The debugger **quit** command stops the job and running script.
 Starting in Windows PowerShell 5.0, the **exit** command detaches the debugger, and allows the job to continue to run.
@@ -80,21 +81,6 @@ Id     Name            PSJobTypeName   State         HasMoreData     Location   
 This command breaks into a running job with an ID of 3.
 
 ## PARAMETERS
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Id
 Specifies the ID number of a running job.
@@ -162,6 +148,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
@@ -179,7 +180,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -197,12 +198,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Remove-Job](Remove-Job.md)
 
-[Resume-Job](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Core/Resume-Job)
-
 [Start-Job](Start-Job.md)
 
 [Stop-Job](Stop-Job.md)
 
-[Suspend-Job](https://msdn.microsoft.com/en-us/powershell/reference/5.1/Microsoft.PowerShell.Core/Suspend-Job)
-
 [Wait-Job](Wait-Job.md)
+
+

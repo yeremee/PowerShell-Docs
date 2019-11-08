@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821619
-external help file:  Microsoft.PowerShell.Commands.Management.dll-Help.xml
-title:  Remove-WmiObject
+external help file: Microsoft.PowerShell.Commands.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/remove-wmiobject?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Remove-WmiObject
 ---
 
 # Remove-WmiObject
@@ -37,14 +38,6 @@ Remove-WmiObject -Path <String> [-AsJob] [-Impersonation <ImpersonationLevel>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### list
-```
-Remove-WmiObject [-AsJob] [-Impersonation <ImpersonationLevel>] [-Authentication <AuthenticationLevel>]
- [-Locale <String>] [-EnableAllPrivileges] [-Authority <String>] [-Credential <PSCredential>]
- [-ThrottleLimit <Int32>] [-ComputerName <String[]>] [-Namespace <String>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
-```
-
 ### WQLQuery
 ```
 Remove-WmiObject [-AsJob] [-Impersonation <ImpersonationLevel>] [-Authentication <AuthenticationLevel>]
@@ -54,6 +47,14 @@ Remove-WmiObject [-AsJob] [-Impersonation <ImpersonationLevel>] [-Authentication
 ```
 
 ### query
+```
+Remove-WmiObject [-AsJob] [-Impersonation <ImpersonationLevel>] [-Authentication <AuthenticationLevel>]
+ [-Locale <String>] [-EnableAllPrivileges] [-Authority <String>] [-Credential <PSCredential>]
+ [-ThrottleLimit <Int32>] [-ComputerName <String[]>] [-Namespace <String>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### list
 ```
 Remove-WmiObject [-AsJob] [-Impersonation <ImpersonationLevel>] [-Authentication <AuthenticationLevel>]
  [-Locale <String>] [-EnableAllPrivileges] [-Authority <String>] [-Credential <PSCredential>]
@@ -101,7 +102,7 @@ Use this parameter to run commands that take a long time to finish.
 
 New CIM cmdlets, introduced Windows PowerShell 3.0, perform the same tasks as the WMI cmdlets.
 The CIM cmdlets comply with WS-Management (WSMan) standards and with the Common Information Model (CIM) standard, which enables the cmdlets to use the same techniques to manage computers that run the Windows operating system and those running other operating systems.
-Instead of using **Remove-WmiObject**, consider using the Remove-CimInstancehttp://go.microsoft.com/fwlink/?LinkId=227964 cmdlet.
+Instead of using **Remove-WmiObject**, consider using the Remove-CimInstancehttps://go.microsoft.com/fwlink/?LinkId=227964 cmdlet.
 
 When you use the *AsJob* parameter, the command returns an object that represents the background job and then displays the command prompt.
 You can continue to work in the session while the job finishes.
@@ -148,7 +149,7 @@ The properties of the other authentication levels are used, and all the data is 
 
 ```yaml
 Type: AuthenticationLevel
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases:
 Accepted values: Default, None, Connect, Call, Packet, PacketIntegrity, PacketPrivacy, Unchanged
 
@@ -168,7 +169,7 @@ You cannot include the authority setting when you connect to the local computer.
 
 ```yaml
 Type: String
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases:
 
 Required: False
@@ -205,27 +206,12 @@ You can use the *ComputerName* parameter even if your computer is not configured
 
 ```yaml
 Type: String[]
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases: Cn
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -239,7 +225,7 @@ If you type a user name, this cmdlet prompts you for a password.
 
 ```yaml
 Type: PSCredential
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases:
 
 Required: False
@@ -254,7 +240,7 @@ Indicates that this cmdlet enables all the permissions of the current user befor
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases:
 
 Required: False
@@ -281,7 +267,7 @@ Allows objects to permit other objects to use the credentials of the caller.
 
 ```yaml
 Type: ImpersonationLevel
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases:
 Accepted values: Default, Anonymous, Identify, Impersonate, Delegate
 
@@ -314,7 +300,7 @@ The *Locale* parameter is specified as an array in the MS_\<LCID\> format in the
 
 ```yaml
 Type: String
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases:
 
 Required: False
@@ -329,7 +315,7 @@ Specifies the WMI repository namespace where the referenced WMI class is located
 
 ```yaml
 Type: String
-Parameter Sets: class, path, list, WQLQuery, query
+Parameter Sets: class, path, WQLQuery, query, list
 Aliases: NS
 
 Required: False
@@ -371,6 +357,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WhatIf
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
@@ -388,7 +389,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -410,3 +411,6 @@ Otherwise, it does not generate any output.
 [Invoke-WmiMethod](Invoke-WmiMethod.md)
 
 [Set-WmiInstance](Set-WmiInstance.md)
+
+
+

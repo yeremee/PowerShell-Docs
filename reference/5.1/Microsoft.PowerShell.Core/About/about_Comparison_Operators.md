@@ -1,18 +1,18 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Comparison_Operators
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/18/2019
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_comparison_operators?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Comparison_Operators
 ---
-
 # About Comparison Operators
 
-## SHORT DESCRIPTION
+## Short description
 
 Describes the operators that compare values in PowerShell.
 
-## LONG DESCRIPTION
+## Long description
 
 Comparison operators let you specify conditions for comparing values and
 finding values that match specified patterns. To use a comparison operator,
@@ -138,6 +138,9 @@ PS> 7, 8, 9 -gt 8
 9
 ```
 
+> [!NOTE]
+> This should not to be confused with `>`, the greater-than operator in many other programming languages. In PowerShell, `>` is used for redirection. For more information, see [About_redirection](about_Redirection.md#potential-confusion-with-comparison-operators).
+
 #### -ge
 
 Description: Greater-than or equal to.
@@ -259,24 +262,60 @@ that match. It does not populate the `$Matches` automatic variable.
 PS> "Sunday", "Monday", "Tuesday" -match "sun"
 Sunday
 
-PS> $matches
+PS> $Matches
 PS>
 ```
 
 In contrast, the following command submits a single string to the `-match`
 operator. The `-match` operator returns a Boolean value and populates the
-`$Matches` automatic variable.
+`$Matches` automatic variable. The `$Matches` automatic variable is a
+**Hashtable**. If no grouping or capturing is used, only one key is populated.
+The `0` key represents all text that was matched. For more information about
+grouping and capturing using regular expressions, see
+[about_Regular_Expressions](about_Regular_Expressions.md).
 
 ```powershell
 PS> "Sunday" -match "sun"
 True
 
-PS> $matches
+PS> $Matches
 
 Name                           Value
 ----                           -----
 0                              Sun
 ```
+
+It is important to note that the `$Matches` hashtable will only contain the
+first occurrence of any matching pattern.
+
+```powershell
+PS> "Banana" -match "na"
+True
+
+PS> $Matches
+
+Name                           Value
+----                           -----
+0                              na
+```
+
+> [!IMPORTANT]
+> The `0` key is an **Integer**. You can use any **Hashtable** method to access
+> the value stored.
+>
+> ```powershell
+> PS> "Good Dog" -match "Dog"
+> True
+>
+> PS> $Matches[0]
+> Dog
+>
+> PS> $Matches.Item(0)
+> Dog
+>
+> PS> $Matches.0
+> Dog
+> ```
 
 The `-notmatch` operator populates the `$Matches` automatic variable when the
 input is scalar and the result is False, that it, when it detects a match.
@@ -499,7 +538,7 @@ Where
 The `-replace` operator replaces all or part of a value with the specified
 value using regular expressions. You can use the `-replace` operator for many
 administrative tasks, such as renaming files. For example, the following
-command changes the file name extensions of all .gif files to .jpg:
+command changes the file name extensions of all .txt files to .log:
 
 ```powershell
 Get-ChildItem *.txt | Rename-Item -NewName { $_.name -replace '\.txt$','.log' }
@@ -541,6 +580,8 @@ Cook
 book
 ```
 
+It is also possible to use capturing groups, and substitutions with the
+`-replace` operator. For more information, see [about_Regular_Expressions](about_Regular_Expressions.md).
 #### Substitutions in Regular Expressions
 
 Additionally, capturing groups can be referenced in the \<substitute\> string.
@@ -591,7 +632,8 @@ Two of the ways to reference capturing groups is by **Number** and by **Name**
 > $5.72
 > ```
 
-To learn more see [Substitutions in Regular Expressions](/dotnet/standard/base-types/substitutions-in-regular-expressions)
+To learn more see [about_Regular_Expressions](about_Regular_Expressions.md) and
+[Substitutions in Regular Expressions](/dotnet/standard/base-types/substitutions-in-regular-expressions)
 
 ### Type comparison
 

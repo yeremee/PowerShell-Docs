@@ -1,17 +1,16 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821531
-external help file:  Microsoft.PowerShell.Commands.Diagnostics.dll-Help.xml
-title:  New-WinEvent
+external help file: Microsoft.PowerShell.Commands.Diagnostics.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Diagnostics
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.diagnostics/new-winevent?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: New-WinEvent
 ---
-
 # New-WinEvent
 
 ## SYNOPSIS
-
 Creates a new Windows event for the specified event provider.
 
 ## SYNTAX
@@ -24,7 +23,7 @@ New-WinEvent [-ProviderName] <String> [-Id] <Int32> [-Version <Byte>] [[-Payload
 ## DESCRIPTION
 
 The **New-WinEvent** cmdlet creates an Event Tracing for Windows (ETW) event for an event provider.
-You can use this cmdlet to add events to ETW channels from Windows PowerShell.
+You can use this cmdlet to add events to ETW channels from PowerShell.
 
 ## EXAMPLES
 
@@ -49,7 +48,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -60,7 +59,7 @@ Accept wildcard characters: False
 Specifies the message for the event. When the event is written to an event log, the payload is
 stored in the **Message** property of the event object.
 
-When the specified payload does not match the payload in the event definition, Windows PowerShell generates a warning, but the command still succeeds.
+When the specified payload does not match the payload in the event definition, PowerShell generates a warning, but the command still succeeds.
 
 ```yaml
 Type: Object[]
@@ -68,7 +67,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -86,7 +85,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -94,7 +93,7 @@ Accept wildcard characters: False
 
 ### -Version
 
-Specifies the version number of the event. Type the event number. Windows PowerShell converts the
+Specifies the version number of the event. Type the event number. PowerShell converts the
 number to the required Byte type.
 
 This parameter lets you specify an event when different versions of the same event are defined.
@@ -115,8 +114,7 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
 -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
--WarningAction, and -WarningVariable. For more information, see about_CommonParameters
-(http://go.microsoft.com/fwlink/?LinkID=113216).
+-WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -134,9 +132,8 @@ This cmdlet does to generate any output.
 
 * After the provider writes the even to an eventlog, you can use the Get-WinEvent cmdlet to get the
   event from the event log.
-* For information about Event Tracing for Windows, see "Improve Debugging And Performance Tuning
-  With ETW" in MSDN Magazine at http://msdn.microsoft.com/magazine/cc163437.aspx.
 
 ## RELATED LINKS
 
 [Get-WinEvent](Get-WinEvent.md)
+

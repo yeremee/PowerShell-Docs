@@ -6,7 +6,7 @@ _site/
 Tools/NuGet/
 _site/
 maml/
-updateablehelp/
+updatablehelp/
 
 
 .openpublishing.build.mdproj
@@ -14,7 +14,6 @@ updateablehelp/
 packages.config
 **/.ignore/**
 *.orig
-.vscode/
 _themes/
 dependentPackages/
-
+.optemp/

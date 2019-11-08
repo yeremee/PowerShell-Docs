@@ -1,9 +1,10 @@
 ---
-ms.date:  11/27/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Enum
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 11/27/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_enum?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Enum
 ---
 
 # About Enum
@@ -188,4 +189,16 @@ In the following example the *FileAttributes* enumeration is created.
 ```output
 file1 attributes are: Archive, Compressed, Device
 file2 attributes are: Device, Directory, Encrypted
+```
+
+To test that a specific is set, you can use the binary comparison operator
+`-band`. In this example, we test for the **Device** and the **Archive**
+attributes in the value of `$file2`.
+
+```
+PS > ($file2 -band [FileAttributes]::Device) -eq [FileAttributes]::Device
+True
+
+PS > ($file2 -band [FileAttributes]::Archive) -eq [FileAttributes]::Archive
+False
 ```

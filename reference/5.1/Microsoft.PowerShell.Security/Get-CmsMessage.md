@@ -1,13 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821712
-external help file:  Microsoft.PowerShell.Security.dll-Help.xml
-title:  Get-CmsMessage
+external help file: Microsoft.PowerShell.Security.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-cmsmessage?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-CmsMessage
 ---
-
 # Get-CmsMessage
 
 ## SYNOPSIS
@@ -16,21 +15,25 @@ Gets content that has been encrypted by using the Cryptographic Message Syntax f
 ## SYNTAX
 
 ### ByContent
+
 ```
 Get-CmsMessage [-Content] <String> [<CommonParameters>]
 ```
 
 ### ByPath
+
 ```
 Get-CmsMessage [-Path] <String> [<CommonParameters>]
 ```
 
 ### ByLiteralPath
+
 ```
 Get-CmsMessage [-LiteralPath] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The **Get-CmsMessage** cmdlet gets content that has been encrypted using the Cryptographic Message Syntax (CMS) format.
 
 The CMS cmdlets support encryption and decryption of content using the IETF format for cryptographically protecting messages, as documented by [RFC5652](https://tools.ietf.org/html/rfc5652).
@@ -49,6 +52,7 @@ You can pipe the results of **Get-CmsMessage** to Unprotect-CmsMessage to decryp
 ## EXAMPLES
 
 ### Example 1: Get encrypted content
+
 ```
 PS C:\> Get-CmsMessage -Path "C:\Users\Test\Documents\PowerShell ISE\Future_Plans.txt"
 -----BEGIN CMS-----
@@ -66,9 +70,10 @@ KMnBoD1dkb/FzSWAEBaL8xkFwCu0e1AtDj7nSJc=
 This command gets encrypted content located at C:\Users\Test\Documents\PowerShell\ISE\Future_Plans.txt.
 
 ### Example 2: Pipe encrypted content to Unprotect-CmsMessage
+
 ```
 PS C:\> $Msg = Get-CmsMessage -Path "C:\Users\Test\Documents\PowerShell ISE\Future_Plans.txt"
-$Msg | Unprotect-CmsMessage -To "â€Žcn=youralias@emailaddress.com"
+$Msg | Unprotect-CmsMessage -To "cn=youralias@emailaddress.com"
 Try the new Break All command
 ```
 
@@ -79,6 +84,7 @@ The decrypted message, "Try the new Break All command," is the result.
 ## PARAMETERS
 
 ### -Content
+
 Specifies an encrypted string, or a variable containing an encrypted string.
 
 ```yaml
@@ -94,6 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -LiteralPath
+
 Specifies the path to encrypted content that you want to get.
 Unlike *Path*, the value of *LiteralPath* is used exactly as it is typed.
 No characters are interpreted as wildcard characters.
@@ -113,6 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
+
 Specifies the path to encrypted content that you want to decrypt.
 
 ```yaml
@@ -128,7 +136,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -143,3 +152,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Protect-CmsMessage](Protect-CmsMessage.md)
 
 [Unprotect-CmsMessage](Unprotect-CmsMessage.md)
+
+

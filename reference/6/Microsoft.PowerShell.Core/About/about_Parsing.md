@@ -1,15 +1,14 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Parsing
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_parsing?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Parsing
 ---
-
 # About Parsing
 
 ## SHORT DESCRIPTION
-
 Describes how PowerShell parses commands.
 
 ## LONG DESCRIPTION

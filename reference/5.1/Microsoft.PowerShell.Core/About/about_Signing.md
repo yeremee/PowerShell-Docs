@@ -1,9 +1,10 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Signing
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 08/21/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_signing?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Signing
 ---
 
 # About Signing
@@ -16,22 +17,22 @@ policies.
 ## LONG DESCRIPTION
 
 The Restricted execution policy does not permit any scripts to run. The
-AllSigned and RemoteSigned execution policies prevent PowerShell from running
-scripts that do not have a digital signature.
+**AllSigned** and **RemoteSigned** execution policies prevent PowerShell from
+running scripts that do not have a digital signature.
 
 This topic explains how to run selected scripts that are not signed, even
-while the execution policy is RemoteSigned, and how to sign scripts for your
-own use.
+while the execution policy is **RemoteSigned**, and how to sign scripts for
+your own use.
 
 For more information about PowerShell execution policies, see
 [about_Execution_Policies](about_Execution_Policies.md).
 
 ## TO PERMIT SIGNED SCRIPTS TO RUN
 
-When you start PowerShell on a computer for the first time, the Restricted
+When you start PowerShell on a computer for the first time, the **Restricted**
 execution policy (the default) is likely to be in effect.
 
-The Restricted policy does not permit any scripts to run.
+The **Restricted** policy does not permit any scripts to run.
 
 To find the effective execution policy on your computer, type:
 
@@ -42,23 +43,22 @@ Get-ExecutionPolicy
 To run unsigned scripts that you write on your local computer and signed
 scripts from other users, start PowerShell with the Run as Administrator
 option and then use the following command to change the execution policy on
-the computer to RemoteSigned:
+the computer to **RemoteSigned**:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned
 ```
 
-For more information, see the help topic for the Set-ExecutionPolicy cmdlet.
+For more information, see the help topic for the `Set-ExecutionPolicy` cmdlet.
 
 ## RUNNING UNSIGNED SCRIPTS (REMOTESIGNED EXECUTION POLICY)
 
-If your PowerShell execution policy is RemoteSigned, Windows
-PowerShell will not run unsigned scripts that are downloaded from the
-Internet, including unsigned scripts you receive through e-mail and instant
-messaging programs.
+If your PowerShell execution policy is **RemoteSigned**, PowerShell
+will not run unsigned scripts that are downloaded from the Internet, including
+unsigned scripts you receive through e-mail and instant messaging programs.
 
-If you try to run a downloaded script, PowerShell displays the
-following error message:
+If you try to run a downloaded script, PowerShell displays the following error
+message:
 
 ```output
 The file <file-name> cannot be loaded. The file <file-name> is not digitally
@@ -98,17 +98,17 @@ this publisher.
 
 ## METHODS OF SIGNING SCRIPTS
 
-You can sign the scripts that you write and the
-scripts that you obtain from other sources. Before you sign any script,
-examine each command to verify that it is safe to run.
+You can sign the scripts that you write and the scripts that you obtain from
+other sources. Before you sign any script, examine each command to verify that
+it is safe to run.
 
 For best practices about code signing, see
-[Code-Signing Best Practices](http://go.microsoft.com/fwlink/?LinkId=119096).
+[Code-Signing Best Practices](/previous-versions/windows/hardware/design/dn653556(v=vs.85)).
 
 For more information about how to sign a script file, see
-Set-AuthenticodeSignature.
+[Set-AuthenticodeSignature](../../microsoft.powershell.security/set-authenticodesignature.md).
 
-The New-SelfSignedCertificate cmdlet, introduced in the PKI module in
+The `New-SelfSignedCertificate` cmdlet, introduced in the PKI module in
 PowerShell 3.0, creates a self-signed certificate that is Appropriate for
 testing. For more information, see the help topic for the
 New-SelfSignedCertificate cmdlet.
@@ -152,8 +152,7 @@ Microsoft .NET Framework SDK (versions 1.1 and later) and in the Microsoft
 Windows SDK.
 
 For more information about the syntax and the parameter descriptions of the
-MakeCert.exe tool, see [Certificate Creation Tool (MakeCert.exe)](http://go.microsoft.com/fwlink/?LinkId=119097)
-in the MSDN library.
+MakeCert.exe tool, see [Certificate Creation Tool (MakeCert.exe)](/previous-versions/dotnet/netframework-2.0/bfsktky3(v=vs.80)).
 
 To use the MakeCert.exe tool to create a certificate, run the following
 commands in an SDK Command Prompt window.
@@ -186,7 +185,7 @@ will not find a certificate file in the file system directory.)
 At the PowerShell prompt, type:
 
 ```powershell
-get-childitem cert:\CurrentUser\my -codesigning
+Get-ChildItem cert:\CurrentUser\my -codesigning
 ```
 
 This command uses the PowerShell Certificate provider to view information
@@ -290,7 +289,7 @@ signed while the signing certificate was valid.
 Because most signing certificates are valid for one year only, using a time
 stamp server ensures that users can use your script for many years to come.
 
-# SEE ALSO
+## SEE ALSO
 
 [about_Execution_Policies](about_Execution_Policies.md)
 
@@ -302,4 +301,4 @@ stamp server ensures that users can use your script for many years to come.
 
 [Set-AuthenticodeSignature](../../Microsoft.PowerShell.Security/Set-AuthenticodeSignature.md)
 
-[Introduction to Code Signing](http://go.microsoft.com/fwlink/?LinkId=106296)
+[Introduction to Code Signing](/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms537361(v=vs.85))

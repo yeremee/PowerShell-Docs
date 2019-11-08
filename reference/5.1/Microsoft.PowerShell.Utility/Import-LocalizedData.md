@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821816
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Import-LocalizedData
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-localizeddata?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Import-LocalizedData
 ---
 
 # Import-LocalizedData
@@ -278,7 +279,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -311,10 +312,13 @@ To suppress the message and fail gracefully, use the *ErrorAction* common parame
   If **Import-LocalizedData** finds the subdirectory and the .psd1 file, it imports the hash table of user messages into the value of the *BindingVariable* parameter in the command.
 Then, when you display a message from the hash table in the variable, the localized message is displayed.
 
-  For more information, see about_Script_Internationalization (http://go.microsoft.com/fwlink/?LinkID=113262).
+  For more information, see about_Script_Internationalization (https://go.microsoft.com/fwlink/?LinkID=113262).
 
 ## RELATED LINKS
 
 [Write-Host](Write-Host.md)
 
 [Import-PowerShellDataFile](Import-PowerShellDataFile.md)
+
+
+

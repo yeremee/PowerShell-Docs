@@ -1,20 +1,19 @@
 ---
-ms.date:  11/30/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Objects
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 11/30/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_objects?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Objects
 ---
-
 # About Objects
 
 ## Short Description
-
-Provides essential information about objects in Windows PowerShell.
+Provides essential information about objects in PowerShell.
 
 ## Long Description
 
-Every action you take in Windows PowerShell occurs within the context of
+Every action you take in PowerShell occurs within the context of
 objects. As data moves from one command to the next, it moves as one or
 more identifiable objects. An object, then, is a collection of data that
 represents an item. An object is made up of three types of data: the

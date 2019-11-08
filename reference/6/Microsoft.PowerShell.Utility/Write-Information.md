@@ -1,17 +1,19 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821877
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Write-Information
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/write-information?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Write-Information
 ---
+
 # Write-Information
 
 ## SYNOPSIS
 
-Specifies how Windows PowerShell handles information stream data for a command.
+Specifies how PowerShell handles information stream data for a command.
 
 ## SYNTAX
 
@@ -21,10 +23,10 @@ Write-Information [-MessageData] <Object> [[-Tags] <String[]>] [<CommonParameter
 
 ## DESCRIPTION
 
-The `Write-Information` cmdlet specifies how Windows PowerShell handles information stream data for a command.
+The `Write-Information` cmdlet specifies how PowerShell handles information stream data for a command.
 
-Windows PowerShell 5.0 introduces a new, structured information stream (number 6 in Windows PowerShell streams) that you can use to transmit structured data between a script and its callers (or hosting environment).
-`Write-Information` lets you add an informational message to the stream, and specify how Windows PowerShell handles information stream data for a command. Information streams also work for `PowerShell.Streams`, jobs, scheduled jobs, and workflows.
+Windows PowerShell 5.0 introduces a new, structured information stream (number 6 in PowerShell streams) that you can use to transmit structured data between a script and its callers (or hosting environment).
+`Write-Information` lets you add an informational message to the stream, and specify how PowerShell handles information stream data for a command. Information streams also work for `PowerShell.Streams`, jobs, scheduled jobs, and workflows.
 
 > [!NOTE]
 > The information stream does not follow the standard convention of prefixing its messages with "[Stream Name]:".  This was intended for brevity and visual cleanliness.
@@ -110,6 +112,29 @@ Test-Info 6> Info.txt
 In this example, you redirect the information stream in the function to a file, Info.txt, by using the code 6\>.
 When you open the Info.txt file, you see the text, "Here you go."
 
+### Example 4: Pass object to write information
+
+```powershell
+Get-Process | Sort-Object CPU -Descending | Select-Object Id, ProcessName, CPU -First 10 | Write-Information -InformationAction Continue
+```
+
+```output
+@{Id=12692; ProcessName=chrome; CPU=39431.296875}
+@{Id=21292; ProcessName=OUTLOOK; CPU=23991.875}
+@{Id=10548; ProcessName=CefSharp.BrowserSubprocess; CPU=20546.203125}
+@{Id=312848; ProcessName=Taskmgr; CPU=13173.1875}
+@{Id=10848; ProcessName=SnapClient; CPU=7014.265625}
+@{Id=9760; ProcessName=Receiver; CPU=6792.359375}
+@{Id=12040; ProcessName=Teams; CPU=5605.578125}
+@{Id=498388; ProcessName=chrome; CPU=3062.453125}
+@{Id=6900; ProcessName=chrome; CPU=2546.9375}
+@{Id=9044; ProcessName=explorer; CPU=2358.765625}
+```
+
+In this example, you can use `Write-Information` to write the top 10 highest
+CPU utilization processes from the `Get-Process` object output that has passes
+through multiple pipelines.
+
 ## PARAMETERS
 
 ### -MessageData
@@ -121,12 +146,12 @@ An example is "Test complete."
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases: Message, Msg
+Aliases: Msg
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -141,21 +166,20 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](../Microsoft.PowerShell.Core/About/about_CommonParameters.md).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### None
+### System.Object
 
-`Write-Information` does not accept piped input.
+`Write-Information` accepts piped objects to pass to the information stream.
 
 ## OUTPUTS
 
@@ -184,3 +208,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Write-Warning](Write-Warning.md)
 
 [Write-Output](Write-Output.md)
+
+

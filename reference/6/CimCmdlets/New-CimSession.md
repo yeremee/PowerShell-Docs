@@ -1,11 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-external help file:  Microsoft.Management.Infrastructure.CimCmdlets.dll-Help.xml
+external help file: Microsoft.Management.Infrastructure.CimCmdlets.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: CimCmdlets
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/cimcmdlets/new-cimsession?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: New-CimSession
 ---
-
 # New-CimSession
 
 ## SYNOPSIS
@@ -16,15 +18,15 @@ Creates a CIM session.
 
 ### CredentialParameterSet (Default)
 
-```powershell
+```
 New-CimSession [-Authentication <PasswordAuthenticationMechanism>] [[-Credential] <PSCredential>]
  [[-ComputerName] <String[]>] [-Name <String>] [-OperationTimeoutSec <UInt32>] [-SkipTestConnection]
  [-Port <UInt32>] [-SessionOption <CimSessionOptions>] [<CommonParameters>]
 ```
 
-### CertificatePrameterSet
+### CertificateParameterSet
 
-```powershell
+```
 New-CimSession [-CertificateThumbprint <String>] [[-ComputerName] <String[]>] [-Name <String>]
  [-OperationTimeoutSec <UInt32>] [-SkipTestConnection] [-Port <UInt32>] [-SessionOption <CimSessionOptions>]
  [<CommonParameters>]
@@ -132,6 +134,7 @@ If the remote computer is compromised, the credentials that are passed to it can
 Type: PasswordAuthenticationMechanism
 Parameter Sets: CredentialParameterSet
 Aliases:
+Accepted values: Default, Digest, Negotiate, Basic, Kerberos, NtlmDomain, CredSsp
 
 Required: False
 Position: Named
@@ -148,12 +151,12 @@ Enter the certificate thumbprint of the certificate.
 Certificates are used in client certificate-based authentication.
 They can be mapped only to local user accounts; they do not work with domain accounts.
 
-To get a certificate thumbprint, use the [`Get-Item`](../Microsoft.Powershell.Management/Get-Item.md) or [`Get-ChildItem`](../Microsoft.Powershell.Management/Get-ChildItem.md) cmdlets in the PowerShell [Certificate Provider](../Microsoft.PowerShell.Security/Providers/Certificate-Provider.md).
-For more information about using the PowerShell Certificate provider, type `Get-Help Certificate`, or see [Certificate Provider](../Microsoft.PowerShell.Security/Providers/Certificate-Provider.md) on docs.microsoft.com.
+To get a certificate thumbprint, use the [`Get-Item`](../Microsoft.Powershell.Management/Get-Item.md) or [`Get-ChildItem`](../Microsoft.Powershell.Management/Get-ChildItem.md) cmdlets in the PowerShell Certificate Provider.
+For more information about using the PowerShell Certificate provider, type `Get-Help Certificate`, or see [Certificate Provider](../Microsoft.PowerShell.Security/About/about_Certificate_Provider.md).
 
 ```yaml
 Type: String
-Parameter Sets: CertificatePrameterSet
+Parameter Sets: CertificateParameterSet
 Aliases:
 
 Required: False
@@ -186,7 +189,7 @@ Parameter Sets: (All)
 Aliases: CN, ServerName
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -212,7 +215,7 @@ Parameter Sets: CredentialParameterSet
 Aliases:
 
 Required: False
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -266,9 +269,9 @@ The default ports are 5985 (the WinRM port for HTTP) and 5986 (the WinRM port fo
 Before using an alternate port, you must configure the WinRM listener on the remote computer to listen at that port.
 Use the following commands to configure the listener:
 
- winrm delete winrm/config/listener?Address=*+Transport=HTTP
+`winrm delete winrm/config/listener?Address=*+Transport=HTTP`
 
- winrm create winrm/config/listener?Address=*+Transport=HTTP @{Port="\<port-number>"}
+`winrm create winrm/config/listener?Address=*+Transport=HTTP @{Port="\<port-number>"}`
 
 Do not use the **Port** parameter unless you must.
 The port setting in the command applies to all computers or sessions on which the command runs.
@@ -322,8 +325,9 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+For more information, see [about_CommonParameters](../Microsoft.PowerShell.Core/About/about_CommonParameters.md).
 
 ## INPUTS
 

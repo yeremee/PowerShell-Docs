@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=799468
-external help file:  Microsoft.PowerShell.Commands.Management.dll-Help.xml
-title:  Get-TimeZone
+external help file: Microsoft.PowerShell.Commands.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/get-timezone?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-TimeZone
 ---
-
 # Get-TimeZone
 
 ## SYNOPSIS
@@ -16,26 +16,31 @@ Gets the current time zone or a list of available time zones.
 ## SYNTAX
 
 ### Name (Default)
+
 ```
 Get-TimeZone [[-Name] <String[]>] [<CommonParameters>]
 ```
 
 ### Id
+
 ```
 Get-TimeZone -Id <String[]> [<CommonParameters>]
 ```
 
 ### ListAvailable
+
 ```
 Get-TimeZone [-ListAvailable] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The **Get-TimeZone** cmdlet gets the current time zone or a list of available time zones.
 
 ## EXAMPLES
 
 ### Example 1: Get the current time zone
+
 ```
 PS C:\> Get-TimeZone
 Pacific Standard Time
@@ -44,6 +49,7 @@ Pacific Standard Time
 This command gets the current time zone.
 
 ### Example 2: Get time zones that match a specified string
+
 ```
 PS C:\> Get-TimeZone -Name "*pac*"
 Pacific Standard Time (Mexico)
@@ -64,6 +70,7 @@ Central Pacific Standard Time
 This command gets all time zones that match the specified wildcard.
 
 ### Example 3: Get all available time zones
+
 ```
 PS C:\> Get-TimeZone -ListAvailable
 ```
@@ -73,6 +80,7 @@ This command gets all available time zones.
 ## PARAMETERS
 
 ### -Id
+
 Specifies, as a string array, the ID or IDs of the time zones that this cmdlet gets.
 
 ```yaml
@@ -88,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListAvailable
+
 Indicates that this cmdlet gets all available time zones.
 
 ```yaml
@@ -103,6 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies, as a string array, the name or names of the time zones that this cmdlet gets.
 
 ```yaml
@@ -114,11 +124,12 @@ Required: False
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

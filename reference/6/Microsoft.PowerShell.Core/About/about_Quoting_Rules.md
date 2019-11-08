@@ -1,15 +1,14 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Quoting_Rules
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_quoting_rules?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Quoting_Rules
 ---
-
 # About Quoting Rules
 
 ## SHORT DESCRIPTION
-
 Describes rules for using single and double quotation marks in PowerShell.
 
 ## LONG DESCRIPTION
@@ -89,11 +88,11 @@ The value of $(2+3) is 5.
 ```
 
 To prevent the substitution of a variable value in a double-quoted string, use
-the backtick character (`)(ASCII 96), which is the Windows PowerShell escape
+the backtick character (`)(ASCII 96), which is the PowerShell escape
 character.
 
 In the following example, the backtick character that precedes the first $i
-variable prevents Windows PowerShell from replacing the variable name with its
+variable prevents PowerShell from replacing the variable name with its
 value. For example:
 
 ```powershell
@@ -158,8 +157,8 @@ The output of this command is:
 don't
 ```
 
-To force Windows PowerShell to interpret a double quotation mark literally,
-use a backtick character. This prevents Windows PowerShell from interpreting
+To force PowerShell to interpret a double quotation mark literally,
+use a backtick character. This prevents PowerShell from interpreting
 the quotation mark as a string delimiter. For example:
 
 ```powershell
@@ -170,9 +169,9 @@ Because the contents of single-quoted strings are interpreted literally, you
 cannot use the backtick character to force a literal character interpretation
 in a single-quoted string.
 
-For example, the following command generates an error because Windows
-PowerShell does not recognize the escape character. Instead, it interprets the
-second quotation mark as the end of the string.
+For example, the following command generates an error because PowerShell does
+not recognize the escape character. Instead, it interprets the second quotation
+mark as the end of the string.
 
 ```output
 PS C:\> 'Use a quotation mark (`') to begin a string.'

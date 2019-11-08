@@ -1,13 +1,13 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821792
-external help file:  Microsoft.PowerShell.Commands.Utility.dll-Help.xml
-title:  Get-Member
+external help file: Microsoft.PowerShell.Commands.Utility.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Utility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-member?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-Member
 ---
-
 # Get-Member
 
 ## SYNOPSIS
@@ -15,13 +15,13 @@ Gets the properties and methods of objects.
 
 ## SYNTAX
 
-```powershell
-Get-Member [[-Name] <String[]>] [-InputObject <PSObject>]
- [-MemberType <PSMemberTypes>] [-View <PSMemberViewTypes>] [-Static] [-Force]
- [<CommonParameters>]
+```
+Get-Member [-InputObject <PSObject>] [[-Name] <String[]>] [-MemberType <PSMemberTypes>]
+ [-View <PSMemberViewTypes>] [-Static] [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The **Get-Member** cmdlet gets the members, the properties and methods, of objects.
 
 To specify the object, use the *InputObject* parameter or pipe an object to **Get-Member**.
@@ -31,8 +31,9 @@ To get only certain types of members, such as **NoteProperties**, use the *Membe
 ## EXAMPLES
 
 ### Example 1: Get the members of process objects
+
 ```
-PS C:\> Get-Service | Get-Member
+PS> Get-Service | Get-Member
 TypeName: System.ServiceProcess.ServiceController
 Name                      MemberType    Definition
 ----                      ----------    ----------
@@ -76,9 +77,10 @@ Because the **Get-Member** part of the command does not have any parameters, it 
 As such, it gets all member types, but it does not get static members and does not display intrinsic members.
 
 ### Example 2: Get members of service objects
+
 ```
-PS C:\> Get-Service | Get-Member -Force
-PS C:\> (Get-Service Schedule).PSBase
+PS> Get-Service | Get-Member -Force
+PS> (Get-Service Schedule).PSBase
 ```
 
 This example gets all of the members (properties and methods) of the service objects (System.ServiceProcess.ServiceController) retrieved by the Get-Service cmdlet, including the intrinsic members, such as PSBase and PSObject, and the get_ and set_ methods.
@@ -93,8 +95,9 @@ You can use these properties and methods in the same way that you would use an a
 The second command shows how to display the value of the PSBase property of the Schedule service.
 
 ### Example 3: Get extended members of service objects
+
 ```
-PS C:\> Get-Service| Get-Member -View Extended
+PS> Get-Service| Get-Member -View Extended
 TypeName: System.ServiceProcess.ServiceController
 Name MemberType    Definition
 ---- ----------    ----------
@@ -107,8 +110,9 @@ The **Get-Member** command uses the *View* parameter to get only the extended me
 In this case, the extended member is the Name property, which is an alias property of the **ServiceName** property.
 
 ### Example 4: Get script properties of event log objects
+
 ```
-PS C:\> Get-EventLog -Log System | Get-Member -MemberType ScriptProperty
+PS> Get-EventLog -Log System | Get-Member -MemberType ScriptProperty
 TypeName: System.Diagnostics.EventLogEntry
 Name    MemberType     Definition
 ----    ----------     ----------
@@ -122,9 +126,10 @@ The command uses the *MemberType* parameter to get only objects with a value of 
 The command returns the EventID property of the **EventLog** object.
 
 ### Example 5: Get objects with a specified property
+
 ```
-PS C:\> $A = "Get-Process", "Get-Service", "Get-Culture", "Get-PSDrive", "Get-ExecutionPolicy"
-PS C:\> ForEach ($Cmdlet in $A) {Invoke-Command $Cmdlet | Get-Member -Name MachineName}
+PS> $A = "Get-Process", "Get-Service", "Get-Culture", "Get-PSDrive", "Get-ExecutionPolicy"
+PS> ForEach ($Cmdlet in $A) {Invoke-Command $Cmdlet | Get-Member -Name MachineName}
 TypeName: System.Diagnostics.Process
 Name        MemberType Definition
 ----        ---------- ----------
@@ -144,18 +149,30 @@ The second command uses a **ForEach** statement to invoke each command, send the
 The results show that only process objects (**System.Diagnostics.Process**) and service objects (**System.ServiceProcess.ServiceController**) have a MachineName property.
 
 ### Example 6: Get members for an array
+
 ```
-PS C:\> $A = Get-Member - InputObject @(1)
-PS C:\> $A.Count
-1 PS C:\> $A = Get-Member -InputObject 1,2,3
+PS> $A = @(1)
+PS> $A.Count
+1
+PS> Get-Member -InputObject $A
 TypeName: System.Object[]
 Name               MemberType    Definition
 ----               ----------    ----------
 Count              AliasProperty Count = Length
 Address            Method        System.Object& Address(Int32 )
 Clone              Method        System.Object Clone()
-... PS C:\> $A.Count
-1
+...
+PS> $A = @(1,2,3)
+PS> Get-Member -InputObject $A
+TypeName: System.Object[]
+Name               MemberType    Definition
+----               ----------    ----------
+Count              AliasProperty Count = Length
+Address            Method        System.Object& Address(Int32 )
+Clone              Method        System.Object Clone()
+...
+PS> $A.Count
+3
 ```
 
 This example demonstrates how to find the properties and methods of an array of objects when you have only one object of the given type.
@@ -169,9 +186,10 @@ The third command uses the **Get-Member** cmdlet to get the properties and metho
 The fourth command uses the Count property of the array to find the number of objects in the $A variable.
 
 ### Example 7: Determine which object properties you can set
+
 ```
-PS C:\> $File = Get-Item c:\test\textFile.txt
-PS C:\> $File.psobject.properties | Where-Object {$_.issettable} | Format-Table -Property name
+PS> $File = Get-Item c:\test\textFile.txt
+PS> $File.psobject.properties | Where-Object {$_.issettable} | Format-Table -Property name
 Name
 ----
 PSPath
@@ -187,22 +205,24 @@ LastAccessTime
 LastAccessTimeUtc
 LastWriteTime
 LastWriteTimeUtc
-Attributes PS C:\> [appdomain]::CurrentDomain.GetAssemblies() | ForEach-Object { $_.getexportedtypes() } | ForEach-Object {$_.getproperties() | Where-Object {$_.canwrite }} | Select-Object reflectedtype, name
+Attributes
+PS> [appdomain]::CurrentDomain.GetAssemblies() | ForEach-Object { $_.getexportedtypes() } | ForEach-Object {$_.getproperties() | Where-Object {$_.canwrite }} | Select-Object reflectedtype, name
 ```
 
 This example shows how to determine which properties of an object can be changed.
-The example uses a file, but you can use this command format to find the changeable properties of any object in Windows PowerShell.
+The example uses a file, but you can use this command format to find the changeable properties of any object in PowerShell.
 
 The first command uses the Get-Item cmdlet to get a text file, and then it saves the file object in the $File variable.
 
 The second command gets all of the changeable properties of the file object in the $File variable and displays the names of the properties in a table.
 
-The third command gets the changeable properties of all objects in your Windows PowerShell session.
+The third command gets the changeable properties of all objects in your PowerShell session.
 
 ### Example 8: Get members of each item in a collection
+
 ```
-PS C:\> $S = Get-Service
-PS C:\> $S | Get-Member
+PS> $S = Get-Service
+PS> $S | Get-Member
 TypeName: System.ServiceProcess.ServiceController
 Name                      MemberType    Definition
 ----                      ----------    ----------
@@ -213,7 +233,8 @@ Close                     Method        System.Void Close()
 Continue                  Method        System.Void Continue()
 CreateObjRef              Method        System.Runtime.Remoting.ObjRef CreateObjRef(type requestedTy
 Dispose                   Method        System.Void Dispose()
-... PS C:\> Get-Member -InputObject $S
+...
+PS> Get-Member -InputObject $S
 TypeName: System.Object[]
 Name           MemberType    Definition
 ----           ----------    ----------
@@ -244,16 +265,17 @@ The third command uses the *InputObject* parameter of **Get-Member** to submit t
 ## PARAMETERS
 
 ### -Force
+
 Adds the intrinsic members (PSBase, PSAdapted, PSObject, PSTypeNames) and the compiler-generated get_ and set_ methods to the display.
 By default, **Get-Member** gets these properties in all views other than Base and Adapted, but it does not display them.
 
 The following list describes the properties that are added when you use the *Force* parameter:
 
 - PSBase:  The original properties of the .NET Framework object without extension or adaptation. These are the properties defined for the object class and listed in MSDN.
-- PSAdapted. The properties and methods defined in the Windows PowerShell extended type system.
+- PSAdapted. The properties and methods defined in the PowerShell extended type system.
 - PSExtended. The properties and methods that were added in the Types.ps1xml files or by using the Add-Member cmdlet.
-- PSObject. The adapter that converts the base object to a Windows PowerShell**PSObject** object.
-- PSTypeNames. A list of object types that describe the object, in order of specificity. When formatting the object, Windows PowerShell searches for the types in the Format.ps1xml files in the Windows PowerShell installation directory ($pshome). It uses the formatting definition for the first type that it finds.
+- PSObject. The adapter that converts the base object to a PowerShell**PSObject** object.
+- PSTypeNames. A list of object types that describe the object, in order of specificity. When formatting the object, PowerShell searches for the types in the Format.ps1xml files in the PowerShell installation directory ($pshome). It uses the formatting definition for the first type that it finds.
 
 ```yaml
 Type: SwitchParameter
@@ -268,6 +290,7 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
+
 Specifies the object whose members are retrieved.
 
 Using the *InputObject* parameter is not the same as piping an object to **Get-Member**.
@@ -289,6 +312,7 @@ Accept wildcard characters: False
 ```
 
 ### -MemberType
+
 Specifies the member type that this cmdlet gets.
 The default is All.
 
@@ -314,7 +338,7 @@ The acceptable values for this parameter are:
 For information about these values, see [PSMemberTypes Enumeration](https://msdn.microsoft.com/library/system.management.automation.psmembertypes) in the MSDN library.
 
 Not all objects have every type of member.
-If you specify a member type that the object does not have, Windows PowerShell returns a null value.
+If you specify a member type that the object does not have, PowerShell returns a null value.
 
 To get related types of members, such as all extended members, use the *View* parameter.
 If you use the *MemberType* parameter with the *Static* or *View* parameters, **Get-Member** gets the members that belong to both sets.
@@ -333,6 +357,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the names of one or more properties or methods of the object.
 **Get-Member** gets only the specified properties and methods.
 
@@ -353,6 +378,7 @@ Accept wildcard characters: False
 ```
 
 ### -Static
+
 Indicates that this cmdlet gets only the static properties and methods of the object.
 
 Static properties and methods are defined on the class of objects, not on any particular instance of the class.
@@ -373,6 +399,7 @@ Accept wildcard characters: False
 ```
 
 ### -View
+
 Specifies that this cmdlet gets only particular types properties and methods.
 Specify one or more of the values.
 The default is Adapted, Extended.
@@ -380,7 +407,7 @@ The default is Adapted, Extended.
 The acceptable values for this parameter are:
 
 - Base.  Gets only the original properties and methods of the .NET Framework object (without extension or adaptation).
-- Adapted.  Gets only the properties and methods defined in the Windows PowerShell extended type system.
+- Adapted.  Gets only the properties and methods defined in the PowerShell extended type system.
 - Extended. Gets only the properties and methods that were added in the Types.ps1xml files or by using the Add-Member cmdlet.
 - All. Gets the members in the Base, Adapted, and Extended views.
 
@@ -404,19 +431,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.Management.Automation.PSObject
+
 You can pipe any object to **Get-Member**.
 
 ## OUTPUTS
 
 ### Microsoft.PowerShell.Commands.MemberDefinition
+
 **Get-Member** returns an object for each property or method that its gets.
 
 ## NOTES
+
 * You can get information about a collection object either by using the *InputObject* parameter or by piping the object, preceded by a comma, to **Get-Member**.
 
   You can use the $This automatic variable in script blocks that define the values of new properties and methods.
@@ -428,3 +459,5 @@ For more information about the $This variable, see about_Automatic_Variables.
 ## RELATED LINKS
 
 [Add-Member](Add-Member.md)
+
+

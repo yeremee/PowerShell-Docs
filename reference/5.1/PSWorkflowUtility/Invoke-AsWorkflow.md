@@ -1,16 +1,16 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821723
-external help file:  PSWorkflowUtility-help.xml
-title:  Invoke-AsWorkflow
+external help file: Microsoft.PowerShell.Workflow.ServiceCore.dll-help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: PSWorkflowUtility
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/psworkflowutility/invoke-asworkflow?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Invoke-AsWorkflow
 ---
 # Invoke-AsWorkflow
 
 ## SYNOPSIS
-
 Runs a command or expression as a Windows PowerShell Workflow.
 
 ## SYNTAX
@@ -33,7 +33,7 @@ The `Invoke-AsWorkflow` workflow runs any command or expression as an inline scr
 These workflows use the standard workflow semantics, have all workflow common parameters, and have all benefits of workflows, including the ability to stop, resume, and recover.
 
 Workflows are designed for long-running commands that collect critical data, but can be used to run any command.
-For more information, see about_Workflows.
+For more information, see [about_Workflows](../PSWorkflow/About/about_Workflows.md).
 
 You can also add workflow common parameters to this command.
 For more information about workflow common parameters, see [about_WorkflowCommonParameters](../PSWorkflow/About/about_WorkflowCommonParameters.md)
@@ -159,7 +159,7 @@ Accept wildcard characters: False
 
 ### -InputObject
 
-{{Fill InputObject Description}}
+Used to allows pipeline input.
 
 ```yaml
 Type: Object
@@ -179,7 +179,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### WorkflowCommonParameters
 
-This cmdlet also supports workflow specific common parameters.  
+This cmdlet also supports workflow specific common parameters.
 For information, see [about_WorkflowCommonParameters](../PSWorkflow/About/about_WorkflowCommonParameters.md).
 
 ## INPUTS
@@ -206,7 +206,3 @@ However, it runs the workflow, which might generate output.
 [about_Workflows](../PSWorkflow/About/about_Workflows.md)
 
 [about_Workflow_Common_Parameters](../PSWorkflow/About/about_WorkflowCommonParameters.md)
-
-[Windows PowerShell Workflow Module](../PSWorkflow/PSWorkflow.md)
-
-[Windows PowerShell Workflow Utility Module](PSWorkflowUtility.md)

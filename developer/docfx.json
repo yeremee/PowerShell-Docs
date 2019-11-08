@@ -1,29 +1,28 @@
 {
     "build": {
         "content": [{
-            "files": [
-                "**/**.yml",
-                "**/**.md"
-            ],
-            "exclude": ["**/obj/**"]
+            "files": ["**/**.yml", "**/**.md"],
+            "exclude": ["**/obj/**", "README.md"]
         }],
         "globalMetadata": {
-            "breadcrumb_path": "bread/toc.yml",
+            "toc_preview": true,
+            "breadcrumb_path": "",
             "uhfHeaderId": "MSDocsHeader-Powershell",
             "ROBOTS": "INDEX, FOLLOW",
             "ms.prod": "powershell",
-            "ms.technology": "developer",
+            "ms.technology": "powershell-developer",
             "manager": "carmonm",
             "ms.devlang": "powershell",
             "ms.tgt_pltfr": "windows, macos, linux",
             "author": "joeyaiello",
-            "ms.author": "jaiello"
+            "ms.author": "jaiello",
+            "feedback_system": "GitHub",
+            "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs",
+            "feedback_product_url": "https://github.com/PowerShell/PowerShell/issues/new/choose"
         },
         "resource": [{
-            "files": [
-                "**/images/**"
-            ],
-            "exclude": ["**/obj/**"]
+            "files": ["**/media/**", "**/*.png", "**/*.gif", "**/*.jpeg", "**/*.jpg", "**/*.svg"],
+            "exclude": ["**/obj/**", "**/includes/**"]
         }],
         "template": "op.html",
         "dest": "developer",

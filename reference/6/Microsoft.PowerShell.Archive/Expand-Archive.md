@@ -1,16 +1,17 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821655
-external help file:  Microsoft.PowerShell.Archive-help.xml
-title:  Expand-Archive
+external help file: Microsoft.PowerShell.Archive-help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Archive
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Expand-Archive
 ---
+
 # Expand-Archive
 
 ## SYNOPSIS
-
 Extracts files from a specified archive (zipped) file.
 
 ## SYNTAX
@@ -18,14 +19,14 @@ Extracts files from a specified archive (zipped) file.
 ### Path (Default)
 
 ```
-Expand-Archive [-Path] <String> [[-DestinationPath] <String>] [-Force] [-WhatIf] [-Confirm]
+Expand-Archive [-Path] <String> [[-DestinationPath] <String>] [-Force] [-PassThru] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### LiteralPath
 
 ```
-Expand-Archive -LiteralPath <String> [[-DestinationPath] <String>] [-Force] [-WhatIf] [-Confirm]
+Expand-Archive -LiteralPath <String> [[-DestinationPath] <String>] [-Force] [-PassThru] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -58,7 +59,6 @@ This command extracts the contents of an existing archive file in the current fo
 
 Specifies the path to the folder in which you want the command to save extracted files.
 Enter the path to a folder, but do not specify a file name or file name extension.
-This parameter is required.
 
 ```yaml
 Type: String
@@ -66,8 +66,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
-Default value: None
+Position: 1
+Default value: Current location
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 Specifies the path to an archive file.
 Unlike the **Path** parameter, the value of **LiteralPath** is used exactly as it is typed.
 Wildcard characters are not supported.
-If the path includes escape characters, enclose each escape character in single quotation marks, to instruct Windows PowerShell not to interpret any characters as escape sequences.
+If the path includes escape characters, enclose each escape character in single quotation marks, to instruct PowerShell not to interpret any characters as escape sequences.
 
 ```yaml
 Type: String
@@ -107,6 +107,22 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -PassThru
+
+Causes the cmdlet to output a list of the files expanded from the archive.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Path
 
 Specifies the path to the archive file.
@@ -117,7 +133,7 @@ Parameter Sets: Path
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -157,8 +173,10 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](/powershell/module/microsoft.powershell.core/about/about_commonparameters).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
+-InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -168,8 +186,14 @@ You can pipe a string that contains a path to an existing archive file.
 
 ## OUTPUTS
 
-### None
+### System.IO.FileSystemInfo
+
+When the `-PassThru` parameter is used, the cmdlet outputs a list of files that were expanded from
+the archive.
 
 ## NOTES
 
 ## RELATED LINKS
+
+[Compress-Archive](compress-archive.md)
+

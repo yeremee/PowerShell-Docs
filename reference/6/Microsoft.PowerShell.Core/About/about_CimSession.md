@@ -1,15 +1,14 @@
 ---
-ms.date:  04/28/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_CimSession
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 04/28/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_cimsession?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_CimSession
 ---
-
 # About CimSession
 
 ## SHORT DESCRIPTION
-
 Describes a CimSession object and the difference between CIM sessions and
 PowerShell sessions.
 

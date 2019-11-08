@@ -1,15 +1,14 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Do
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_do?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Do
 ---
-
 # About Do
 
 ## SHORT DESCRIPTION
-
 Runs a statement list one or more times, subject to a While or Until
 condition.
 
@@ -45,7 +44,7 @@ The following shows the syntax of the **Do-Until** statement:
 do {<statement list>} until (<condition>)
 ```
 
-The statment list contains one or more statements that run each time the
+The statement list contains one or more statements that run each time the
 loop is entered or repeated.
 
 The condition portion of the statement resolves to true or false.

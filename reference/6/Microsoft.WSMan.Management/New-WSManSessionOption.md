@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?LinkId=821734
-external help file:  Microsoft.WSMan.Management.dll-Help.xml
-title:  New-WSManSessionOption
+external help file: Microsoft.WSMan.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.WSMan.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.wsman.management/new-wsmansessionoption?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: New-WSManSessionOption
 ---
 
 # New-WSManSessionOption
@@ -112,6 +113,7 @@ The default value is ProxyIEConfig.
 Type: ProxyAccessType
 Parameter Sets: (All)
 Aliases:
+Accepted values: ProxyIEConfig, ProxyWinHttpConfig, ProxyAutoDetect, ProxyNoProxyServer
 
 Required: False
 Position: Named
@@ -138,6 +140,7 @@ The default value is Negotiate.
 Type: ProxyAuthentication
 Parameter Sets: (All)
 Aliases:
+Accepted values: Negotiate, Basic, Digest
 
 Required: False
 Position: Named
@@ -151,22 +154,6 @@ Specifies a user account that has permission to gain access through an intermedi
 
 ```yaml
 Type: PSCredential
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SPNPort
-Specifies a port number to append to the connection Service Principal Name (SPN) of the remote server.
-An SPN is used when the authentication mechanism is Kerberos or Negotiate.
-
-```yaml
-Type: Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -225,6 +212,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SPNPort
+Specifies a port number to append to the connection Service Principal Name (SPN) of the remote server.
+An SPN is used when the authentication mechanism is Kerberos or Negotiate.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -UseUTF16
 Indicates that the connection encodes the request in UTF16 format instead of UTF8 format.
 The default is UTF8 encoding.
@@ -242,7 +245,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -277,3 +280,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [Set-WSManQuickConfig](Set-WSManQuickConfig.md)
 
 [Test-WSMan](Test-WSMan.md)
+
+

@@ -1,11 +1,12 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-online version:  http://go.microsoft.com/fwlink/?linkid=821591
-external help file:  Microsoft.PowerShell.Commands.Management.dll-Help.xml
-title:  Get-PSDrive
+external help file: Microsoft.PowerShell.Commands.Management.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: Microsoft.PowerShell.Management
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.management/get-psdrive?view=powershell-5.1&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-PSDrive
 ---
 
 # Get-PSDrive
@@ -74,7 +75,6 @@ PS C:\foo> Get-PSDrive D
 Name           Used (GB)     Free (GB) Provider      Root
 ----           ---------     --------- --------      ----
 D                1211.06     123642.32 FileSystem    D:\
-
 ```
 
 This command gets the D: drive on the computer.
@@ -233,7 +233,7 @@ The acceptable values for this parameter are:
 - Script
 - a number relative to the current scope (0 through the number of scopes, where 0 is the current scope and 1 is its parent).
 "Local" is the default.
-For more information, see about_Scopes (http://go.microsoft.com/fwlink/?LinkID=113260).
+For more information, see about_Scopes (https://go.microsoft.com/fwlink/?LinkID=113260).
 
 ```yaml
 Type: String
@@ -265,7 +265,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -290,3 +290,6 @@ This cmdlet returns objects that represent the drives in the session.
 [Get-WmiObject](Get-WmiObject.md)
 
 [Get-PSProvider](Get-PSProvider.md)
+
+
+

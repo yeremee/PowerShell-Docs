@@ -1,15 +1,14 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Session_Configuration_Files
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_session_configuration_files?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Session_Configuration_Files
 ---
-
 # About Session Configuration Files
 
 ## SHORT DESCRIPTION
-
 Describes session configuration files, which are used in a session
 configuration (also known as an "endpoint") to define the environment of
 sessions that use the session configuration.
@@ -19,7 +18,7 @@ sessions that use the session configuration.
 A "session configuration file" is a text file with a .pssc file name extension
 that contains a hash table of session configuration properties and values. You
 can use a session configuration file to set the properties of a session
-configuration. Doing so defines the environment of any Windows PowerShell
+configuration. Doing so defines the environment of any PowerShell
 sessions that use that session configuration.
 
 Session configuration files make it easy to create custom session
@@ -39,7 +38,7 @@ affected by the settings in the session configuration.
 
 ## Creating Custom Sessions
 
-You can customize many features of a Windows PowerShell session by specifying
+You can customize many features of a PowerShell session by specifying
 session properties in a session configuration. You can customize a session by
 writing a C# program that defines a custom runspace, or you can use a session
 configuration file to define the properties of sessions created by using the
@@ -53,8 +52,8 @@ the modules required for those tasks; and sessions where unprivileged users
 can only run specific commands as a privileged account.
 
 In addition to that, you can manage whether users of the session can use
-Windows PowerShell language elements such as script blocks, or whether they
-can only run commands. You can manage the version of Windows PowerShell users
+PowerShell language elements such as script blocks, or whether they
+can only run commands. You can manage the version of PowerShell users
 can run in the session; manage which modules are imported into the session;
 and manage which cmdlets, functions, and aliases session users can run. When
 using the RoleDefinitions field, you can give users different capabilities in
@@ -91,7 +90,7 @@ Invoke-Item -Path .\Defaults.pssc
 ```
 
 To create a session configuration for sessions in which user can run commands,
-but not use other elements of the Windows PowerShell language, type:
+but not use other elements of the PowerShell language, type:
 
 ```powershell
 New-PSSessionConfigurationFile -LanguageMode NoLanguage
@@ -147,8 +146,7 @@ Register-PSSessionConfiguration -Name NoLanguage
 -Path .\NoLanguage.pssc
 ```
 
-When a new NoLanguage session starts, users will only have access to Windows
-PowerShell commands.
+When a new NoLanguage session starts, users will only have access to PowerShell commands.
 
 To add a session configuration file to an existing session configuration, use
 the Set-PSSessionConfiguration cmdlet and the Path parameter. This affects any
@@ -166,7 +164,7 @@ Set-PSSessionConfiguration -Name LockedDown
 
 When users use the LockedDown session configuration to create a session, they
 will be able to run cmdlets but they will not be able to create or use
-variables, assign values, or use other Windows PowerShell language elements.
+variables, assign values, or use other PowerShell language elements.
 
 The following command uses the New-PSSession cmdlet to create a session on the
 computer Srv01 that uses the LockedDown session configuration, saving an
@@ -180,8 +178,7 @@ $s = New-PSSession -ComputerName Srv01
 ```
 
 Because the NoLanguage constraints were added to the LockedDown session
-configuration, users in LockedDown sessions will only be able to run Windows
-PowerShell commands and cmdlets. For example, the following two commands use
+configuration, users in LockedDown sessions will only be able to run PowerShell commands and cmdlets. For example, the following two commands use
 the Invoke-Command cmdlet to run commands in the session referenced in the $s
 variable. The first command, which runs the Get-UICulture cmdlet and does not
 use any variables, succeeds. The second command, which gets the value of the
@@ -206,8 +203,7 @@ RunAsVirtualAccountGroups can be modified by editing the session configuration
 file used by the session configuration. To do this, begin by locating the
 active copy of the session configuration file.
 
-When you use a session configuration file in a session configuration, Windows
-PowerShell creates an active copy of the session configuration file and stores
+When you use a session configuration file in a session configuration, PowerShell creates an active copy of the session configuration file and stores
 it in the \$pshome\\SessionConfig directory on the local computer.
 
 The location of the active copy of a session configuration file is stored in

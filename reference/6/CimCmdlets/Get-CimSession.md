@@ -1,15 +1,17 @@
 ---
-ms.date:  06/09/2017
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-external help file:  Microsoft.Management.Infrastructure.CimCmdlets.dll-Help.xml
+external help file: Microsoft.Management.Infrastructure.CimCmdlets.dll-Help.xml
+keywords: powershell,cmdlet
+locale: en-us
+Module Name: CimCmdlets
+ms.date: 06/09/2017
+online version: https://docs.microsoft.com/powershell/module/cimcmdlets/get-cimsession?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: Get-CimSession
 ---
 
 # Get-CimSession
 
 ## SYNOPSIS
-
 Gets the CIM session objects from the current session.
 
 ## SYNTAX
@@ -52,7 +54,6 @@ Get-CimSession does not get CIM sessions that were created in other PowerShell s
 
 ```powershell
 New-CimSession -ComputerName Server01,Server02
-
 Get-CimSession
 ```
 
@@ -70,7 +71,7 @@ ComputerName : Server02
 Protocol     : WSMAN
 ```
 
-This command first creates CIM sessions by using [`New-CimSession`](New-CimSession.md), and then gets the CIM sessions by using `Get-CimSession`.
+This command first creates CIM sessions by using [New-CimSession](New-CimSession.md), and then gets the CIM sessions by using `Get-CimSession`.
 
 ### Example 2: Get the CIM sessions to a specific computer
 
@@ -145,10 +146,8 @@ This command gets the CIM session that has an ID of 2.
 
 ### -ComputerName
 
-Specifies an array of names of computers.
-Gets the CIM sessions that connect to the specified computers.
-
-You can specify a fully qualified domain name (FQDN) or a NetBIOS name.
+Specifies the name of the computer to get CIM sessions connected to.
+Wildcard characters are permitted.
 
 ```yaml
 Type: String[]
@@ -156,7 +155,7 @@ Parameter Sets: ComputerNameSet
 Aliases: CN, ServerName
 
 Required: False
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: True
@@ -178,7 +177,7 @@ Parameter Sets: SessionIdSet
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -224,7 +223,7 @@ Accept wildcard characters: True
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

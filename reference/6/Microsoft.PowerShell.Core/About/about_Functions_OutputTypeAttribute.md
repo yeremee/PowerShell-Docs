@@ -1,15 +1,14 @@
 ---
-ms.date:  01/03/2018
-schema:  2.0.0
-locale:  en-us
-keywords:  powershell,cmdlet
-title:  about_Functions_OutputTypeAttribute
+keywords: powershell,cmdlet
+locale: en-us
+ms.date: 01/03/2018
+online version: https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_functions_outputtypeattribute?view=powershell-6&WT.mc_id=ps-gethelp
+schema: 2.0.0
+title: about_Functions_OutputTypeAttribute
 ---
-
 # About Functions OutputTypeAttribute
 
 ## SHORT DESCRIPTION
-
 Describes an attribute that reports the type of object that the function
 returns.
 
@@ -103,7 +102,7 @@ function AdvancedFunction2
 }
 ```
 
-# EXAMPLES
+## EXAMPLES
 
 The following function uses the OutputType attribute to indicate that it returns
 a string value.
@@ -210,7 +209,7 @@ The value of the OutputType property can be null. Use a null value when
 the output is a not a .NET type, such as a WMI object or a formatted view
 of an object.
 
-# SEE ALSO
+## SEE ALSO
 
 [about_Functions](about_Functions.md)
 
