@@ -71,13 +71,12 @@ each of these characters and provides examples of relative path names and
 fully qualified path names. The examples in the table are based on the current
 working directory being set to C:\Windows.
 
-|Symbol|Description               |Relative path    |Full path          |
-|------|--------------------------|-----------------|-------------------|
-|.     |Current location          |.\\System        |c:\\Windows\\System|
-|..    |Parent of current location|..\\Program Files|c:\\Program Files  |
-|\     |Drive root of current     |\\Program Files  |c:\\Program Files  |
-|      |location                  |                 |                   |
-|[none]|No special characters     |System           |c:\\Windows\\System|
+|Symbol|Description                   |Relative path    |Full path          |
+|------|------------------------------|-----------------|-------------------|
+|.     |Current location              |.\\System        |c:\\Windows\\System|
+|..    |Parent of current location    |..\\Program Files|c:\\Program Files  |
+|\     |Drive root of current location|\\Program Files  |c:\\Program Files  |
+|[none]|No special characters         |System           |c:\\Windows\\System|
 
 When using a path name in a command, you enter that name in the same way
 whether you use a fully qualified path name or a relative one. For example,
